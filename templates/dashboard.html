@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f1729" />
+  <title>FitAI — Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=Noto+Nastaliq+Urdu:wght@400;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/styles-enhanced.css" />
+  <style>
+    .dash-main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 1rem 1rem 2rem;
+    }
+    .dash-heading {
+      margin: 0 0 1.25rem;
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.85);
+    }
+    .dash-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    @media (min-width: 640px) {
+      .dash-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    .dash-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      padding: 1.25rem;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .dash-card:hover {
+      transform: translateY(-2px);
+    }
+    .dash-card__icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      color: #7dd3fc;
+    }
+    .dash-card__title {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.95);
+    }
+    .dash-card__desc {
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.45;
+      color: rgba(255, 255, 255, 0.65);
+    }
+    .dash-card--soon {
+      opacity: 0.92;
+    }
+    a.logo {
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body class="theme-dark">
+  <div class="bg-layer" aria-hidden="true"></div>
+  <div class="bg-vignette" aria-hidden="true"></div>
+
+  <div id="app">
+    <header class="top-bar" id="top-bar">
+      <div class="top-bar__left">
+        <button type="button" class="icon-btn hidden" id="btn-back" aria-label="Back">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <span class="logo" id="brand-title">FitAI</span>
+      </div>
+      <div class="top-bar__right">
+        <div class="dropdown-wrap" id="lang-wrap">
+          <button type="button" class="icon-btn" id="btn-lang" aria-haspopup="true" aria-expanded="false" aria-label="Language">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z"/>
+            </svg>
+          </button>
+          <ul class="dropdown glass-dropdown hidden" id="lang-menu" role="menu">
+            <li role="menuitem"><button type="button" data-lang="en" class="dropdown__opt">English</button></li>
+            <li role="menuitem"><button type="button" data-lang="romanUrdu" class="dropdown__opt">Roman Urdu</button></li>
+            <li role="menuitem"><button type="button" data-lang="ur" class="dropdown__opt urdu-font">اردو</button></li>
+          </ul>
+        </div>
+        <button type="button" class="icon-btn" id="btn-theme" aria-label="Toggle theme">
+          <svg class="icon-sun" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon hidden" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button type="button" class="icon-btn" id="btn-home" aria-label="Home">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="main dash-main animate-in">
+      <h1 class="dash-heading" data-i18n="dashHeading">Choose a feature</h1>
+      <div class="dash-grid">
+        <a href="/?module=plan" class="dash-card glass-card">
+          <svg class="dash-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+            <path d="M4 10h16M6 6h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/>
+            <path d="M8 14h8M8 18h5"/>
+          </svg>
+          <h2 class="dash-card__title" data-i18n="dashCardDietTitle">Diet &amp; Exercise Plan</h2>
+          <p class="dash-card__desc" data-i18n="dashCardDietDesc">Personalized nutrition and workout guidance.</p>
+        </a>
+
+        <a href="/?module=classifier" class="dash-card glass-card">
+          <svg class="dash-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+            <circle cx="12" cy="5" r="2"/><path d="M12 7v4M9 20h6M10 11l-1 9M14 11l1 9M8 11h8"/>
+          </svg>
+          <h2 class="dash-card__title" data-i18n="dashCardClassifierTitle">Body Type Classifier</h2>
+          <p class="dash-card__desc" data-i18n="dashCardClassifierDesc">AI-powered somatotype assessment.</p>
+        </a>
+
+        <button type="button" class="dash-card dash-card--soon glass-card" id="card-tracking">
+          <svg class="dash-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/>
+          </svg>
+          <h2 class="dash-card__title" data-i18n="dashCardTrackingTitle">Daily Tracking</h2>
+          <p class="dash-card__desc" data-i18n="dashCardTrackingDesc">Log meals, workouts, and daily progress.</p>
+        </button>
+
+        <button type="button" class="dash-card dash-card--soon glass-card" id="card-food">
+          <svg class="dash-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+            <path d="M4 7h16v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/><circle cx="12" cy="13" r="3"/>
+          </svg>
+          <h2 class="dash-card__title" data-i18n="dashCardFoodTitle">Food Image Recognition</h2>
+          <p class="dash-card__desc" data-i18n="dashCardFoodDesc">Identify meals and portions from photos.</p>
+        </button>
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/i18n.js"></script>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

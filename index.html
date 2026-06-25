@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f1729" />
+  <title>FitAI — Body & Training Plan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=Noto+Nastaliq+Urdu:wght@400;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          animation: {
+            'fadeIn': 'fadeIn 0.6s ease-out',
+            'slideUp': 'slideUp 0.6s ease-out',
+            'slideDown': 'slideDown 0.4s ease-out',
+            'pulse-soft': 'pulse-soft 2s ease-in-out infinite',
+            'shimmer': 'shimmer 2s infinite',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            slideUp: {
+              '0%': { transform: 'translateY(20px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' },
+            },
+            slideDown: {
+              '0%': { transform: 'translateY(-10px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' },
+            },
+            'pulse-soft': {
+              '0%, 100%': { opacity: '1' },
+              '50%': { opacity: '0.8' },
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '200% center' },
+              '100%': { backgroundPosition: '-200% center' },
+            },
+          },
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/styles-enhanced.css" />
+</head>
+<body class="theme-dark">
+  <div class="bg-layer" aria-hidden="true"></div>
+  <div class="bg-vignette" aria-hidden="true"></div>
+
+  <div id="app">
+    <header class="top-bar" id="top-bar">
+      <div class="top-bar__left">
+        <button type="button" class="icon-btn hidden" id="btn-back" aria-label="Back">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <span class="logo" id="brand-title">FitAI</span>
+      </div>
+      <div class="top-bar__right">
+        <div class="dropdown-wrap" id="lang-wrap">
+          <button type="button" class="icon-btn" id="btn-lang" aria-haspopup="true" aria-expanded="false" aria-label="Language">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z"/>
+            </svg>
+          </button>
+          <ul class="dropdown glass-dropdown hidden" id="lang-menu" role="menu">
+            <li role="menuitem"><button type="button" data-lang="en" class="dropdown__opt">English</button></li>
+            <li role="menuitem"><button type="button" data-lang="romanUrdu" class="dropdown__opt">Roman Urdu</button></li>
+            <li role="menuitem"><button type="button" data-lang="ur" class="dropdown__opt urdu-font">اردو</button></li>
+          </ul>
+        </div>
+        <button type="button" class="icon-btn" id="btn-theme" aria-label="Toggle theme">
+          <svg class="icon-sun" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon hidden" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button type="button" class="icon-btn hidden" id="btn-dashboard" aria-label="Dashboard">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+            <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="main">
+      <!-- Landing -->
+      <section class="view view--landing" id="view-landing" data-view="landing">
+        <div class="hero glass-card animate-in">
+          <p class="eyebrow" data-i18n="landingEyebrow">AI body insights</p>
+          <h1 class="hero__title" data-i18n="landingTitle">Know your body.<br />Train smarter.</h1>
+          <p class="hero__sub" data-i18n="landingSub">A quick guided check-in — no typing, just taps. Get your type, BMI snapshot, and a plan preview.</p>
+          <button type="button" class="btn btn--primary btn-shimmer" id="btn-start" data-i18n="landingCta">Start AI assessment</button>
+        </div>
+        <div class="chips-row">
+          <div class="chip glass-chip"><span class="chip__icon">◎</span><span data-i18n="chip1">Card-based</span></div>
+          <div class="chip glass-chip"><span class="chip__icon">◇</span><span data-i18n="chip2">Personalized</span></div>
+          <div class="chip glass-chip"><span class="chip__icon">✦</span><span data-i18n="chip3">Private</span></div>
+        </div>
+      </section>
+
+      <!-- Questionnaire -->
+      <section class="view hidden" id="view-quiz" data-view="quiz">
+        <div class="quiz-head p-4 sm:p-6 backdrop-blur-xl bg-gradient-to-b from-white/10 to-white/5 border border-white/15 rounded-2xl animate-slideDown m-4 sm:m-6">
+          <!-- Step Indicator --><div class="flex items-center justify-between mb-5">
+            <div class="flex items-center gap-3">
+              <div class="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-teal-400 to-teal-600 shadow-lg">
+                <span class="text-sm font-bold text-white" id="step-num">1</span>
+              </div>
+              <div class="flex flex-col">
+                <p class="text-sm font-medium text-white/60 uppercase tracking-wide"><span data-i18n="stepWord">Step</span> <span data-i18n="ofWord">of</span> <span id="step-total">7</span></p>
+                <p class="text-lg font-semibold text-white/90">Almost there</p>
+              </div>
+            </div>
+            <div class="text-right">
+              <p class="text-xs font-medium text-white/50 uppercase">Progress</p>
+              <p class="text-2xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent" id="progress-percent">14%</p>
+            </div>
+          </div>
+          
+          <!-- Enhanced Progress Bar -->
+          <div class="relative h-2 bg-white/10 rounded-full overflow-hidden backdrop-blur-sm border border-white/20 mb-4 shadow-inner">
+            <div class="progress__fill absolute h-full bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-500 rounded-full shadow-lg shadow-cyan-500/50" id="progress-fill" style="width: 14%"></div>
+            <div class="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 animate-shimmer" style="background-size: 200% 100%"></div>
+          </div>
+          
+          <!-- Step markers -->
+          <div class="flex justify-between gap-1 mt-3">
+            <div class="h-1 flex-1 rounded-full bg-gradient-to-r from-teal-400 to-cyan-400 opacity-100 shadow-md"></div>
+            <div class="h-1 flex-1 rounded-full bg-white/15" id="marker-1"></div>
+            <div class="h-1 flex-1 rounded-full bg-white/15" id="marker-2"></div>
+            <div class="h-1 flex-1 rounded-full bg-white/15" id="marker-3"></div>
+            <div class="h-1 flex-1 rounded-full bg-white/15" id="marker-4"></div>
+            <div class="h-1 flex-1 rounded-full bg-white/15" id="marker-5"></div>
+            <div class="h-1 flex-1 rounded-full bg-white/15" id="marker-6"></div>
+          </div>
+        </div>
+
+        <div class="quiz-panels">
+          <!-- Step 0: Gender -->
+          <div class="quiz-panel" data-step="0">
+            <div class="glass-card prompt-card animate-in">
+              <h2 class="prompt" data-i18n="qGender">Which best describes you?</h2>
+              <p class="prompt-hint" data-i18n="qGenderHint">Used to tailor goals and plans.</p>
+            </div>
+            <div class="option-grid option-grid--2">
+              <button type="button" class="opt-card" data-answer-key="gender" data-value="male">
+                <span class="opt-card__icon" aria-hidden="true">♂</span>
+                <span class="opt-card__label" data-i18n="optMale">Male</span>
+              </button>
+              <button type="button" class="opt-card" data-answer-key="gender" data-value="female">
+                <span class="opt-card__icon" aria-hidden="true">♀</span>
+                <span class="opt-card__label" data-i18n="optFemale">Female</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 1: Body shape A/B/C -->
+          <div class="quiz-panel hidden" data-step="1">
+            <div class="glass-card prompt-card animate-in">
+              <h2 class="prompt" data-i18n="qShape">Body shape</h2>
+              <p class="prompt-hint" data-i18n="qShapeHint">Tap a card — we store A, B, or C only.</p>
+            </div>
+            <div class="option-grid option-grid--shape">
+              <button type="button" class="opt-card opt-card--shape" data-answer-key="shape" data-value="A">
+                <span class="opt-card__label" data-i18n="mcqShapeALabel">Slim</span>
+                <span class="opt-card__desc" data-i18n="mcqShapeADesc">(Weight gain is difficult)</span>
+              </button>
+              <button type="button" class="opt-card opt-card--shape" data-answer-key="shape" data-value="B">
+                <span class="opt-card__label" data-i18n="mcqShapeBLabel">Fit</span>
+                <span class="opt-card__desc" data-i18n="mcqShapeBDesc">(Balanced body)</span>
+              </button>
+              <button type="button" class="opt-card opt-card--shape" data-answer-key="shape" data-value="C">
+                <span class="opt-card__label" data-i18n="mcqShapeCLabel">Heavy</span>
+                <span class="opt-card__desc" data-i18n="mcqShapeCDesc">(Weight goes on quickly)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 2: Weight gain A/B/C -->
+          <div class="quiz-panel hidden" data-step="2">
+            <div class="glass-card prompt-card animate-in">
+              <h2 class="prompt" data-i18n="qWeightGain">Weight gain</h2>
+              <p class="prompt-hint" data-i18n="qWeightGainHint">How does your body tend to add weight?</p>
+            </div>
+            <div class="option-grid option-grid--shape">
+              <button type="button" class="opt-card opt-card--mcq" data-answer-key="weightGain" data-value="A">
+                <span class="opt-card__label" data-i18n="mcqWeightGainALabel">Hard to gain</span>
+                <span class="opt-card__desc" data-i18n="mcqWeightGainADesc">(Slow or difficult weight gain)</span>
+              </button>
+              <button type="button" class="opt-card opt-card--mcq" data-answer-key="weightGain" data-value="B">
+
+                <span class="opt-card__label" data-i18n="mcqWeightGainBLabel">Moderate</span>
+                <span class="opt-card__desc" data-i18n="mcqWeightGainBDesc">(Balanced tendency)</span>
+              </button>
+              <button type="button" class="opt-card opt-card--mcq" data-answer-key="weightGain" data-value="C">
+
+                <span class="opt-card__label" data-i18n="mcqWeightGainCLabel">Gains easily</span>
+                <span class="opt-card__desc" data-i18n="mcqWeightGainCDesc">(Weight goes on quickly)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 3: Muscle effect A/B/C -->
+          <div class="quiz-panel hidden" data-step="3">
+            <div class="glass-card prompt-card animate-in">
+              <h2 class="prompt" data-i18n="qMuscleEffect">Muscle effect</h2>
+              <p class="prompt-hint" data-i18n="qMuscleEffectHint">How does your body respond to training for muscle?</p>
+            </div>
+            <div class="option-grid option-grid--shape">
+              <button type="button" class="opt-card opt-card--mcq" data-answer-key="muscleEffect" data-value="A">
+                <span class="opt-card__label" data-i18n="mcqMuscleALabel">Slow response</span>
+                <span class="opt-card__desc" data-i18n="mcqMuscleADesc">(Muscle builds slowly)</span>
+              </button>
+              <button type="button" class="opt-card opt-card--mcq" data-answer-key="muscleEffect" data-value="B">
+                <span class="opt-card__label" data-i18n="mcqMuscleBLabel">Moderate</span>
+                <span class="opt-card__desc" data-i18n="mcqMuscleBDesc">(Balanced response)</span>
+              </button>
+              <button type="button" class="opt-card opt-card--mcq" data-answer-key="muscleEffect" data-value="C">
+                <span class="opt-card__label" data-i18n="mcqMuscleCLabel">Strong response</span>
+                <span class="opt-card__desc" data-i18n="mcqMuscleCDesc">(Builds muscle relatively fast)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 4: Belly fat A/B/C -->
+          <div class="quiz-panel hidden" data-step="4">
+            <div class="glass-card prompt-card animate-in">
+              <h2 class="prompt" data-i18n="qBellyFat">Belly fat</h2>
+              <p class="prompt-hint" data-i18n="qBellyFatHint">Where do you tend to store fat first?</p>
+            </div>
+            <div class="option-grid option-grid--shape">
+              <button type="button" class="opt-card opt-card--mcq" data-answer-key="bellyFat" data-value="A">
+
+                <span class="opt-card__label" data-i18n="mcqBellyALabel">Low</span>
+                <span class="opt-card__desc" data-i18n="mcqBellyADesc">(Belly is not the main area)</span>
+              </button>
+              <button type="button" class="opt-card opt-card--mcq" data-answer-key="bellyFat" data-value="B">
+                <span class="opt-card__label" data-i18n="mcqBellyBLabel">Moderate</span>
+                <span class="opt-card__desc" data-i18n="mcqBellyBDesc">(Some belly tendency)</span>
+              </button>
+              <button type="button" class="opt-card opt-card--mcq" data-answer-key="bellyFat" data-value="C">
+
+                <span class="opt-card__label" data-i18n="mcqBellyCLabel">High</span>
+                <span class="opt-card__desc" data-i18n="mcqBellyCDesc">(Belly fat shows up easily)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 5: Height -->
+          <div class="quiz-panel hidden" data-step="5">
+            <div class="glass-card prompt-card animate-in">
+              <h2 class="prompt" data-i18n="qHeight">Your height</h2>
+              <p class="prompt-hint" data-i18n="qHeightHint">Drag the slider or type your height.</p>
+            </div>
+            <div class="glass-card slider-card">
+              <div class="slider-readout"><span id="height-val">170</span> <span data-i18n="unitCm">cm</span></div>
+              <input type="range" id="input-height" min="140" max="220" value="170" step="1" aria-label="Height" />
+              <div style="margin-top: 1.2rem; display: flex; gap: 0.6rem; align-items: center;">
+                <input type="text" id="height-input-text" placeholder="Enter height" inputmode="decimal" style="flex: 1; padding: 0.6rem 0.8rem; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.08); color: #f1f5f9; font-size: 0.95rem; text-align: center; caret-color: #2dd4bf;" />
+                <select id="height-unit-select" class="glass-select">
+                  <option value="cm">CM</option>
+                  <option value="feet">Feet</option>
+                </select>
+              </div>
+              <p style="color: #4b5563; font-size: 0.85rem; margin-top: 0.5rem; text-align: center;">(cm or ft'in)</p>
+            </div>
+          </div>
+
+          <!-- Step 6: Weight -->
+          <div class="quiz-panel hidden" data-step="6">
+            <div class="glass-card prompt-card animate-in">
+              <h2 class="prompt" data-i18n="qWeight">Your weight</h2>
+              <p class="prompt-hint" data-i18n="qWeightHint">Drag the slider or type your weight.</p>
+            </div>
+            <div class="glass-card slider-card">
+              <div class="slider-readout"><span id="weight-val">70</span> <span data-i18n="unitKg">kg</span></div>
+              <input type="range" id="input-weight" min="40" max="150" value="70" step="1" aria-label="Weight" />
+              <div style="margin-top: 1.2rem; display: flex; gap: 0.6rem; align-items: center;">
+                <input type="text" id="weight-input-text" placeholder="Enter weight" inputmode="decimal" style="flex: 1; padding: 0.6rem 0.8rem; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.08); color: #f1f5f9; font-size: 0.95rem; text-align: center; caret-color: #2dd4bf;" />
+                <select id="weight-unit-select" class="glass-select">
+                  <option value="kg">KG</option>
+                  <option value="lbs">LBS</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="quiz-error hidden" id="predict-error" role="alert"></p>
+        <div class="quiz-footer">
+          <button type="button" class="btn btn--primary btn-continue-enhanced" id="btn-continue"><span data-i18n="btnContinue">Continue</span><span class="arrow-badge">→</span></button>
+        </div>
+      </section>
+
+      <!-- Diet & Exercise Plan wizard -->
+      <section class="view hidden" id="view-plan" data-view="plan">
+        <div class="quiz-head p-4 sm:p-6 backdrop-blur-xl bg-gradient-to-b from-white/10 to-white/5 border border-white/15 rounded-2xl animate-slideDown m-4 sm:m-6">
+          <div class="flex items-center justify-between mb-5">
+            <div class="flex items-center gap-3">
+              <div class="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-teal-400 to-teal-600 shadow-lg">
+                <span class="text-sm font-bold text-white" id="plan-step-num">1</span>
+              </div>
+              <div class="flex flex-col">
+                <p class="text-sm font-medium text-white/60 uppercase tracking-wide"><span data-i18n="stepWord">Step</span> <span data-i18n="ofWord">of</span> <span id="plan-step-total">5</span></p>
+                <p class="text-lg font-semibold text-white/90" data-i18n="dashCardDietTitle">Diet &amp; Exercise Plan</p>
+              </div>
+            </div>
+            <div class="text-right">
+              <p class="text-xs font-medium text-white/50 uppercase">Progress</p>
+              <p class="text-2xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent" id="plan-progress-percent">20%</p>
+            </div>
+          </div>
+          <div class="relative h-2 bg-white/10 rounded-full overflow-hidden backdrop-blur-sm border border-white/20 mb-4 shadow-inner">
+            <div class="progress__fill absolute h-full bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-500 rounded-full shadow-lg shadow-cyan-500/50" id="plan-progress-fill" style="width: 20%"></div>
+            <div class="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 animate-shimmer" style="background-size: 200% 100%"></div>
+          </div>
+          <div class="flex justify-between gap-1 mt-3" id="plan-step-markers">
+            <div class="h-1 flex-1 rounded-full bg-gradient-to-r from-teal-400 to-cyan-400 opacity-100 shadow-md"></div>
+            <div class="h-1 flex-1 rounded-full bg-white/15" id="plan-marker-1"></div>
+            <div class="h-1 flex-1 rounded-full bg-white/15" id="plan-marker-2"></div>
+            <div class="h-1 flex-1 rounded-full bg-white/15" id="plan-marker-3"></div>
+            <div class="h-1 flex-1 rounded-full bg-white/15" id="plan-marker-4"></div>
+          </div>
+        </div>
+
+        <div class="quiz-panels" id="plan-panels">
+          <!-- Plan step 0: Body type -->
+          <div class="plan-panel" data-plan-step="0">
+            <div class="glass-card prompt-card animate-in">
+              <h2 class="prompt" data-i18n="planBodyTypeTitle">Select your body type</h2>
+              <p class="prompt-hint" data-i18n="planBodyTypeHint">Choose the type that best describes you. This is required.</p>
+              <p class="plan-classifier-note">
+                <span data-i18n="planUnknownBodyTypeNote">Don't know your body type?</span>
+                <a href="/?module=classifier" class="plan-classifier-link" data-i18n="planUnknownBodyTypeLink">Click here to find out</a>
+              </p>
+            </div>
+            <div class="option-grid option-grid--shape">
+              <button type="button" class="opt-card opt-card--type" data-plan-key="bodyType" data-value="ectomorph">
+                <span class="opt-card__icon" aria-hidden="true">▵</span>
+                <span class="opt-card__label" id="plan-type-label-ectomorph">Ectomorph</span>
+                <span class="opt-card__desc" id="plan-type-desc-ectomorph"></span>
+              </button>
+              <button type="button" class="opt-card opt-card--type" data-plan-key="bodyType" data-value="mesomorph">
+                <span class="opt-card__icon" aria-hidden="true">◆</span>
+                <span class="opt-card__label" id="plan-type-label-mesomorph">Mesomorph</span>
+                <span class="opt-card__desc" id="plan-type-desc-mesomorph"></span>
+              </button>
+              <button type="button" class="opt-card opt-card--type" data-plan-key="bodyType" data-value="endomorph">
+                <span class="opt-card__icon" aria-hidden="true">●</span>
+                <span class="opt-card__label" id="plan-type-label-endomorph">Endomorph</span>
+                <span class="opt-card__desc" id="plan-type-desc-endomorph"></span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Plan step 1: Gender -->
+          <div class="plan-panel hidden" data-plan-step="1">
+            <div class="glass-card prompt-card animate-in">
+              <h2 class="prompt" data-i18n="qGender">Which best describes you?</h2>
+              <p class="prompt-hint" data-i18n="qGenderHint">Used to tailor goals and plans.</p>
+            </div>
+            <div class="option-grid option-grid--2">
+              <button type="button" class="opt-card" data-plan-key="gender" data-value="male">
+                <span class="opt-card__icon" aria-hidden="true">♂</span>
+                <span class="opt-card__label" data-i18n="optMale">Male</span>
+              </button>
+              <button type="button" class="opt-card" data-plan-key="gender" data-value="female">
+                <span class="opt-card__icon" aria-hidden="true">♀</span>
+                <span class="opt-card__label" data-i18n="optFemale">Female</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Plan step 2: Goal -->
+          <div class="plan-panel hidden" data-plan-step="2">
+            <div class="glass-card prompt-card animate-in">
+              <h2 class="prompt" data-i18n="sectionGoal">Your Main Goal</h2>
+              <p class="prompt-hint" data-i18n="detailGoalHint">Select your main goal and activity level so we can build the perfect plan for you.</p>
+            </div>
+            <div class="option-grid option-grid--goals">
+              <button type="button" class="opt-card" data-plan-key="goal" data-value="weightLoss">
+                <span class="opt-card__icon">▼</span>
+                <span class="opt-card__label" data-i18n="goalWL">Weight loss</span>
+              </button>
+              <button type="button" class="opt-card" data-plan-key="goal" data-value="muscleGain">
+                <span class="opt-card__icon">▲</span>
+                <span class="opt-card__label" data-i18n="goalMG">Muscle gain</span>
+              </button>
+              <button type="button" class="opt-card" data-plan-key="goal" data-value="maintain">
+                <span class="opt-card__icon">═</span>
+                <span class="opt-card__label" data-i18n="goalMaint">Maintain</span>
+              </button>
+              <button type="button" class="opt-card hidden" data-plan-key="goal" data-value="tone" id="plan-goal-tone">
+                <span class="opt-card__icon">◇</span>
+                <span class="opt-card__label" data-i18n="goalTone">Tone</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Plan step 3: Activity -->
+          <div class="plan-panel hidden" data-plan-step="3">
+            <div class="glass-card prompt-card animate-in">
+              <h2 class="prompt" data-i18n="sectionActivity">Daily Activity Level</h2>
+            </div>
+            <div class="option-grid option-grid--prefs">
+              <button type="button" class="opt-card opt-card--pref" data-plan-key="activity" data-value="sedentary">
+                <span class="opt-card__label" data-i18n="actSedentary">Sedentary</span>
+                <span class="opt-card__desc" data-i18n="actSedentarySub">Mostly sitting / light movement</span>
+              </button>
+              <button type="button" class="opt-card opt-card--pref" data-plan-key="activity" data-value="light">
+                <span class="opt-card__label" data-i18n="actLight">Light</span>
+                <span class="opt-card__desc" data-i18n="actLightSub">Some walking / ~5–7k steps</span>
+              </button>
+              <button type="button" class="opt-card opt-card--pref" data-plan-key="activity" data-value="moderate">
+                <span class="opt-card__label" data-i18n="actModerate">Moderate</span>
+                <span class="opt-card__desc" data-i18n="actModerateSub">On your feet often / ~7–10k steps</span>
+              </button>
+              <button type="button" class="opt-card opt-card--pref" data-plan-key="activity" data-value="active">
+                <span class="opt-card__label" data-i18n="actActive">Active</span>
+                <span class="opt-card__desc" data-i18n="actActiveSub">Exercise most days</span>
+              </button>
+              <button type="button" class="opt-card opt-card--pref" data-plan-key="activity" data-value="veryActive">
+                <span class="opt-card__label" data-i18n="actVeryActive">Very active</span>
+                <span class="opt-card__desc" data-i18n="actVeryActiveSub">Hard training + high movement</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Plan step 4: Workout preference -->
+          <div class="plan-panel hidden" data-plan-step="4">
+            <div class="glass-card prompt-card animate-in">
+              <h2 class="prompt" data-i18n="sectionWorkoutPref">Workout preference</h2>
+            </div>
+            <div class="option-grid option-grid--prefs">
+              <button type="button" class="opt-card opt-card--pref" data-plan-key="pref" data-value="gym">
+                <span class="opt-card__label" data-i18n="prefGym">Gym</span>
+                <span class="opt-card__desc" data-i18n="prefGymSub">Barbells &amp; machines</span>
+              </button>
+              <button type="button" class="opt-card opt-card--pref" data-plan-key="pref" data-value="home">
+                <span class="opt-card__label" data-i18n="prefHome">Home</span>
+                <span class="opt-card__desc" data-i18n="prefHomeSub">Dumbbells &amp; bands</span>
+              </button>
+              <button type="button" class="opt-card opt-card--pref" data-plan-key="pref" data-value="mixed">
+                <span class="opt-card__label" data-i18n="prefMixed">Mixed</span>
+                <span class="opt-card__desc" data-i18n="prefMixedSub">Gym + home split</span>
+              </button>
+              <button type="button" class="opt-card opt-card--pref" data-plan-key="pref" data-value="outdoor">
+                <span class="opt-card__label" data-i18n="prefOutdoor">Outdoor</span>
+                <span class="opt-card__desc" data-i18n="prefOutdoorSub">Runs, courts, parks</span>
+              </button>
+              <button type="button" class="opt-card opt-card--pref" data-plan-key="pref" data-value="bodyweight">
+                <span class="opt-card__label" data-i18n="prefBodyweight">Bodyweight</span>
+                <span class="opt-card__desc" data-i18n="prefBodyweightSub">Minimal equipment</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Result -->
+      <section class="view hidden" id="view-result" data-view="result">
+        <div class="glass-card result-hero animate-in">
+          <p class="eyebrow" data-i18n="resultEyebrow">Your profile</p>
+          <h2 class="result-type" id="result-body-type">Mesomorph</h2>
+          <div class="bmi-badge glass-inset">
+            <span data-i18n="bmiLabel">BMI</span>
+            <strong id="result-bmi">22.4</strong>
+          </div>
+          <p class="result-summary" id="result-summary"></p>
+        </div>
+
+        <div class="glass-card block animate-in delay-1 hidden" id="result-diet-block">
+          <h3 class="block__title" data-i18n="generalDietTitle">General diet</h3>
+          <ul class="bullet-list" id="result-diet-preview"></ul>
+        </div>
+        <div class="glass-card block animate-in delay-2 hidden" id="result-ex-block">
+          <h3 class="block__title" data-i18n="generalExTitle">General exercise</h3>
+          <ul class="bullet-list" id="result-ex-preview"></ul>
+        </div>
+
+        <button type="button" class="btn btn--primary" id="btn-view-detail" data-i18n="btnViewPlan">View detailed plan</button>
+        <button type="button" class="btn btn--ghost" id="btn-retake" data-i18n="btnRetake">Retake questionnaire</button>
+      </section>
+
+      <!-- Detail: goal then plan -->
+      <section class="view hidden" id="view-detail" data-view="detail">
+        <div id="detail-goal-phase">
+          <div class="glass-card prompt-card animate-in">
+            <p class="eyebrow" data-i18n="detailGoalEyebrow">Recommendations</p>
+            <h2 class="prompt" data-i18n="detailGoalTitle">Build your plan</h2>
+            <p class="prompt-hint" data-i18n="detailGoalHint">Pick your goal, activity level, and workout style. We combine this with your predicted body type and gender.</p>
+          </div>
+
+          <h3 class="detail-section-title" data-i18n="sectionGoal">Goal</h3>
+          <div class="option-grid option-grid--goals" id="goal-grid">
+            <button type="button" class="opt-card" data-goal="weightLoss">
+              <span class="opt-card__icon">▼</span>
+              <span class="opt-card__label" data-i18n="goalWL">Weight loss</span>
+            </button>
+            <button type="button" class="opt-card" data-goal="muscleGain">
+              <span class="opt-card__icon">▲</span>
+              <span class="opt-card__label" data-i18n="goalMG">Muscle gain</span>
+            </button>
+            <button type="button" class="opt-card" data-goal="maintain">
+              <span class="opt-card__icon">═</span>
+              <span class="opt-card__label" data-i18n="goalMaint">Maintain</span>
+            </button>
+            <button type="button" class="opt-card hidden" data-goal="tone" id="goal-tone">
+              <span class="opt-card__icon">◇</span>
+              <span class="opt-card__label" data-i18n="goalTone">Tone</span>
+            </button>
+          </div>
+
+          <h3 class="detail-section-title" data-i18n="sectionActivity">Activity level</h3>
+          <div class="option-grid option-grid--prefs" id="activity-grid">
+            <button type="button" class="opt-card opt-card--pref" data-activity="sedentary">
+              <span class="opt-card__label" data-i18n="actSedentary">Sedentary</span>
+              <span class="opt-card__desc" data-i18n="actSedentarySub">Mostly sitting / light movement</span>
+            </button>
+            <button type="button" class="opt-card opt-card--pref" data-activity="light">
+              <span class="opt-card__label" data-i18n="actLight">Light</span>
+              <span class="opt-card__desc" data-i18n="actLightSub">Some walking / ~5–7k steps</span>
+            </button>
+            <button type="button" class="opt-card opt-card--pref" data-activity="moderate">
+              <span class="opt-card__label" data-i18n="actModerate">Moderate</span>
+              <span class="opt-card__desc" data-i18n="actModerateSub">On your feet often / ~7–10k steps</span>
+            </button>
+            <button type="button" class="opt-card opt-card--pref" data-activity="active">
+              <span class="opt-card__label" data-i18n="actActive">Active</span>
+              <span class="opt-card__desc" data-i18n="actActiveSub">Exercise most days</span>
+            </button>
+            <button type="button" class="opt-card opt-card--pref" data-activity="veryActive">
+              <span class="opt-card__label" data-i18n="actVeryActive">Very active</span>
+              <span class="opt-card__desc" data-i18n="actVeryActiveSub">Hard training + high movement</span>
+            </button>
+          </div>
+
+          <h3 class="detail-section-title" data-i18n="sectionWorkoutPref">Workout preference</h3>
+          <div class="option-grid option-grid--prefs" id="pref-grid">
+            <button type="button" class="opt-card opt-card--pref" data-workout-pref="gym">
+              <span class="opt-card__label" data-i18n="prefGym">Gym</span>
+              <span class="opt-card__desc" data-i18n="prefGymSub">Barbells & machines</span>
+            </button>
+            <button type="button" class="opt-card opt-card--pref" data-workout-pref="home">
+              <span class="opt-card__label" data-i18n="prefHome">Home</span>
+              <span class="opt-card__desc" data-i18n="prefHomeSub">Dumbbells & bands</span>
+            </button>
+            <button type="button" class="opt-card opt-card--pref" data-workout-pref="mixed">
+              <span class="opt-card__label" data-i18n="prefMixed">Mixed</span>
+              <span class="opt-card__desc" data-i18n="prefMixedSub">Gym + home split</span>
+            </button>
+            <button type="button" class="opt-card opt-card--pref" data-workout-pref="outdoor">
+              <span class="opt-card__label" data-i18n="prefOutdoor">Outdoor</span>
+              <span class="opt-card__desc" data-i18n="prefOutdoorSub">Runs, courts, parks</span>
+            </button>
+            <button type="button" class="opt-card opt-card--pref" data-workout-pref="bodyweight">
+              <span class="opt-card__label" data-i18n="prefBodyweight">Bodyweight</span>
+              <span class="opt-card__desc" data-i18n="prefBodyweightSub">Minimal equipment</span>
+            </button>
+          </div>
+
+          <button type="button" class="btn btn--primary" id="btn-show-plan" data-i18n="btnShowPlan" disabled>Show my plan</button>
+        </div>
+
+        <div id="detail-plan-phase" class="hidden">
+          <div class="glass-card plan-header animate-in">
+            <p class="eyebrow" data-i18n="planEyebrow">Your personalized plan</p>
+            <h2 class="plan-title" id="plan-headline"></h2>
+            <div class="tag-row">
+              <span class="tag glass-inset" id="tag-body"></span>
+              <span class="tag glass-inset" id="tag-gender"></span>
+              <span class="tag glass-inset" id="tag-goal"></span>
+              <span class="tag glass-inset" id="tag-activity"></span>
+              <span class="tag glass-inset" id="tag-pref"></span>
+            </div>
+          </div>
+
+          <div class="glass-card block animate-in">
+            <h3 class="block__title" data-i18n="planDietTitle">Detailed diet plan</h3>
+            <ul class="bullet-list bullet-list--rich" id="plan-diet"></ul>
+          </div>
+          <div class="glass-card block animate-in">
+            <h3 class="block__title" data-i18n="planWeekTitle">Weekly exercise schedule</h3>
+            <ul class="week-list" id="plan-week"></ul>
+          </div>
+          <div class="glass-card block animate-in">
+            <h3 class="block__title" data-i18n="planTipsTitle">Tips</h3>
+            <ul class="bullet-list" id="plan-tips"></ul>
+          </div>
+
+          <button type="button" class="btn btn--ghost" id="btn-change-goal" data-i18n="btnChangeSelections">Edit selections</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="predict-overlay" class="predict-overlay hidden" aria-hidden="true" role="status">
+    <div class="predict-overlay__panel glass-card">
+      <div class="predict-spinner" aria-hidden="true"></div>
+      <p class="predict-overlay__text" data-i18n="predictLoading">Analyzing your profile…</p>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      if (typeof window.FITAI_API_BASE !== "undefined") return;
+      var o = window.location.origin || "";
+      if (o === "http://127.0.0.1:5000" || o === "http://localhost:5000") {
+        window.FITAI_API_BASE = "";
+      } else {
+        window.FITAI_API_BASE = "http://127.0.0.1:5000";
+      }
+    })();
+  </script>
+  <script src="js/i18n.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/recommendations.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

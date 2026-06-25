@@ -1,0 +1,7 @@
+Target: FitAI UI Enhancement & Feature Addition
+Stack: HTML5, Tailwind CSS, Custom JS (app.js, animations.js)
+
+Rules for Code Generation:
+1. NEVER rewrite the entire file. Only output the specific code blocks or functions that need to be changed or added.
+2. Maintain the existing premium glass-morphic UI, animations, and dark/light mode classes.
+3. Keep explanations extremely brief and concise to save tokens.

@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+venv/
+.venv/
+env/
+.env
+*.egg-info/
+dist/
+build/
+
+# Generated model cache (run train_and_cache.py to recreate)
+model_cache.pkl
+scaler_cache.pkl
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE / OS
+.cursor/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
