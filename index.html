@@ -47,6 +47,7 @@
     }
   </script>
   <link rel="stylesheet" href="css/styles-enhanced.css" />
+  <link rel="stylesheet" href="css/tracking.css" />
 </head>
 <body class="theme-dark">
   <div class="bg-layer" aria-hidden="true"></div>
@@ -595,6 +596,130 @@
           <button type="button" class="btn btn--ghost" id="btn-change-goal" data-i18n="btnChangeSelections">Edit selections</button>
         </div>
       </section>
+
+      <!-- Daily Tracking hub -->
+      <section id="view-tracking-hub" class="view hidden tracking-wrap" aria-label="Daily Tracking">
+        <h1 class="tracking-section-title">Daily Tracking</h1>
+        <p class="eyebrow" style="margin-bottom:1.25rem;">Choose what you want to track today</p>
+        <div class="tracking-hub-grid">
+          <button type="button" class="tracking-hub-card glass-card" id="track-card-nutrition">
+            <svg class="tracking-hub-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+              <circle cx="12" cy="12" r="4"/>
+            </svg>
+            <h2 class="dash-card__title">Nutrition Tracking</h2>
+            <p class="dash-card__desc">Log meals in natural language, see macros, and get tomorrow&apos;s recommendations.</p>
+          </button>
+          <button type="button" class="tracking-hub-card tracking-hub-card--reminder glass-card" id="track-card-reminders">
+            <svg class="tracking-hub-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+            </svg>
+            <h2 class="dash-card__title">Reminders</h2>
+            <p class="dash-card__desc">Set meal and workout alarms with browser notifications.</p>
+          </button>
+        </div>
+      </section>
+
+      <!-- Nutrition tracking (scrollable) -->
+      <section id="view-tracking-nutrition" class="view hidden tracking-wrap" aria-label="Nutrition Tracking">
+        <h1 class="tracking-section-title">Nutrition Tracking</h1>
+
+        <div class="glass-card tracking-input-card">
+          <label for="track-food-input" class="tracking-field">
+            <span style="display:block;font-size:0.82rem;font-weight:600;color:rgba(255,255,255,0.65);margin-bottom:0.35rem;">What did you eat today?</span>
+          </label>
+          <div class="tracking-input-wrap">
+            <textarea id="track-food-input" class="tracking-food-input" placeholder="Breakfast: 2 anda, 1 paratha medium&#10;Lunch: chicken karahi 1 plate&#10;Snack: chai 1 cup"></textarea>
+            <div id="track-suggest" class="tracking-suggest hidden" role="listbox" aria-label="Food suggestions"></div>
+          </div>
+          <div class="tracking-actions">
+            <button type="button" class="btn btn--primary" id="track-analyze-btn">Analyze my food log</button>
+          </div>
+          <p class="quiz-error hidden" id="track-analyze-error" role="alert"></p>
+        </div>
+
+        <div id="track-skeleton" class="glass-card tracking-skeleton hidden" aria-hidden="true">
+          <div class="tracking-skeleton__line" style="width:90%"></div>
+          <div class="tracking-skeleton__line" style="width:75%"></div>
+          <div class="tracking-skeleton__line" style="width:85%"></div>
+          <div class="tracking-skeleton__line" style="width:60%"></div>
+        </div>
+
+        <div id="track-results" class="tracking-results hidden">
+          <div class="tracking-summary-grid">
+            <div class="glass-card tracking-stat-card">
+              <div class="tracking-stat-card__chart-wrap"><canvas id="track-chart-cal" aria-hidden="true"></canvas></div>
+              <div class="tracking-stat-card__value" id="track-val-calories">0</div>
+              <div class="tracking-stat-card__label">Calories</div>
+            </div>
+            <div class="glass-card tracking-stat-card">
+              <div class="tracking-stat-card__chart-wrap"><canvas id="track-chart-protein" aria-hidden="true"></canvas></div>
+              <div class="tracking-stat-card__value" id="track-val-protein">0</div>
+              <div class="tracking-stat-card__label">Protein (g)</div>
+            </div>
+            <div class="glass-card tracking-stat-card">
+              <div class="tracking-stat-card__chart-wrap"><canvas id="track-chart-carbs" aria-hidden="true"></canvas></div>
+              <div class="tracking-stat-card__value" id="track-val-carbs">0</div>
+              <div class="tracking-stat-card__label">Carbs (g)</div>
+            </div>
+            <div class="glass-card tracking-stat-card">
+              <div class="tracking-stat-card__chart-wrap"><canvas id="track-chart-fat" aria-hidden="true"></canvas></div>
+              <div class="tracking-stat-card__value" id="track-val-fat">0</div>
+              <div class="tracking-stat-card__label">Fat (g)</div>
+            </div>
+          </div>
+
+          <div class="glass-card tracking-target-bar">
+            <div class="tracking-target-bar__row"><span>Daily calorie target</span><span id="track-cal-bar-label">0 / 0 kcal</span></div>
+            <div class="tracking-target-bar__fill"><span id="track-cal-bar-fill" style="width:0%"></span></div>
+            <div class="tracking-target-bar__row" style="margin-top:0.75rem"><span>Protein target</span><span id="track-pro-bar-label">0 / 0 g protein</span></div>
+            <div class="tracking-target-bar__fill"><span id="track-pro-bar-fill" style="width:0%"></span></div>
+          </div>
+
+          <h2 class="tracking-section-title" style="font-size:1rem;">Food breakdown</h2>
+          <div id="track-food-breakdown" class="tracking-food-breakdown"></div>
+        </div>
+
+        <div id="track-recommendations" class="tracking-reco hidden">
+          <h2 class="tracking-section-title" style="font-size:1rem;">Tomorrow&apos;s recommendations</h2>
+          <div id="track-reco-list"></div>
+        </div>
+      </section>
+
+      <!-- Reminders -->
+      <section id="view-tracking-reminders" class="view hidden tracking-wrap" aria-label="Reminders">
+        <h1 class="tracking-section-title">Reminders</h1>
+        <div id="track-notify-banner" class="glass-card tracking-perm-banner">
+          Enable browser notifications to receive meal and workout reminders while this tab is open.
+        </div>
+        <button type="button" class="btn btn--ghost btn--sm" id="track-enable-notify" style="margin-bottom:1rem;">Enable notifications</button>
+
+        <div class="glass-card tracking-reminder-form">
+          <div class="tracking-field">
+            <label for="track-reminder-time">Time</label>
+            <input type="time" id="track-reminder-time" value="08:00" />
+          </div>
+          <div class="tracking-field">
+            <label for="track-reminder-type">Reminder type</label>
+            <select id="track-reminder-type">
+              <option value="Breakfast">Breakfast</option>
+              <option value="Lunch">Lunch</option>
+              <option value="Dinner">Dinner</option>
+              <option value="Workout">Workout</option>
+              <option value="Water">Water</option>
+              <option value="Custom">Custom</option>
+            </select>
+          </div>
+          <div class="tracking-field hidden" id="track-custom-msg-wrap">
+            <label for="track-reminder-message">Custom message</label>
+            <textarea id="track-reminder-message" rows="2" placeholder="Your reminder text"></textarea>
+          </div>
+          <button type="button" class="btn btn--primary" id="track-add-reminder">Add reminder</button>
+        </div>
+
+        <h2 class="tracking-section-title" style="font-size:1rem;">Your reminders</h2>
+        <div id="track-reminder-list" class="tracking-reminder-list"></div>
+      </section>
     </main>
   </div>
 
@@ -609,16 +734,22 @@
     (function () {
       if (typeof window.FITAI_API_BASE !== "undefined") return;
       var o = window.location.origin || "";
-      if (o === "http://127.0.0.1:5000" || o === "http://localhost:5000") {
-        window.FITAI_API_BASE = "";
-      } else {
+      if (!o || o === "null" || o.indexOf("file") === 0) {
         window.FITAI_API_BASE = "http://127.0.0.1:5000";
+      } else {
+        window.FITAI_API_BASE = "";
       }
     })();
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <script src="js/i18n.js"></script>
   <script src="js/animations.js"></script>
   <script src="js/recommendations.js"></script>
+  <script src="js/tracking/tracking-state.js"></script>
+  <script src="js/tracking/tracking-foods.js"></script>
+  <script src="js/tracking/tracking-reminders.js"></script>
+  <script src="js/tracking/tracking-ui.js"></script>
+  <script src="js/tracking/tracking-main.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

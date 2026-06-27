@@ -1,0 +1,339 @@
+/* FitAI Daily Tracking module */
+.tracking-wrap {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1rem 1rem 2.5rem;
+}
+
+.tracking-hub-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .tracking-hub-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.tracking-hub-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  color: inherit;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.tracking-hub-card:hover {
+  transform: translateY(-4px);
+}
+
+.tracking-hub-card__icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  color: #2dd4bf;
+}
+
+.tracking-hub-card--reminder .tracking-hub-card__icon {
+  color: #c084fc;
+}
+
+.tracking-section-title {
+  margin: 0 0 1rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.tracking-input-card {
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.tracking-input-wrap {
+  position: relative;
+}
+
+.tracking-food-input {
+  width: 100%;
+  min-height: 180px;
+  padding: 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.06);
+  color: #f1f5f9;
+  font-family: inherit;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  resize: vertical;
+  caret-color: #2dd4bf;
+}
+
+.tracking-food-input::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+  white-space: pre-line;
+}
+
+.tracking-suggest {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 4px);
+  z-index: 20;
+  max-height: 220px;
+  overflow-y: auto;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(15, 23, 41, 0.95);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+.tracking-suggest.hidden {
+  display: none;
+}
+
+.tracking-suggest__item {
+  display: block;
+  width: 100%;
+  padding: 0.65rem 1rem;
+  border: none;
+  background: transparent;
+  color: #e2e8f0;
+  text-align: left;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.tracking-suggest__item:hover,
+.tracking-suggest__item.is-active {
+  background: rgba(45, 212, 191, 0.15);
+  color: #5eead4;
+}
+
+.tracking-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+#track-analyze-error {
+  margin-top: 0.75rem;
+}
+
+.tracking-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .tracking-summary-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.tracking-stat-card {
+  padding: 1rem;
+  text-align: center;
+}
+
+.tracking-stat-card__chart-wrap {
+  position: relative;
+  width: 88px;
+  height: 88px;
+  margin: 0 auto 0.5rem;
+}
+
+.tracking-stat-card__chart-wrap canvas {
+  width: 88px !important;
+  height: 88px !important;
+}
+
+.tracking-stat-card__value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.tracking-stat-card__label {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.55);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.tracking-food-breakdown {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.tracking-food-item {
+  padding: 1rem 1.1rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.tracking-food-item__name {
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.tracking-food-item__meta {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.tracking-target-bar {
+  margin-bottom: 1.25rem;
+  padding: 1rem 1.1rem;
+}
+
+.tracking-target-bar__row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 0.35rem;
+}
+
+.tracking-target-bar__fill {
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.tracking-target-bar__fill span {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #2dd4bf, #22d3ee);
+  transition: width 0.6s ease;
+}
+
+.tracking-reco {
+  margin-top: 1.5rem;
+}
+
+.tracking-reco.hidden {
+  display: none;
+}
+
+.tracking-reco-card {
+  padding: 1.1rem 1.25rem;
+  margin-bottom: 0.75rem;
+  border-left: 3px solid #2dd4bf;
+}
+
+.tracking-reco-card--burn {
+  border-left-color: #f472b6;
+}
+
+.tracking-skeleton {
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.tracking-skeleton__line {
+  height: 12px;
+  border-radius: 6px;
+  margin-bottom: 0.6rem;
+  background: linear-gradient(90deg, rgba(255,255,255,0.06) 25%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.06) 75%);
+  background-size: 200% 100%;
+  animation: trackingShimmer 1.4s infinite;
+}
+
+.tracking-skeleton.hidden {
+  display: none;
+}
+
+@keyframes trackingShimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.tracking-results.hidden,
+.tracking-empty-note.hidden {
+  display: none;
+}
+
+.tracking-reminder-form {
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.tracking-field label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 0.35rem;
+}
+
+.tracking-field input,
+.tracking-field select,
+.tracking-field textarea {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.06);
+  color: #f1f5f9;
+  font-family: inherit;
+}
+
+.tracking-reminder-list {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.tracking-reminder-item {
+  padding: 0.85rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.tracking-reminder-item__time {
+  font-weight: 700;
+  color: #5eead4;
+}
+
+.tracking-reminder-item__type {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.tracking-perm-banner {
+  padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.theme-light .tracking-food-input,
+.theme-light .tracking-field input,
+.theme-light .tracking-field select,
+.theme-light .tracking-field textarea {
+  background: rgba(255, 255, 255, 0.85);
+  color: #0f172a;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.theme-light .tracking-section-title,
+.theme-light .tracking-stat-card__value,
+.theme-light .tracking-food-item__name {
+  color: #0f172a;
+}

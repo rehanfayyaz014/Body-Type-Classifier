@@ -1,0 +1,356 @@
+food_name,category,portion_label,weight_grams,calories,protein_g,carbs_g,fat_g,fiber_g
+Paratha (Plain),Bread,Small,60,180,3,17,11,1.2
+Paratha (Plain),Bread,Medium,90,270,5,25,16,1.8
+Paratha (Plain),Bread,Large,120,360,6,33,21,2.4
+Paratha (Aloo),Bread,Small,100,220,5,30,9,2.1
+Paratha (Aloo),Bread,Medium,150,330,7,45,13,3.2
+Paratha (Aloo),Bread,Large,200,440,10,60,18,4.2
+Paratha (Egg),Bread,Small,110,280,10,20,17,1.1
+Paratha (Egg),Bread,Medium,160,400,14,29,25,1.6
+Paratha (Egg),Bread,Large,210,520,18,38,32,2.1
+Chapati (Whole Wheat),Bread,Small (4 inch),30,80,2,16,1,1.5
+Chapati (Whole Wheat),Bread,Medium (6 inch),50,130,4,27,2,2.5   
+Chapati (Whole Wheat),Bread,Large (8 inch),70,180,5,37,2,3.5
+Chapati (Maida),Bread,Small,30,95,2,18,2,0.5
+Chapati (Maida),Bread,Medium,50,160,3,30,3,0.8
+Chapati (Maida),Bread,Large,70,220,4,42,4,1.1
+Naan,Bread,Small,60,160,5,28,3,1
+Naan,Bread,Medium (restaurant),110,290,9,51,5,1.8
+Naan,Bread,Large,150,395,12,70,7,2.5
+Butter Naan,Bread,Small,65,200,5,28,8,1
+Butter Naan,Bread,Medium,120,370,9,51,16,1.8
+Butter Naan,Bread,Large,160,490,12,68,21,2.4
+Garlic Naan,Bread,Small,65,195,5,29,7,1.1
+Garlic Naan,Bread,Medium,115,345,9,51,13,1.9
+Garlic Naan,Bread,Large,155,465,12,68,18,2.6
+Puri,Bread,Small,35,135,2,15,8,0.5
+Puri,Bread,Medium,55,210,3,24,12,0.8
+Puri,Bread,Large,75,285,4,32,17,1.1
+Sheermal,Bread,Half,60,190,4,32,6,0.6
+Sheermal,Bread,Full,120,380,8,64,12,1.2
+Kulcha,Bread,Small,70,200,5,35,4,1.2
+Kulcha,Bread,Medium,110,315,8,55,6,1.9
+Kulcha,Bread,Large,150,430,11,75,8,2.6
+Bakarkhani,Bread,Half,50,165,4,24,6,0.8
+Bakarkhani,Bread,Full,100,330,8,48,12,1.6
+White Rice (Boiled),Rice & Biryani,Half Plate (75g dry),150,195,4,43,0,0.5
+White Rice (Boiled),Rice & Biryani,Full Plate (150g dry),300,390,8,86,1,1
+White Rice (Boiled),Rice & Biryani,Double Plate,450,585,12,129,1,1.5
+Brown Rice (Boiled),Rice & Biryani,Half Plate,150,165,4,35,1,1.8
+Brown Rice (Boiled),Rice & Biryani,Full Plate,300,330,7,70,3,3.6
+Brown Rice (Boiled),Rice & Biryani,Double Plate,450,495,11,105,4,5.4
+Chicken Biryani,Rice & Biryani,Half Plate,200,380,18,42,14,1.5
+Chicken Biryani,Rice & Biryani,Full Plate,400,760,36,84,28,3
+Chicken Biryani,Rice & Biryani,Double Plate,600,1140,54,126,42,4.5
+Mutton Biryani,Rice & Biryani,Half Plate,200,420,20,40,18,1.5
+Mutton Biryani,Rice & Biryani,Full Plate,400,840,40,80,36,3
+Mutton Biryani,Rice & Biryani,Double Plate,600,1260,60,120,54,4.5
+Beef Biryani,Rice & Biryani,Half Plate,200,400,19,42,16,1.5
+Beef Biryani,Rice & Biryani,Full Plate,400,800,38,84,32,3
+Beef Biryani,Rice & Biryani,Double Plate,600,1200,57,126,48,4.5
+Pulao (Chicken),Rice & Biryani,Half Plate,200,310,15,45,8,1.2
+Pulao (Chicken),Rice & Biryani,Full Plate,400,620,30,90,16,2.4
+Pulao (Chicken),Rice & Biryani,Double Plate,600,930,45,135,24,3.6
+Pulao (Mutton),Rice & Biryani,Half Plate,200,345,17,43,12,1.2
+Pulao (Mutton),Rice & Biryani,Full Plate,400,690,34,86,24,2.4
+Pulao (Mutton),Rice & Biryani,Double Plate,600,1035,51,129,36,3.6
+Khichdi,Rice & Biryani,Half Bowl,150,175,6,32,3,2.5
+Khichdi,Rice & Biryani,Full Bowl,300,350,12,64,6,5
+Chicken Karahi,Curry & Gravy,Half Bowl (125g),125,225,17,4,15,0.8
+Chicken Karahi,Curry & Gravy,Full Bowl (250g),250,450,35,8,30,1.6
+Chicken Karahi,Curry & Gravy,Full Plate (400g),400,720,56,13,48,2.6
+Mutton Karahi,Curry & Gravy,Half Bowl,125,270,19,3,19,0.5
+Mutton Karahi,Curry & Gravy,Full Bowl,250,540,38,6,38,1
+Mutton Karahi,Curry & Gravy,Full Plate,400,860,60,9,60,1.6
+Beef Karahi,Curry & Gravy,Half Bowl,125,255,18,4,18,0.6
+Beef Karahi,Curry & Gravy,Full Bowl,250,510,36,8,36,1.2
+Beef Karahi,Curry & Gravy,Full Plate,400,810,58,13,57,1.9
+Chicken Curry,Curry & Gravy,Half Bowl,150,220,18,5,14,0.9
+Chicken Curry,Curry & Gravy,Full Bowl,300,440,36,10,28,1.8
+Chicken Curry,Curry & Gravy,Full Plate,450,660,54,15,42,2.7
+Aloo Gosht,Curry & Gravy,Half Bowl,175,245,14,16,14,2
+Aloo Gosht,Curry & Gravy,Full Bowl,350,490,28,32,28,4
+Aloo Gosht,Curry & Gravy,Full Plate,500,700,40,46,40,5.7
+Nihari,Curry & Gravy,Half Bowl,200,310,22,6,22,0.5
+Nihari,Curry & Gravy,Full Bowl,400,620,44,12,44,1
+Nihari,Curry & Gravy,Full Plate,600,930,66,18,66,1.5
+Haleem,Curry & Gravy,Half Bowl,150,220,14,20,9,3.5
+Haleem,Curry & Gravy,Full Bowl,300,440,28,40,18,7
+Haleem,Curry & Gravy,Full Plate,450,660,42,60,27,10.5
+Paya (Trotters),Curry & Gravy,Half Bowl,200,280,20,3,20,0
+Paya (Trotters),Curry & Gravy,Full Bowl,400,560,40,6,40,0
+Korma (Chicken),Curry & Gravy,Half Bowl,150,310,18,6,24,0.8
+Korma (Chicken),Curry & Gravy,Full Bowl,300,620,36,12,48,1.6
+Saag Gosht,Curry & Gravy,Half Bowl,175,280,18,8,19,3.5
+Saag Gosht,Curry & Gravy,Full Bowl,350,560,36,16,38,7
+Chicken Handi,Curry & Gravy,Half Bowl,150,290,20,6,20,0.8
+Chicken Handi,Curry & Gravy,Full Bowl,300,580,40,12,40,1.6
+Daal Chawal,Curry & Gravy,Half Plate,250,310,12,55,6,5
+Daal Chawal,Curry & Gravy,Full Plate,500,620,24,110,12,10
+Daal Masoor (Red Lentil),Daal,Half Bowl,125,115,7,17,2,4.5
+Daal Masoor (Red Lentil),Daal,Full Bowl,250,230,14,35,4,9
+Daal Masoor (Red Lentil),Daal,Large Bowl,375,345,21,52,6,13.5
+Daal Mash (White Lentil),Daal,Half Bowl,125,150,10,18,4,3.5
+Daal Mash (White Lentil),Daal,Full Bowl,250,300,20,36,8,7
+Daal Mash (White Lentil),Daal,Large Bowl,375,450,30,54,12,10.5
+Daal Chana (Chickpea Lentil),Daal,Half Bowl,125,170,9,24,4,6
+Daal Chana (Chickpea Lentil),Daal,Full Bowl,250,340,18,48,8,12
+Daal Chana (Chickpea Lentil),Daal,Large Bowl,375,510,27,72,12,18
+Daal Tarka,Daal,Half Bowl,125,140,7,18,5,4
+Daal Tarka,Daal,Full Bowl,250,280,14,36,10,8
+Daal Mix,Daal,Half Bowl,125,155,9,20,4,5.5
+Daal Mix,Daal,Full Bowl,250,310,18,40,8,11
+Bhindi (Okra),Vegetables,Half Bowl,100,70,2,8,4,2.5
+Bhindi (Okra),Vegetables,Full Bowl,200,140,3,15,8,5
+Aloo Palak,Vegetables,Half Bowl,150,120,4,17,5,3
+Aloo Palak,Vegetables,Full Bowl,300,240,8,34,10,6
+Aloo Gobi,Vegetables,Half Bowl,150,110,3,18,4,3.5
+Aloo Gobi,Vegetables,Full Bowl,300,220,6,36,8,7
+Baingan (Eggplant),Vegetables,Half Bowl,150,85,2,10,5,3.5
+Baingan (Eggplant),Vegetables,Full Bowl,300,170,4,20,10,7
+Karela (Bitter Gourd),Vegetables,Half Bowl,100,50,2,8,2,3
+Karela (Bitter Gourd),Vegetables,Full Bowl,200,100,4,16,4,6
+Tinda,Vegetables,Half Bowl,150,55,1,10,2,2
+Tinda,Vegetables,Full Bowl,300,110,2,20,4,4
+Palak Paneer,Vegetables,Half Bowl,150,195,10,8,14,3
+Palak Paneer,Vegetables,Full Bowl,300,390,20,16,28,6
+Shahi Paneer,Vegetables,Half Bowl,150,260,11,10,21,1.5
+Shahi Paneer,Vegetables,Full Bowl,300,520,22,20,42,3
+Chane Ki Sabzi (Chickpea),Vegetables,Half Bowl,150,160,7,22,5,5.5
+Chane Ki Sabzi (Chickpea),Vegetables,Full Bowl,300,320,14,44,10,11
+Mix Vegetable,Vegetables,Half Bowl,150,100,3,14,4,3.5
+Mix Vegetable,Vegetables,Full Bowl,300,200,6,28,8,7
+Boiled Egg,Eggs,1 Egg,50,78,6,1,5,0
+Boiled Egg,Eggs,2 Eggs,100,156,12,1,10,0
+Boiled Egg,Eggs,3 Eggs,150,234,18,2,16,0
+Fried Egg,Eggs,1 Egg,55,90,6,0,7,0
+Fried Egg,Eggs,2 Eggs,110,180,12,0,14,0
+Egg Bhurji (Scrambled),Eggs,Half Bowl (2 eggs),110,175,12,3,13,0.5
+Egg Bhurji (Scrambled),Eggs,Full Bowl (4 eggs),220,350,24,6,26,1
+Omelette (Plain),Eggs,1 Egg,60,95,7,1,7,0
+Omelette (Plain),Eggs,2 Egg,120,190,14,2,14,0
+Omelette (Masala),Eggs,1 Egg,75,110,7,3,8,0.5
+Omelette (Masala),Eggs,2 Egg,150,220,14,6,16,1
+Egg Paratha,Eggs,Small,155,320,11,26,19,1.2
+Egg Paratha,Eggs,Medium,210,430,14,35,25,1.6
+Tandoori Chicken,BBQ & Grilled,Quarter,200,280,40,3,12,0.5
+Tandoori Chicken,BBQ & Grilled,Half,400,560,80,6,24,1
+Tandoori Chicken,BBQ & Grilled,Full,800,1120,160,12,48,2
+Seekh Kebab,BBQ & Grilled,1 piece (60g),60,130,12,3,8,0.5
+Seekh Kebab,BBQ & Grilled,2 pieces,120,260,24,6,16,1
+Seekh Kebab,BBQ & Grilled,4 pieces,240,520,48,12,32,2
+Shami Kebab,BBQ & Grilled,1 piece (50g),50,110,9,8,5,1.5
+Shami Kebab,BBQ & Grilled,2 pieces,100,220,18,16,10,3
+Shami Kebab,BBQ & Grilled,4 pieces,200,440,36,32,20,6
+Chapli Kebab,BBQ & Grilled,1 piece (80g),80,220,16,5,15,0.8
+Chapli Kebab,BBQ & Grilled,2 pieces,160,440,32,10,30,1.6
+Tikka (Chicken),BBQ & Grilled,4 pieces (200g),200,290,38,4,14,0.5
+Tikka (Chicken),BBQ & Grilled,8 pieces (400g),400,580,76,8,28,1
+Tikka (Mutton),BBQ & Grilled,4 pieces,200,330,32,3,22,0.3
+Tikka (Mutton),BBQ & Grilled,8 pieces,400,660,64,6,44,0.6
+Boti Kebab,BBQ & Grilled,4 pieces (150g),150,265,28,2,17,0.4
+Boti Kebab,BBQ & Grilled,8 pieces (300g),300,530,56,4,34,0.8
+Gola Kebab,BBQ & Grilled,1 piece,70,185,14,4,13,0.5
+Gola Kebab,BBQ & Grilled,2 pieces,140,370,28,8,26,1
+Lassi (Sweet),Dairy & Drinks,Half Glass (200ml),200,140,5,22,5,0
+Lassi (Sweet),Dairy & Drinks,Full Glass (400ml),400,280,10,44,10,0
+Lassi (Salt),Dairy & Drinks,Half Glass,200,80,5,8,4,0
+Lassi (Salt),Dairy & Drinks,Full Glass,400,160,10,16,8,0
+Doodh (Full Fat Milk),Dairy & Drinks,Half Glass (125ml),125,75,4,6,4,0
+Doodh (Full Fat Milk),Dairy & Drinks,Full Glass (250ml),250,150,8,12,8,0
+Chai (Doodh Patti),Dairy & Drinks,Small Cup (150ml),150,70,3,8,3,0
+Chai (Doodh Patti),Dairy & Drinks,Medium Cup (250ml),250,115,5,13,5,0
+Chai (Doodh Patti),Dairy & Drinks,Large Mug (350ml),350,160,7,18,7,0
+Kheer,Dairy & Drinks,Half Bowl,150,220,5,35,7,0.3
+Kheer,Dairy & Drinks,Full Bowl,300,440,10,70,14,0.6
+Dahi (Plain Yogurt),Dairy & Drinks,2 Tbsp (50g),50,35,2,4,1,0
+Dahi (Plain Yogurt),Dairy & Drinks,Half Bowl (125g),125,88,5,10,3,0
+Dahi (Plain Yogurt),Dairy & Drinks,Full Bowl (250g),250,175,10,20,6,0
+Raita,Dairy & Drinks,Half Bowl,150,80,4,9,3,0.5
+Raita,Dairy & Drinks,Full Bowl,300,160,8,18,6,1
+Banana,Fruits,Small,80,72,1,18,0,2
+Banana,Fruits,Medium,120,107,1,27,0,3.1
+Banana,Fruits,Large,150,134,2,34,0,3.9
+Mango (Alfonso),Fruits,Half (150g),150,99,1,24,0,2.7
+Mango (Alfonso),Fruits,Full (300g),300,198,2,48,0,5.4
+Guava,Fruits,Small (100g),100,68,3,14,1,5.4
+Guava,Fruits,Medium (150g),150,102,4,21,2,8.1
+Apple,Fruits,Small (130g),130,68,0,18,0,2.4
+Apple,Fruits,Medium (180g),180,94,0,25,0,3.3
+Pomegranate,Fruits,Half (100g arils),100,83,2,19,1,4
+Pomegranate,Fruits,Full (200g arils),200,166,4,38,2,8
+Papaya,Fruits,Small Slice (150g),150,60,1,15,0,2.3
+Papaya,Fruits,Medium Bowl (300g),300,120,2,30,0,4.5
+Watermelon,Fruits,1 Slice (200g),200,60,1,15,0,0.8
+Watermelon,Fruits,2 Slices (400g),400,120,2,30,0,1.6
+Dates (Khajoor),Fruits,2 pieces (30g),30,83,1,22,0,2
+Dates (Khajoor),Fruits,5 pieces (75g),75,207,2,55,0,5.1
+Samosa (Aloo),Street Food,1 piece (80g),80,260,4,30,14,2.5
+Samosa (Aloo),Street Food,2 pieces,160,520,8,60,28,5
+Samosa (Beef/Chicken),Street Food,1 piece (90g),90,295,12,27,16,2
+Samosa (Beef/Chicken),Street Food,2 pieces,180,590,24,54,32,4
+Pakora (Vegetable),Street Food,4 pieces (80g),80,220,4,22,13,2
+Pakora (Vegetable),Street Food,8 pieces (160g),160,440,8,44,26,4
+Pakora (Chicken),Street Food,4 pieces (100g),100,265,15,18,15,1.5
+Pakora (Chicken),Street Food,8 pieces (200g),200,530,30,36,30,3
+Dahi Bhalla,Street Food,2 pieces (150g),150,220,7,30,8,2
+Dahi Bhalla,Street Food,4 pieces (300g),300,440,14,60,16,4
+Chaat (Aloo),Street Food,Half Plate (150g),150,180,4,30,6,3
+Chaat (Aloo),Street Food,Full Plate (300g),300,360,8,60,12,6
+Gol Gappa / Pani Puri,Street Food,4 pieces,60,100,2,18,3,1
+Gol Gappa / Pani Puri,Street Food,8 pieces,120,200,4,36,6,2
+Shawarma (Chicken),Street Food,Small,180,380,22,35,16,2.5
+Shawarma (Chicken),Street Food,Large,280,590,34,54,25,3.9
+Burger (Desi Style),Street Food,Small,180,420,20,38,20,2
+Burger (Desi Style),Street Food,Large,280,650,31,59,31,3.1
+Roll (Chicken),Street Food,Small,160,360,20,38,14,2
+Roll (Chicken),Street Food,Large,250,565,31,59,22,3.1
+Halwa Puri (Set),Street Food,1 Serving (2 Puri + Halwa),300,680,10,90,32,4.5
+Halwa Puri (Set),Street Food,2 Servings,600,1360,20,180,64,9
+Gulab Jamun,Sweets & Mithai,1 piece (40g),40,150,2,28,4,0.3
+Gulab Jamun,Sweets & Mithai,2 pieces,80,300,4,56,8,0.6
+Gulab Jamun,Sweets & Mithai,4 pieces,160,600,8,112,16,1.2
+Jalebi,Sweets & Mithai,2 pieces (50g),50,170,1,38,4,0.2
+Jalebi,Sweets & Mithai,4 pieces (100g),100,340,2,76,8,0.4
+Barfi (Milk),Sweets & Mithai,1 piece (40g),40,155,3,26,5,0.2
+Barfi (Milk),Sweets & Mithai,2 pieces,80,310,6,52,10,0.4
+Halwa (Suji),Sweets & Mithai,Half Bowl (100g),100,250,4,38,10,1
+Halwa (Suji),Sweets & Mithai,Full Bowl (200g),200,500,8,76,20,2
+Halwa (Gajar),Sweets & Mithai,Half Bowl (100g),100,215,4,32,8,2.5
+Halwa (Gajar),Sweets & Mithai,Full Bowl (200g),200,430,8,64,16,5
+Ladoo (Besan),Sweets & Mithai,1 piece (50g),50,210,4,28,10,1.2
+Ladoo (Besan),Sweets & Mithai,2 pieces,100,420,8,56,20,2.4
+Kheer,Sweets & Mithai,Half Bowl (150g),150,220,5,35,7,0.3
+Sheer Khurma,Sweets & Mithai,Half Bowl,150,280,7,40,10,1.5
+Sheer Khurma,Sweets & Mithai,Full Bowl,300,560,14,80,20,3
+Sawaiyan (Vermicelli),Sweets & Mithai,Half Bowl,150,240,5,38,8,0.8
+Sawaiyan (Vermicelli),Sweets & Mithai,Full Bowl,300,480,10,76,16,1.6
+Bread (White Sliced),Miscellaneous,1 slice (25g),25,67,2,13,1,0.5
+Bread (White Sliced),Miscellaneous,2 slices,50,134,4,26,2,1
+Bread (Brown Sliced),Miscellaneous,1 slice (28g),28,69,3,12,1,1.5
+Bread (Brown Sliced),Miscellaneous,2 slices,56,138,6,24,2,3
+Achar (Mango Pickle),Miscellaneous,1 tsp (10g),10,30,0,2,2,0.5
+Achar (Mango Pickle),Miscellaneous,1 tbsp (20g),20,60,0,4,4,1
+Chutney (Tamarind),Miscellaneous,1 tbsp (20g),20,45,0,11,0,0.3
+Chutney (Green),Miscellaneous,1 tbsp (20g),20,15,1,2,1,0.8
+Chole Bhature,Miscellaneous,Half Plate (1 bhatura),200,490,14,65,20,7
+Chole Bhature,Miscellaneous,Full Plate (2 bhatura),400,980,28,130,40,14
+Makki di Roti,Bread,1 piece,60,180,4,32,5,3.5
+Makki di Roti,Bread,2 pieces,120,360,8,64,10,7
+Saag (Sarson),Vegetables,Half Bowl,150,140,5,14,8,4.5
+Saag (Sarson),Vegetables,Full Bowl,300,280,10,28,16,9
+Meat Pulao (Yakhni),Rice & Biryani,Half Plate,200,360,18,48,10,1.5
+Meat Pulao (Yakhni),Rice & Biryani,Full Plate,400,720,36,96,20,3
+Falooda,Dairy & Drinks,Small Glass (300ml),300,310,6,55,8,2
+Falooda,Dairy & Drinks,Large Glass (500ml),500,515,10,92,13,3.3
+Rooh Afza Drink,Dairy & Drinks,1 Glass (250ml),250,115,0,29,0,0
+Kaali Daal (Black Lentil),Daal,Half Bowl,125,145,8,20,4,5.5
+Kaali Daal (Black Lentil),Daal,Full Bowl,250,290,16,40,8,11
+Zeera Rice,Rice & Biryani,Half Plate,150,215,4,45,2,0.8
+Zeera Rice,Rice & Biryani,Full Plate,300,430,8,90,4,1.6
+Kashmiri Chai (Pink Tea),Dairy & Drinks,Small Cup (150ml),150,95,3,11,5,0
+Kashmiri Chai (Pink Tea),Dairy & Drinks,Large Mug (300ml),300,190,6,22,10,0
+Pithora (Gram Flour Cake),Miscellaneous,1 Slice (80g),80,210,6,28,9,2
+Sindhi Biryani,Rice & Biryani,Half Plate,200,410,20,44,16,2
+Sindhi Biryani,Rice & Biryani,Full Plate,400,820,40,88,32,4
+Aloo Ki Bhujia,Vegetables,Half Bowl,100,135,2,18,7,2.5
+Aloo Ki Bhujia,Vegetables,Full Bowl,200,270,4,36,14,5
+Fried Egg (Half Fry),Breakfast,1 Egg,50,90,6,0.5,7,0
+Fried Egg (Full Fry),Breakfast,1 Egg,55,95,6,0.5,7.5,0
+Desi Omelette,Breakfast,Small (1 Egg),70,110,7,2,8,0.3
+Desi Omelette,Breakfast,Medium (2 Eggs),130,220,13,3,16,0.6
+Desi Omelette,Breakfast,Large (3 Eggs),190,320,19,4,24,0.9
+Egg Bhurji (Khageena),Breakfast,Half Plate,120,180,10,3,14,0.5
+Egg Bhurji (Khageena),Breakfast,Full Plate,240,360,20,6,28,1
+Boiled Egg,Breakfast,1 Egg,50,78,6,0.6,5,0
+French Toast (Sweet),Breakfast,1 Slice,60,150,4,20,6,0.5
+French Toast (Sweet),Breakfast,2 Slices,120,300,8,40,12,1
+Suji ka Halwa,Breakfast & Dessert,Small Bowl,100,280,3,42,12,1
+Suji ka Halwa,Breakfast & Dessert,Medium Bowl,200,560,6,84,24,2
+Puri,Bread,1 Piece,40,160,3,17,10,0.5
+Puri,Bread,2 Pieces,80,320,6,34,20,1
+Nihari (Beef),Main Course,Half Bowl,150,225,14,6,16,0.5
+Nihari (Beef),Main Course,Full Bowl,300,450,28,12,32,1
+Bong Paye (Mutton),Main Course,Half Bowl,150,205,16,1,15,0
+Bong Paye (Mutton),Main Course,Full Bowl,300,410,32,2,30,0
+Chana Masala (Nashta),Main Course,Half Plate,150,190,7,26,6,6
+Chana Masala (Nashta),Main Course,Full Plate,300,380,14,52,12,12
+Chicken Karahi,Main Course,Half Plate,200,340,26,4,24,0.8
+Chicken Karahi,Main Course,Full Plate,400,680,52,8,48,1.6
+Chicken Handi (Boneless),Main Course,Half Plate,200,380,28,5,28,0.5
+Chicken Handi (Boneless),Main Course,Full Plate,400,760,56,10,56,1
+Chicken Makhni Handi,Main Course,Half Plate,200,420,25,6,33,0.5
+Chicken Makhni Handi,Main Course,Full Plate,400,840,50,12,66,1
+Mutton Karahi,Main Course,Half Plate,200,380,24,4,29,0.8
+Mutton Karahi,Main Course,Full Plate,400,760,48,8,58,1.6
+Beef Haleem,Main Course,Half Bowl,200,260,16,24,11,5
+Beef Haleem,Main Course,Full Bowl,400,520,32,48,22,10
+Chicken Korma,Main Course,Half Plate,200,320,24,6,22,0.6
+Chicken Korma,Main Course,Full Plate,400,640,48,12,44,1.2
+Beef Keema Fry,Main Course,Half Plate,150,280,22,3,20,0.5
+Beef Keema Fry,Main Course,Full Plate,300,560,44,6,40,1
+Aloo Keema,Main Course,Half Plate,200,240,16,14,13,2.2
+Aloo Keema,Main Course,Full Plate,400,480,32,28,26,4.4
+Daal Chawal,Main Course,Half Plate,250,310,9,54,6,4.5
+Daal Chawal,Main Course,Full Plate,500,620,18,108,12,9
+Daal Makhni,Main Course,Half Bowl,150,210,7,22,10,4.5
+Daal Makhni,Main Course,Full Bowl,300,420,14,44,20,9
+Daal Mash (Fry),Main Course,Half Plate,150,230,9,28,9,5
+Daal Mash (Fry),Main Course,Full Plate,300,460,18,56,18,10
+Bhindi Masala,Vegetables,Half Plate,150,120,3,14,6,3.5
+Bhindi Masala,Vegetables,Full Plate,300,240,6,28,12,7
+Mix Sabzi,Vegetables,Half Plate,150,140,4,18,6,4
+Mix Sabzi,Vegetables,Full Plate,300,280,8,36,12,8
+Aloo Gobi,Vegetables,Half Plate,150,130,3,16,6,3.2
+Aloo Gobi,Vegetables,Full Plate,300,260,6,32,12,6.4
+Chicken Tikka (Chest),BBQ,1 Piece,220,290,42,1,13,0
+Chicken Tikka (Leg),BBQ,1 Piece,200,260,34,1,14,0
+Chicken Boti,BBQ,1 Skewer (4 Pcs),100,150,22,1,7,0
+Chicken Malai Boti,BBQ,1 Skewer (4 Pcs),120,240,20,2,17,0
+Seekh Kabab (Beef),BBQ,1 Piece,60,140,11,1,10,0
+Seekh Kabab (Beef),BBQ,2 Pieces,120,280,22,2,20,0
+Seekh Kabab (Chicken),BBQ,1 Piece,60,110,12,1,6,0
+Seekh Kabab (Chicken),BBQ,2 Pieces,120,220,24,2,12,0
+Chapli Kabab (Beef),BBQ & Fried,Small,80,210,14,3,16,0.5
+Chapli Kabab (Beef),BBQ & Fried,Large,150,390,26,5,30,1
+Shami Kabab (Beef),Snacks,1 Piece,50,110,8,6,6,1.2
+Shami Kabab (Chicken),Snacks,1 Piece,50,95,9,5,4.5,1
+Samosa (Aloo),Snacks,1 Piece,70,210,3,24,11,1.5
+Samosa (Chicken),Snacks,1 Piece,60,160,8,16,7,0.8
+Pakora (Mix Vegetable),Snacks,Small Plate (5 Pcs),100,280,5,30,16,3
+Pakora (Mix Vegetable),Snacks,Large Plate (10 Pcs),200,560,10,60,32,6
+Gol Gappay (Pani Puri),Snacks,1 Plate (6 Pcs),150,180,3,32,4,2.5
+Dahi Bhallay,Snacks,Half Plate,170,160,6,24,4,3.5
+Dahi Bhallay,Snacks,Full Plate,340,320,12,48,8,7
+Chana Chaat,Snacks,Half Plate,150,185,7,28,4,6
+Chana Chaat,Snacks,Full Plate,300,370,14,56,8,12
+French Fries (Desi Style),Snacks,Small,100,290,3,38,14,2.5
+French Fries (Desi Style),Snacks,Large,200,580,6,76,28,5
+Chicken Shawarma,Fast Food,Small/Mini,150,320,16,32,14,1.5
+Chicken Shawarma,Fast Food,Large/Roll,250,540,26,52,24,2.5
+Anday Wala Burger,Fast Food,1 Burger,160,390,14,42,18,2
+Chicken Burger (Desi),Fast Food,1 Burger,180,430,20,44,19,1.8
+Zinger Burger (Local),Fast Food,1 Burger,220,590,25,54,30,2.2
+Roghni Naan,Bread,1 Piece,120,380,9,62,10,2.5
+Garlic Naan,Bread,1 Piece,110,340,9,58,8,2.2
+Kalonji Naan,Bread,1 Piece,100,310,8,55,6,2.2
+Kheer,Dessert,Small Cup,120,190,5,28,6,0
+Kheer,Dessert,Medium Bowl,250,395,10,58,13,0
+Gulab Jamun,Dessert,1 Piece,40,150,2,24,5,0.2
+Gulab Jamun,Dessert,2 Pieces,80,300,4,48,10,0.4
+Jalebi,Dessert,Small Plate,100,340,2,78,2,0.3
+Ras Malai,Dessert,1 Cup (2 Pcs),150,260,8,26,14,0
+Gajar ka Halwa,Dessert,Small Bowl,100,310,5,40,14,1.5
+Gajar ka Halwa,Dessert,Medium Bowl,200,620,10,80,28,3
+Zarda (Sweet Rice),Dessert,Half Plate,150,360,4,68,8,0.8
+Zarda (Sweet Rice),Dessert,Full Plate,300,720,8,136,16,1.6
+Shahi Tukray,Dessert,1 Piece,90,240,4,30,11,0.5
+Chai (Doodh Patti),Dairy & Drinks,1 Standard Cup,150,120,4,14,5,0
+"Chai (Doodh Patti, No Sugar)",Dairy & Drinks,1 Standard Cup,150,65,4,4,3.5,0
+Kashmiri Chai (Pink Tea),Dairy & Drinks,1 Standard Cup,150,140,5,11,8,0.4
+Lassi (Sweet),Dairy & Drinks,Small Glass,250,210,6,26,9,0
+Lassi (Sweet),Dairy & Drinks,Large Glass,400,336,10,42,14,0
+Lassi (Salted/Namkeen),Dairy & Drinks,Small Glass,250,125,6,6,9,0
+Lassi (Salted/Namkeen),Dairy & Drinks,Large Glass,400,200,10,10,14,0
+Mango Shake,Dairy & Drinks,Small Glass,250,240,5,40,6,1.5
+Mango Shake,Dairy & Drinks,Large Glass,400,385,8,64,10,2.4

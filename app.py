@@ -20,6 +20,13 @@ CSV_PATH = BASE_DIR / "balanced_body_type_dataset.csv"
 MODEL_CACHE_PATH = BASE_DIR / "model_cache.pkl"
 SCALER_CACHE_PATH = BASE_DIR / "scaler_cache.pkl"
 
+try:
+    from dotenv import load_dotenv
+
+    load_dotenv(BASE_DIR / ".env")
+except ImportError:
+    pass
+
 LETTER_MAP = {"A": 0, "B": 1, "C": 2}
 
 
@@ -176,6 +183,26 @@ def predict():
         "bmi": round(float(bmi), 2),
     }
     return jsonify(out)
+
+
+@app.route("/analyze-food", methods=["POST"])
+def analyze_food():
+    from food_api import handle_analyze_food_request
+
+    data = request.get_json(silent=True)
+    if not isinstance(data, dict):
+        return jsonify({"error": "Expected JSON object"}), 400
+    try:
+        payload, status = handle_analyze_food_request(data)
+        # #region agent log
+        import json as _json, time as _time
+        _log = {"sessionId": "97d6cc", "hypothesisId": "A", "location": "app.py:analyze_food", "message": "backend payload", "data": {"status": status, "keys": list(payload.keys()), "matched_count": payload.get("matched_count"), "success": payload.get("success"), "item_count": (payload.get("summary") or {}).get("item_count")}, "timestamp": int(_time.time() * 1000)}
+        with open(BASE_DIR / "debug-97d6cc.log", "a", encoding="utf-8") as _f:
+            _f.write(_json.dumps(_log) + "\n")
+        # #endregion
+        return jsonify(payload), status
+    except Exception:
+        return jsonify({"error": "Unable to analyze food right now"}), 500
 
 
 if __name__ == "__main__":

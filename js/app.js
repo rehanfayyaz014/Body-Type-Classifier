@@ -5,6 +5,7 @@
   const STORAGE_LANG = "fitai-lang";
   const STORAGE_THEME = "fitai-theme";
   const STORAGE_PROFILE = "fitai-profile";
+  const SESSION_PREFILL_HANDOFF = "fitai-prefill-plan";
 
   const CLASSIFIER_STEPS = 7;
   const PLAN_STEPS = 5;
@@ -25,8 +26,8 @@
       height: 170,
       weight: 70,
     },
-    bodyTypeKey: "mesomorph",
-    bmi: 22.4,
+    bodyTypeKey: null,
+    bmi: null,
     detailGoal: null,
     activityLevel: null,
     workoutPreference: null,
@@ -39,8 +40,10 @@
     if (typeof window === "undefined") return "http://127.0.0.1:5000";
     var b = window.FITAI_API_BASE;
     if (b === "" || b === null) return "";
-    if (b === undefined) return "http://127.0.0.1:5000";
-    return String(b).replace(/\/$/, "");
+    if (b !== undefined) return String(b).replace(/\/$/, "");
+    var o = window.location.origin || "";
+    if (o && o !== "null" && o.indexOf("file") !== 0) return "";
+    return "http://127.0.0.1:5000";
   }
 
   function predictUrl() {
@@ -67,8 +70,24 @@
         bodyTypeKey: state.bodyTypeKey,
         bmi: state.bmi,
         gender: state.answers.gender,
+        height_cm: state.answers.height,
+        weight_kg: state.answers.weight,
+        goal: state.detailGoal,
+        activityLevel: state.activityLevel,
+        workoutPreference: state.workoutPreference,
       })
     );
+  }
+
+  function clearAssessmentStorage() {
+    localStorage.removeItem(STORAGE_PROFILE);
+  }
+
+  function clearProfile() {
+    clearAssessmentStorage();
+    if (window.FitAITrackingState && window.FitAITrackingState.clearAllTrackingData) {
+      window.FitAITrackingState.clearAllTrackingData();
+    }
   }
 
   function loadProfile() {
@@ -259,6 +278,41 @@
     resetAllAssessmentData();
   }
 
+  function isPageReload() {
+    var nav = performance.getEntriesByType("navigation")[0];
+    return !!(nav && nav.type === "reload");
+  }
+
+  function consumePrefillHandoff() {
+    var flagged = sessionStorage.getItem(SESSION_PREFILL_HANDOFF) === "1";
+    sessionStorage.removeItem(SESSION_PREFILL_HANDOFF);
+    var urlPrefill = new URLSearchParams(window.location.search).get("prefill") === "1";
+    return flagged && urlPrefill && getQueryModule() === "plan";
+  }
+
+  function resetAssessmentUiInputs() {
+    var ih = $("input-height");
+    var iw = $("input-weight");
+    if (ih) ih.value = "170";
+    if (iw) iw.value = "70";
+    if ($("height-val")) $("height-val").textContent = "170";
+    if ($("weight-val")) $("weight-val").textContent = "70";
+    var hit = $("height-input-text");
+    var wit = $("weight-input-text");
+    if (hit) {
+      hit.value = "";
+      hit.placeholder = "Enter height";
+    }
+    if (wit) {
+      wit.value = "";
+      wit.placeholder = "Enter weight";
+    }
+    if ($("height-unit-select")) $("height-unit-select").value = "cm";
+    if ($("weight-unit-select")) $("weight-unit-select").value = "kg";
+    if ($("progress-fill")) $("progress-fill").style.width = "0%";
+    if ($("plan-progress-fill")) $("plan-progress-fill").style.width = "0%";
+  }
+
   function resetAllAssessmentData() {
     state.answers = {
       gender: null,
@@ -269,11 +323,31 @@
       height: 170,
       weight: 70,
     };
-    state.bodyTypeKey = "mesomorph";
-    state.bmi = 22.4;
+    state.bodyTypeKey = null;
+    state.bmi = null;
     state.detailGoal = null;
     state.activityLevel = null;
     state.workoutPreference = null;
+    state.step = 0;
+    state.planStep = 0;
+  }
+
+  function resetSessionOnPageLoad() {
+    if (consumePrefillHandoff() && !isPageReload()) {
+      return;
+    }
+    clearAssessmentStorage();
+    resetAllAssessmentData();
+    clearAllCardSelections();
+    resetAssessmentUiInputs();
+    state.module = null;
+    state.view = "landing";
+    state.apiBusy = false;
+    clearPredictError();
+    setPredictLoading(false);
+    $("view-result")?.classList.remove("view-result-animate");
+    $("detail-goal-phase")?.classList.add("hidden");
+    $("detail-plan-phase")?.classList.add("hidden");
   }
 
   function goQuiz() {
@@ -293,6 +367,9 @@
   }
 
   function resetClassifierAnswers() {
+    clearProfile();
+    state.bodyTypeKey = null;
+    state.bmi = null;
     state.answers = {
       gender: null,
       shape: null,
@@ -350,6 +427,7 @@
 
   function goPlanWithPrefill() {
     saveProfile();
+    sessionStorage.setItem(SESSION_PREFILL_HANDOFF, "1");
     window.location.href = "/?module=plan&prefill=1";
   }
 
@@ -828,27 +906,15 @@
   }
 
   function goHome() {
-    state.previousView = state.view;
+    clearAssessmentStorage();
     resetAllAssessmentData();
-    state.step = 0;
-    state.detailGoal = null;
-    state.activityLevel = null;
-    state.workoutPreference = null;
-    state.bodyTypeKey = "mesomorph";
-    state.bmi = 22.4;
+    clearAllCardSelections();
+    resetAssessmentUiInputs();
+    state.module = null;
     state.apiBusy = false;
     clearPredictError();
     setPredictLoading(false);
     $("view-result")?.classList.remove("view-result-animate");
-    
-    // Clear all visual highlighting and animation effects from option cards
-    document.querySelectorAll(".opt-card").forEach(function (card) {
-      card.classList.remove("is-selected", "selected");
-      card.style.animation = "";
-      card.style.transform = "";
-      card.style.opacity = "";
-    });
-    
     showView("landing");
   }
 
@@ -860,22 +926,18 @@
   }
 
   function init() {
-    console.log("init() called");
     try {
       state.lang = localStorage.getItem(STORAGE_LANG) || "en";
       state.theme = localStorage.getItem(STORAGE_THEME) || "dark";
       setLang(state.lang);
       setTheme(state.theme);
+      resetSessionOnPageLoad();
 
       var btnStart = $("btn-start");
-      console.log("btn-start element:", btnStart);
       if (btnStart) {
         btnStart.addEventListener("click", function () {
           window.location.href = "/dashboard";
         });
-        console.log("btn-start event listener attached");
-      } else {
-        console.error("btn-start element not found!");
       }
       
       $("btn-continue")?.addEventListener("click", onContinueQuiz);
@@ -1109,6 +1171,12 @@
     } else if (urlModule === "plan") {
       var prefill = new URLSearchParams(window.location.search).get("prefill") === "1";
       startPlanModule({ prefillBodyType: prefill });
+    } else if (urlModule === "tracking") {
+      if (window.FitAITracking && window.FitAITracking.init) {
+        window.FitAITracking.init();
+      } else if (window.FitAITracking && window.FitAITracking.bindNutritionView) {
+        window.FitAITracking.bindNutritionView();
+      }
     } else {
       showView("landing");
     }

@@ -100,7 +100,6 @@
       e.stopPropagation();
     });
 
-    $("card-tracking")?.addEventListener("click", showComingSoon);
     $("card-food")?.addEventListener("click", showComingSoon);
   }
 
