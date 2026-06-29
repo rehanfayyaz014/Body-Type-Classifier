@@ -64,19 +64,52 @@
   }
 
   function saveProfile() {
-    localStorage.setItem(
-      STORAGE_PROFILE,
-      JSON.stringify({
-        bodyTypeKey: state.bodyTypeKey,
-        bmi: state.bmi,
-        gender: state.answers.gender,
-        height_cm: state.answers.height,
-        weight_kg: state.answers.weight,
-        goal: state.detailGoal,
-        activityLevel: state.activityLevel,
-        workoutPreference: state.workoutPreference,
-      })
-    );
+    var profileData = {
+      bodyTypeKey: state.bodyTypeKey,
+      bmi: state.bmi,
+      gender: state.answers.gender,
+      height_cm: state.answers.height,
+      weight_kg: state.answers.weight,
+      goal: state.detailGoal,
+      activityLevel: state.activityLevel,
+      workoutPreference: state.workoutPreference,
+    };
+
+    localStorage.setItem(STORAGE_PROFILE, JSON.stringify(profileData));
+
+    // Agar user logged in hai, Supabase mein bhi save karo
+    if (window.FitAIAuth) {
+      window.FitAIAuth.getCurrentUser().then(function (user) {
+        if (!user || !window.FitAISupabase) return;
+
+        window.FitAISupabase
+          .from("body_type_history")
+          .insert({
+            user_id: user.id,
+            body_type: profileData.bodyTypeKey,
+            bmi: profileData.bmi || 0,
+            height_cm: profileData.height_cm || 0,
+            weight_kg: profileData.weight_kg || 0,
+            goal: profileData.goal || null,
+            activity_level: profileData.activityLevel || null,
+            workout_preference: profileData.workoutPreference || null,
+          })
+          .then(function (res) {
+            if (res.error) console.error("Supabase save failed:", res.error);
+          });
+
+        // Profile table mein latest height/weight/gender bhi update kar do
+        window.FitAISupabase
+          .from("profiles")
+          .update({
+            gender: profileData.gender || null,
+            height_cm: profileData.height_cm || null,
+            weight_kg: profileData.weight_kg || null,
+          })
+          .eq("id", user.id)
+          .then(function () {});
+      });
+    }
   }
 
   function clearAssessmentStorage() {

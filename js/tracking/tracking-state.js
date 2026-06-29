@@ -195,6 +195,25 @@
       reco = buildTomorrowRecommendations(summary, targets, loadProfile());
       writeJson(STORAGE_RECOMMENDATIONS, reco);
     }
+
+    // Agar user logged in hai, Supabase mein bhi save karo
+    if (window.FitAIAuth && window.FitAISupabase) {
+      window.FitAIAuth.getCurrentUser().then(function (user) {
+        if (!user) return;
+        window.FitAISupabase
+          .from("food_tracking_history")
+          .insert({
+            user_id: user.id,
+            log_date: date,
+            items: entry.items,
+            summary: summary,
+          })
+          .then(function (res) {
+            if (res.error) console.error("Supabase food log save failed:", res.error);
+          });
+      });
+    }
+
     return { entry: entry, recommendations: reco, targets: targets };
   }
 

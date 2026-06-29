@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f1729" />
+  <title>FitAI — Profile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/styles-enhanced.css" />
+  <link rel="stylesheet" href="/css/auth.css" />
+  <link rel="stylesheet" href="/css/profile.css" />
+</head>
+<body class="theme-dark">
+  <div class="bg-layer" aria-hidden="true"></div>
+  <div class="bg-vignette" aria-hidden="true"></div>
+
+  <div id="app">
+    <header class="top-bar" id="top-bar">
+      <div class="top-bar__left">
+        <button type="button" class="icon-btn" id="btn-home" aria-label="Back">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <span class="logo">FitAI</span>
+      </div>
+    </header>
+
+    <main class="main profile-page">
+      <div class="glass-card profile-header-card">
+        <div class="profile-avatar" id="profile-avatar-letter">G</div>
+        <div class="profile-header-info">
+          <h1 class="profile-name" id="profile-name">Guest</h1>
+          <p class="profile-email" id="profile-email">Not signed in</p>
+        </div>
+      </div>
+
+      <div class="glass-card profile-current-card">
+        <p class="profile-section-label">Current Body Type</p>
+        <h2 class="profile-current-type" id="profile-current-type">--</h2>
+        <p class="profile-current-meta" id="profile-current-meta"></p>
+        <p class="profile-current-bmi-row">BMI: <strong id="profile-current-bmi">--</strong></p>
+      </div>
+
+      <div class="profile-section">
+        <h2 class="profile-section-title">Body Type History</h2>
+        <div id="profile-bodytype-history" class="profile-history-list"></div>
+      </div>
+
+      <div class="profile-section">
+        <h2 class="profile-section-title">Food Tracking History</h2>
+        <div id="profile-food-history" class="profile-history-list"></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="/js/supabase-client.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/profile.js"></script>
+</body>
+</html>

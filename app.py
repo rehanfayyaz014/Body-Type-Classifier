@@ -111,6 +111,9 @@ def index_page():
 def dashboard_page():
     return render_template("dashboard.html")
 
+@app.route("/profile")
+def profile_page():
+    return render_template("profile.html")
 
 @app.route("/css/<path:filename>")
 def css_files(filename):

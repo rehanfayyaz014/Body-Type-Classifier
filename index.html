@@ -7,6 +7,7 @@
   <title>FitAI — Body & Training Plan</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="css/auth.css" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=Noto+Nastaliq+Urdu:wght@400;600&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -69,6 +70,12 @@
         <span class="logo" id="brand-title">FitAI</span>
       </div>
       <div class="top-bar__right">
+        <button type="button" class="icon-btn" id="btn-account" aria-label="Account">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>
+          </svg>
+        </button>
+        <span class="account-name hidden" id="account-name-badge"></span>
         <div class="dropdown-wrap" id="lang-wrap">
           <button type="button" class="icon-btn" id="btn-lang" aria-haspopup="true" aria-expanded="false" aria-label="Language">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -899,6 +906,46 @@
     </div>
   </div>
 
+  <div id="auth-overlay" class="auth-overlay hidden" aria-hidden="true">
+    <div class="auth-modal glass-card">
+      <button type="button" class="auth-modal__close" id="auth-close" aria-label="Close">&times;</button>
+
+      <div class="auth-tabs">
+        <button type="button" class="auth-tab is-active" id="auth-tab-login">Login</button>
+        <button type="button" class="auth-tab" id="auth-tab-signup">Sign Up</button>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <form id="auth-form-login" class="auth-form">
+        <input type="email" id="login-email" placeholder="Email" required autocomplete="email" />
+        <input type="password" id="login-password" placeholder="Password" required autocomplete="current-password" />
+        <p class="auth-error hidden" id="login-error"></p>
+        <button type="submit" class="btn btn--primary">Login</button>
+      </form>
+
+      <!-- SIGNUP FORM -->
+      <form id="auth-form-signup" class="auth-form hidden">
+        <input type="text" id="signup-name" placeholder="Your name" required autocomplete="name" />
+        <input type="email" id="signup-email" placeholder="Email" required autocomplete="email" />
+        <input type="password" id="signup-password" placeholder="Password (min 6 chars)" required minlength="6" autocomplete="new-password" />
+        <p class="auth-error hidden" id="signup-error"></p>
+        <button type="submit" class="btn btn--primary">Create Account</button>
+      </form>
+
+      <p class="auth-hint" id="auth-loading-msg" style="display:none;">Please wait…</p>
+    </div>
+  </div>
+
+  <div id="logout-overlay" class="auth-overlay hidden" aria-hidden="true">
+    <div class="auth-modal glass-card" style="text-align:center;">
+      <p style="color:#f1f5f9; font-size:0.95rem; margin-bottom:1rem;" id="logout-confirm-text">Logout?</p>
+      <div style="display:flex; gap:0.6rem;">
+        <button type="button" class="btn btn--ghost" id="logout-cancel" style="flex:1;">Cancel</button>
+        <button type="button" class="btn btn--primary" id="logout-confirm" style="flex:1;">Logout</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     (function () {
       if (typeof window.FITAI_API_BASE !== "undefined") return;
@@ -919,6 +966,10 @@
   <script src="js/tracking/tracking-reminders.js"></script>
   <script src="js/tracking/tracking-ui.js"></script>
   <script src="js/tracking/tracking-main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/auth-ui.js"></script>
   <script src="js/app.js"></script>
 
 
