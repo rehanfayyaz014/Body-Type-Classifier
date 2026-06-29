@@ -48,6 +48,13 @@
   </script>
   <link rel="stylesheet" href="css/styles-enhanced.css" />
   <link rel="stylesheet" href="css/tracking.css" />
+  <script>
+    (function () {
+      if (/[?&]module=/.test(window.location.search || "")) {
+        document.documentElement.classList.add("fitai-booting");
+      }
+    })();
+  </script>
 </head>
 <body class="theme-dark">
   <div class="bg-layer" aria-hidden="true"></div>
@@ -88,21 +95,174 @@
     </header>
 
     <main class="main">
-      <!-- Landing -->
+      <!-- Landing — Full-Screen Hero v3 -->
       <section class="view view--landing" id="view-landing" data-view="landing">
-        <div class="hero glass-card animate-in">
-          <p class="eyebrow" data-i18n="landingEyebrow">AI body insights</p>
-          <h1 class="hero__title" data-i18n="landingTitle">Know your body.<br />Train smarter.</h1>
-          <p class="hero__sub" data-i18n="landingSub">A quick guided check-in — no typing, just taps. Get your type, BMI snapshot, and a plan preview.</p>
-          <button type="button" class="btn btn--primary btn-shimmer" id="btn-start" data-i18n="landingCta">Start AI assessment</button>
-        </div>
-        <div class="chips-row">
-          <div class="chip glass-chip"><span class="chip__icon">◎</span><span data-i18n="chip1">Card-based</span></div>
-          <div class="chip glass-chip"><span class="chip__icon">◇</span><span data-i18n="chip2">Personalized</span></div>
-          <div class="chip glass-chip"><span class="chip__icon">✦</span><span data-i18n="chip3">Private</span></div>
-        </div>
-      </section>
 
+        <!-- ── Background ─────────────────────────────────── -->
+        <div class="lp-orb lp-orb--a" aria-hidden="true"></div>
+        <div class="lp-orb lp-orb--b" aria-hidden="true"></div>
+        <div class="lp-orb lp-orb--c" aria-hidden="true"></div>
+        <canvas id="lp-particles" class="lp-particles" aria-hidden="true"></canvas>
+
+        <!-- ── HERO — 100vh Split ──────────────────────────── -->
+        <div class="lp-hero-wrap" id="lp-hero-wrap">
+
+          <!-- LEFT -->
+          <div class="lp-left">
+            <div class="lp-eyebrow" data-i18n="landingEyebrow">AI Body Insights</div>
+
+            <h1 class="lp-title">
+              <span class="lp-title__plain" data-i18n="landingTitleLine1">Know your body.</span><br/>
+              <span class="lp-title__grad"  data-i18n="landingTitleLine2">Train smarter.</span>
+            </h1>
+
+            <p class="lp-sub" data-i18n="landingSub">
+              A quick check-in — no typing, just taps. Get your body type, BMI snapshot, and a personalized plan.
+            </p>
+
+            <div class="lp-cta-row">
+              <button type="button" class="lp-btn-cta" id="btn-start">
+                <span class="lp-btn-cta__shine" aria-hidden="true"></span>
+                <span data-i18n="landingCta">Start AI Assessment</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+              <p class="lp-trust">
+                <span class="lp-trust__dot" aria-hidden="true"></span>
+                <span data-i18n="landingTrust">Free · Private · No account needed</span>
+              </p>
+            </div>
+
+            <!-- Stats -->
+            <div class="lp-stats" id="lp-stats">
+              <div class="lp-stat">
+                <div class="lp-stat__num-row">
+                  <span class="lp-stat__num" data-target="500">0</span><span class="lp-stat__unit">+</span>
+                </div>
+                <span class="lp-stat__label" data-i18n="statUsers">Trusted Users</span>
+              </div>
+              <div class="lp-stat__div" aria-hidden="true"></div>
+              <div class="lp-stat">
+                <div class="lp-stat__num-row">
+                  <span class="lp-stat__num" data-target="3">0</span>
+                </div>
+                <span class="lp-stat__label" data-i18n="statTypes">Body Types</span>
+              </div>
+              <div class="lp-stat__div" aria-hidden="true"></div>
+              <div class="lp-stat">
+                <div class="lp-stat__num-row">
+                  <span class="lp-stat__num" data-target="6">0</span>
+                </div>
+                <span class="lp-stat__label" data-i18n="statFeatures">AI Features</span>
+              </div>
+            </div>
+          </div><!-- /lp-left -->
+
+          <!-- RIGHT: man image + floating elements -->
+          <div class="lp-right" id="lp-right">
+            <!-- Glow ring behind image -->
+            <div class="lp-glow-ring" aria-hidden="true"></div>
+
+            <!-- Man fitness image -->
+            <div class="lp-img-frame">
+              <img
+              src="/static/images/cover.jpeg"
+              alt="Fit man training"
+              class="lp-man-img"
+              loading="eager"
+              />
+              <div class="lp-img-fade" aria-hidden="true"></div>
+            </div>
+
+            <!-- Floating badge: kcal -->
+            <div class="lp-badge lp-badge--tl" aria-hidden="true">
+              <span class="lp-badge__ico">🔥</span>
+              <div>
+                <div class="lp-badge__val">320 kcal</div>
+                <div class="lp-badge__sub">Burned today</div>
+              </div>
+            </div>
+
+            <!-- Floating badge: BMI -->
+            <div class="lp-badge lp-badge--br" aria-hidden="true">
+              <span class="lp-badge__ico">📊</span>
+              <div>
+                <div class="lp-badge__val">BMI 22.4</div>
+                <div class="lp-badge__sub">Healthy range</div>
+              </div>
+            </div>
+
+            <!-- Floating pills -->
+            <div class="lp-pill lp-pill--a" aria-hidden="true">🥗 Nutrition</div>
+            <div class="lp-pill lp-pill--b" aria-hidden="true">💪 Fitness</div>
+            <div class="lp-pill lp-pill--c" aria-hidden="true">🔔 Reminders</div>
+            <div class="lp-pill lp-pill--d" aria-hidden="true">📊 Analytics</div>
+          </div><!-- /lp-right -->
+
+        </div><!-- /lp-hero-wrap -->
+
+        <!-- ── FEATURES SECTION (below fold) ──────────────── -->
+        <div class="lp-features-wrap" id="lp-features-section">
+          <div class="lp-sec-head">
+            <p class="lp-sec-eyebrow" data-i18n="featSectionEyebrow">Everything you need</p>
+            <h2 class="lp-sec-title" data-i18n="featSectionTitle">What FitAI offers you</h2>
+          </div>
+
+          <div class="lp-grid" role="list">
+
+            <div class="lp-card lp-card--a" role="listitem">
+              <div class="lp-card__icon">🤖</div>
+              <div class="lp-card__body">
+                <div class="lp-card__title" data-i18n="featAiTitle">AI Body Analysis</div>
+                <div class="lp-card__desc"  data-i18n="featAiDesc">Instant somatotype classification powered by machine learning.</div>
+              </div>
+            </div>
+
+            <div class="lp-card lp-card--b" role="listitem">
+              <div class="lp-card__icon">🥗</div>
+              <div class="lp-card__body">
+                <div class="lp-card__title" data-i18n="featDietTitle">Smart Diet Planning</div>
+                <div class="lp-card__desc"  data-i18n="featDietDesc">Personalized nutrition guidance matched to your body type.</div>
+              </div>
+            </div>
+
+            <div class="lp-card lp-card--c" role="listitem">
+              <div class="lp-card__icon">📊</div>
+              <div class="lp-card__body">
+                <div class="lp-card__title" data-i18n="featTrackTitle">Daily Nutrition Tracking</div>
+                <div class="lp-card__desc"  data-i18n="featTrackDesc">Log meals and monitor calories, protein, and macros daily.</div>
+              </div>
+            </div>
+
+            <div class="lp-card lp-card--d" role="listitem">
+              <div class="lp-card__icon">🔔</div>
+              <div class="lp-card__body">
+                <div class="lp-card__title" data-i18n="featReminderTitle">Smart Reminders</div>
+                <div class="lp-card__desc"  data-i18n="featReminderDesc">Timely notifications to keep your health routine on track.</div>
+              </div>
+            </div>
+
+            <div class="lp-card lp-card--e" role="listitem">
+              <div class="lp-card__icon">💪</div>
+              <div class="lp-card__body">
+                <div class="lp-card__title" data-i18n="featFitnessTitle">Personalized Fitness</div>
+                <div class="lp-card__desc"  data-i18n="featFitnessDesc">Custom workout plans designed around your unique body type.</div>
+              </div>
+            </div>
+
+            <!-- ISOLATED: Food Recognition — easy to swap/hide -->
+            <div class="lp-card lp-card--food lp-card--modular" id="feat-food-recognition" role="listitem">
+              <div class="lp-card__icon">📸</div>
+              <div class="lp-card__body">
+                <div class="lp-card__title" data-i18n="featFoodTitle">Food Recognition</div>
+                <div class="lp-card__desc"  data-i18n="featFoodDesc">Identify Pakistani meals and get instant nutrition estimates.</div>
+                <span class="lp-card__badge" data-i18n="dashComingSoon">Coming Soon</span>
+              </div>
+            </div>
+
+          </div><!-- /lp-grid -->
+        </div><!-- /lp-features-wrap -->
+
+      </section>
       <!-- Questionnaire -->
       <section class="view hidden" id="view-quiz" data-view="quiz">
         <div class="quiz-head p-4 sm:p-6 backdrop-blur-xl bg-gradient-to-b from-white/10 to-white/5 border border-white/15 rounded-2xl animate-slideDown m-4 sm:m-6">
@@ -601,17 +761,17 @@
       <section id="view-tracking-hub" class="view hidden tracking-wrap" aria-label="Daily Tracking">
         <h1 class="tracking-section-title">Daily Tracking</h1>
         <p class="eyebrow" style="margin-bottom:1.25rem;">Choose what you want to track today</p>
-        <div class="tracking-hub-grid">
-          <button type="button" class="tracking-hub-card glass-card" id="track-card-nutrition">
-            <svg class="tracking-hub-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+        <div class="feature-hub-grid tracking-hub-grid">
+          <button type="button" class="feature-hub-card feature-hub-card--nutrition tracking-hub-card glass-card" id="track-card-nutrition">
+            <svg class="feature-hub-card__icon tracking-hub-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
               <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
               <circle cx="12" cy="12" r="4"/>
             </svg>
             <h2 class="dash-card__title">Nutrition Tracking</h2>
             <p class="dash-card__desc">Log meals in natural language, see macros, and get tomorrow&apos;s recommendations.</p>
           </button>
-          <button type="button" class="tracking-hub-card tracking-hub-card--reminder glass-card" id="track-card-reminders">
-            <svg class="tracking-hub-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+          <button type="button" class="feature-hub-card feature-hub-card--reminder tracking-hub-card tracking-hub-card--reminder glass-card" id="track-card-reminders">
+            <svg class="feature-hub-card__icon tracking-hub-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
               <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
             </svg>
             <h2 class="dash-card__title">Reminders</h2>
@@ -690,9 +850,18 @@
       <section id="view-tracking-reminders" class="view hidden tracking-wrap" aria-label="Reminders">
         <h1 class="tracking-section-title">Reminders</h1>
         <div id="track-notify-banner" class="glass-card tracking-perm-banner">
-          Enable browser notifications to receive meal and workout reminders while this tab is open.
+          Enable browser notifications to receive meal and workout reminders.
         </div>
-        <button type="button" class="btn btn--ghost btn--sm" id="track-enable-notify" style="margin-bottom:1rem;">Enable notifications</button>
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;flex-wrap:wrap;">
+          <button type="button" class="btn btn--ghost btn--sm" id="track-enable-notify">Enable notifications</button>
+          <label class="tracking-sound-row" title="Play a chime sound with each reminder">
+            <span>🔔 Sound</span>
+            <span class="track-toggle">
+              <input type="checkbox" id="track-sound-toggle" checked />
+              <span class="track-toggle__slider"></span>
+            </span>
+          </label>
+        </div>
 
         <div class="glass-card tracking-reminder-form">
           <div class="tracking-field">
@@ -701,7 +870,7 @@
           </div>
           <div class="tracking-field">
             <label for="track-reminder-type">Reminder type</label>
-            <select id="track-reminder-type">
+            <select id="track-reminder-type" class="glass-select" style="width:100%;">
               <option value="Breakfast">Breakfast</option>
               <option value="Lunch">Lunch</option>
               <option value="Dinner">Dinner</option>
@@ -712,7 +881,7 @@
           </div>
           <div class="tracking-field hidden" id="track-custom-msg-wrap">
             <label for="track-reminder-message">Custom message</label>
-            <textarea id="track-reminder-message" rows="2" placeholder="Your reminder text"></textarea>
+            <textarea id="track-reminder-message" rows="3" placeholder="E.g. Drink water, take vitamins, go for a walk..."></textarea>
           </div>
           <button type="button" class="btn btn--primary" id="track-add-reminder">Add reminder</button>
         </div>
@@ -751,5 +920,160 @@
   <script src="js/tracking/tracking-ui.js"></script>
   <script src="js/tracking/tracking-main.js"></script>
   <script src="js/app.js"></script>
+
+
+
+  <!-- ═══ Landing page scripts (isolated, no effect on other modules) ═══ -->
+  <script>
+  (function () {
+
+    /* ── 1. PARTICLES ──────────────────────────────────────────── */
+    function initParticles() {
+      var canvas = document.getElementById("lp-particles");
+      if (!canvas) return;
+      var ctx = canvas.getContext("2d");
+      var particles = [], raf, W, H;
+
+      function resize() {
+        W = canvas.width  = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+      }
+      function Particle() {
+        this.reset();
+      }
+      Particle.prototype.reset = function() {
+        this.x  = Math.random() * W;
+        this.y  = Math.random() * H;
+        this.vx = (Math.random() - 0.5) * 0.3;
+        this.vy = (Math.random() - 0.5) * 0.3;
+        this.r  = Math.random() * 1.5 + 0.5;
+        this.a  = Math.random() * 0.4 + 0.1;
+        this.col= Math.random() < 0.5 ? "45,212,191" :
+                  Math.random() < 0.6 ? "99,102,241" : "244,114,182";
+      };
+      Particle.prototype.update = function() {
+        this.x += this.vx; this.y += this.vy;
+        if (this.x < 0) this.x = W;
+        if (this.x > W) this.x = 0;
+        if (this.y < 0) this.y = H;
+        if (this.y > H) this.y = 0;
+      };
+      Particle.prototype.draw = function() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.r, 0, Math.PI*2);
+        ctx.fillStyle = "rgba("+this.col+","+this.a+")";
+        ctx.fill();
+      };
+      function init() {
+        resize();
+        particles = [];
+        var count = Math.min(65, Math.floor((W * H) / 13000));
+        for (var i = 0; i < count; i++) particles.push(new Particle());
+      }
+      function loop() {
+        ctx.clearRect(0, 0, W, H);
+        particles.forEach(function(p){ p.update(); p.draw(); });
+        raf = requestAnimationFrame(loop);
+      }
+      function start() { cancelAnimationFrame(raf); init(); loop(); }
+      function stop()  { cancelAnimationFrame(raf); }
+
+      var landing = document.getElementById("view-landing");
+      if (landing) {
+        var mo = new MutationObserver(function() {
+          landing.classList.contains("hidden") ? stop() : start();
+        });
+        mo.observe(landing, { attributes: true, attributeFilter: ["class"] });
+        if (!landing.classList.contains("hidden")) start();
+      }
+      window.addEventListener("resize", function() { resize(); });
+    }
+
+    /* ── 2. MOUSE PARALLAX ──────────────────────────────────── */
+    function initParallax() {
+      var right = document.getElementById("lp-right");
+      if (!right) return;
+      var tx = 0, ty = 0, cx = 0, cy = 0;
+      document.addEventListener("mousemove", function(e) {
+        var mx = (e.clientX / window.innerWidth  - 0.5);
+        var my = (e.clientY / window.innerHeight - 0.5);
+        tx = mx * 18;
+        ty = my * 10;
+      });
+      function lerp(a, b, t) { return a + (b - a) * t; }
+      function frame() {
+        cx = lerp(cx, tx, 0.06);
+        cy = lerp(cy, ty, 0.06);
+        right.style.transform = "translate(" + cx + "px, " + cy + "px)";
+        requestAnimationFrame(frame);
+      }
+      frame();
+    }
+
+    /* ── 3. COUNT-UP stats ───────────────────────────────────── */
+    function initCountUp() {
+      var statsEl = document.getElementById("lp-stats");
+      if (!statsEl) return;
+      function countUp(el) {
+        var target = parseInt(el.getAttribute("data-target"), 10);
+        var dur = 1400, start = performance.now();
+        function tick(now) {
+          var p = Math.min((now - start) / dur, 1);
+          var ease = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(ease * target);
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      }
+      var done = false;
+      var obs = new IntersectionObserver(function(entries) {
+        if (entries[0].isIntersecting && !done) {
+          done = true;
+          statsEl.querySelectorAll(".lp-stat__num").forEach(countUp);
+        }
+      }, { threshold: 0.5 });
+      obs.observe(statsEl);
+    }
+
+    /* ── 4. REVEAL feature cards on scroll ───────────────────── */
+    function initReveal() {
+      var cards = document.querySelectorAll(".lp-card");
+      if (!cards.length) return;
+      var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e, i) {
+          if (e.isIntersecting) {
+            setTimeout(function() {
+              e.target.classList.add("lp-visible");
+            }, i * 80);
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      cards.forEach(function(c) { obs.observe(c); });
+    }
+
+    /* ── 5. SCROLL hint arrow ────────────────────────────────── */
+    function initScrollHint() {
+      var hint = document.querySelector(".lp-scroll-hint");
+      if (!hint) return;
+      window.addEventListener("scroll", function() {
+        hint.style.opacity = window.scrollY > 60 ? "0" : "1";
+      }, { passive: true });
+    }
+
+    /* ── INIT ───────────────────────────────────────────────── */
+    function init() {
+      initParticles();
+      initParallax();
+      initCountUp();
+      initReveal();
+      initScrollHint();
+    }
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", init);
+    } else { init(); }
+
+  })();
+  </script>
 </body>
 </html>

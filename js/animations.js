@@ -5,7 +5,171 @@
 (function () {
   if (typeof window === 'undefined') return;
 
+  const TRANSITION_MS = 420;
+  const BLUR_OUT = '6px';
+  const BLUR_IN = '8px';
+  const EASING = 'cubic-bezier(0.4, 0, 0.2, 1)';
+
+  function prefersReducedMotion() {
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+
+  function clearTransitionStyles(el) {
+    if (!el) return;
+    el.style.transition = '';
+    el.style.opacity = '';
+    el.style.transform = '';
+    el.style.filter = '';
+    el.style.pointerEvents = '';
+  }
+
+  function wait(ms) {
+    return new Promise(function (resolve) {
+      setTimeout(resolve, ms);
+    });
+  }
+
+  function applyInstantSwap(fromEl, toEl) {
+    if (fromEl) {
+      fromEl.classList.add('hidden');
+      clearTransitionStyles(fromEl);
+    }
+    if (toEl) {
+      toEl.classList.remove('hidden');
+      clearTransitionStyles(toEl);
+    }
+  }
+
+  function blurSwap(fromEl, toEl) {
+    return new Promise(function (resolve) {
+      if (!toEl) {
+        resolve();
+        return;
+      }
+
+      if (prefersReducedMotion() || !fromEl || fromEl === toEl || fromEl.classList.contains('hidden')) {
+        applyInstantSwap(fromEl, toEl);
+        resolve();
+        return;
+      }
+
+      fromEl.style.pointerEvents = 'none';
+      fromEl.style.transition = 'opacity ' + TRANSITION_MS + 'ms ' + EASING + ', transform ' + TRANSITION_MS + 'ms ' + EASING + ', filter ' + TRANSITION_MS + 'ms ' + EASING;
+
+      requestAnimationFrame(function () {
+        fromEl.style.opacity = '0';
+        fromEl.style.transform = 'translateY(8px)';
+        fromEl.style.filter = 'blur(' + BLUR_OUT + ')';
+      });
+
+      wait(TRANSITION_MS).then(function () {
+        fromEl.classList.add('hidden');
+        clearTransitionStyles(fromEl);
+
+        toEl.classList.remove('hidden');
+        toEl.style.opacity = '0';
+        toEl.style.transform = 'translateY(10px)';
+        toEl.style.filter = 'blur(' + BLUR_IN + ')';
+        toEl.style.transition = 'none';
+
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            toEl.style.transition = 'opacity ' + TRANSITION_MS + 'ms ' + EASING + ', transform ' + TRANSITION_MS + 'ms ' + EASING + ', filter ' + TRANSITION_MS + 'ms ' + EASING;
+            toEl.style.opacity = '1';
+            toEl.style.transform = 'translateY(0)';
+            toEl.style.filter = 'blur(0)';
+
+            wait(TRANSITION_MS).then(function () {
+              clearTransitionStyles(toEl);
+              resolve();
+            });
+          });
+        });
+      });
+    });
+  }
+
   const AnimationManager = {
+    TRANSITION_MS: TRANSITION_MS,
+
+    /**
+     * Soft blur transition between two full views
+     */
+    swapViews(fromEl, toEl) {
+      return blurSwap(fromEl, toEl);
+    },
+
+    /**
+     * Soft blur transition between panels inside a view
+     */
+    swapPanels(fromEl, toEl) {
+      return blurSwap(fromEl, toEl);
+    },
+
+    /**
+     * Enter animation for a newly shown view
+     */
+    enterView(el) {
+      return new Promise(function (resolve) {
+        if (!el || prefersReducedMotion()) {
+          resolve();
+          return;
+        }
+
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(10px)';
+        el.style.filter = 'blur(' + BLUR_IN + ')';
+        el.style.transition = 'none';
+
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            el.style.transition = 'opacity ' + TRANSITION_MS + 'ms ' + EASING + ', transform ' + TRANSITION_MS + 'ms ' + EASING + ', filter ' + TRANSITION_MS + 'ms ' + EASING;
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+            el.style.filter = 'blur(0)';
+
+            wait(TRANSITION_MS).then(function () {
+              clearTransitionStyles(el);
+              resolve();
+            });
+          });
+        });
+      });
+    },
+
+    /**
+     * Page enter for full-page shells (dashboard, landing)
+     */
+    pageEnter(rootEl) {
+      if (!rootEl || prefersReducedMotion()) return;
+      rootEl.classList.add('page-enter');
+    },
+
+    /**
+     * Navigate away with a soft blur fade
+     */
+    navigateTo(url) {
+      if (!url) return;
+      if (prefersReducedMotion()) {
+        window.location.href = url;
+        return;
+      }
+
+      var root = document.getElementById('app') || document.body;
+      root.classList.add('page-exit');
+
+      wait(TRANSITION_MS).then(function () {
+        window.location.href = url;
+      });
+    },
+
+    /**
+     * Legacy helper — delegates to swapViews
+     */
+    transitionView(fromView, toView) {
+      return blurSwap(fromView, toView);
+    },
+
     /**
      * Update progress bar and step indicator
      * @param {number} currentStep - Current step (0-6)
@@ -97,38 +261,6 @@
       setTimeout(() => {
         element.style.animation = '';
       }, 600);
-    },
-
-    /**
-     * Animate view transitions with fade and slide effects
-     */
-    transitionView(fromView, toView) {
-      if (!fromView || !toView) return;
-
-      // Fade out current view
-      fromView.style.opacity = '0';
-      fromView.style.transform = 'translateY(10px)';
-      fromView.style.transition = 'all 0.3s ease-out';
-
-      setTimeout(() => {
-        fromView.classList.add('hidden');
-        toView.classList.remove('hidden');
-
-        // Fade in new view
-        toView.style.opacity = '0';
-        toView.style.transform = 'translateY(10px)';
-        toView.style.transition = 'all 0s';
-
-        setTimeout(() => {
-          toView.style.transition = 'all 0.4s ease-out';
-          toView.style.opacity = '1';
-          toView.style.transform = 'translateY(0)';
-
-          setTimeout(() => {
-            toView.style.transition = '';
-          }, 400);
-        }, 10);
-      }, 300);
     },
 
     /**

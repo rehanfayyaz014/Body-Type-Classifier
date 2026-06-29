@@ -104,7 +104,11 @@
   }
 
   function goDashboard() {
-    window.location.href = "/dashboard";
+    if (window.AnimationManager) {
+      window.AnimationManager.navigateTo("/dashboard");
+    } else {
+      window.location.href = "/dashboard";
+    }
   }
 
   function clearAllCardSelections() {
@@ -242,22 +246,79 @@
     return rank[0].key;
   }
 
-  function showView(name) {
-    state.previousView = state.view;
-    state.view = name;
-    var pairs = [
-      ["view-landing", "landing"],
-      ["view-quiz", "quiz"],
-      ["view-plan", "plan"],
-      ["view-result", "result"],
-      ["view-detail", "detail"],
-    ];
-    pairs.forEach(function (row) {
-      var el = $(row[0]);
-      if (el) el.classList.toggle("hidden", row[1] !== name);
+  var VIEW_IDS = {
+    landing: "view-landing",
+    quiz: "view-quiz",
+    plan: "view-plan",
+    result: "view-result",
+    detail: "view-detail",
+  };
+
+  function getViewEl(name) {
+    var id = VIEW_IDS[name];
+    return id ? $(id) : null;
+  }
+
+  function setViewVisibility(name) {
+    Object.keys(VIEW_IDS).forEach(function (viewName) {
+      var el = getViewEl(viewName);
+      if (el) el.classList.toggle("hidden", viewName !== name);
     });
+  }
+
+  function finishBooting() {
+    document.documentElement.classList.remove("fitai-booting");
+  }
+
+  function bootModuleView(name) {
+    state.previousView = "landing";
+    state.view = name;
+    setViewVisibility(name);
     updateHeaderNav();
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    finishBooting();
+    var toEl = getViewEl(name);
+    if (window.AnimationManager && toEl) {
+      return window.AnimationManager.enterView(toEl);
+    }
+    return Promise.resolve();
+  }
+
+  function showView(name) {
+    if (state.view === name) {
+      setViewVisibility(name);
+      updateHeaderNav();
+      return;
+    }
+
+    var previous = state.view;
+    var fromEl = getViewEl(previous);
+    var toEl = getViewEl(name);
+    state.previousView = previous;
+    state.view = name;
+
+    function finish() {
+      updateHeaderNav();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    if (document.documentElement.classList.contains("fitai-booting")) {
+      setViewVisibility(name);
+      finishBooting();
+      if (window.AnimationManager && toEl) {
+        window.AnimationManager.enterView(toEl).then(finish);
+      } else {
+        finish();
+      }
+      return;
+    }
+
+    if (window.AnimationManager && fromEl && toEl) {
+      window.AnimationManager.swapViews(fromEl, toEl).then(finish);
+      return;
+    }
+
+    setViewVisibility(name);
+    finish();
   }
 
   function updateHeaderNav() {
@@ -350,7 +411,8 @@
     $("detail-plan-phase")?.classList.add("hidden");
   }
 
-  function goQuiz() {
+  function goQuiz(opts) {
+    opts = opts || {};
     try {
       clearAllCardSelections();
       state.module = "classifier";
@@ -359,8 +421,14 @@
       state.apiBusy = false;
       clearPredictError();
       setPredictLoading(false);
-      showView("quiz");
-      renderQuiz();
+      if (opts.boot) {
+        bootModuleView("quiz").then(function () {
+          renderQuiz();
+        });
+      } else {
+        showView("quiz");
+        renderQuiz();
+      }
     } catch (err) {
       console.error("Error in goQuiz():", err);
     }
@@ -453,8 +521,14 @@
     }
     $("detail-goal-phase")?.classList.remove("hidden");
     $("detail-plan-phase")?.classList.add("hidden");
-    showView("plan");
-    renderPlanWizard();
+    if (opts.boot) {
+      bootModuleView("plan").then(function () {
+        renderPlanWizard();
+      });
+    } else {
+      showView("plan");
+      renderPlanWizard();
+    }
   }
 
   function finishPlanWizard() {
@@ -492,10 +566,17 @@
       if (percentDisplay) percentDisplay.textContent = Math.round(pct) + "%";
     }
 
-    document.querySelectorAll(".plan-panel").forEach(function (panel) {
-      var st = parseInt(panel.getAttribute("data-plan-step"), 10);
-      panel.classList.toggle("hidden", st !== state.planStep);
-    });
+    var nextPanel = document.querySelector('.plan-panel[data-plan-step="' + state.planStep + '"]');
+    var currentPanel = document.querySelector(".plan-panel:not(.hidden)");
+
+    if (window.AnimationManager && currentPanel && nextPanel && currentPanel !== nextPanel) {
+      window.AnimationManager.swapPanels(currentPanel, nextPanel);
+    } else {
+      document.querySelectorAll(".plan-panel").forEach(function (panel) {
+        var st = parseInt(panel.getAttribute("data-plan-step"), 10);
+        panel.classList.toggle("hidden", st !== state.planStep);
+      });
+    }
 
     var toneBtn = $("plan-goal-tone");
     if (toneBtn) toneBtn.classList.toggle("hidden", state.answers.gender !== "female");
@@ -545,8 +626,14 @@
   }
 
   function showPlanPhase() {
-    $("detail-goal-phase")?.classList.add("hidden");
-    $("detail-plan-phase")?.classList.remove("hidden");
+    var fromEl = $("detail-goal-phase");
+    var toEl = $("detail-plan-phase");
+    if (window.AnimationManager && fromEl && toEl) {
+      window.AnimationManager.swapPanels(fromEl, toEl).then(renderPlanPhase);
+      return;
+    }
+    fromEl?.classList.add("hidden");
+    toEl?.classList.remove("hidden");
     renderPlanPhase();
   }
 
@@ -589,7 +676,6 @@
     var percentDisplay = $("progress-percent");
     if (fill) {
       fill.style.width = pct + '%';
-      console.log('Progress set to: ' + pct.toFixed(2) + '%');
     }
     if (bar) bar.setAttribute("aria-valuenow", String(Math.round(pct)));
     if (percentDisplay) percentDisplay.textContent = Math.round(pct) + "%";
@@ -600,10 +686,17 @@
       window.AnimationManager.announceProgress(state.step + 1, QUIZ_STEPS);
     }
 
-    document.querySelectorAll(".quiz-panel").forEach(function (panel) {
-      var st = parseInt(panel.getAttribute("data-step"), 10);
-      panel.classList.toggle("hidden", st !== state.step);
-    });
+    var nextPanel = document.querySelector('.quiz-panel[data-step="' + state.step + '"]');
+    var currentPanel = document.querySelector(".quiz-panel:not(.hidden)");
+
+    if (window.AnimationManager && currentPanel && nextPanel && currentPanel !== nextPanel) {
+      window.AnimationManager.swapPanels(currentPanel, nextPanel);
+    } else {
+      document.querySelectorAll(".quiz-panel").forEach(function (panel) {
+        var st = parseInt(panel.getAttribute("data-step"), 10);
+        panel.classList.toggle("hidden", st !== state.step);
+      });
+    }
 
     var cur = document.querySelector('.quiz-panel[data-step="' + state.step + '"]');
     if (cur) {
@@ -936,7 +1029,7 @@
       var btnStart = $("btn-start");
       if (btnStart) {
         btnStart.addEventListener("click", function () {
-          window.location.href = "/dashboard";
+          goDashboard();
         });
       }
       
@@ -1167,10 +1260,10 @@
 
     var urlModule = getQueryModule();
     if (urlModule === "classifier") {
-      goQuiz();
+      goQuiz({ boot: true });
     } else if (urlModule === "plan") {
       var prefill = new URLSearchParams(window.location.search).get("prefill") === "1";
-      startPlanModule({ prefillBodyType: prefill });
+      startPlanModule({ prefillBodyType: prefill, boot: true });
     } else if (urlModule === "tracking") {
       if (window.FitAITracking && window.FitAITracking.init) {
         window.FitAITracking.init();
@@ -1179,6 +1272,9 @@
       }
     } else {
       showView("landing");
+      if (window.AnimationManager) {
+        window.AnimationManager.pageEnter($("view-landing"));
+      }
     }
     } catch (err) {
       console.error("Error in init():", err);

@@ -98,7 +98,18 @@ PORTION_HINT_MAP = {
     '4 pieces'      : '4 pieces',
     '2 pieces'      : '2 pieces',
     '1 piece'       : '1 piece',
+    '2 tbsp'        : '2 Tbsp (50g)',
+    '1 tbsp'        : '1 Tbsp',
+    '2 tsp'         : '2 tsp',
 }
+
+# Portions that already encode their own quantity — do NOT multiply by qty again
+PORTION_HAS_OWN_QTY = frozenset({
+    '2 tbsp', '1 tbsp', '2 tsp',
+    '4 pieces', '2 pieces', '1 piece',
+    '1 plate', '2 plate', '1 bowl', '2 bowl',
+    '1 glass', '1 cup',
+})
 
 # Middle portion index fallback (if no hint found)
 DEFAULT_PORTION_IDX = 1   # picks middle row when 3 portions exist
@@ -184,24 +195,62 @@ def detect_meal_label(line: str) -> str | None:
 
 
 def parse_quantity(text: str) -> float:
-    """Extract leading numeric or word quantity from text."""
-    text = text.lower().strip()
-    m = re.search(r'(\d+\.?\d*)', text)
+    """Extract leading numeric or word quantity from text.
+    
+    FIX: Strips weight-unit suffixes (g, ml, kg, grams) before extracting
+    numbers so that '250g' or '125ml' portion descriptors are NOT treated
+    as a serving multiplier (which previously caused 43750 kcal bugs).
+    """
+    text_lower = text.lower().strip()
+    # Remove weight/volume units FIRST so "250g" doesn't become qty=250
+    cleaned = re.sub(r'\b(\d+\.?\d*)\s*(grams?|g|ml|l|kg|oz|lb)\b', '', text_lower)
+    m = re.search(r'(\d+\.?\d*)', cleaned)
     if m:
-        return float(m.group(1))
+        val = float(m.group(1))
+        # Safety cap: no one eats 20+ of the same item in one meal
+        if val > 20:
+            return 1.0
+        return val
     for word, val in QUANTITY_WORDS.items():
-        if re.search(rf'\b{word}\b', text):
+        if re.search(rf'\b{word}\b', text_lower):
             return val
     return 1.0
 
 
-def detect_portion_hint(text: str) -> str | None:
-    """Match longest portion phrase in user text."""
+def extract_gram_amount(text: str):
+    """Extract gram/ml/liter weight from text like '100g', '250ml', '1 liter', 'half liter'.
+    Returns float (in grams/ml) or None if no weight unit found.
+    """
+    text_lower = text.lower().strip()
+    # "1 liter" / "1.5 liter" / "litre"
+    m = re.search(r'(\d+\.?\d*)\s*lit(er|re)?', text_lower)
+    if m: return float(m.group(1)) * 1000
+    if re.search(r'half\s*lit(er|re)?', text_lower): return 500.0
+    if re.search(r'quarter\s*lit(er|re)?', text_lower): return 250.0
+    # "250ml" / "250 ml"
+    m = re.search(r'(\d+\.?\d*)\s*ml\b', text_lower)
+    if m: return float(m.group(1))
+    # "100g" / "100 g" / "100gm" / "100 grams"
+    m = re.search(r'(\d+\.?\d*)\s*(grams?|gm|g)\b', text_lower)
+    if m: return float(m.group(1))
+    # "1kg" / "1.5 kg"
+    m = re.search(r'(\d+\.?\d*)\s*kg\b', text_lower)
+    if m: return float(m.group(1)) * 1000
+    return None
+
+
+def detect_portion_hint(text: str) -> tuple[str | None, bool]:
+    """Match longest portion phrase in user text.
+    
+    Returns (portion_label, has_own_qty) where has_own_qty=True means
+    the portion already encodes its own quantity (e.g. '2 tbsp', '4 pieces')
+    and the parsed numeric qty should NOT be applied as an additional multiplier.
+    """
     text_lower = text.lower()
     for phrase in sorted(PORTION_HINT_MAP.keys(), key=len, reverse=True):
         if phrase in text_lower:
-            return PORTION_HINT_MAP[phrase]
-    return None
+            return PORTION_HINT_MAP[phrase], phrase in PORTION_HAS_OWN_QTY
+    return None, False
 
 
 def clean_for_matching(text: str) -> str:
@@ -243,17 +292,52 @@ def fuzzy_match_food(query: str, food_names: list, threshold: int) -> tuple[str 
     return None, 0
 
 
-def pick_best_row(food_df: pd.DataFrame, portion_hint: str | None) -> pd.Series:
-    """Select the best matching row based on portion hint."""
+def pick_best_row(food_df: pd.DataFrame, portion_hint: str | None,
+                  qty: float = 1.0, gram_amount: float | None = None) -> pd.Series:
+    """Select the best matching row based on portion hint or gram amount.
+    
+    Priority:
+      1. gram_amount → find closest weight_grams row
+      2. portion_hint → label contains match
+      3. qty > 1 → smallest/per-item portion
+      4. piece-type food → smallest portion
+      5. fallback → middle portion
+    """
+    # 1. Gram-based: find closest weight_grams row
+    if gram_amount is not None:
+        diffs = (food_df['weight_grams'] - gram_amount).abs()
+        return food_df.loc[diffs.idxmin()]
+
     if portion_hint:
-        # Try exact contains match (case-insensitive)
         matched = food_df[food_df['portion_label'].str.lower().str.contains(
             re.escape(portion_hint.lower()), na=False, regex=True
         )]
         if not matched.empty:
             return matched.iloc[0]
 
-    # Fallback: pick default middle portion
+    # When user specifies multiple items (qty>1), pick smallest/per-item portion
+    # Prefer "1 Egg", "1 piece" style rows over raw gram rows like "50g"
+    if qty > 1 and len(food_df) > 1:
+        labels = food_df['portion_label'].str.lower()
+        # First try: find a "1 piece / 1 item / 1 egg / 1 X" style row
+        single_item = food_df[labels.str.match(r'^1\s+\w')]
+        if not single_item.empty:
+            return single_item.sort_values('calories', ascending=True).iloc[0]
+        # Second try: smallest non-gram portion
+        non_gram = food_df[~labels.str.match(r'^\d+\s*(g|ml|kg)\b')]
+        if not non_gram.empty:
+            return non_gram.sort_values('calories', ascending=True).iloc[0]
+        # Fallback: smallest calories
+        return food_df.sort_values('calories', ascending=True).iloc[0]
+
+    # Default: for countable single-serving foods (pieces, items),
+    # pick the smallest/per-piece portion so "1 gulab jamun" = 1 piece (not 2 pieces)
+    # For continuous foods (bowls, plates), pick middle portion
+    labels = food_df['portion_label'].str.lower()
+    has_piece_portions = labels.str.contains(r'\bpiece\b|\bitem\b', regex=True).any()
+    if has_piece_portions:
+        sorted_df = food_df.sort_values('calories', ascending=True)
+        return sorted_df.iloc[0]
     idx = min(DEFAULT_PORTION_IDX, len(food_df) - 1)
     return food_df.iloc[idx]
 
@@ -292,7 +376,15 @@ def parse_food_log(user_text: str, df: pd.DataFrame) -> list[dict]:
                 continue
 
             qty          = parse_quantity(item)
-            portion_hint = detect_portion_hint(item)
+            gram_amount  = extract_gram_amount(item)
+            portion_hint, portion_has_own_qty = detect_portion_hint(item)
+            # If gram amount found, skip portion hint (gram takes priority)
+            if gram_amount is not None:
+                portion_hint = None
+                portion_has_own_qty = False
+            # If portion already encodes qty (e.g. "2 tbsp", "4 pieces"), don't multiply
+            if portion_has_own_qty:
+                qty = 1.0
             food_name, score = fuzzy_match_food(item, food_names, FUZZY_THRESHOLD)
 
             if not food_name:
@@ -305,20 +397,25 @@ def parse_food_log(user_text: str, df: pd.DataFrame) -> list[dict]:
                 continue
 
             food_rows = df[df['food_name'] == food_name].copy()
-            best_row  = pick_best_row(food_rows, portion_hint)
+            best_row  = pick_best_row(food_rows, portion_hint, qty, gram_amount)
+
+            # Safe numeric conversion for all nutrition columns
+            def _num(v):
+                try: return float(v) if v is not None else 0.0
+                except (TypeError, ValueError): return 0.0
 
             results.append({
                 'meal'        : current_meal,
                 'raw_input'   : item,
                 'matched_food': food_name,
                 'portion'     : best_row['portion_label'],
-                'weight_g'    : best_row['weight_grams'],
+                'weight_g'    : _num(best_row['weight_grams']),
                 'quantity'    : qty,
-                'calories'    : round(best_row['calories']  * qty, 1),
-                'protein_g'   : round(best_row['protein_g'] * qty, 1),
-                'carbs_g'     : round(best_row['carbs_g']   * qty, 1),
-                'fat_g'       : round(best_row['fat_g']     * qty, 1),
-                'fiber_g'     : round(best_row['fiber_g']   * qty, 1),
+                'calories'    : round(_num(best_row['calories'])  * qty, 1),
+                'protein_g'   : round(_num(best_row['protein_g']) * qty, 1),
+                'carbs_g'     : round(_num(best_row['carbs_g'])   * qty, 1),
+                'fat_g'       : round(_num(best_row['fat_g'])     * qty, 1),
+                'fiber_g'     : round(_num(best_row['fiber_g'])   * qty, 1),
                 'match_score' : score,
                 'status'      : '✅ Matched',
             })

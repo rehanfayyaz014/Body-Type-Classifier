@@ -354,3 +354,1524 @@ Lassi (Salted/Namkeen),Dairy & Drinks,Small Glass,250,125,6,6,9,0
 Lassi (Salted/Namkeen),Dairy & Drinks,Large Glass,400,200,10,10,14,0
 Mango Shake,Dairy & Drinks,Small Glass,250,240,5,40,6,1.5
 Mango Shake,Dairy & Drinks,Large Glass,400,385,8,64,10,2.4
+Roti (Gandum/Wheat),Bread,Small,50,120,4,25,1,2.5
+Roti (Gandum/Wheat),Bread,Medium,70,168,5,34,1.5,3.5
+Roti (Gandum/Wheat),Bread,Large,90,216,7,44,2,4.5
+Roti (Maida),Bread,Small,50,130,3,27,1,0.8
+Roti (Maida),Bread,Medium,70,182,5,38,1.5,1.1
+Roti (Maida),Bread,Large,90,234,6,49,2,1.4
+Roti (Bajra/Millet),Bread,Small,50,115,4,22,1.5,3.8
+Roti (Bajra/Millet),Bread,Medium,70,161,5,30,2,5.3
+Roti (Bajra/Millet),Bread,Large,90,207,7,39,2.5,6.8
+Roti (Makkai/Corn),Bread,Small,55,125,3,26,1.5,2.2
+Roti (Makkai/Corn),Bread,Medium,80,181,5,37,2,3.2
+Roti (Makkai/Corn),Bread,Large,100,227,6,47,2.5,4.0
+Tawa Roti,Bread,1 piece,60,140,4,28,2,2.8
+Tawa Roti,Bread,2 pieces,120,280,8,56,4,5.6
+Tandoori Roti,Bread,Small,60,145,5,29,2,2.5
+Tandoori Roti,Bread,Medium,80,193,7,39,2.5,3.3
+Tandoori Roti,Bread,Large,100,241,9,48,3,4.1
+Naan (Plain),Bread,Small,80,220,6,38,5,1.5
+Naan (Plain),Bread,Medium,110,302,9,52,7,2.0
+Naan (Plain),Bread,Large,140,385,11,66,9,2.5
+Naan (Butter),Bread,Small,90,270,7,38,10,1.5
+Naan (Butter),Bread,Medium,120,360,9,51,13,2.0
+Naan (Butter),Bread,Large,150,450,12,64,16,2.5
+Naan (Garlic),Bread,Small,90,255,7,39,8,1.5
+Naan (Garlic),Bread,Medium,120,340,9,52,11,2.0
+Puri,Bread,3 pieces,120,390,6,45,21,2.4
+Sheermal,Bread,Small,80,240,6,40,7,1.0
+Sheermal,Bread,Medium,110,330,8,55,10,1.4
+Lachha Paratha,Bread,Small,70,220,4,24,12,1.5
+Lachha Paratha,Bread,Medium,100,315,6,35,17,2.1
+Lachha Paratha,Bread,Large,130,409,8,45,22,2.7
+Paratha (Mooli/Radish),Bread,Small,90,215,5,27,10,2.5
+Paratha (Mooli/Radish),Bread,Medium,120,287,7,36,14,3.3
+Paratha (Pyaz/Onion),Bread,Small,90,225,5,28,11,2.0
+Paratha (Pyaz/Onion),Bread,Medium,120,300,6,37,14,2.7
+Paratha (Chicken),Bread,Small,110,310,14,26,16,1.5
+Paratha (Chicken),Bread,Medium,150,423,20,35,22,2.0
+Kulcha,Bread,1 piece,90,250,7,42,6,1.5
+Kulcha,Bread,2 pieces,180,500,14,84,12,3.0
+Chapati (Oil-free),Bread,Small,45,100,3,21,0.5,2.5
+Chapati (Oil-free),Bread,Medium,60,133,4,28,0.7,3.3
+Chapati (Oil-free),Bread,Large,80,178,5,37,0.9,4.4
+Baqarkhani,Bread,1 piece,60,200,5,33,6,1.0
+Baqarkhani,Bread,2 pieces,120,400,10,66,12,2.0
+Chawal (Boiled/Sada Rice),Rice & Biryani,Small,120,156,3,34,0.5,0.4
+Chawal (Boiled/Sada Rice),Rice & Biryani,Medium,180,234,4,52,0.7,0.6
+Chawal (Boiled/Sada Rice),Rice & Biryani,Large,240,312,6,68,0.9,0.8
+Chawal (Boiled/Sada Rice),Rice & Biryani,1 cup cooked,160,208,4,45,0.6,0.5
+Pulao (Plain),Rice & Biryani,Small,150,240,5,40,7,0.8
+Pulao (Plain),Rice & Biryani,Medium,200,320,7,54,9,1.1
+Pulao (Plain),Rice & Biryani,Large,280,448,9,75,13,1.5
+Pulao (Matar/Pea),Rice & Biryani,Small,160,250,6,41,7,2.5
+Pulao (Matar/Pea),Rice & Biryani,Medium,220,344,9,56,10,3.4
+Yakhni Pulao,Rice & Biryani,Small,200,310,15,38,10,0.8
+Yakhni Pulao,Rice & Biryani,Medium,280,434,21,53,14,1.1
+Zeera Rice,Rice & Biryani,Small,150,245,4,42,7,0.6
+Zeera Rice,Rice & Biryani,Medium,200,327,6,56,9,0.8
+Khichdi,Rice & Biryani,Small,180,210,7,38,3,3.5
+Khichdi,Rice & Biryani,Medium,250,292,10,53,4,4.9
+Tahiri (Vegetable Rice),Rice & Biryani,Small,200,280,6,48,7,2.5
+Tahiri (Vegetable Rice),Rice & Biryani,Medium,280,392,9,67,10,3.5
+Biryani (Beef),Rice & Biryani,Small,200,360,18,45,12,1.5
+Biryani (Beef),Rice & Biryani,Medium,300,540,27,67,18,2.2
+Biryani (Beef),Rice & Biryani,Large,400,720,36,90,24,3.0
+Biryani (Mutton),Rice & Biryani,Small,200,380,20,44,14,1.5
+Biryani (Mutton),Rice & Biryani,Medium,300,570,30,66,21,2.2
+Dum Pukht Biryani,Rice & Biryani,Small,200,390,19,46,14,1.5
+Dum Pukht Biryani,Rice & Biryani,Medium,300,585,28,69,21,2.2
+Sindhi Biryani,Rice & Biryani,Small,200,370,17,47,13,2.0
+Sindhi Biryani,Rice & Biryani,Medium,300,555,25,70,19,3.0
+Daal Mash (Urad),Daal,Small bowl,150,175,12,25,3,4.5
+Daal Mash (Urad),Daal,Medium bowl,220,257,17,37,4.5,6.6
+Daal Mash (Urad),Daal,Large bowl,300,350,24,50,6,9.0
+Daal Chana (Chana Dal),Daal,Small bowl,150,185,11,28,3.5,5.5
+Daal Chana (Chana Dal),Daal,Medium bowl,220,271,16,41,5,8.0
+Daal Chana (Chana Dal),Daal,Large bowl,300,370,22,56,7,11.0
+Daal Tarka (Masoor),Daal,Small bowl,150,160,11,22,3,4.0
+Daal Tarka (Masoor),Daal,Medium bowl,220,234,16,32,4.5,5.8
+Daal Tarka (Masoor),Daal,Large bowl,300,320,22,44,6,8.0
+Daal Moong (Yellow),Daal,Small bowl,150,155,10,24,2,4.5
+Daal Moong (Yellow),Daal,Medium bowl,220,227,15,35,3,6.6
+Daal Moong (Yellow),Daal,Large bowl,300,310,20,48,4,9.0
+Daal Moong (Green),Daal,Small bowl,150,160,11,24,2.5,5.0
+Daal Moong (Green),Daal,Medium bowl,220,234,16,35,3.5,7.3
+Daal Sabut (Whole Lentil),Daal,Small bowl,150,170,12,24,3,5.5
+Daal Sabut (Whole Lentil),Daal,Medium bowl,220,249,17,35,4.5,8.0
+Daal Fry,Daal,Small,180,230,12,28,8,5.0
+Daal Fry,Daal,Medium,250,319,17,39,11,7.0
+Daal Chawal (Dal + Rice),Daal,Plate,350,470,16,78,7,5.5
+Daal Chawal (Dal + Rice),Daal,Large plate,500,671,23,111,10,7.8
+Aloo Gosht (Potato Curry),Curry & Gravy,Small,200,280,15,22,14,2.5
+Aloo Gosht (Potato Curry),Curry & Gravy,Medium,280,392,21,31,20,3.5
+Aloo Gosht (Potato Curry),Curry & Gravy,Large,350,490,26,38,25,4.4
+Aloo Matar (Potato Peas),Vegetables,Small,180,220,6,32,7,4.5
+Aloo Matar (Potato Peas),Vegetables,Medium,250,306,9,44,10,6.2
+Aloo Palak (Potato Spinach),Vegetables,Small,180,200,6,28,7,4.0
+Aloo Palak (Potato Spinach),Vegetables,Medium,250,278,8,39,10,5.6
+Saag (Sarson ka Saag),Vegetables,Small bowl,150,130,5,15,6,4.5
+Saag (Sarson ka Saag),Vegetables,Medium bowl,220,191,7,22,9,6.6
+Saag (Sarson ka Saag),Vegetables,Large bowl,300,260,10,30,12,9.0
+Saag (Palak/Spinach),Vegetables,Small bowl,150,120,5,13,5.5,4.0
+Saag (Palak/Spinach),Vegetables,Medium bowl,220,176,7,19,8,5.8
+Bhindi Masala (Okra),Vegetables,Small,150,130,3,15,6,4.5
+Bhindi Masala (Okra),Vegetables,Medium,220,191,5,22,9,6.6
+Karela (Bitter Gourd),Vegetables,Small,150,110,2,12,5.5,3.8
+Karela (Bitter Gourd),Vegetables,Medium,200,147,3,16,7.5,5.0
+Tinda (Round Gourd),Vegetables,Small,150,90,2,12,3,3.0
+Tinda (Round Gourd),Vegetables,Medium,220,132,3,18,4.5,4.4
+Lauki (Bottle Gourd),Vegetables,Small,150,80,2,10,3,2.5
+Lauki (Bottle Gourd),Vegetables,Medium,220,117,3,15,4.5,3.7
+Kadu (Pumpkin Sabzi),Vegetables,Small,150,90,2,14,3,2.5
+Kadu (Pumpkin Sabzi),Vegetables,Medium,220,132,3,20,4.5,3.7
+Mattar Paneer,Vegetables,Small,180,280,12,20,18,3.0
+Mattar Paneer,Vegetables,Medium,250,389,17,28,25,4.2
+Baingan Bharta (Eggplant),Vegetables,Small,150,130,3,14,7,3.8
+Baingan Bharta (Eggplant),Vegetables,Medium,220,191,4,20,10,5.5
+Gobi Masala (Cauliflower),Vegetables,Small,150,140,4,14,7,3.5
+Gobi Masala (Cauliflower),Vegetables,Medium,220,205,6,21,10,5.1
+Aloo Gobi,Vegetables,Small,180,180,4,24,7,3.5
+Aloo Gobi,Vegetables,Medium,250,250,6,33,10,4.9
+Matar Gosht (Peas Curry),Curry & Gravy,Small,200,290,16,20,15,4.0
+Matar Gosht (Peas Curry),Curry & Gravy,Medium,280,406,22,28,21,5.6
+Shaljam Gosht (Turnip Curry),Curry & Gravy,Small,200,270,15,18,14,3.5
+Shaljam Gosht (Turnip Curry),Curry & Gravy,Medium,280,378,21,25,20,4.9
+Chicken Karahi,Curry & Gravy,Small,200,320,28,8,20,1.5
+Chicken Karahi,Curry & Gravy,Medium,300,480,42,12,30,2.2
+Chicken Karahi,Curry & Gravy,Large,400,640,56,16,40,2.9
+Chicken Handi,Curry & Gravy,Small,200,310,26,9,19,1.5
+Chicken Handi,Curry & Gravy,Medium,300,465,39,14,28,2.2
+Chicken Qorma,Curry & Gravy,Small,200,380,28,10,26,1.0
+Chicken Qorma,Curry & Gravy,Medium,300,570,42,15,39,1.5
+Chicken Dopiaza,Curry & Gravy,Small,200,330,28,14,19,2.0
+Chicken Dopiaza,Curry & Gravy,Medium,300,495,42,21,28,3.0
+Butter Chicken (Makhni),Curry & Gravy,Small,200,350,26,12,23,1.5
+Butter Chicken (Makhni),Curry & Gravy,Medium,300,525,39,18,34,2.2
+Chicken Palak,Curry & Gravy,Small,200,290,27,8,17,3.0
+Chicken Palak,Curry & Gravy,Medium,300,435,40,12,26,4.5
+Chicken Aloo,Curry & Gravy,Small,200,300,22,18,16,2.5
+Chicken Aloo,Curry & Gravy,Medium,300,450,33,27,24,3.7
+Chicken Biryani,Rice & Biryani,Small,200,345,22,43,10,1.5
+Chicken Biryani,Rice & Biryani,Medium,300,518,33,64,15,2.2
+Chicken Biryani,Rice & Biryani,Large,400,690,44,86,20,3.0
+Chicken Tikka,BBQ & Grilled,2 pieces,120,210,28,3,10,0.5
+Chicken Tikka,BBQ & Grilled,4 pieces,240,420,56,6,20,1.0
+Chicken Tikka,BBQ & Grilled,6 pieces,360,630,84,9,30,1.5
+Chicken Seekh Kebab,BBQ & Grilled,2 pieces,100,185,22,5,9,0.5
+Chicken Seekh Kebab,BBQ & Grilled,4 pieces,200,370,44,10,18,1.0
+Chicken Malai Tikka,BBQ & Grilled,2 pieces,120,240,27,4,13,0.3
+Chicken Malai Tikka,BBQ & Grilled,4 pieces,240,480,54,8,26,0.6
+Chicken Reshmi Kebab,BBQ & Grilled,2 pieces,100,200,23,4,11,0.3
+Chicken Reshmi Kebab,BBQ & Grilled,4 pieces,200,400,46,8,22,0.6
+Chicken Boti (BBQ),BBQ & Grilled,4 pieces,120,195,27,2,9,0.3
+Chicken Boti (BBQ),BBQ & Grilled,8 pieces,240,390,54,4,18,0.6
+Fried Chicken (Desi style),Main Course,1 piece,100,265,20,10,17,0.5
+Fried Chicken (Desi style),Main Course,2 pieces,200,530,40,20,34,1.0
+Fried Chicken (Desi style),Main Course,3 pieces,300,795,60,30,51,1.5
+Chicken Pulao,Rice & Biryani,Small,200,330,18,42,10,0.8
+Chicken Pulao,Rice & Biryani,Medium,300,495,27,63,15,1.2
+Beef Karahi,Curry & Gravy,Small,200,380,30,7,27,1.0
+Beef Karahi,Curry & Gravy,Medium,300,570,45,11,40,1.5
+Mutton Karahi,Curry & Gravy,Small,200,360,28,7,25,1.0
+Mutton Karahi,Curry & Gravy,Medium,300,540,42,11,37,1.5
+Nihari,Main Course,Small,250,420,32,12,28,1.5
+Nihari,Main Course,Medium,350,588,45,17,39,2.1
+Nihari,Main Course,Large,450,756,58,22,50,2.7
+Paya (Trotters Curry),Main Course,Small,250,380,30,5,27,0.5
+Paya (Trotters Curry),Main Course,Medium,350,532,42,7,38,0.7
+Haleem,Main Course,Small bowl,200,310,22,28,12,5.0
+Haleem,Main Course,Medium bowl,300,465,33,42,18,7.5
+Haleem,Main Course,Large bowl,400,620,44,56,24,10.0
+Beef Seekh Kebab,BBQ & Grilled,2 pieces,100,210,18,6,13,0.5
+Beef Seekh Kebab,BBQ & Grilled,4 pieces,200,420,36,12,26,1.0
+Shami Kebab (Beef),BBQ & Grilled,2 pieces,100,220,16,14,12,2.0
+Shami Kebab (Beef),BBQ & Grilled,4 pieces,200,440,32,28,24,4.0
+Chapli Kebab,BBQ & Grilled,1 piece,90,240,16,10,16,1.5
+Tikka Boti (Beef),BBQ & Grilled,4 pieces,120,230,26,3,13,0.3
+Tikka Boti (Beef),BBQ & Grilled,8 pieces,240,460,52,6,26,0.6
+Kofta Curry,Curry & Gravy,Small (4 kofta),200,320,20,12,21,1.5
+Kofta Curry,Curry & Gravy,Medium (6 kofta),280,448,28,17,29,2.1
+Keema (Beef Mince),Main Course,Small,150,280,24,5,19,1.0
+Keema (Beef Mince),Main Course,Medium,220,411,35,7,28,1.5
+Keema Matar,Main Course,Small,200,310,23,14,19,3.5
+Keema Matar,Main Course,Medium,280,434,32,20,27,4.9
+Tawa Beef,Main Course,Small,150,330,28,4,23,0.5
+Tawa Beef,Main Course,Medium,220,484,41,6,34,0.7
+Machli (Fried Fish),Main Course,Small piece,100,210,22,8,11,0.3
+Machli (Fried Fish),Main Course,Medium piece,150,315,33,12,16,0.5
+Machli (Fried Fish),Main Course,Large piece,200,420,44,16,21,0.7
+Machli Karahi,Curry & Gravy,Small,200,270,26,7,15,1.0
+Machli Karahi,Curry & Gravy,Medium,300,405,39,11,22,1.5
+Rohu (Boiled/Tawa),Main Course,100g,100,145,20,0,7,0
+Rohu (Boiled/Tawa),Main Course,150g,150,217,30,0,10.5,0
+Anda (Egg) Boiled,Eggs,1 egg,50,77,6,0.5,5,0
+Anda (Egg) Boiled,Eggs,2 eggs,100,154,12,1,10,0
+Anda (Egg) Boiled,Eggs,3 eggs,150,231,18,1.5,15,0
+Anda (Egg) Fried,Eggs,1 egg,55,95,6,0.5,7,0
+Anda (Egg) Fried,Eggs,2 eggs,110,190,12,1,14,0
+Anda (Egg) Scrambled,Eggs,2 eggs,110,180,12,2,13,0
+Anda (Egg) Scrambled,Eggs,3 eggs,165,270,18,3,19,0
+Anda Bhurji (Desi Scrambled),Eggs,2 eggs,130,200,13,4,14,0.5
+Anda Bhurji (Desi Scrambled),Eggs,3 eggs,195,300,20,6,21,0.7
+Omelette (Plain),Eggs,2 eggs,120,200,12,2,14,0
+Omelette (Plain),Eggs,3 eggs,180,300,18,3,21,0
+Omelette (Masala/Spicy),Eggs,2 eggs,130,215,13,4,15,0.5
+Omelette (Masala/Spicy),Eggs,3 eggs,195,322,20,6,22,0.8
+Anda Paratha (Egg Paratha),Eggs,1 piece,130,320,11,28,18,1.5
+Anda Paratha (Egg Paratha),Eggs,2 pieces,260,640,22,56,36,3.0
+Halwa Puri,Breakfast,1 serving,300,650,10,85,28,3.5
+Halwa (Sooji),Breakfast & Dessert,Small,100,280,4,40,12,1.0
+Halwa (Sooji),Breakfast & Dessert,Medium,150,420,6,60,18,1.5
+Channay (Cholay Breakfast),Breakfast,Small,150,230,10,35,6,8.0
+Channay (Cholay Breakfast),Breakfast,Medium,220,337,15,51,9,11.7
+Aloo Channay (Potato Chickpea),Breakfast,Small,180,260,9,40,7,7.0
+Aloo Channay (Potato Chickpea),Breakfast,Medium,250,361,13,56,10,9.7
+Nashta Platter (Full),Breakfast,1 serving,400,750,22,80,38,5.0
+Poha (Rice Flakes),Breakfast,Small,100,180,4,32,4,2.0
+Poha (Rice Flakes),Breakfast,Medium,150,270,6,48,6,3.0
+Upma,Breakfast,Small,120,190,5,30,6,2.5
+Upma,Breakfast,Medium,180,285,7,45,9,3.7
+Doodh (Whole Milk),Dairy & Drinks,1 glass (250ml),250,153,8,12,8,0
+Doodh (Whole Milk),Dairy & Drinks,2 glasses (500ml),500,305,16,24,16,0
+Doodh (Skimmed Milk),Dairy & Drinks,1 glass (250ml),250,85,8,12,0.5,0
+Chai (Tea with milk+sugar),Dairy & Drinks,1 cup (200ml),200,65,2,9,2.5,0
+Chai (Tea with milk+sugar),Dairy & Drinks,2 cups,400,130,4,18,5,0
+Chai (Tea with milk+sugar),Dairy & Drinks,Mug (300ml),300,97,3,14,3.7,0
+Chai (Karak/Strong),Dairy & Drinks,1 cup,200,80,2,11,3,0
+Chai (Karak/Strong),Dairy & Drinks,Mug,300,120,3,16,4.5,0
+Chai (Green/Sabz),Dairy & Drinks,1 cup,200,5,0.2,1,0,0
+Chai (Green/Sabz),Dairy & Drinks,2 cups,400,10,0.4,2,0,0
+Lassi (Namkeen/Salty),Dairy & Drinks,Small glass,200,90,6,8,3,0
+Lassi (Namkeen/Salty),Dairy & Drinks,Large glass,350,158,11,14,5,0
+Lassi (Mango),Dairy & Drinks,Small glass,200,170,5,28,4,0.5
+Lassi (Mango),Dairy & Drinks,Large glass,350,298,9,49,7,0.9
+Dahi (Plain Yogurt),Dairy & Drinks,Small bowl,100,61,4,5,3,0
+Dahi (Plain Yogurt),Dairy & Drinks,Medium bowl,150,91,6,7.5,4.5,0
+Dahi (Plain Yogurt),Dairy & Drinks,Large bowl,200,122,8,10,6,0
+Dahi (Full fat),Dairy & Drinks,Small bowl,100,80,4,6,4,0
+Dahi (Full fat),Dairy & Drinks,Medium bowl,150,120,6,9,6,0
+Raita (Cucumber),Dairy & Drinks,Small,100,55,3,5,2.5,0.5
+Raita (Cucumber),Dairy & Drinks,Medium,150,83,5,7.5,3.7,0.7
+Chaach (Buttermilk),Dairy & Drinks,1 glass,250,65,4,7,2,0
+Doodh Patti (Condensed Tea),Dairy & Drinks,1 cup,180,120,3,15,5,0
+Gol Gappa / Pani Puri,Street Food,6 pieces,90,180,4,30,5,2.5
+Gol Gappa / Pani Puri,Street Food,10 pieces,150,300,7,50,8,4.2
+Dahi Puri,Street Food,6 pieces,120,220,6,32,7,2.0
+Dahi Bhalla,Street Food,2 pieces,150,230,8,30,8,3.0
+Dahi Bhalla,Street Food,4 pieces,300,460,16,60,16,6.0
+Papri Chaat,Street Food,Small plate,150,280,7,40,10,3.0
+Papri Chaat,Street Food,Large plate,250,467,12,67,17,5.0
+Aloo Chaat,Street Food,Small plate,150,200,4,32,6,3.5
+Aloo Chaat,Street Food,Large plate,250,333,7,53,10,5.8
+Bun Kebab,Street Food,1 piece,120,290,14,30,13,2.0
+Bun Kebab,Street Food,2 pieces,240,580,28,60,26,4.0
+Bun Tikki,Street Food,1 piece,100,250,8,32,10,2.0
+Samosa (Vegetable),Street Food,1 piece,50,130,3,16,6,1.5
+Samosa (Vegetable),Street Food,2 pieces,100,260,6,32,12,3.0
+Samosa (Vegetable),Street Food,4 pieces,200,520,12,64,24,6.0
+Samosa (Keema),Street Food,1 piece,55,150,6,15,8,1.0
+Samosa (Keema),Street Food,2 pieces,110,300,12,30,16,2.0
+Pakora (Vegetable/Mixed),Street Food,Small serving (5pcs),80,180,4,20,9,2.0
+Pakora (Vegetable/Mixed),Street Food,Medium serving (10pcs),160,360,8,40,18,4.0
+Pakora (Pyaz/Onion),Street Food,5 pieces,75,165,3,19,9,1.5
+Pakora (Pyaz/Onion),Street Food,10 pieces,150,330,6,38,18,3.0
+Pakora (Aloo),Street Food,5 pieces,80,175,3,22,8,2.0
+Pakora (Aloo),Street Food,10 pieces,160,350,6,44,16,4.0
+Anda Paratha Roll,Street Food,1 roll,180,380,14,38,20,2.0
+Anda Paratha Roll,Street Food,2 rolls,360,760,28,76,40,4.0
+Chicken Roll,Street Food,1 roll,180,390,20,38,18,2.0
+Chicken Roll,Street Food,2 rolls,360,780,40,76,36,4.0
+Chapli Roll,Street Food,1 roll,170,400,18,37,20,2.0
+Shwarma (Chicken),Fast Food,Small,180,380,22,38,17,2.0
+Shwarma (Chicken),Fast Food,Large,280,591,34,59,26,3.1
+Roast (Karahi Roast Chicken),BBQ & Grilled,Quarter,200,380,38,4,24,0.3
+Roast (Karahi Roast Chicken),BBQ & Grilled,Half,400,760,76,8,48,0.6
+Nimko (Mixed Snack),Snacks,Small pack (30g),30,150,3,18,7,1.5
+Nimko (Mixed Snack),Snacks,Medium pack (50g),50,250,5,30,12,2.5
+Chanay (Roasted Chickpeas),Snacks,Small handful (30g),30,110,5,17,2,3.5
+Chanay (Roasted Chickpeas),Snacks,Large handful (50g),50,183,9,28,3,5.8
+Bhuna Makai (Roasted Corn),Snacks,1 cob,90,120,3,25,1.5,2.5
+Dahi Wada,Snacks,2 pieces,160,240,9,32,7,3.0
+Dahi Wada,Snacks,4 pieces,320,480,18,64,14,6.0
+Murukku,Snacks,Small (30g),30,145,2,19,7,1.0
+Murukku,Snacks,Medium (50g),50,242,3,32,12,1.7
+Mathri,Snacks,4 pieces,40,190,3,24,9,1.0
+Mathri,Snacks,8 pieces,80,380,6,48,18,2.0
+Sev,Snacks,Small (30g),30,148,4,18,7,1.5
+Sev,Snacks,Medium (50g),50,247,7,30,12,2.5
+Barfi (Plain),Sweets & Mithai,1 piece,30,130,3,20,5,0.2
+Barfi (Plain),Sweets & Mithai,2 pieces,60,260,6,40,10,0.4
+Barfi (Kaju/Cashew),Sweets & Mithai,1 piece,25,125,3,17,6,0.3
+Barfi (Kaju/Cashew),Sweets & Mithai,2 pieces,50,250,6,34,12,0.6
+Kheer (Rice Pudding),Dessert,Small bowl,150,230,6,38,7,0.5
+Kheer (Rice Pudding),Dessert,Medium bowl,220,337,9,56,10,0.7
+Kheer (Rice Pudding),Dessert,Large bowl,300,460,12,76,14,1.0
+Sheer Khurma,Dessert,Small bowl,150,270,7,38,10,1.0
+Sheer Khurma,Dessert,Medium bowl,220,396,10,56,15,1.5
+Phirni,Dessert,Small bowl,150,200,5,34,5,0.3
+Phirni,Dessert,Medium bowl,200,267,7,45,7,0.4
+Zarda (Sweet Rice),Dessert,Small,150,310,4,56,9,0.5
+Zarda (Sweet Rice),Dessert,Medium,220,455,6,82,13,0.7
+Ras Malai,Dessert,2 pieces,150,280,8,35,12,0.2
+Ras Malai,Dessert,4 pieces,300,560,16,70,24,0.4
+Gajar Halwa (Carrot),Sweets & Mithai,Small bowl,100,260,4,38,10,2.5
+Gajar Halwa (Carrot),Sweets & Mithai,Medium bowl,150,390,6,57,15,3.7
+Sohan Halwa,Sweets & Mithai,1 piece (30g),30,165,2,27,6,0.5
+Sohan Halwa,Sweets & Mithai,2 pieces,60,330,4,54,12,1.0
+Peda,Sweets & Mithai,1 piece,25,110,3,18,3.5,0.1
+Peda,Sweets & Mithai,2 pieces,50,220,6,36,7,0.2
+Ladoo (Besan),Sweets & Mithai,1 piece,50,200,4,28,9,1.0
+Ladoo (Boondhi),Sweets & Mithai,1 piece,40,165,3,24,7,0.5
+Ladoo (Boondhi),Sweets & Mithai,2 pieces,80,330,6,48,14,1.0
+Aam (Mango),Fruits,Small (100g),100,60,0.8,15,0.4,1.6
+Aam (Mango),Fruits,Medium (150g),150,90,1.2,22,0.6,2.4
+Aam (Mango),Fruits,Large (200g),200,120,1.6,30,0.8,3.2
+Kela (Banana),Fruits,Small,80,72,0.9,18,0.3,2.1
+Kela (Banana),Fruits,Medium,120,107,1.3,27,0.4,3.1
+Kela (Banana),Fruits,Large,150,134,1.6,34,0.5,3.9
+Seb (Apple),Fruits,Small,120,64,0.3,17,0.2,2.4
+Seb (Apple),Fruits,Medium,180,95,0.5,25,0.3,3.6
+Anaar (Pomegranate),Fruits,Half fruit,100,83,1.7,19,1.2,4.0
+Anaar (Pomegranate),Fruits,Full fruit,200,166,3.4,38,2.4,8.0
+Tarbooz (Watermelon),Fruits,1 slice (200g),200,60,1.2,15,0.3,0.8
+Tarbooz (Watermelon),Fruits,2 slices,400,120,2.4,30,0.6,1.6
+Kharboza (Melon),Fruits,1 slice (200g),200,68,1.7,16,0.4,1.8
+Nashpati (Pear),Fruits,Small,120,72,0.5,19,0.2,3.6
+Nashpati (Pear),Fruits,Medium,180,108,0.7,29,0.3,5.4
+Anar Dana (Pomegranate seeds),Fruits,Small serving (50g),50,41,0.9,9.5,0.6,2.0
+Desi Burger,Fast Food,Small,150,360,16,38,17,2.0
+Desi Burger,Fast Food,Large,220,528,23,56,25,2.9
+Pizza (Desi style),Fast Food,1 slice,100,250,11,30,10,1.5
+Pizza (Desi style),Fast Food,2 slices,200,500,22,60,20,3.0
+Paratha Roll (Desi),Fast Food,1 roll,160,350,12,36,18,2.0
+Paratha Roll (Desi),Fast Food,2 rolls,320,700,24,72,36,4.0
+Naan Kebab (Desi Sub),Fast Food,1 piece,200,420,20,45,18,2.5
+BBQ Platter (Mixed),BBQ & Grilled,Small,250,480,40,10,31,1.0
+BBQ Platter (Mixed),BBQ & Grilled,Large,400,768,64,16,50,1.6
+Cholay (Chickpea Curry),Main Course,Small bowl,150,200,10,30,5,8.0
+Cholay (Chickpea Curry),Main Course,Medium bowl,220,293,15,44,7,11.7
+Cholay (Chickpea Curry),Main Course,Large bowl,300,400,20,60,10,16.0
+Aloo Cholay,Main Course,Small,200,250,9,40,7,7.0
+Aloo Cholay,Main Course,Medium,280,350,13,56,10,9.8
+Cholay Bhature,Main Course,1 serving,300,580,14,80,22,8.0
+Rumali Roti,Bread,1 piece,40,95,3,18,1.5,0.8
+Rumali Roti,Bread,2 pieces,80,190,6,36,3,1.6
+Khamiri Roti,Bread,1 piece,80,200,6,36,4,1.5
+Missi Roti (Besan),Bread,Small,60,155,7,22,4,3.5
+Missi Roti (Besan),Bread,Medium,80,207,9,29,5.5,4.7
+Pita Bread (Desi),Bread,1 piece,60,165,5,33,1.5,1.5
+Pita Bread (Desi),Bread,2 pieces,120,330,10,66,3,3.0
+Warqi Paratha,Bread,1 piece,90,300,5,30,17,1.5
+Matar Pulao,Rice & Biryani,Small,200,310,8,52,8,4.0
+Matar Pulao,Rice & Biryani,Medium,280,434,11,73,11,5.6
+Kashmiri Pulao,Rice & Biryani,Small,200,360,8,58,12,1.5
+Kashmiri Pulao,Rice & Biryani,Medium,300,540,12,87,18,2.2
+Shahi Pulao,Rice & Biryani,Small,200,380,12,55,14,1.0
+Shahi Pulao,Rice & Biryani,Medium,300,570,18,82,21,1.5
+Biryani (Fish),Rice & Biryani,Small,200,330,20,42,9,1.5
+Biryani (Fish),Rice & Biryani,Medium,300,495,30,63,14,2.2
+Tehri (Vegetable Biryani),Rice & Biryani,Small,200,290,6,50,7,3.0
+Tehri (Vegetable Biryani),Rice & Biryani,Medium,300,435,9,75,10,4.5
+Khushka (Plain Basmati),Rice & Biryani,Small,130,170,3,37,0.4,0.4
+Khushka (Plain Basmati),Rice & Biryani,Medium,200,261,5,57,0.6,0.6
+Palak Gosht,Curry & Gravy,Small,200,300,25,8,19,4.0
+Palak Gosht,Curry & Gravy,Medium,300,450,37,12,28,6.0
+Methi Gosht,Curry & Gravy,Small,200,310,26,9,20,3.5
+Methi Gosht,Curry & Gravy,Medium,300,465,39,14,30,5.2
+Dum Aloo,Curry & Gravy,Small,180,220,4,30,9,3.5
+Dum Aloo,Curry & Gravy,Medium,260,318,6,43,13,5.0
+Chicken White Karahi,Curry & Gravy,Small,200,330,28,7,22,1.0
+Chicken White Karahi,Curry & Gravy,Medium,300,495,42,11,33,1.5
+Kata Kat (Brain/Organ),Main Course,Small,200,420,28,5,33,0.5
+Kata Kat (Brain/Organ),Main Course,Medium,280,588,39,7,46,0.7
+Siri Paya,Main Course,Bowl,300,450,36,6,32,0.5
+Trotters (Paya),Main Course,Small bowl,250,380,32,5,27,0.5
+Trotters (Paya),Main Course,Large bowl,400,608,51,8,43,0.8
+Mutton Qorma,Curry & Gravy,Small,200,390,28,9,28,1.0
+Mutton Qorma,Curry & Gravy,Medium,300,585,42,14,42,1.5
+Lamb Chops (Chaamp),BBQ & Grilled,2 pieces,150,360,28,2,27,0.3
+Lamb Chops (Chaamp),BBQ & Grilled,4 pieces,300,720,56,4,54,0.6
+Chicken Yakhni (Broth),Main Course,1 cup,240,70,8,3,3,0.5
+Chicken Yakhni (Broth),Main Course,Bowl,400,117,13,5,5,0.8
+Shorba (Meat Broth),Main Course,1 cup,240,90,9,4,4.5,0.5
+Shorba (Meat Broth),Main Course,Bowl,400,150,15,7,7.5,0.8
+Daal Shorba,Daal,Bowl,300,190,10,28,4,5.0
+Fruit Chaat,Snacks,Small,150,110,1.5,26,0.5,3.5
+Fruit Chaat,Snacks,Large,250,183,2.5,43,0.8,5.8
+Daal Chaat,Street Food,Small plate,150,210,9,30,5,5.0
+Daal Chaat,Street Food,Large plate,250,350,15,50,8,8.3
+Kachalu Chaat,Street Food,Small,150,195,5,33,5,3.5
+Bhel Puri,Street Food,Small plate,100,170,4,28,5,2.5
+Bhel Puri,Street Food,Large plate,180,306,7,50,9,4.5
+Raj Kachori,Street Food,1 piece,150,310,9,40,13,5.0
+Kulfi (Plain),Dessert,1 stick,80,170,4,22,8,0.2
+Kulfi (Mango),Dessert,1 stick,80,185,3,26,8,0.5
+Falooda,Dessert,1 glass,300,320,6,55,9,1.5
+Doodh Soda,Dairy & Drinks,1 glass,300,145,5,22,4,0
+Rabri,Dessert,Small bowl,100,220,6,28,10,0
+Basundi,Dessert,Small bowl,100,210,6,26,10,0
+Sewaiyan (Vermicelli Kheer),Dessert,Small bowl,150,240,6,38,8,0.8
+Sewaiyan (Vermicelli Kheer),Dessert,Medium bowl,220,352,9,56,12,1.2
+Malpua,Dessert,2 pieces,100,280,5,40,12,0.5
+Imarti,Sweets & Mithai,2 pieces,80,250,3,46,7,0.3
+Petha,Sweets & Mithai,1 piece (40g),40,130,0.5,32,0.2,0.5
+Chikki (Peanut Brittle),Snacks,1 piece (30g),30,140,4,18,6,1.0
+Chikki (Peanut Brittle),Snacks,2 pieces,60,280,8,36,12,2.0
+Rooh Afza (Sherbet),Dairy & Drinks,1 glass,200,95,0.2,24,0,0
+Shikanjvi (Nimbu Pani),Dairy & Drinks,1 glass,200,45,0.3,11,0.1,0
+Jal Zeera,Dairy & Drinks,1 glass,200,30,0.5,7,0.2,0
+Thandai,Dairy & Drinks,1 glass,250,200,6,28,8,1.0
+Sattu Drink,Dairy & Drinks,1 glass,250,165,9,28,3,4.0
+Nashta (Paratha + Chai + Anda),Breakfast,Full set,370,580,16,50,36,3.5
+Aloo Paratha + Lassi,Breakfast,Set,380,570,12,65,28,4.0
+Sheermal + Chai,Breakfast,Set,280,395,8,67,12,1.4
+Khagina (Egg Stir-fry),Breakfast,2 eggs,130,195,13,4,14,0.5
+Khagina (Egg Stir-fry),Breakfast,3 eggs,195,293,20,6,21,0.8
+French Toast (Desi),Breakfast,2 slices,120,280,9,34,12,1.5
+Achaar (Mango Pickle),Miscellaneous,1 tsp,10,15,0.2,1.5,1.2,0.3
+Achaar (Mango Pickle),Miscellaneous,1 tbsp,20,30,0.4,3,2.4,0.6
+Chutney (Imli/Tamarind),Miscellaneous,1 tbsp,20,35,0.3,8.5,0.1,0.5
+Chutney (Pudina/Mint),Miscellaneous,1 tbsp,20,10,0.4,1.5,0.3,0.5
+Chutney (Dahi/Yogurt),Miscellaneous,2 tbsp,30,25,1.5,2.5,1.0,0.2
+Raita (Boondi),Miscellaneous,Small,100,90,4,9,4,0.5
+Raita (Boondi),Miscellaneous,Medium,150,135,6,14,6,0.8
+Salad (Kachumber),Vegetables,Small bowl,100,30,1,6,0.3,2.0
+Salad (Kachumber),Vegetables,Large bowl,200,60,2,12,0.6,4.0
+Dal Roti (1 bowl + 2 roti),Daal,Meal,360,460,18,72,10,8.0
+Sabzi Roti (1 bowl + 2 roti),Vegetables,Meal,350,410,10,65,12,7.0
+Chicken Curry + Rice,Curry & Gravy,Plate,400,590,30,68,20,2.5
+Daal + Chawal (Full meal),Daal,Large plate,500,620,20,104,10,7.0
+Badam (Almonds),Miscellaneous,10 pieces (14g),14,82,3,3,7,1.5
+Badam (Almonds),Miscellaneous,20 pieces (28g),28,164,6,6,14,3.0
+Akhrot (Walnuts),Miscellaneous,4 halves (14g),14,93,2,2,9,1.0
+Kishmish (Raisins),Miscellaneous,Small (30g),30,90,0.8,23,0.1,1.2
+Kaju (Cashews),Miscellaneous,10 pieces (14g),14,78,2.5,4.5,6,0.5
+Mungphali (Peanuts),Snacks,Small (30g),30,170,7,5,15,2.0
+Mungphali (Peanuts),Snacks,Medium (50g),50,283,12,8,25,3.3
+Pista (Pistachios),Miscellaneous,10 pieces (10g),10,57,2,3,4.5,1.0
+Sindhi Curry,Curry & Gravy,Small,200,250,12,20,13,4.0
+Sindhi Curry,Curry & Gravy,Medium,300,375,18,30,20,6.0
+Sindhi Kadhi,Curry & Gravy,Bowl,250,200,6,28,7,4.5
+Balochi Sajji (Whole Lamb),BBQ & Grilled,200g portion,200,400,42,0,26,0
+Balochi Dampukht,Main Course,Small,200,390,32,5,28,0.5
+Peshwari Karahi,Curry & Gravy,Small,200,370,30,7,25,1.0
+Shinwari Karahi,Curry & Gravy,Small,200,360,29,6,25,0.8
+Chitrali Khow (Trout),Main Course,Fillet 100g,100,130,20,0,5,0
+Memoni Mutton Pulao,Rice & Biryani,Small,200,390,20,47,15,1.0
+Memoni Mutton Pulao,Rice & Biryani,Medium,300,585,30,70,22,1.5
+Bhindi Gosht,Curry & Gravy,Small,200,290,20,13,17,3.5
+Bhindi Gosht,Curry & Gravy,Medium,300,435,30,20,26,5.2
+Arvi Gosht (Taro),Curry & Gravy,Small,200,280,18,20,14,3.0
+Shalgam Gosht,Curry & Gravy,Small,200,270,17,18,14,3.5
+Doodhi Gosht (Lauki),Curry & Gravy,Small,200,255,16,16,13,2.5
+Gajar Gosht (Carrot),Curry & Gravy,Small,200,265,17,18,13,3.0
+Mash ki Daal (Whole),Daal,Bowl,200,260,16,36,5,7.0
+Daal Palak,Daal,Bowl,220,195,12,28,4,5.5
+Sabut Moong Dal,Daal,Bowl,200,200,13,30,3,7.0
+Rajma (Kidney Bean),Daal,Small bowl,150,195,11,30,3.5,8.5
+Rajma (Kidney Bean),Daal,Medium bowl,220,286,16,44,5,12.4
+Lobiya (Black-eye Pea),Daal,Small bowl,150,170,11,26,2,7.0
+Lobiya (Black-eye Pea),Daal,Medium bowl,220,249,16,38,3,10.3
+Rusk (Dry Bread),Snacks,2 pieces,30,115,3,20,3,0.5
+Rusk (Dry Bread),Snacks,4 pieces,60,230,6,40,6,1.0
+Biscuit (Desi tea biscuit),Snacks,2 pieces,20,90,1.5,14,3,0.3
+Biscuit (Desi tea biscuit),Snacks,4 pieces,40,180,3,28,6,0.6
+Cake Rusk,Snacks,1 piece,30,120,2,20,3.5,0.3
+Nan Khatai (Cookie),Snacks,1 piece,25,110,1.5,15,5,0.3
+Nan Khatai (Cookie),Snacks,2 pieces,50,220,3,30,10,0.6
+Kaju Katli,Sweets & Mithai,1 piece (20g),20,100,2.5,14,4,0.5
+Kalakand,Sweets & Mithai,1 piece (40g),40,155,5,22,6,0
+Meetha Paan (Betel),Miscellaneous,1 paan,25,60,1,12,1,0.8
+Anda Korma,Eggs,2 eggs,200,280,14,8,22,1.0
+Egg Bhurji with Bread,Eggs,Set (2 eggs + 2 slice),250,380,18,36,18,2.0
+Masala Omelette (Stuffed),Eggs,2 eggs,160,250,15,7,18,1.0
+Chana Jor Garam,Street Food,Small bag (40g),40,140,7,20,3,5.0
+Matar Kulcha,Street Food,1 serving,250,430,12,65,14,6.0
+Aloo Tikki,Street Food,2 pieces,100,190,4,28,7,2.5
+Aloo Tikki,Street Food,4 pieces,200,380,8,56,14,5.0
+Corn on Cob (Bhutta),Street Food,1 cob with masala,100,120,3,25,1.5,2.5
+Imli Gola (Tamarind Ice),Street Food,1 small,100,65,0.3,16,0.1,0.5
+Kulfiwala Kulfi,Street Food,1 stick,80,165,3,23,7,0.2
+Pani (Water),Dairy & Drinks,1 glass,250,0,0,0,0,0
+Nimbu Pani (Lemon water),Dairy & Drinks,1 glass,250,35,0.3,9,0.1,0
+Ganna Juice (Sugarcane),Dairy & Drinks,1 glass,240,135,0.5,33,0.3,0
+Coconut Water (Narial Pani),Dairy & Drinks,1 glass,240,60,0.8,13,0.5,0
+Aam Panna (Raw Mango),Dairy & Drinks,1 glass,200,70,0.3,17,0.2,0
+Coffee (with milk),Dairy & Drinks,1 cup,200,55,2,6,2.5,0
+Coffee (Black),Dairy & Drinks,1 cup,200,10,0.5,1.5,0.1,0
+Daal (Moong Washed),Daal,Bowl,200,180,12,27,3,5.0
+Aloo Keema,Main Course,Small,200,320,22,18,18,2.5
+Aloo Keema,Main Course,Medium,280,448,31,25,25,3.5
+Chicken Sajji,BBQ & Grilled,Half,300,480,55,5,27,0.5
+Beef Pulao,Rice & Biryani,Small,200,370,20,44,13,1.0
+Beef Pulao,Rice & Biryani,Medium,300,555,30,66,20,1.5
+Mutton Pulao,Rice & Biryani,Small,200,380,21,45,14,1.0
+Mutton Pulao,Rice & Biryani,Medium,300,570,31,67,21,1.5
+Qeema Naan,Bread,1 piece,150,380,18,44,14,2.0
+Peshwari Naan,Bread,1 piece,110,310,8,49,10,1.5
+Aloo Samosa (Large),Street Food,1 piece,80,200,4,24,9,2.0
+Chicken Samosa,Street Food,1 piece,70,180,8,17,9,1.0
+Chicken Samosa,Street Food,2 pieces,140,360,16,34,18,2.0
+Aloo Tikki Burger,Fast Food,1 burger,160,340,8,45,14,3.0
+Chicken Bihari Kebab,BBQ & Grilled,2 sticks,100,200,22,4,11,0.5
+Bun Kebab Double,Street Food,1 piece,150,370,18,36,17,2.0
+Afghani Chicken,Main Course,Small,200,360,34,6,23,0.5
+Kofta Biryani,Rice & Biryani,Small,250,420,22,52,15,2.0
+Kofta Biryani,Rice & Biryani,Medium,350,588,31,73,21,2.8
+Macaroni (Desi style),Fast Food,Small,180,310,12,46,9,2.5
+Macaroni (Desi style),Fast Food,Medium,250,431,17,64,13,3.5
+Noodles (Desi fried),Fast Food,Small,150,300,8,44,10,2.0
+Noodles (Desi fried),Fast Food,Medium,220,440,12,65,15,2.9
+Papad (Roasted),Snacks,1 piece,10,35,1.5,5,0.8,0.5
+Papad (Roasted),Snacks,2 pieces,20,70,3,10,1.6,1.0
+Dhokla,Snacks,4 pieces,80,155,6,24,3.5,1.5
+Idli,Breakfast,2 pieces,100,130,4,25,0.5,1.5
+Idli,Breakfast,4 pieces,200,260,8,50,1,3.0
+Dosa (Plain),Breakfast,1 piece,100,165,3,28,4.5,1.5
+Dosa (Masala),Breakfast,1 piece,180,285,6,45,8,3.0
+Uttapam,Breakfast,1 piece,100,175,4,28,5,1.5
+Achar Gosht,Curry & Gravy,Small,200,350,26,9,24,1.5
+Achar Gosht,Curry & Gravy,Medium,300,525,39,14,36,2.2
+Dumpukht (Dum Mutton),Main Course,Small,200,410,32,6,30,0.5
+Chaamp (Lamb Chops Masala),Curry & Gravy,2 pieces,180,420,30,8,31,1.0
+Ginger Chicken (Adrak),Curry & Gravy,Small,200,300,28,7,18,1.0
+Achari Chicken,Curry & Gravy,Small,200,315,28,9,19,1.5
+Kaali Dal (Black Lentil),Daal,Bowl,200,230,14,30,6,7.0
+Chana Dal Fry,Daal,Bowl,200,270,14,36,8,8.0
+Lobiya Curry,Main Course,Bowl,200,200,12,30,4,8.0
+Rajma Chawal,Main Course,Plate,400,490,18,82,8,12.0
+Chole Chawal,Main Course,Plate,380,510,16,85,8,11.0
+Makki ki Roti + Saag,Bread,Set,280,400,10,54,16,8.5
+Meetha Chawal (Sweet Rice),Dessert,Small,150,320,4,60,8,0.5
+Firni,Dessert,Small bowl,150,195,5,33,5,0.3
+Shahi Tukra,Dessert,2 pieces,150,380,8,50,17,0.5
+Bread Halwa,Dessert,Small bowl,100,290,5,42,12,1.0
+Kaju Halwa,Dessert,Small bowl,100,340,6,42,17,1.0
+Moong Halwa,Dessert,Small bowl,100,330,7,44,15,2.0
+Chana Pulao,Rice & Biryani,Small,200,320,10,54,8,6.0
+Chana Pulao,Rice & Biryani,Medium,280,448,14,76,11,8.4
+Mash Dal + Roti (2),Daal,Meal,380,490,18,73,13,9.0
+Egg Curry,Eggs,2 eggs,200,260,14,10,18,1.5
+Egg Halwa,Dessert,Small bowl,100,310,8,38,15,0.2
+Chana Chat (Street),Street Food,Plate,150,220,10,33,5,8.0
+Dahi Channay,Street Food,Plate,180,265,12,36,7,7.0
+Sandwich (Desi),Fast Food,1 piece,130,270,9,36,10,2.0
+Sandwich (Desi),Fast Food,2 pieces,260,540,18,72,20,4.0
+Club Sandwich,Fast Food,1 piece,180,380,16,42,17,2.5
+Seekh Paratha,Bread,1 piece,180,420,18,38,22,2.0
+Egg Fried Rice (Desi),Rice & Biryani,Small,200,310,10,45,11,1.5
+Egg Fried Rice (Desi),Rice & Biryani,Medium,280,434,14,63,15,2.1
+Prawn Karahi,Curry & Gravy,Small,200,250,28,7,12,1.0
+Prawn Karahi,Curry & Gravy,Medium,300,375,42,11,18,1.5
+Prawn Biryani,Rice & Biryani,Small,200,320,22,42,8,1.5
+Prawn Biryani,Rice & Biryani,Medium,300,480,33,63,12,2.2
+Maash Daal + Achar,Daal,Bowl,200,275,16,35,6,7.0
+Gajar Matar,Vegetables,Small,150,140,4,20,5,4.0
+Aloo Methi,Vegetables,Small,150,165,4,22,7,3.5
+Tori (Zucchini Sabzi),Vegetables,Small,150,90,2,11,4,2.0
+Sem (Green Bean),Vegetables,Small,150,100,4,14,3,5.0
+Arvi Tarkari (Taro),Vegetables,Small,150,160,3,28,4,4.0
+Masoor + Spinach,Daal,Bowl,200,185,13,25,4,5.5
+Chicken Changezi,Curry & Gravy,Small,200,340,30,11,20,1.5
+Chicken Changezi,Curry & Gravy,Medium,300,510,45,17,30,2.2
+Murgh Musallam,Main Course,Half chicken,350,650,60,10,42,1.0
+Nihari with Naan,Main Course,Set,420,710,48,52,30,2.5
+Chicken Shinwari,Curry & Gravy,Small,200,345,30,6,23,0.8
+Peshwari Chapli Kebab,BBQ & Grilled,2 pieces,180,500,34,18,34,2.0
+White Chicken Handi,Curry & Gravy,Small,200,320,28,7,21,1.0
+Karai Gosht,Curry & Gravy,Small,200,380,30,7,27,1.0
+Chicken Jalfrezi,Curry & Gravy,Small,200,295,28,12,16,2.5
+Achari Gosht,Curry & Gravy,Small,200,355,26,9,25,1.5
+Dahi Aloo,Vegetables,Small,150,185,5,24,8,2.5
+Kathal Gosht (Jackfruit),Curry & Gravy,Small,200,280,16,22,14,3.5
+Lahori Cholay,Main Course,Bowl,200,290,13,42,8,10.0
+Kata Kat Maghaz (Brain),Main Course,Serving,150,340,22,4,27,0.3
+Biryani (Vegetable),Rice & Biryani,Small,200,290,6,52,7,3.5
+Biryani (Vegetable),Rice & Biryani,Medium,300,435,9,78,11,5.2
+Roti (Sorghum/Jawar),Bread,Small,50,115,4,22,1.5,4.0
+Roti (Sorghum/Jawar),Bread,Medium,70,161,5,31,2,5.6
+Roti (Gram flour),Bread,Small,55,145,7,21,4,3.5
+Bun (Plain),Bread,1 piece,50,135,4,25,2,0.8
+Bun (Plain),Bread,2 pieces,100,270,8,50,4,1.6
+Pav (Dinner Roll),Bread,1 piece,45,120,3.5,22,2,0.8
+Maida Paratha,Bread,Small,70,215,4,25,11,0.8
+Maida Paratha,Bread,Medium,100,307,6,36,16,1.1
+Stuffed Kulcha (Aloo),Bread,1 piece,120,300,7,46,9,2.5
+Besan ki Roti,Bread,Small,55,148,6,21,5,3.0
+Khasta Paratha,Bread,Small,80,260,4,27,15,1.0
+Chicken Kofta,Curry & Gravy,4 pieces,180,280,22,10,17,1.5
+Beef Nihari,Main Course,Bowl,300,500,40,14,33,2.0
+Zafrani Pulao,Rice & Biryani,Small,200,370,9,58,13,0.8
+Kabuli Pulao,Rice & Biryani,Small,200,390,14,58,14,2.0
+Aloo Bukhara Murgh,Curry & Gravy,Small,200,310,26,15,17,2.0
+Lemon Chicken,Curry & Gravy,Small,200,285,28,8,15,1.0
+Mutton Biryani (Sindhi),Rice & Biryani,Small,200,385,21,45,15,2.0
+Daal Gosht,Curry & Gravy,Small,250,380,26,32,16,6.0
+Khoya Matar,Vegetables,Small,150,250,9,22,15,3.5
+Kaju Matar,Vegetables,Small,150,270,8,24,16,3.5
+Hara Masala Chicken,Curry & Gravy,Small,200,280,28,7,16,2.0
+Honey Garlic Chicken,Main Course,Small,200,310,30,15,14,0.5
+Malai Kofta,Curry & Gravy,4 pieces,200,360,12,28,24,2.0
+Keema Paratha,Bread,1 piece,140,390,18,34,22,2.0
+Biscuit Cake,Snacks,1 slice,60,200,3,28,9,0.5
+Doodh Jalebi,Dessert,Set,200,420,8,72,13,0.4
+Paratha + Dahi (Set),Breakfast,1 set,220,430,10,44,24,2.5
+Full Pakistani Breakfast,Breakfast,Large plate,500,870,25,90,50,5.0
+Chicken Corn Soup,Main Course,Bowl,300,180,12,22,5,1.5
+Hot & Sour Soup,Main Course,Bowl,300,130,8,18,3,1.0
+Spring Roll (Fried),Snacks,2 pieces,100,250,6,30,12,1.5
+Wonton Soup,Main Course,Bowl,300,160,10,20,4,1.0
+Dry Fruit Milk,Dairy & Drinks,1 glass,280,230,8,28,12,1.5
+Kahwa (Green Tea),Dairy & Drinks,1 cup,200,8,0.3,1.5,0.1,0
+Cardamom Tea (Elaichi),Dairy & Drinks,1 cup,200,68,2,10,2.5,0
+Masala Chai,Dairy & Drinks,1 cup,200,75,2,10,3,0
+Milk Tea (Dubai style),Dairy & Drinks,1 cup,200,110,3,14,5,0
+Corn Soup,Main Course,Bowl,300,155,5,26,4,2.0
+Tomato Soup,Main Course,Bowl,300,110,3,18,3,2.5
+Mutton Seekh Paratha,Main Course,Set 2 pieces,300,620,30,52,32,2.5
+Anday wala Burger,Street Food,1 piece,170,410,18,38,22,2.0
+Masala Fries,Snacks,Small,100,290,4,36,15,3.0
+Masala Fries,Snacks,Large,180,522,7,65,27,5.4
+Pani Puri (Spicy),Street Food,8 pieces,120,240,5,40,7,3.0
+Dahi Papri Chaat,Street Food,Plate,180,310,8,43,11,3.5
+Chicken Paratha Roll,Street Food,1 roll,180,390,20,38,18,2.0
+Egg + Chicken Roll,Street Food,1 roll,200,430,25,38,20,2.0
+Mixed BBQ Platter,BBQ & Grilled,Large,450,850,70,15,55,1.5
+Desi Anda Sandwich,Fast Food,1 piece,140,295,12,36,12,2.0
+Chicken Tikka Roll,Street Food,1 roll,180,380,22,37,17,1.5
+Mutton Tikka,BBQ & Grilled,4 pieces,150,310,30,3,20,0.3
+Fish Tikka,BBQ & Grilled,4 pieces,150,220,30,3,10,0.3
+Prawn Tikka,BBQ & Grilled,8 pieces,120,180,24,2,8,0.2
+Lahori Cholay Bhature,Main Course,Set,350,680,18,90,26,9.0
+Khow Suey,Main Course,Bowl,350,420,18,52,17,3.5
+Chaat Masala Chawal,Rice & Biryani,Small,200,280,5,50,7,1.5
+Qeema Paratha + Dahi,Breakfast,Set,300,580,24,52,32,2.5
+Anda Bhurji + Paratha,Breakfast,Set,300,560,20,50,32,2.5
+Doodh + Banana Smoothie,Dairy & Drinks,1 glass,350,220,8,38,5,2.0
+Mango Lassi (Thick),Dairy & Drinks,Large glass,350,310,9,50,8,1.0
+Strawberry Lassi,Dairy & Drinks,Glass,300,200,7,32,5,1.0
+Kheer (Seviyan),Dessert,Bowl,200,280,7,45,8,1.0
+Gajar ka Halwa + Ice Cream,Dessert,Serving,180,420,7,62,17,2.0
+Chilled Coffee,Dairy & Drinks,Glass,300,190,5,28,7,0
+Protein Shake (Desi Doodh),Dairy & Drinks,Glass,300,250,20,25,8,0
+Achar Chicken,Curry & Gravy,Small,200,320,28,10,19,1.5
+Achar Chicken,Curry & Gravy,Medium,300,480,42,15,28,2.2
+Chicken Saag,Curry & Gravy,Small,200,285,27,8,17,3.5
+Beef Kofta Biryani,Rice & Biryani,Small,250,430,22,53,16,2.0
+Murgh Makhani (Butter Chicken),Curry & Gravy,Small,200,345,26,12,22,1.5
+Dahi Wada Chaat,Street Food,4 pieces,200,310,11,42,9,4.0
+Lahori Fish,Main Course,200g,200,280,32,10,12,1.0
+Paratha (Plain),Bread,Small,60,180,3.0,17.0,11.0,1.2
+Paratha (Plain),Bread,Medium,90,270,5.0,25.0,16.0,1.8
+Paratha (Plain),Bread,Large,120,360,6.0,33.0,21.0,2.4
+Paratha (Aloo),Bread,Small,100,220,5.0,30.0,9.0,2.1
+Paratha (Aloo),Bread,Medium,150,330,7.0,45.0,13.0,3.2
+Paratha (Aloo),Bread,Large,200,440,10.0,60.0,18.0,4.2
+Paratha (Egg),Bread,Small,110,280,10.0,20.0,17.0,1.1
+Paratha (Egg),Bread,Medium,160,400,14.0,29.0,25.0,1.6
+Paratha (Egg),Bread,Large,210,520,18.0,38.0,32.0,2.1
+Chapati (Whole Wheat),Bread,Small (4 inch),30,80,2.0,16.0,1.0,1.5
+Chapati (Whole Wheat),Bread,Medium (6 inch),50,130,4.0,27.0,2.0,2.5
+Chapati (Whole Wheat),Bread,Large (8 inch),70,180,5.0,37.0,2.0,3.5
+Chapati (Maida),Bread,Small,30,95,2.0,18.0,2.0,0.5
+Chapati (Maida),Bread,Medium,50,160,3.0,30.0,3.0,0.8
+Chapati (Maida),Bread,Large,70,220,4.0,42.0,4.0,1.1
+Naan,Bread,Small,60,160,5.0,28.0,3.0,1.0
+Naan,Bread,Medium (restaurant),110,290,9.0,51.0,5.0,1.8
+Naan,Bread,Large,150,395,12.0,70.0,7.0,2.5
+Butter Naan,Bread,Small,65,200,5.0,28.0,8.0,1.0
+Butter Naan,Bread,Medium,120,370,9.0,51.0,16.0,1.8
+Butter Naan,Bread,Large,160,490,12.0,68.0,21.0,2.4
+Garlic Naan,Bread,Small,65,195,5.0,29.0,7.0,1.1
+Garlic Naan,Bread,Medium,115,345,9.0,51.0,13.0,1.9
+Garlic Naan,Bread,Large,155,465,12.0,68.0,18.0,2.6
+Puri,Bread,Small,35,135,2.0,15.0,8.0,0.5
+Puri,Bread,Medium,55,210,3.0,24.0,12.0,0.8
+Puri,Bread,Large,75,285,4.0,32.0,17.0,1.1
+Sheermal,Bread,Half,60,190,4.0,32.0,6.0,0.6
+Sheermal,Bread,Full,120,380,8.0,64.0,12.0,1.2
+Kulcha,Bread,Small,70,200,5.0,35.0,4.0,1.2
+Kulcha,Bread,Medium,110,315,8.0,55.0,6.0,1.9
+Kulcha,Bread,Large,150,430,11.0,75.0,8.0,2.6
+Bakarkhani,Bread,Half,50,165,4.0,24.0,6.0,0.8
+Bakarkhani,Bread,Full,100,330,8.0,48.0,12.0,1.6
+White Rice (Boiled),Rice & Biryani,Half Plate (75g dry),150,195,4.0,43.0,0.0,0.5
+White Rice (Boiled),Rice & Biryani,Full Plate (150g dry),300,390,8.0,86.0,1.0,1.0
+White Rice (Boiled),Rice & Biryani,Double Plate,450,585,12.0,129.0,1.0,1.5
+Brown Rice (Boiled),Rice & Biryani,Half Plate,150,165,4.0,35.0,1.0,1.8
+Brown Rice (Boiled),Rice & Biryani,Full Plate,300,330,7.0,70.0,3.0,3.6
+Brown Rice (Boiled),Rice & Biryani,Double Plate,450,495,11.0,105.0,4.0,5.4
+Chicken Biryani,Rice & Biryani,Half Plate,200,380,18.0,42.0,14.0,1.5
+Chicken Biryani,Rice & Biryani,Full Plate,400,760,36.0,84.0,28.0,3.0
+Chicken Biryani,Rice & Biryani,Double Plate,600,1140,54.0,126.0,42.0,4.5
+Mutton Biryani,Rice & Biryani,Half Plate,200,420,20.0,40.0,18.0,1.5
+Mutton Biryani,Rice & Biryani,Full Plate,400,840,40.0,80.0,36.0,3.0
+Mutton Biryani,Rice & Biryani,Double Plate,600,1260,60.0,120.0,54.0,4.5
+Beef Biryani,Rice & Biryani,Half Plate,200,400,19.0,42.0,16.0,1.5
+Beef Biryani,Rice & Biryani,Full Plate,400,800,38.0,84.0,32.0,3.0
+Beef Biryani,Rice & Biryani,Double Plate,600,1200,57.0,126.0,48.0,4.5
+Pulao (Chicken),Rice & Biryani,Half Plate,200,310,15.0,45.0,8.0,1.2
+Pulao (Chicken),Rice & Biryani,Full Plate,400,620,30.0,90.0,16.0,2.4
+Pulao (Chicken),Rice & Biryani,Double Plate,600,930,45.0,135.0,24.0,3.6
+Pulao (Mutton),Rice & Biryani,Half Plate,200,345,17.0,43.0,12.0,1.2
+Pulao (Mutton),Rice & Biryani,Full Plate,400,690,34.0,86.0,24.0,2.4
+Pulao (Mutton),Rice & Biryani,Double Plate,600,1035,51.0,129.0,36.0,3.6
+Khichdi,Rice & Biryani,Half Bowl,150,175,6.0,32.0,3.0,2.5
+Khichdi,Rice & Biryani,Full Bowl,300,350,12.0,64.0,6.0,5.0
+Chicken Karahi,Curry & Gravy,Half Bowl (125g),125,225,17.0,4.0,15.0,0.8
+Chicken Karahi,Curry & Gravy,Full Bowl (250g),250,450,35.0,8.0,30.0,1.6
+Chicken Karahi,Curry & Gravy,Full Plate (400g),400,720,56.0,13.0,48.0,2.6
+Mutton Karahi,Curry & Gravy,Half Bowl,125,270,19.0,3.0,19.0,0.5
+Mutton Karahi,Curry & Gravy,Full Bowl,250,540,38.0,6.0,38.0,1.0
+Mutton Karahi,Curry & Gravy,Full Plate,400,860,60.0,9.0,60.0,1.6
+Beef Karahi,Curry & Gravy,Half Bowl,125,255,18.0,4.0,18.0,0.6
+Beef Karahi,Curry & Gravy,Full Bowl,250,510,36.0,8.0,36.0,1.2
+Beef Karahi,Curry & Gravy,Full Plate,400,810,58.0,13.0,57.0,1.9
+Chicken Curry,Curry & Gravy,Half Bowl,150,220,18.0,5.0,14.0,0.9
+Chicken Curry,Curry & Gravy,Full Bowl,300,440,36.0,10.0,28.0,1.8
+Chicken Curry,Curry & Gravy,Full Plate,450,660,54.0,15.0,42.0,2.7
+Aloo Gosht,Curry & Gravy,Half Bowl,175,245,14.0,16.0,14.0,2.0
+Aloo Gosht,Curry & Gravy,Full Bowl,350,490,28.0,32.0,28.0,4.0
+Aloo Gosht,Curry & Gravy,Full Plate,500,700,40.0,46.0,40.0,5.7
+Nihari,Curry & Gravy,Half Bowl,200,310,22.0,6.0,22.0,0.5
+Nihari,Curry & Gravy,Full Bowl,400,620,44.0,12.0,44.0,1.0
+Nihari,Curry & Gravy,Full Plate,600,930,66.0,18.0,66.0,1.5
+Haleem,Curry & Gravy,Half Bowl,150,220,14.0,20.0,9.0,3.5
+Haleem,Curry & Gravy,Full Bowl,300,440,28.0,40.0,18.0,7.0
+Haleem,Curry & Gravy,Full Plate,450,660,42.0,60.0,27.0,10.5
+Paya (Trotters),Curry & Gravy,Half Bowl,200,280,20.0,3.0,20.0,0.0
+Paya (Trotters),Curry & Gravy,Full Bowl,400,560,40.0,6.0,40.0,0.0
+Korma (Chicken),Curry & Gravy,Half Bowl,150,310,18.0,6.0,24.0,0.8
+Korma (Chicken),Curry & Gravy,Full Bowl,300,620,36.0,12.0,48.0,1.6
+Saag Gosht,Curry & Gravy,Half Bowl,175,280,18.0,8.0,19.0,3.5
+Saag Gosht,Curry & Gravy,Full Bowl,350,560,36.0,16.0,38.0,7.0
+Chicken Handi,Curry & Gravy,Half Bowl,150,290,20.0,6.0,20.0,0.8
+Chicken Handi,Curry & Gravy,Full Bowl,300,580,40.0,12.0,40.0,1.6
+Daal Chawal,Curry & Gravy,Half Plate,250,310,12.0,55.0,6.0,5.0
+Daal Chawal,Curry & Gravy,Full Plate,500,620,24.0,110.0,12.0,10.0
+Daal Masoor (Red Lentil),Daal,Half Bowl,125,115,7.0,17.0,2.0,4.5
+Daal Masoor (Red Lentil),Daal,Full Bowl,250,230,14.0,35.0,4.0,9.0
+Daal Masoor (Red Lentil),Daal,Large Bowl,375,345,21.0,52.0,6.0,13.5
+Daal Mash (White Lentil),Daal,Half Bowl,125,150,10.0,18.0,4.0,3.5
+Daal Mash (White Lentil),Daal,Full Bowl,250,300,20.0,36.0,8.0,7.0
+Daal Mash (White Lentil),Daal,Large Bowl,375,450,30.0,54.0,12.0,10.5
+Daal Chana (Chickpea Lentil),Daal,Half Bowl,125,170,9.0,24.0,4.0,6.0
+Daal Chana (Chickpea Lentil),Daal,Full Bowl,250,340,18.0,48.0,8.0,12.0
+Daal Chana (Chickpea Lentil),Daal,Large Bowl,375,510,27.0,72.0,12.0,18.0
+Daal Tarka,Daal,Half Bowl,125,140,7.0,18.0,5.0,4.0
+Daal Tarka,Daal,Full Bowl,250,280,14.0,36.0,10.0,8.0
+Daal Mix,Daal,Half Bowl,125,155,9.0,20.0,4.0,5.5
+Daal Mix,Daal,Full Bowl,250,310,18.0,40.0,8.0,11.0
+Bhindi (Okra),Vegetables,Half Bowl,100,70,2.0,8.0,4.0,2.5
+Bhindi (Okra),Vegetables,Full Bowl,200,140,3.0,15.0,8.0,5.0
+Aloo Palak,Vegetables,Half Bowl,150,120,4.0,17.0,5.0,3.0
+Aloo Palak,Vegetables,Full Bowl,300,240,8.0,34.0,10.0,6.0
+Aloo Gobi,Vegetables,Half Bowl,150,110,3.0,18.0,4.0,3.5
+Aloo Gobi,Vegetables,Full Bowl,300,220,6.0,36.0,8.0,7.0
+Baingan (Eggplant),Vegetables,Half Bowl,150,85,2.0,10.0,5.0,3.5
+Baingan (Eggplant),Vegetables,Full Bowl,300,170,4.0,20.0,10.0,7.0
+Karela (Bitter Gourd),Vegetables,Half Bowl,100,50,2.0,8.0,2.0,3.0
+Karela (Bitter Gourd),Vegetables,Full Bowl,200,100,4.0,16.0,4.0,6.0
+Tinda,Vegetables,Half Bowl,150,55,1.0,10.0,2.0,2.0
+Tinda,Vegetables,Full Bowl,300,110,2.0,20.0,4.0,4.0
+Palak Paneer,Vegetables,Half Bowl,150,195,10.0,8.0,14.0,3.0
+Palak Paneer,Vegetables,Full Bowl,300,390,20.0,16.0,28.0,6.0
+Shahi Paneer,Vegetables,Half Bowl,150,260,11.0,10.0,21.0,1.5
+Shahi Paneer,Vegetables,Full Bowl,300,520,22.0,20.0,42.0,3.0
+Chane Ki Sabzi (Chickpea),Vegetables,Half Bowl,150,160,7.0,22.0,5.0,5.5
+Chane Ki Sabzi (Chickpea),Vegetables,Full Bowl,300,320,14.0,44.0,10.0,11.0
+Mix Vegetable,Vegetables,Half Bowl,150,100,3.0,14.0,4.0,3.5
+Mix Vegetable,Vegetables,Full Bowl,300,200,6.0,28.0,8.0,7.0
+Boiled Egg,Eggs,1 Egg,50,78,6.0,1.0,5.0,0.0
+Boiled Egg,Eggs,2 Eggs,100,156,12.0,1.0,10.0,0.0
+Boiled Egg,Eggs,3 Eggs,150,234,18.0,2.0,16.0,0.0
+Fried Egg,Eggs,1 Egg,55,90,6.0,0.0,7.0,0.0
+Fried Egg,Eggs,2 Eggs,110,180,12.0,0.0,14.0,0.0
+Egg Bhurji (Scrambled),Eggs,Half Bowl (2 eggs),110,175,12.0,3.0,13.0,0.5
+Egg Bhurji (Scrambled),Eggs,Full Bowl (4 eggs),220,350,24.0,6.0,26.0,1.0
+Omelette (Plain),Eggs,1 Egg,60,95,7.0,1.0,7.0,0.0
+Omelette (Plain),Eggs,2 Egg,120,190,14.0,2.0,14.0,0.0
+Omelette (Masala),Eggs,1 Egg,75,110,7.0,3.0,8.0,0.5
+Omelette (Masala),Eggs,2 Egg,150,220,14.0,6.0,16.0,1.0
+Egg Paratha,Eggs,Small,155,320,11.0,26.0,19.0,1.2
+Egg Paratha,Eggs,Medium,210,430,14.0,35.0,25.0,1.6
+Tandoori Chicken,BBQ & Grilled,Quarter,200,280,40.0,3.0,12.0,0.5
+Tandoori Chicken,BBQ & Grilled,Half,400,560,80.0,6.0,24.0,1.0
+Tandoori Chicken,BBQ & Grilled,Full,800,1120,160.0,12.0,48.0,2.0
+Seekh Kebab,BBQ & Grilled,1 piece (60g),60,130,12.0,3.0,8.0,0.5
+Seekh Kebab,BBQ & Grilled,2 pieces,120,260,24.0,6.0,16.0,1.0
+Seekh Kebab,BBQ & Grilled,4 pieces,240,520,48.0,12.0,32.0,2.0
+Shami Kebab,BBQ & Grilled,1 piece (50g),50,110,9.0,8.0,5.0,1.5
+Shami Kebab,BBQ & Grilled,2 pieces,100,220,18.0,16.0,10.0,3.0
+Shami Kebab,BBQ & Grilled,4 pieces,200,440,36.0,32.0,20.0,6.0
+Chapli Kebab,BBQ & Grilled,1 piece (80g),80,220,16.0,5.0,15.0,0.8
+Chapli Kebab,BBQ & Grilled,2 pieces,160,440,32.0,10.0,30.0,1.6
+Tikka (Chicken),BBQ & Grilled,4 pieces (200g),200,290,38.0,4.0,14.0,0.5
+Tikka (Chicken),BBQ & Grilled,8 pieces (400g),400,580,76.0,8.0,28.0,1.0
+Tikka (Mutton),BBQ & Grilled,4 pieces,200,330,32.0,3.0,22.0,0.3
+Tikka (Mutton),BBQ & Grilled,8 pieces,400,660,64.0,6.0,44.0,0.6
+Boti Kebab,BBQ & Grilled,4 pieces (150g),150,265,28.0,2.0,17.0,0.4
+Boti Kebab,BBQ & Grilled,8 pieces (300g),300,530,56.0,4.0,34.0,0.8
+Gola Kebab,BBQ & Grilled,1 piece,70,185,14.0,4.0,13.0,0.5
+Gola Kebab,BBQ & Grilled,2 pieces,140,370,28.0,8.0,26.0,1.0
+Lassi (Sweet),Dairy & Drinks,Half Glass (200ml),200,140,5.0,22.0,5.0,0.0
+Lassi (Sweet),Dairy & Drinks,Full Glass (400ml),400,280,10.0,44.0,10.0,0.0
+Lassi (Salt),Dairy & Drinks,Half Glass,200,80,5.0,8.0,4.0,0.0
+Lassi (Salt),Dairy & Drinks,Full Glass,400,160,10.0,16.0,8.0,0.0
+Doodh (Full Fat Milk),Dairy & Drinks,Half Glass (125ml),125,75,4.0,6.0,4.0,0.0
+Doodh (Full Fat Milk),Dairy & Drinks,Full Glass (250ml),250,150,8.0,12.0,8.0,0.0
+Chai (Doodh Patti),Dairy & Drinks,Small Cup (150ml),150,70,3.0,8.0,3.0,0.0
+Chai (Doodh Patti),Dairy & Drinks,Medium Cup (250ml),250,115,5.0,13.0,5.0,0.0
+Chai (Doodh Patti),Dairy & Drinks,Large Mug (350ml),350,160,7.0,18.0,7.0,0.0
+Kheer,Dairy & Drinks,Half Bowl,150,220,5.0,35.0,7.0,0.3
+Kheer,Dairy & Drinks,Full Bowl,300,440,10.0,70.0,14.0,0.6
+Dahi (Plain Yogurt),Dairy & Drinks,2 Tbsp (50g),50,35,2.0,4.0,1.0,0.0
+Dahi (Plain Yogurt),Dairy & Drinks,Half Bowl (125g),125,88,5.0,10.0,3.0,0.0
+Dahi (Plain Yogurt),Dairy & Drinks,Full Bowl (250g),250,175,10.0,20.0,6.0,0.0
+Raita,Dairy & Drinks,Half Bowl,150,80,4.0,9.0,3.0,0.5
+Raita,Dairy & Drinks,Full Bowl,300,160,8.0,18.0,6.0,1.0
+Banana,Fruits,Small,80,72,1.0,18.0,0.0,2.0
+Banana,Fruits,Medium,120,107,1.0,27.0,0.0,3.1
+Banana,Fruits,Large,150,134,2.0,34.0,0.0,3.9
+Mango (Alfonso),Fruits,Half (150g),150,99,1.0,24.0,0.0,2.7
+Mango (Alfonso),Fruits,Full (300g),300,198,2.0,48.0,0.0,5.4
+Guava,Fruits,Small (100g),100,68,3.0,14.0,1.0,5.4
+Guava,Fruits,Medium (150g),150,102,4.0,21.0,2.0,8.1
+Apple,Fruits,Small (130g),130,68,0.0,18.0,0.0,2.4
+Apple,Fruits,Medium (180g),180,94,0.0,25.0,0.0,3.3
+Pomegranate,Fruits,Half (100g arils),100,83,2.0,19.0,1.0,4.0
+Pomegranate,Fruits,Full (200g arils),200,166,4.0,38.0,2.0,8.0
+Papaya,Fruits,Small Slice (150g),150,60,1.0,15.0,0.0,2.3
+Papaya,Fruits,Medium Bowl (300g),300,120,2.0,30.0,0.0,4.5
+Watermelon,Fruits,1 Slice (200g),200,60,1.0,15.0,0.0,0.8
+Watermelon,Fruits,2 Slices (400g),400,120,2.0,30.0,0.0,1.6
+Dates (Khajoor),Fruits,2 pieces (30g),30,83,1.0,22.0,0.0,2.0
+Dates (Khajoor),Fruits,5 pieces (75g),75,207,2.0,55.0,0.0,5.1
+Samosa (Aloo),Street Food,1 piece (80g),80,260,4.0,30.0,14.0,2.5
+Samosa (Aloo),Street Food,2 pieces,160,520,8.0,60.0,28.0,5.0
+Samosa (Beef/Chicken),Street Food,1 piece (90g),90,295,12.0,27.0,16.0,2.0
+Samosa (Beef/Chicken),Street Food,2 pieces,180,590,24.0,54.0,32.0,4.0
+Pakora (Vegetable),Street Food,4 pieces (80g),80,220,4.0,22.0,13.0,2.0
+Pakora (Vegetable),Street Food,8 pieces (160g),160,440,8.0,44.0,26.0,4.0
+Pakora (Chicken),Street Food,4 pieces (100g),100,265,15.0,18.0,15.0,1.5
+Pakora (Chicken),Street Food,8 pieces (200g),200,530,30.0,36.0,30.0,3.0
+Dahi Bhalla,Street Food,2 pieces (150g),150,220,7.0,30.0,8.0,2.0
+Dahi Bhalla,Street Food,4 pieces (300g),300,440,14.0,60.0,16.0,4.0
+Chaat (Aloo),Street Food,Half Plate (150g),150,180,4.0,30.0,6.0,3.0
+Chaat (Aloo),Street Food,Full Plate (300g),300,360,8.0,60.0,12.0,6.0
+Gol Gappa / Pani Puri,Street Food,4 pieces,60,100,2.0,18.0,3.0,1.0
+Gol Gappa / Pani Puri,Street Food,8 pieces,120,200,4.0,36.0,6.0,2.0
+Shawarma (Chicken),Street Food,Small,180,380,22.0,35.0,16.0,2.5
+Shawarma (Chicken),Street Food,Large,280,590,34.0,54.0,25.0,3.9
+Burger (Desi Style),Street Food,Small,180,420,20.0,38.0,20.0,2.0
+Burger (Desi Style),Street Food,Large,280,650,31.0,59.0,31.0,3.1
+Roll (Chicken),Street Food,Small,160,360,20.0,38.0,14.0,2.0
+Roll (Chicken),Street Food,Large,250,565,31.0,59.0,22.0,3.1
+Halwa Puri (Set),Street Food,1 Serving (2 Puri + Halwa),300,680,10.0,90.0,32.0,4.5
+Halwa Puri (Set),Street Food,2 Servings,600,1360,20.0,180.0,64.0,9.0
+Gulab Jamun,Sweets & Mithai,1 piece (40g),40,150,2.0,28.0,4.0,0.3
+Gulab Jamun,Sweets & Mithai,2 pieces,80,300,4.0,56.0,8.0,0.6
+Gulab Jamun,Sweets & Mithai,4 pieces,160,600,8.0,112.0,16.0,1.2
+Jalebi,Sweets & Mithai,2 pieces (50g),50,170,1.0,38.0,4.0,0.2
+Jalebi,Sweets & Mithai,4 pieces (100g),100,340,2.0,76.0,8.0,0.4
+Barfi (Milk),Sweets & Mithai,1 piece (40g),40,155,3.0,26.0,5.0,0.2
+Barfi (Milk),Sweets & Mithai,2 pieces,80,310,6.0,52.0,10.0,0.4
+Halwa (Suji),Sweets & Mithai,Half Bowl (100g),100,250,4.0,38.0,10.0,1.0
+Halwa (Suji),Sweets & Mithai,Full Bowl (200g),200,500,8.0,76.0,20.0,2.0
+Halwa (Gajar),Sweets & Mithai,Half Bowl (100g),100,215,4.0,32.0,8.0,2.5
+Halwa (Gajar),Sweets & Mithai,Full Bowl (200g),200,430,8.0,64.0,16.0,5.0
+Ladoo (Besan),Sweets & Mithai,1 piece (50g),50,210,4.0,28.0,10.0,1.2
+Ladoo (Besan),Sweets & Mithai,2 pieces,100,420,8.0,56.0,20.0,2.4
+Kheer,Sweets & Mithai,Half Bowl (150g),150,220,5.0,35.0,7.0,0.3
+Sheer Khurma,Sweets & Mithai,Half Bowl,150,280,7.0,40.0,10.0,1.5
+Sheer Khurma,Sweets & Mithai,Full Bowl,300,560,14.0,80.0,20.0,3.0
+Sawaiyan (Vermicelli),Sweets & Mithai,Half Bowl,150,240,5.0,38.0,8.0,0.8
+Sawaiyan (Vermicelli),Sweets & Mithai,Full Bowl,300,480,10.0,76.0,16.0,1.6
+Bread (White Sliced),Miscellaneous,1 slice (25g),25,67,2.0,13.0,1.0,0.5
+Bread (White Sliced),Miscellaneous,2 slices,50,134,4.0,26.0,2.0,1.0
+Bread (Brown Sliced),Miscellaneous,1 slice (28g),28,69,3.0,12.0,1.0,1.5
+Bread (Brown Sliced),Miscellaneous,2 slices,56,138,6.0,24.0,2.0,3.0
+Achar (Mango Pickle),Miscellaneous,1 tsp (10g),10,30,0.0,2.0,2.0,0.5
+Achar (Mango Pickle),Miscellaneous,1 tbsp (20g),20,60,0.0,4.0,4.0,1.0
+Chutney (Tamarind),Miscellaneous,1 tbsp (20g),20,45,0.0,11.0,0.0,0.3
+Chutney (Green),Miscellaneous,1 tbsp (20g),20,15,1.0,2.0,1.0,0.8
+Chole Bhature,Miscellaneous,Half Plate (1 bhatura),200,490,14.0,65.0,20.0,7.0
+Chole Bhature,Miscellaneous,Full Plate (2 bhatura),400,980,28.0,130.0,40.0,14.0
+Makki di Roti,Bread,1 piece,60,180,4.0,32.0,5.0,3.5
+Makki di Roti,Bread,2 pieces,120,360,8.0,64.0,10.0,7.0
+Saag (Sarson),Vegetables,Half Bowl,150,140,5.0,14.0,8.0,4.5
+Saag (Sarson),Vegetables,Full Bowl,300,280,10.0,28.0,16.0,9.0
+Meat Pulao (Yakhni),Rice & Biryani,Half Plate,200,360,18.0,48.0,10.0,1.5
+Meat Pulao (Yakhni),Rice & Biryani,Full Plate,400,720,36.0,96.0,20.0,3.0
+Falooda,Dairy & Drinks,Small Glass (300ml),300,310,6.0,55.0,8.0,2.0
+Falooda,Dairy & Drinks,Large Glass (500ml),500,515,10.0,92.0,13.0,3.3
+Rooh Afza Drink,Dairy & Drinks,1 Glass (250ml),250,115,0.0,29.0,0.0,0.0
+Kaali Daal (Black Lentil),Daal,Half Bowl,125,145,8.0,20.0,4.0,5.5
+Kaali Daal (Black Lentil),Daal,Full Bowl,250,290,16.0,40.0,8.0,11.0
+Zeera Rice,Rice & Biryani,Half Plate,150,215,4.0,45.0,2.0,0.8
+Zeera Rice,Rice & Biryani,Full Plate,300,430,8.0,90.0,4.0,1.6
+Kashmiri Chai (Pink Tea),Dairy & Drinks,Small Cup (150ml),150,95,3.0,11.0,5.0,0.0
+Kashmiri Chai (Pink Tea),Dairy & Drinks,Large Mug (300ml),300,190,6.0,22.0,10.0,0.0
+Pithora (Gram Flour Cake),Miscellaneous,1 Slice (80g),80,210,6.0,28.0,9.0,2.0
+Sindhi Biryani,Rice & Biryani,Half Plate,200,410,20.0,44.0,16.0,2.0
+Sindhi Biryani,Rice & Biryani,Full Plate,400,820,40.0,88.0,32.0,4.0
+Aloo Ki Bhujia,Vegetables,Half Bowl,100,135,2.0,18.0,7.0,2.5
+Aloo Ki Bhujia,Vegetables,Full Bowl,200,270,4.0,36.0,14.0,5.0
+Boiled Chicken (boneless),Boiled & Grilled Meats,50g,50,82,15.5,0.0,1.8,0.0
+Boiled Chicken (boneless),Boiled & Grilled Meats,100g,100,165,31.0,0.0,3.6,0.0
+Boiled Chicken (boneless),Boiled & Grilled Meats,150g,150,248,46.5,0.0,5.4,0.0
+Boiled Chicken (boneless),Boiled & Grilled Meats,200g,200,330,62.0,0.0,7.2,0.0
+Boiled Chicken (boneless),Boiled & Grilled Meats,250g,250,412,77.5,0.0,9.0,0.0
+Boiled Chicken (boneless),Boiled & Grilled Meats,300g,300,495,93.0,0.0,10.8,0.0
+Boiled Chicken (bone-in),Boiled & Grilled Meats,50g,50,70,11.0,0.0,3.0,0.0
+Boiled Chicken (bone-in),Boiled & Grilled Meats,100g,100,140,22.0,0.0,6.0,0.0
+Boiled Chicken (bone-in),Boiled & Grilled Meats,150g,150,210,33.0,0.0,9.0,0.0
+Boiled Chicken (bone-in),Boiled & Grilled Meats,200g,200,280,44.0,0.0,12.0,0.0
+Boiled Chicken (bone-in),Boiled & Grilled Meats,250g,250,350,55.0,0.0,15.0,0.0
+Boiled Chicken (bone-in),Boiled & Grilled Meats,300g,300,420,66.0,0.0,18.0,0.0
+Grilled Chicken Breast,Boiled & Grilled Meats,50g,50,82,15.5,0.0,1.8,0.0
+Grilled Chicken Breast,Boiled & Grilled Meats,100g,100,165,31.0,0.0,3.6,0.0
+Grilled Chicken Breast,Boiled & Grilled Meats,150g,150,248,46.5,0.0,5.4,0.0
+Grilled Chicken Breast,Boiled & Grilled Meats,200g,200,330,62.0,0.0,7.2,0.0
+Grilled Chicken Breast,Boiled & Grilled Meats,250g,250,412,77.5,0.0,9.0,0.0
+Grilled Chicken Breast,Boiled & Grilled Meats,300g,300,495,93.0,0.0,10.8,0.0
+Grilled Chicken Thigh,Boiled & Grilled Meats,50g,50,104,13.0,0.0,5.5,0.0
+Grilled Chicken Thigh,Boiled & Grilled Meats,100g,100,209,26.0,0.0,11.0,0.0
+Grilled Chicken Thigh,Boiled & Grilled Meats,150g,150,314,39.0,0.0,16.5,0.0
+Grilled Chicken Thigh,Boiled & Grilled Meats,200g,200,418,52.0,0.0,22.0,0.0
+Grilled Chicken Thigh,Boiled & Grilled Meats,250g,250,522,65.0,0.0,27.5,0.0
+Grilled Chicken Thigh,Boiled & Grilled Meats,300g,300,627,78.0,0.0,33.0,0.0
+Roasted Chicken Whole,Boiled & Grilled Meats,50g,50,108,14.5,0.0,5.5,0.0
+Roasted Chicken Whole,Boiled & Grilled Meats,100g,100,215,29.0,0.0,11.0,0.0
+Roasted Chicken Whole,Boiled & Grilled Meats,150g,150,322,43.5,0.0,16.5,0.0
+Roasted Chicken Whole,Boiled & Grilled Meats,200g,200,430,58.0,0.0,22.0,0.0
+Roasted Chicken Whole,Boiled & Grilled Meats,250g,250,538,72.5,0.0,27.5,0.0
+Roasted Chicken Whole,Boiled & Grilled Meats,300g,300,645,87.0,0.0,33.0,0.0
+Boiled Mutton,Boiled & Grilled Meats,50g,50,129,12.5,0.0,8.5,0.0
+Boiled Mutton,Boiled & Grilled Meats,100g,100,258,25.0,0.0,17.0,0.0
+Boiled Mutton,Boiled & Grilled Meats,150g,150,387,37.5,0.0,25.5,0.0
+Boiled Mutton,Boiled & Grilled Meats,200g,200,516,50.0,0.0,34.0,0.0
+Boiled Mutton,Boiled & Grilled Meats,250g,250,645,62.5,0.0,42.5,0.0
+Boiled Mutton,Boiled & Grilled Meats,300g,300,774,75.0,0.0,51.0,0.0
+Boiled Beef,Boiled & Grilled Meats,50g,50,125,13.0,0.0,7.5,0.0
+Boiled Beef,Boiled & Grilled Meats,100g,100,250,26.0,0.0,15.0,0.0
+Boiled Beef,Boiled & Grilled Meats,150g,150,375,39.0,0.0,22.5,0.0
+Boiled Beef,Boiled & Grilled Meats,200g,200,500,52.0,0.0,30.0,0.0
+Boiled Beef,Boiled & Grilled Meats,250g,250,625,65.0,0.0,37.5,0.0
+Boiled Beef,Boiled & Grilled Meats,300g,300,750,78.0,0.0,45.0,0.0
+Grilled Beef Steak,Boiled & Grilled Meats,50g,50,136,13.0,0.0,9.0,0.0
+Grilled Beef Steak,Boiled & Grilled Meats,100g,100,271,26.0,0.0,18.0,0.0
+Grilled Beef Steak,Boiled & Grilled Meats,150g,150,406,39.0,0.0,27.0,0.0
+Grilled Beef Steak,Boiled & Grilled Meats,200g,200,542,52.0,0.0,36.0,0.0
+Grilled Beef Steak,Boiled & Grilled Meats,250g,250,678,65.0,0.0,45.0,0.0
+Grilled Beef Steak,Boiled & Grilled Meats,300g,300,813,78.0,0.0,54.0,0.0
+Boiled Fish (Rohu),Boiled & Grilled Meats,50g,50,60,10.0,0.0,1.9,0.0
+Boiled Fish (Rohu),Boiled & Grilled Meats,100g,100,119,20.0,0.0,3.9,0.0
+Boiled Fish (Rohu),Boiled & Grilled Meats,150g,150,178,30.0,0.0,5.8,0.0
+Boiled Fish (Rohu),Boiled & Grilled Meats,200g,200,238,40.0,0.0,7.8,0.0
+Boiled Fish (Rohu),Boiled & Grilled Meats,250g,250,298,50.0,0.0,9.8,0.0
+Boiled Fish (Rohu),Boiled & Grilled Meats,300g,300,357,60.0,0.0,11.7,0.0
+Boiled Fish (Tilapia),Boiled & Grilled Meats,50g,50,64,13.0,0.0,1.4,0.0
+Boiled Fish (Tilapia),Boiled & Grilled Meats,100g,100,128,26.0,0.0,2.7,0.0
+Boiled Fish (Tilapia),Boiled & Grilled Meats,150g,150,192,39.0,0.0,4.1,0.0
+Boiled Fish (Tilapia),Boiled & Grilled Meats,200g,200,256,52.0,0.0,5.4,0.0
+Boiled Fish (Tilapia),Boiled & Grilled Meats,250g,250,320,65.0,0.0,6.8,0.0
+Boiled Fish (Tilapia),Boiled & Grilled Meats,300g,300,384,78.0,0.0,8.1,0.0
+Boiled Fish (Pomfret),Boiled & Grilled Meats,50g,50,61,11.0,0.0,1.8,0.0
+Boiled Fish (Pomfret),Boiled & Grilled Meats,100g,100,122,22.0,0.0,3.5,0.0
+Boiled Fish (Pomfret),Boiled & Grilled Meats,150g,150,183,33.0,0.0,5.2,0.0
+Boiled Fish (Pomfret),Boiled & Grilled Meats,200g,200,244,44.0,0.0,7.0,0.0
+Boiled Fish (Pomfret),Boiled & Grilled Meats,250g,250,305,55.0,0.0,8.8,0.0
+Boiled Fish (Pomfret),Boiled & Grilled Meats,300g,300,366,66.0,0.0,10.5,0.0
+Grilled Fish (Surmai),Boiled & Grilled Meats,50g,50,65,12.0,0.0,1.5,0.0
+Grilled Fish (Surmai),Boiled & Grilled Meats,100g,100,130,24.0,0.0,3.0,0.0
+Grilled Fish (Surmai),Boiled & Grilled Meats,150g,150,195,36.0,0.0,4.5,0.0
+Grilled Fish (Surmai),Boiled & Grilled Meats,200g,200,260,48.0,0.0,6.0,0.0
+Grilled Fish (Surmai),Boiled & Grilled Meats,250g,250,325,60.0,0.0,7.5,0.0
+Grilled Fish (Surmai),Boiled & Grilled Meats,300g,300,390,72.0,0.0,9.0,0.0
+Boiled Shrimp (Jheenga),Boiled & Grilled Meats,50g,50,50,12.0,0.0,0.1,0.0
+Boiled Shrimp (Jheenga),Boiled & Grilled Meats,100g,100,99,24.0,0.0,0.3,0.0
+Boiled Shrimp (Jheenga),Boiled & Grilled Meats,150g,150,148,36.0,0.0,0.4,0.0
+Boiled Shrimp (Jheenga),Boiled & Grilled Meats,200g,200,198,48.0,0.0,0.6,0.0
+Boiled Shrimp (Jheenga),Boiled & Grilled Meats,250g,250,248,60.0,0.0,0.8,0.0
+Boiled Shrimp (Jheenga),Boiled & Grilled Meats,300g,300,297,72.0,0.0,0.9,0.0
+Boiled Lentils (Masoor),Boiled & Grilled Meats,50g,50,58,4.5,10.0,0.2,0.0
+Boiled Lentils (Masoor),Boiled & Grilled Meats,100g,100,116,9.0,20.0,0.4,0.0
+Boiled Lentils (Masoor),Boiled & Grilled Meats,150g,150,174,13.5,30.0,0.6,0.0
+Boiled Lentils (Masoor),Boiled & Grilled Meats,200g,200,232,18.0,40.0,0.8,0.0
+Boiled Lentils (Masoor),Boiled & Grilled Meats,250g,250,290,22.5,50.0,1.0,0.0
+Boiled Lentils (Masoor),Boiled & Grilled Meats,300g,300,348,27.0,60.0,1.2,0.0
+Boiled Chickpeas (Chana),Boiled & Grilled Meats,50g,50,82,4.5,13.5,1.3,0.0
+Boiled Chickpeas (Chana),Boiled & Grilled Meats,100g,100,164,9.0,27.0,2.6,0.0
+Boiled Chickpeas (Chana),Boiled & Grilled Meats,150g,150,246,13.5,40.5,3.9,0.0
+Boiled Chickpeas (Chana),Boiled & Grilled Meats,200g,200,328,18.0,54.0,5.2,0.0
+Boiled Chickpeas (Chana),Boiled & Grilled Meats,250g,250,410,22.5,67.5,6.5,0.0
+Boiled Chickpeas (Chana),Boiled & Grilled Meats,300g,300,492,27.0,81.0,7.8,0.0
+Boiled Kidney Beans,Boiled & Grilled Meats,50g,50,64,4.5,11.5,0.2,0.0
+Boiled Kidney Beans,Boiled & Grilled Meats,100g,100,127,9.0,23.0,0.5,0.0
+Boiled Kidney Beans,Boiled & Grilled Meats,150g,150,190,13.5,34.5,0.8,0.0
+Boiled Kidney Beans,Boiled & Grilled Meats,200g,200,254,18.0,46.0,1.0,0.0
+Boiled Kidney Beans,Boiled & Grilled Meats,250g,250,318,22.5,57.5,1.2,0.0
+Boiled Kidney Beans,Boiled & Grilled Meats,300g,300,381,27.0,69.0,1.5,0.0
+Boiled Egg,Boiled & Grilled Meats,50g,50,39,3.0,0.5,2.5,0.0
+Boiled Egg,Boiled & Grilled Meats,100g,100,78,6.0,1.0,5.0,0.0
+Boiled Egg,Boiled & Grilled Meats,150g,150,117,9.0,1.5,7.5,0.0
+Boiled Egg,Boiled & Grilled Meats,200g,200,156,12.0,2.0,10.0,0.0
+Boiled Egg,Boiled & Grilled Meats,250g,250,195,15.0,2.5,12.5,0.0
+Boiled Egg,Boiled & Grilled Meats,300g,300,234,18.0,3.0,15.0,0.0
+Boiled Potato,Boiled & Grilled Meats,50g,50,44,1.0,10.0,0.1,0.0
+Boiled Potato,Boiled & Grilled Meats,100g,100,87,2.0,20.0,0.1,0.0
+Boiled Potato,Boiled & Grilled Meats,150g,150,130,3.0,30.0,0.2,0.0
+Boiled Potato,Boiled & Grilled Meats,200g,200,174,4.0,40.0,0.2,0.0
+Boiled Potato,Boiled & Grilled Meats,250g,250,218,5.0,50.0,0.2,0.0
+Boiled Potato,Boiled & Grilled Meats,300g,300,261,6.0,60.0,0.3,0.0
+Boiled Sweet Potato,Boiled & Grilled Meats,50g,50,45,1.0,10.5,0.1,0.0
+Boiled Sweet Potato,Boiled & Grilled Meats,100g,100,90,2.0,21.0,0.1,0.0
+Boiled Sweet Potato,Boiled & Grilled Meats,150g,150,135,3.0,31.5,0.2,0.0
+Boiled Sweet Potato,Boiled & Grilled Meats,200g,200,180,4.0,42.0,0.2,0.0
+Boiled Sweet Potato,Boiled & Grilled Meats,250g,250,225,5.0,52.5,0.2,0.0
+Boiled Sweet Potato,Boiled & Grilled Meats,300g,300,270,6.0,63.0,0.3,0.0
+Mango Shake,Shakes & Drinks,250ml (1 glass),250,242,6.2,45.0,6.2,0.0
+Mango Shake,Shakes & Drinks,500ml (half liter),500,485,12.5,90.0,12.5,0.0
+Mango Shake,Shakes & Drinks,750ml (3/4 liter),750,728,18.8,135.0,18.8,0.0
+Mango Shake,Shakes & Drinks,1 liter,1000,970,25.0,180.0,25.0,0.0
+Banana Shake,Shakes & Drinks,250ml (1 glass),250,238,7.5,42.5,6.2,0.0
+Banana Shake,Shakes & Drinks,500ml (half liter),500,475,15.0,85.0,12.5,0.0
+Banana Shake,Shakes & Drinks,750ml (3/4 liter),750,712,22.5,127.5,18.8,0.0
+Banana Shake,Shakes & Drinks,1 liter,1000,950,30.0,170.0,25.0,0.0
+Strawberry Shake,Shakes & Drinks,250ml (1 glass),250,212,7.5,35.0,6.2,0.0
+Strawberry Shake,Shakes & Drinks,500ml (half liter),500,425,15.0,70.0,12.5,0.0
+Strawberry Shake,Shakes & Drinks,750ml (3/4 liter),750,638,22.5,105.0,18.8,0.0
+Strawberry Shake,Shakes & Drinks,1 liter,1000,850,30.0,140.0,25.0,0.0
+Chocolate Shake,Shakes & Drinks,250ml (1 glass),250,300,8.8,45.0,10.0,0.0
+Chocolate Shake,Shakes & Drinks,500ml (half liter),500,600,17.5,90.0,20.0,0.0
+Chocolate Shake,Shakes & Drinks,750ml (3/4 liter),750,900,26.2,135.0,30.0,0.0
+Chocolate Shake,Shakes & Drinks,1 liter,1000,1200,35.0,180.0,40.0,0.0
+Vanilla Shake,Shakes & Drinks,250ml (1 glass),250,245,7.5,40.0,7.5,0.0
+Vanilla Shake,Shakes & Drinks,500ml (half liter),500,490,15.0,80.0,15.0,0.0
+Vanilla Shake,Shakes & Drinks,750ml (3/4 liter),750,735,22.5,120.0,22.5,0.0
+Vanilla Shake,Shakes & Drinks,1 liter,1000,980,30.0,160.0,30.0,0.0
+Oreo Shake,Shakes & Drinks,250ml (1 glass),250,388,10.0,55.0,15.0,0.0
+Oreo Shake,Shakes & Drinks,500ml (half liter),500,775,20.0,110.0,30.0,0.0
+Oreo Shake,Shakes & Drinks,750ml (3/4 liter),750,1162,30.0,165.0,45.0,0.0
+Oreo Shake,Shakes & Drinks,1 liter,1000,1550,40.0,220.0,60.0,0.0
+Falsa Shake,Shakes & Drinks,250ml (1 glass),250,200,6.2,35.0,5.0,0.0
+Falsa Shake,Shakes & Drinks,500ml (half liter),500,400,12.5,70.0,10.0,0.0
+Falsa Shake,Shakes & Drinks,750ml (3/4 liter),750,600,18.8,105.0,15.0,0.0
+Falsa Shake,Shakes & Drinks,1 liter,1000,800,25.0,140.0,20.0,0.0
+Guava Shake,Shakes & Drinks,250ml (1 glass),250,220,6.2,37.5,6.2,0.0
+Guava Shake,Shakes & Drinks,500ml (half liter),500,440,12.5,75.0,12.5,0.0
+Guava Shake,Shakes & Drinks,750ml (3/4 liter),750,660,18.8,112.5,18.8,0.0
+Guava Shake,Shakes & Drinks,1 liter,1000,880,25.0,150.0,25.0,0.0
+Chikoo (Sapodilla) Shake,Shakes & Drinks,250ml (1 glass),250,262,6.2,50.0,6.2,0.0
+Chikoo (Sapodilla) Shake,Shakes & Drinks,500ml (half liter),500,525,12.5,100.0,12.5,0.0
+Chikoo (Sapodilla) Shake,Shakes & Drinks,750ml (3/4 liter),750,788,18.8,150.0,18.8,0.0
+Chikoo (Sapodilla) Shake,Shakes & Drinks,1 liter,1000,1050,25.0,200.0,25.0,0.0
+Avocado Shake,Shakes & Drinks,250ml (1 glass),250,350,6.2,30.0,22.5,0.0
+Avocado Shake,Shakes & Drinks,500ml (half liter),500,700,12.5,60.0,45.0,0.0
+Avocado Shake,Shakes & Drinks,750ml (3/4 liter),750,1050,18.8,90.0,67.5,0.0
+Avocado Shake,Shakes & Drinks,1 liter,1000,1400,25.0,120.0,90.0,0.0
+Pineapple Shake,Shakes & Drinks,250ml (1 glass),250,205,6.2,37.5,5.0,0.0
+Pineapple Shake,Shakes & Drinks,500ml (half liter),500,410,12.5,75.0,10.0,0.0
+Pineapple Shake,Shakes & Drinks,750ml (3/4 liter),750,615,18.8,112.5,15.0,0.0
+Pineapple Shake,Shakes & Drinks,1 liter,1000,820,25.0,150.0,20.0,0.0
+Watermelon Shake,Shakes & Drinks,250ml (1 glass),250,150,3.8,32.5,1.2,0.0
+Watermelon Shake,Shakes & Drinks,500ml (half liter),500,300,7.5,65.0,2.5,0.0
+Watermelon Shake,Shakes & Drinks,750ml (3/4 liter),750,450,11.2,97.5,3.8,0.0
+Watermelon Shake,Shakes & Drinks,1 liter,1000,600,15.0,130.0,5.0,0.0
+Lychee Shake,Shakes & Drinks,250ml (1 glass),250,230,5.0,45.0,5.0,0.0
+Lychee Shake,Shakes & Drinks,500ml (half liter),500,460,10.0,90.0,10.0,0.0
+Lychee Shake,Shakes & Drinks,750ml (3/4 liter),750,690,15.0,135.0,15.0,0.0
+Lychee Shake,Shakes & Drinks,1 liter,1000,920,20.0,180.0,20.0,0.0
+Pomegranate Shake,Shakes & Drinks,250ml (1 glass),250,225,5.0,42.5,5.0,0.0
+Pomegranate Shake,Shakes & Drinks,500ml (half liter),500,450,10.0,85.0,10.0,0.0
+Pomegranate Shake,Shakes & Drinks,750ml (3/4 liter),750,675,15.0,127.5,15.0,0.0
+Pomegranate Shake,Shakes & Drinks,1 liter,1000,900,20.0,170.0,20.0,0.0
+Mixed Fruit Shake,Shakes & Drinks,250ml (1 glass),250,230,6.2,40.0,6.2,0.0
+Mixed Fruit Shake,Shakes & Drinks,500ml (half liter),500,460,12.5,80.0,12.5,0.0
+Mixed Fruit Shake,Shakes & Drinks,750ml (3/4 liter),750,690,18.8,120.0,18.8,0.0
+Mixed Fruit Shake,Shakes & Drinks,1 liter,1000,920,25.0,160.0,25.0,0.0
+Peanut Butter Shake,Shakes & Drinks,250ml (1 glass),250,425,17.5,45.0,20.0,0.0
+Peanut Butter Shake,Shakes & Drinks,500ml (half liter),500,850,35.0,90.0,40.0,0.0
+Peanut Butter Shake,Shakes & Drinks,750ml (3/4 liter),750,1275,52.5,135.0,60.0,0.0
+Peanut Butter Shake,Shakes & Drinks,1 liter,1000,1700,70.0,180.0,80.0,0.0
+Dates (Khajoor) Shake,Shakes & Drinks,250ml (1 glass),250,338,7.5,65.0,5.0,0.0
+Dates (Khajoor) Shake,Shakes & Drinks,500ml (half liter),500,675,15.0,130.0,10.0,0.0
+Dates (Khajoor) Shake,Shakes & Drinks,750ml (3/4 liter),750,1012,22.5,195.0,15.0,0.0
+Dates (Khajoor) Shake,Shakes & Drinks,1 liter,1000,1350,30.0,260.0,20.0,0.0
+Rooh Afza Shake,Shakes & Drinks,250ml (1 glass),250,275,7.5,47.5,6.2,0.0
+Rooh Afza Shake,Shakes & Drinks,500ml (half liter),500,550,15.0,95.0,12.5,0.0
+Rooh Afza Shake,Shakes & Drinks,750ml (3/4 liter),750,825,22.5,142.5,18.8,0.0
+Rooh Afza Shake,Shakes & Drinks,1 liter,1000,1100,30.0,190.0,25.0,0.0
+Kesar Badam Shake,Shakes & Drinks,250ml (1 glass),250,325,10.0,45.0,11.2,0.0
+Kesar Badam Shake,Shakes & Drinks,500ml (half liter),500,650,20.0,90.0,22.5,0.0
+Kesar Badam Shake,Shakes & Drinks,750ml (3/4 liter),750,975,30.0,135.0,33.8,0.0
+Kesar Badam Shake,Shakes & Drinks,1 liter,1000,1300,40.0,180.0,45.0,0.0
+Green Smoothie,Shakes & Drinks,250ml (1 glass),250,175,5.0,30.0,3.8,0.0
+Green Smoothie,Shakes & Drinks,500ml (half liter),500,350,10.0,60.0,7.5,0.0
+Green Smoothie,Shakes & Drinks,750ml (3/4 liter),750,525,15.0,90.0,11.2,0.0
+Green Smoothie,Shakes & Drinks,1 liter,1000,700,20.0,120.0,15.0,0.0
+Lassi (Sweet),Shakes & Drinks,250ml (1 glass),250,175,8.8,27.5,6.2,0.0
+Lassi (Sweet),Shakes & Drinks,500ml (half liter),500,350,17.5,55.0,12.5,0.0
+Lassi (Sweet),Shakes & Drinks,750ml (3/4 liter),750,525,26.2,82.5,18.8,0.0
+Lassi (Sweet),Shakes & Drinks,1 liter,1000,700,35.0,110.0,25.0,0.0
+Lassi (Salt),Shakes & Drinks,250ml (1 glass),250,125,7.5,12.5,6.2,0.0
+Lassi (Salt),Shakes & Drinks,500ml (half liter),500,250,15.0,25.0,12.5,0.0
+Lassi (Salt),Shakes & Drinks,750ml (3/4 liter),750,375,22.5,37.5,18.8,0.0
+Lassi (Salt),Shakes & Drinks,1 liter,1000,500,30.0,50.0,25.0,0.0
+Mango Lassi,Shakes & Drinks,250ml (1 glass),250,212,7.5,37.5,6.2,0.0
+Mango Lassi,Shakes & Drinks,500ml (half liter),500,425,15.0,75.0,12.5,0.0
+Mango Lassi,Shakes & Drinks,750ml (3/4 liter),750,638,22.5,112.5,18.8,0.0
+Mango Lassi,Shakes & Drinks,1 liter,1000,850,30.0,150.0,25.0,0.0
+Doodh Patti Chai,Shakes & Drinks,250ml (1 glass),250,115,5.0,12.5,5.0,0.0
+Doodh Patti Chai,Shakes & Drinks,500ml (half liter),500,230,10.0,25.0,10.0,0.0
+Doodh Patti Chai,Shakes & Drinks,750ml (3/4 liter),750,345,15.0,37.5,15.0,0.0
+Doodh Patti Chai,Shakes & Drinks,1 liter,1000,460,20.0,50.0,20.0,0.0
+Kashmiri Chai,Shakes & Drinks,250ml (1 glass),250,158,5.0,17.5,7.5,0.0
+Kashmiri Chai,Shakes & Drinks,500ml (half liter),500,315,10.0,35.0,15.0,0.0
+Kashmiri Chai,Shakes & Drinks,750ml (3/4 liter),750,472,15.0,52.5,22.5,0.0
+Kashmiri Chai,Shakes & Drinks,1 liter,1000,630,20.0,70.0,30.0,0.0
+Falooda Drink,Shakes & Drinks,250ml (1 glass),250,260,5.0,45.0,6.2,0.0
+Falooda Drink,Shakes & Drinks,500ml (half liter),500,520,10.0,90.0,12.5,0.0
+Falooda Drink,Shakes & Drinks,750ml (3/4 liter),750,780,15.0,135.0,18.8,0.0
+Falooda Drink,Shakes & Drinks,1 liter,1000,1040,20.0,180.0,25.0,0.0
+Rooh Afza Drink,Shakes & Drinks,250ml (1 glass),250,115,0.0,30.0,0.0,0.0
+Rooh Afza Drink,Shakes & Drinks,500ml (half liter),500,230,0.0,60.0,0.0,0.0
+Rooh Afza Drink,Shakes & Drinks,750ml (3/4 liter),750,345,0.0,90.0,0.0,0.0
+Rooh Afza Drink,Shakes & Drinks,1 liter,1000,460,0.0,120.0,0.0,0.0
+Limopani,Shakes & Drinks,250ml (1 glass),250,100,0.0,25.0,0.0,0.0
+Limopani,Shakes & Drinks,500ml (half liter),500,200,0.0,50.0,0.0,0.0
+Limopani,Shakes & Drinks,750ml (3/4 liter),750,300,0.0,75.0,0.0,0.0
+Limopani,Shakes & Drinks,1 liter,1000,400,0.0,100.0,0.0,0.0
+Sugarcane Juice,Shakes & Drinks,250ml (1 glass),250,150,0.5,37.5,0.5,0.0
+Sugarcane Juice,Shakes & Drinks,500ml (half liter),500,300,1.0,75.0,1.0,0.0
+Sugarcane Juice,Shakes & Drinks,750ml (3/4 liter),750,450,1.5,112.5,1.5,0.0
+Sugarcane Juice,Shakes & Drinks,1 liter,1000,600,2.0,150.0,2.0,0.0
+Coconut Water,Shakes & Drinks,250ml (1 glass),250,48,1.8,7.5,0.5,0.0
+Coconut Water,Shakes & Drinks,500ml (half liter),500,95,3.5,15.0,1.0,0.0
+Coconut Water,Shakes & Drinks,750ml (3/4 liter),750,142,5.2,22.5,1.5,0.0
+Coconut Water,Shakes & Drinks,1 liter,1000,190,7.0,30.0,2.0,0.0
+Walls Cornetto Classic,Ice Cream (Walls),1 cone (90ml),90,190,3.0,27.0,8.0,0.0
+Walls Cornetto Classic,Ice Cream (Walls),2× 1 cone,180,380,6.0,54.0,16.0,0.0
+Walls Cornetto Chocolate,Ice Cream (Walls),1 cone (90ml),90,210,3.5,28.0,9.5,0.0
+Walls Cornetto Chocolate,Ice Cream (Walls),2× 1 cone,180,420,7.0,56.0,19.0,0.0
+Walls Cornetto Strawberry,Ice Cream (Walls),1 cone (90ml),90,195,3.0,27.0,8.5,0.0
+Walls Cornetto Strawberry,Ice Cream (Walls),2× 1 cone,180,390,6.0,54.0,17.0,0.0
+Walls Cornetto Royale,Ice Cream (Walls),1 cone (110ml),110,240,4.0,32.0,10.5,0.0
+Walls Cornetto Royale,Ice Cream (Walls),2× 1 cone,220,480,8.0,64.0,21.0,0.0
+Walls Feast Bar,Ice Cream (Walls),1 bar (90ml),73,200,2.5,23.0,11.0,0.0
+Walls Feast Bar,Ice Cream (Walls),2× 1 bar,146,400,5.0,46.0,22.0,0.0
+Walls Feast Mango,Ice Cream (Walls),1 bar (90ml),73,175,2.0,26.0,7.5,0.0
+Walls Feast Mango,Ice Cream (Walls),2× 1 bar,146,350,4.0,52.0,15.0,0.0
+Walls Calippo Orange,Ice Cream (Walls),1 tube (105ml),80,80,0.5,19.0,0.0,0.0
+Walls Calippo Orange,Ice Cream (Walls),2× 1 tube,160,160,1.0,38.0,0.0,0.0
+Walls Calippo Mango,Ice Cream (Walls),1 tube (105ml),80,85,0.5,20.0,0.0,0.0
+Walls Calippo Mango,Ice Cream (Walls),2× 1 tube,160,170,1.0,40.0,0.0,0.0
+Walls Twister,Ice Cream (Walls),1 bar (80ml),72,80,0.5,18.0,0.5,0.0
+Walls Twister,Ice Cream (Walls),2× 1 bar,144,160,1.0,36.0,1.0,0.0
+Walls Paddle Pop Chocolate,Ice Cream (Walls),1 bar (60ml),50,95,1.5,15.0,3.5,0.0
+Walls Paddle Pop Chocolate,Ice Cream (Walls),2× 1 bar,100,190,3.0,30.0,7.0,0.0
+Walls Paddle Pop Strawberry,Ice Cream (Walls),1 bar (60ml),50,85,1.5,14.0,3.0,0.0
+Walls Paddle Pop Strawberry,Ice Cream (Walls),2× 1 bar,100,170,3.0,28.0,6.0,0.0
+Walls Paddle Pop Mango,Ice Cream (Walls),1 bar (60ml),50,80,1.5,13.0,3.0,0.0
+Walls Paddle Pop Mango,Ice Cream (Walls),2× 1 bar,100,160,3.0,26.0,6.0,0.0
+Walls Magnum Classic,Ice Cream (Walls),1 bar (120ml),100,280,3.5,29.0,16.5,0.0
+Walls Magnum Classic,Ice Cream (Walls),2× 1 bar,200,560,7.0,58.0,33.0,0.0
+Walls Magnum Almond,Ice Cream (Walls),1 bar (120ml),107,310,4.5,28.0,20.0,0.0
+Walls Magnum Almond,Ice Cream (Walls),2× 1 bar,214,620,9.0,56.0,40.0,0.0
+Walls Magnum Double Chocolate,Ice Cream (Walls),1 bar (120ml),113,335,4.5,32.0,21.0,0.0
+Walls Magnum Double Chocolate,Ice Cream (Walls),2× 1 bar,226,670,9.0,64.0,42.0,0.0
+Walls Magnum White,Ice Cream (Walls),1 bar (120ml),100,285,3.5,31.0,16.0,0.0
+Walls Magnum White,Ice Cream (Walls),2× 1 bar,200,570,7.0,62.0,32.0,0.0
+Walls Carte D'Or Vanilla,Ice Cream (Walls),1 scoop (100ml),66,175,3.0,23.0,8.5,0.0
+Walls Carte D'Or Vanilla,Ice Cream (Walls),2× 1 scoop,132,350,6.0,46.0,17.0,0.0
+Walls Carte D'Or Strawberry,Ice Cream (Walls),1 scoop (100ml),66,165,3.0,22.0,8.0,0.0
+Walls Carte D'Or Strawberry,Ice Cream (Walls),2× 1 scoop,132,330,6.0,44.0,16.0,0.0
+Walls Carte D'Or Chocolate,Ice Cream (Walls),1 scoop (100ml),66,190,3.5,24.0,9.5,0.0
+Walls Carte D'Or Chocolate,Ice Cream (Walls),2× 1 scoop,132,380,7.0,48.0,19.0,0.0
+Walls Kulfi Mango,Ice Cream (Walls),1 kulfi (80ml),65,130,2.5,19.0,5.0,0.0
+Walls Kulfi Mango,Ice Cream (Walls),2× 1 kulfi,130,260,5.0,38.0,10.0,0.0
+Walls Kulfi Malai,Ice Cream (Walls),1 kulfi (80ml),65,140,3.0,18.0,6.0,0.0
+Walls Kulfi Malai,Ice Cream (Walls),2× 1 kulfi,130,280,6.0,36.0,12.0,0.0
+Walls Kulfi Pista,Ice Cream (Walls),1 kulfi (80ml),70,155,3.5,19.0,7.0,0.0
+Walls Kulfi Pista,Ice Cream (Walls),2× 1 kulfi,140,310,7.0,38.0,14.0,0.0
+Igloo Choc Bar Classic,Ice Cream (Igloo),1 bar (75ml),60,175,2.5,22.0,9.0,0.0
+Igloo Choc Bar Classic,Ice Cream (Igloo),2× 1 bar,120,350,5.0,44.0,18.0,0.0
+Igloo Choc Bar Almond,Ice Cream (Igloo),1 bar (75ml),65,190,3.0,21.0,10.5,0.0
+Igloo Choc Bar Almond,Ice Cream (Igloo),2× 1 bar,130,380,6.0,42.0,21.0,0.0
+Igloo Cono Vanilla,Ice Cream (Igloo),1 cone (90ml),72,185,3.0,25.0,8.5,0.0
+Igloo Cono Vanilla,Ice Cream (Igloo),2× 1 cone,144,370,6.0,50.0,17.0,0.0
+Igloo Cono Chocolate,Ice Cream (Igloo),1 cone (90ml),72,200,3.5,26.0,9.5,0.0
+Igloo Cono Chocolate,Ice Cream (Igloo),2× 1 cone,144,400,7.0,52.0,19.0,0.0
+Igloo Cono Strawberry,Ice Cream (Igloo),1 cone (90ml),72,185,3.0,25.0,8.5,0.0
+Igloo Cono Strawberry,Ice Cream (Igloo),2× 1 cone,144,370,6.0,50.0,17.0,0.0
+Igloo Cassata Slice,Ice Cream (Igloo),1 slice (100g),90,195,3.0,28.0,8.5,0.0
+Igloo Cassata Slice,Ice Cream (Igloo),2× 1 slice,180,390,6.0,56.0,17.0,0.0
+Igloo Vanilla Tub,Ice Cream (Igloo),1 scoop (100g),80,170,3.0,22.0,8.0,0.0
+Igloo Vanilla Tub,Ice Cream (Igloo),2× 1 scoop,160,340,6.0,44.0,16.0,0.0
+Igloo Strawberry Tub,Ice Cream (Igloo),1 scoop (100g),80,165,3.0,22.0,7.5,0.0
+Igloo Strawberry Tub,Ice Cream (Igloo),2× 1 scoop,160,330,6.0,44.0,15.0,0.0
+Igloo Kulfi Malai,Ice Cream (Igloo),1 kulfi (70ml),58,130,2.5,18.0,5.5,0.0
+Igloo Kulfi Malai,Ice Cream (Igloo),2× 1 kulfi,116,260,5.0,36.0,11.0,0.0
+Igloo Kulfi Mango,Ice Cream (Igloo),1 kulfi (70ml),58,125,2.5,18.0,5.0,0.0
+Igloo Kulfi Mango,Ice Cream (Igloo),2× 1 kulfi,116,250,5.0,36.0,10.0,0.0
+Igloo Ice Cream Sandwich,Ice Cream (Igloo),1 piece (90g),78,215,3.5,32.0,8.5,0.0
+Igloo Ice Cream Sandwich,Ice Cream (Igloo),2× 1 piece,156,430,7.0,64.0,17.0,0.0
+Igloo Popsicle Mango,Ice Cream (Igloo),1 bar (60ml),48,65,0.3,16.0,0.0,0.0
+Igloo Popsicle Mango,Ice Cream (Igloo),2× 1 bar,96,130,0.6,32.0,0.0,0.0
+Igloo Popsicle Orange,Ice Cream (Igloo),1 bar (60ml),48,60,0.3,15.0,0.0,0.0
+Igloo Popsicle Orange,Ice Cream (Igloo),2× 1 bar,96,120,0.6,30.0,0.0,0.0
+Carnoti Classic Vanilla,Ice Cream (Carnoti),1 scoop (100g),80,185,3.5,24.0,8.5,0.0
+Carnoti Classic Vanilla,Ice Cream (Carnoti),2× 1 scoop,160,370,7.0,48.0,17.0,0.0
+Carnoti Chocolate,Ice Cream (Carnoti),1 scoop (100g),80,200,4.0,25.0,10.0,0.0
+Carnoti Chocolate,Ice Cream (Carnoti),2× 1 scoop,160,400,8.0,50.0,20.0,0.0
+Carnoti Strawberry,Ice Cream (Carnoti),1 scoop (100g),80,180,3.5,23.0,8.5,0.0
+Carnoti Strawberry,Ice Cream (Carnoti),2× 1 scoop,160,360,7.0,46.0,17.0,0.0
+Carnoti Mango,Ice Cream (Carnoti),1 scoop (100g),80,175,3.0,24.0,7.5,0.0
+Carnoti Mango,Ice Cream (Carnoti),2× 1 scoop,160,350,6.0,48.0,15.0,0.0
+Carnoti Pista,Ice Cream (Carnoti),1 scoop (100g),85,210,4.5,23.0,11.0,0.0
+Carnoti Pista,Ice Cream (Carnoti),2× 1 scoop,170,420,9.0,46.0,22.0,0.0
+Carnoti Kesar Malai,Ice Cream (Carnoti),1 scoop (100g),85,205,4.0,24.0,10.5,0.0
+Carnoti Kesar Malai,Ice Cream (Carnoti),2× 1 scoop,170,410,8.0,48.0,21.0,0.0
+Carnoti Tub Assorted,Ice Cream (Carnoti),1 scoop (100g),80,190,3.5,24.0,9.0,0.0
+Carnoti Tub Assorted,Ice Cream (Carnoti),2× 1 scoop,160,380,7.0,48.0,18.0,0.0
+Carnoti Kulfi,Ice Cream (Carnoti),1 kulfi (80g),70,145,3.0,19.0,6.0,0.0
+Carnoti Kulfi,Ice Cream (Carnoti),2× 1 kulfi,140,290,6.0,38.0,12.0,0.0
+Carnoti Sundae Cup,Ice Cream (Carnoti),1 cup (150g),120,285,5.0,37.0,13.0,0.0
+Carnoti Sundae Cup,Ice Cream (Carnoti),2× 1 cup,240,570,10.0,74.0,26.0,0.0
+Omore Twister Mango,Ice Cream (Omore),1 bar (80ml),65,75,0.3,18.0,0.0,0.0
+Omore Twister Mango,Ice Cream (Omore),2× 1 bar,130,150,0.6,36.0,0.0,0.0
+Omore Twister Strawberry,Ice Cream (Omore),1 bar (80ml),65,70,0.3,17.0,0.0,0.0
+Omore Twister Strawberry,Ice Cream (Omore),2× 1 bar,130,140,0.6,34.0,0.0,0.0
+Omore Cono Vanilla,Ice Cream (Omore),1 cone (90ml),72,180,3.0,24.0,8.0,0.0
+Omore Cono Vanilla,Ice Cream (Omore),2× 1 cone,144,360,6.0,48.0,16.0,0.0
+Omore Cono Chocolate,Ice Cream (Omore),1 cone (90ml),72,195,3.5,25.0,9.0,0.0
+Omore Cono Chocolate,Ice Cream (Omore),2× 1 cone,144,390,7.0,50.0,18.0,0.0
+Omore Choc Bar,Ice Cream (Omore),1 bar (75ml),60,170,2.5,22.0,8.5,0.0
+Omore Choc Bar,Ice Cream (Omore),2× 1 bar,120,340,5.0,44.0,17.0,0.0
+Omore Kulfi Mango,Ice Cream (Omore),1 kulfi (70ml),58,120,2.5,17.0,4.5,0.0
+Omore Kulfi Mango,Ice Cream (Omore),2× 1 kulfi,116,240,5.0,34.0,9.0,0.0
+Omore Vanilla Tub,Ice Cream (Omore),1 scoop (100g),80,175,3.0,23.0,8.0,0.0
+Omore Vanilla Tub,Ice Cream (Omore),2× 1 scoop,160,350,6.0,46.0,16.0,0.0
+Lolly (Ice Candy) Plain,Ice Cream (Generic Ice Cream),1 piece (60ml),50,55,0.0,13.0,0.0,0.0
+Lolly (Ice Candy) Plain,Ice Cream (Generic Ice Cream),2× 1 piece,100,110,0.0,26.0,0.0,0.0
+Kulfi (Homemade Malai),Ice Cream (Generic Ice Cream),1 kulfi (80g),70,155,3.5,18.0,7.5,0.0
+Kulfi (Homemade Malai),Ice Cream (Generic Ice Cream),2× 1 kulfi,140,310,7.0,36.0,15.0,0.0
+Kulfi (Homemade Mango),Ice Cream (Generic Ice Cream),1 kulfi (80g),70,148,3.0,19.0,6.5,0.0
+Kulfi (Homemade Mango),Ice Cream (Generic Ice Cream),2× 1 kulfi,140,296,6.0,38.0,13.0,0.0
+Kulfi (Homemade Pista),Ice Cream (Generic Ice Cream),1 kulfi (80g),72,168,4.0,18.0,8.5,0.0
+Kulfi (Homemade Pista),Ice Cream (Generic Ice Cream),2× 1 kulfi,144,336,8.0,36.0,17.0,0.0
+Vanilla Ice Cream (Scoop),Ice Cream (Generic Ice Cream),1 scoop (100g),80,180,3.2,23.0,8.5,0.0
+Vanilla Ice Cream (Scoop),Ice Cream (Generic Ice Cream),2× 1 scoop,160,360,6.4,46.0,17.0,0.0
+Chocolate Ice Cream (Scoop),Ice Cream (Generic Ice Cream),1 scoop (100g),80,200,3.8,25.0,10.0,0.0
+Chocolate Ice Cream (Scoop),Ice Cream (Generic Ice Cream),2× 1 scoop,160,400,7.6,50.0,20.0,0.0
+Strawberry Ice Cream (Scoop),Ice Cream (Generic Ice Cream),1 scoop (100g),80,178,3.0,23.0,8.5,0.0
+Strawberry Ice Cream (Scoop),Ice Cream (Generic Ice Cream),2× 1 scoop,160,356,6.0,46.0,17.0,0.0
+Cocomo Biscuit,Biscuits (Continental),1 biscuit,10,50,0.6,6.5,2.5,0.3
+Cocomo Biscuit,Biscuits (Continental),2 biscuits,20,100,1.2,13.0,5.0,0.6
+Cocomo Biscuit,Biscuits (Continental),4 biscuits,40,200,2.4,26.0,10.0,1.2
+Cocomo Biscuit,Biscuits (Continental),10 biscuits / 1 small pack,100,500,6.0,65.0,25.0,3.0
+Cocomo (Full Pack 80g),Biscuits (Continental),1 biscuit,80,398,5.0,52.0,19.5,0.3
+Cocomo (Full Pack 80g),Biscuits (Continental),2 biscuits,160,796,10.0,104.0,39.0,0.6
+Cocomo (Full Pack 80g),Biscuits (Continental),4 biscuits,320,1592,20.0,208.0,78.0,1.2
+Cocomo (Full Pack 80g),Biscuits (Continental),10 biscuits / 1 small pack,800,3980,50.0,520.0,195.0,3.0
+Peek Freans Sooper,Biscuits (Peek Freans),1 biscuit,8,38,0.5,5.5,1.8,0.3
+Peek Freans Sooper,Biscuits (Peek Freans),2 biscuits,16,76,1.0,11.0,3.6,0.6
+Peek Freans Sooper,Biscuits (Peek Freans),4 biscuits,32,152,2.0,22.0,7.2,1.2
+Peek Freans Sooper,Biscuits (Peek Freans),10 biscuits / 1 small pack,80,380,5.0,55.0,18.0,3.0
+Peek Freans Rio,Biscuits (Peek Freans),1 biscuit,12,58,0.7,7.5,2.8,0.3
+Peek Freans Rio,Biscuits (Peek Freans),2 biscuits,24,116,1.4,15.0,5.6,0.6
+Peek Freans Rio,Biscuits (Peek Freans),4 biscuits,48,232,2.8,30.0,11.2,1.2
+Peek Freans Rio,Biscuits (Peek Freans),10 biscuits / 1 small pack,120,580,7.0,75.0,28.0,3.0
+Peek Freans Rio Double,Biscuits (Peek Freans),1 biscuit,14,70,0.8,9.0,3.3,0.3
+Peek Freans Rio Double,Biscuits (Peek Freans),2 biscuits,28,140,1.6,18.0,6.6,0.6
+Peek Freans Rio Double,Biscuits (Peek Freans),4 biscuits,56,280,3.2,36.0,13.2,1.2
+Peek Freans Rio Double,Biscuits (Peek Freans),10 biscuits / 1 small pack,140,700,8.0,90.0,33.0,3.0
+Peek Freans Bakhar Khani,Biscuits (Peek Freans),1 biscuit,15,68,1.2,9.0,2.8,0.3
+Peek Freans Bakhar Khani,Biscuits (Peek Freans),2 biscuits,30,136,2.4,18.0,5.6,0.6
+Peek Freans Bakhar Khani,Biscuits (Peek Freans),4 biscuits,60,272,4.8,36.0,11.2,1.2
+Peek Freans Bakhar Khani,Biscuits (Peek Freans),10 biscuits / 1 small pack,150,680,12.0,90.0,28.0,3.0
+Peek Freans Peanut Pik,Biscuits (Peek Freans),1 biscuit,10,52,1.5,5.8,3.0,0.3
+Peek Freans Peanut Pik,Biscuits (Peek Freans),2 biscuits,20,104,3.0,11.6,6.0,0.6
+Peek Freans Peanut Pik,Biscuits (Peek Freans),4 biscuits,40,208,6.0,23.2,12.0,1.2
+Peek Freans Peanut Pik,Biscuits (Peek Freans),10 biscuits / 1 small pack,100,520,15.0,58.0,30.0,3.0
+Peek Freans Party,Biscuits (Peek Freans),1 biscuit,7,33,0.4,4.8,1.4,0.3
+Peek Freans Party,Biscuits (Peek Freans),2 biscuits,14,66,0.8,9.6,2.8,0.6
+Peek Freans Party,Biscuits (Peek Freans),4 biscuits,28,132,1.6,19.2,5.6,1.2
+Peek Freans Party,Biscuits (Peek Freans),10 biscuits / 1 small pack,70,330,4.0,48.0,14.0,3.0
+Peek Freans Saltish,Biscuits (Peek Freans),1 biscuit,5,22,0.5,3.0,0.9,0.3
+Peek Freans Saltish,Biscuits (Peek Freans),2 biscuits,10,44,1.0,6.0,1.8,0.6
+Peek Freans Saltish,Biscuits (Peek Freans),4 biscuits,20,88,2.0,12.0,3.6,1.2
+Peek Freans Saltish,Biscuits (Peek Freans),10 biscuits / 1 small pack,50,220,5.0,30.0,9.0,3.0
+Peek Freans Zeera Plus,Biscuits (Peek Freans),1 biscuit,6,27,0.5,3.8,1.1,0.3
+Peek Freans Zeera Plus,Biscuits (Peek Freans),2 biscuits,12,54,1.0,7.6,2.2,0.6
+Peek Freans Zeera Plus,Biscuits (Peek Freans),4 biscuits,24,108,2.0,15.2,4.4,1.2
+Peek Freans Zeera Plus,Biscuits (Peek Freans),10 biscuits / 1 small pack,60,270,5.0,38.0,11.0,3.0
+Peek Freans Gluco,Biscuits (Peek Freans),1 biscuit,8,35,0.5,5.5,1.4,0.3
+Peek Freans Gluco,Biscuits (Peek Freans),2 biscuits,16,70,1.0,11.0,2.8,0.6
+Peek Freans Gluco,Biscuits (Peek Freans),4 biscuits,32,140,2.0,22.0,5.6,1.2
+Peek Freans Gluco,Biscuits (Peek Freans),10 biscuits / 1 small pack,80,350,5.0,55.0,14.0,3.0
+Peek Freans Chocolato,Biscuits (Peek Freans),1 biscuit,12,62,0.8,8.0,3.0,0.3
+Peek Freans Chocolato,Biscuits (Peek Freans),2 biscuits,24,124,1.6,16.0,6.0,0.6
+Peek Freans Chocolato,Biscuits (Peek Freans),4 biscuits,48,248,3.2,32.0,12.0,1.2
+Peek Freans Chocolato,Biscuits (Peek Freans),10 biscuits / 1 small pack,120,620,8.0,80.0,30.0,3.0
+EBM Gala,Biscuits (EBM),1 biscuit,10,48,0.6,6.5,2.2,0.3
+EBM Gala,Biscuits (EBM),2 biscuits,20,96,1.2,13.0,4.4,0.6
+EBM Gala,Biscuits (EBM),4 biscuits,40,192,2.4,26.0,8.8,1.2
+EBM Gala,Biscuits (EBM),10 biscuits / 1 small pack,100,480,6.0,65.0,22.0,3.0
+EBM Gala Creamy,Biscuits (EBM),1 biscuit,13,65,0.7,8.5,3.0,0.3
+EBM Gala Creamy,Biscuits (EBM),2 biscuits,26,130,1.4,17.0,6.0,0.6
+EBM Gala Creamy,Biscuits (EBM),4 biscuits,52,260,2.8,34.0,12.0,1.2
+EBM Gala Creamy,Biscuits (EBM),10 biscuits / 1 small pack,130,650,7.0,85.0,30.0,3.0
+EBM Bounty,Biscuits (EBM),1 biscuit,12,58,0.7,7.8,2.7,0.3
+EBM Bounty,Biscuits (EBM),2 biscuits,24,116,1.4,15.6,5.4,0.6
+EBM Bounty,Biscuits (EBM),4 biscuits,48,232,2.8,31.2,10.8,1.2
+EBM Bounty,Biscuits (EBM),10 biscuits / 1 small pack,120,580,7.0,78.0,27.0,3.0
+EBM Marie,Biscuits (EBM),1 biscuit,5,22,0.4,3.5,0.7,0.3
+EBM Marie,Biscuits (EBM),2 biscuits,10,44,0.8,7.0,1.4,0.6
+EBM Marie,Biscuits (EBM),4 biscuits,20,88,1.6,14.0,2.8,1.2
+EBM Marie,Biscuits (EBM),10 biscuits / 1 small pack,50,220,4.0,35.0,7.0,3.0
+EBM Candi,Biscuits (EBM),1 biscuit,9,44,0.5,6.2,1.9,0.3
+EBM Candi,Biscuits (EBM),2 biscuits,18,88,1.0,12.4,3.8,0.6
+EBM Candi,Biscuits (EBM),4 biscuits,36,176,2.0,24.8,7.6,1.2
+EBM Candi,Biscuits (EBM),10 biscuits / 1 small pack,90,440,5.0,62.0,19.0,3.0
+EBM Hello,Biscuits (EBM),1 biscuit,8,40,0.5,5.8,1.8,0.3
+EBM Hello,Biscuits (EBM),2 biscuits,16,80,1.0,11.6,3.6,0.6
+EBM Hello,Biscuits (EBM),4 biscuits,32,160,2.0,23.2,7.2,1.2
+EBM Hello,Biscuits (EBM),10 biscuits / 1 small pack,80,400,5.0,58.0,18.0,3.0
+EBM Wheatable,Biscuits (EBM),1 biscuit,8,34,0.7,5.2,1.2,0.3
+EBM Wheatable,Biscuits (EBM),2 biscuits,16,68,1.4,10.4,2.4,0.6
+EBM Wheatable,Biscuits (EBM),4 biscuits,32,136,2.8,20.8,4.8,1.2
+EBM Wheatable,Biscuits (EBM),10 biscuits / 1 small pack,80,340,7.0,52.0,12.0,3.0
+EBM Crispo,Biscuits (EBM),1 biscuit,10,50,0.6,6.6,2.3,0.3
+EBM Crispo,Biscuits (EBM),2 biscuits,20,100,1.2,13.2,4.6,0.6
+EBM Crispo,Biscuits (EBM),4 biscuits,40,200,2.4,26.4,9.2,1.2
+EBM Crispo,Biscuits (EBM),10 biscuits / 1 small pack,100,500,6.0,66.0,23.0,3.0
+LU Prince,Biscuits (LU),1 biscuit,14,68,0.9,9.0,3.0,0.3
+LU Prince,Biscuits (LU),2 biscuits,28,136,1.8,18.0,6.0,0.6
+LU Prince,Biscuits (LU),4 biscuits,56,272,3.6,36.0,12.0,1.2
+LU Prince,Biscuits (LU),10 biscuits / 1 small pack,140,680,9.0,90.0,30.0,3.0
+LU Candi Mania,Biscuits (LU),1 biscuit,9,44,0.5,6.2,1.9,0.3
+LU Candi Mania,Biscuits (LU),2 biscuits,18,88,1.0,12.4,3.8,0.6
+LU Candi Mania,Biscuits (LU),4 biscuits,36,176,2.0,24.8,7.6,1.2
+LU Candi Mania,Biscuits (LU),10 biscuits / 1 small pack,90,440,5.0,62.0,19.0,3.0
+LU Oreo (Pakistan),Biscuits (LU),1 biscuit,11,53,0.6,7.0,2.5,0.3
+LU Oreo (Pakistan),Biscuits (LU),2 biscuits,22,106,1.2,14.0,5.0,0.6
+LU Oreo (Pakistan),Biscuits (LU),4 biscuits,44,212,2.4,28.0,10.0,1.2
+LU Oreo (Pakistan),Biscuits (LU),10 biscuits / 1 small pack,110,530,6.0,70.0,25.0,3.0
+LU Oreo Double Stuf,Biscuits (LU),1 biscuit,14,70,0.8,9.0,3.3,0.3
+LU Oreo Double Stuf,Biscuits (LU),2 biscuits,28,140,1.6,18.0,6.6,0.6
+LU Oreo Double Stuf,Biscuits (LU),4 biscuits,56,280,3.2,36.0,13.2,1.2
+LU Oreo Double Stuf,Biscuits (LU),10 biscuits / 1 small pack,140,700,8.0,90.0,33.0,3.0
+LU Hi-Fi,Biscuits (LU),1 biscuit,10,48,0.6,6.5,2.2,0.3
+LU Hi-Fi,Biscuits (LU),2 biscuits,20,96,1.2,13.0,4.4,0.6
+LU Hi-Fi,Biscuits (LU),4 biscuits,40,192,2.4,26.0,8.8,1.2
+LU Hi-Fi,Biscuits (LU),10 biscuits / 1 small pack,100,480,6.0,65.0,22.0,3.0
+LU Nankhatai,Biscuits (LU),1 biscuit,18,88,1.2,11.0,4.3,0.3
+LU Nankhatai,Biscuits (LU),2 biscuits,36,176,2.4,22.0,8.6,0.6
+LU Nankhatai,Biscuits (LU),4 biscuits,72,352,4.8,44.0,17.2,1.2
+LU Nankhatai,Biscuits (LU),10 biscuits / 1 small pack,180,880,12.0,110.0,43.0,3.0
+Bisconni Cocomo,Biscuits (Bisconni),1 biscuit,10,50,0.6,6.5,2.5,0.3
+Bisconni Cocomo,Biscuits (Bisconni),2 biscuits,20,100,1.2,13.0,5.0,0.6
+Bisconni Cocomo,Biscuits (Bisconni),4 biscuits,40,200,2.4,26.0,10.0,1.2
+Bisconni Cocomo,Biscuits (Bisconni),10 biscuits / 1 small pack,100,500,6.0,65.0,25.0,3.0
+Bisconni Chocolatto,Biscuits (Bisconni),1 biscuit,12,60,0.8,8.0,2.8,0.3
+Bisconni Chocolatto,Biscuits (Bisconni),2 biscuits,24,120,1.6,16.0,5.6,0.6
+Bisconni Chocolatto,Biscuits (Bisconni),4 biscuits,48,240,3.2,32.0,11.2,1.2
+Bisconni Chocolatto,Biscuits (Bisconni),10 biscuits / 1 small pack,120,600,8.0,80.0,28.0,3.0
+Bisconni Nimko Biscuit,Biscuits (Bisconni),1 biscuit,8,38,0.6,5.0,1.8,0.3
+Bisconni Nimko Biscuit,Biscuits (Bisconni),2 biscuits,16,76,1.2,10.0,3.6,0.6
+Bisconni Nimko Biscuit,Biscuits (Bisconni),4 biscuits,32,152,2.4,20.0,7.2,1.2
+Bisconni Nimko Biscuit,Biscuits (Bisconni),10 biscuits / 1 small pack,80,380,6.0,50.0,18.0,3.0
+Bisconni Crunchy,Biscuits (Bisconni),1 biscuit,9,45,0.5,6.0,2.2,0.3
+Bisconni Crunchy,Biscuits (Bisconni),2 biscuits,18,90,1.0,12.0,4.4,0.6
+Bisconni Crunchy,Biscuits (Bisconni),4 biscuits,36,180,2.0,24.0,8.8,1.2
+Bisconni Crunchy,Biscuits (Bisconni),10 biscuits / 1 small pack,90,450,5.0,60.0,22.0,3.0
+Guarana Crunchies,Biscuits (Guarana),1 biscuit,10,48,0.5,6.5,2.2,0.3
+Guarana Crunchies,Biscuits (Guarana),2 biscuits,20,96,1.0,13.0,4.4,0.6
+Guarana Crunchies,Biscuits (Guarana),4 biscuits,40,192,2.0,26.0,8.8,1.2
+Guarana Crunchies,Biscuits (Guarana),10 biscuits / 1 small pack,100,480,5.0,65.0,22.0,3.0
+Ringo Biscuit,Biscuits (Ringo),1 biscuit,8,38,0.5,5.5,1.7,0.3
+Ringo Biscuit,Biscuits (Ringo),2 biscuits,16,76,1.0,11.0,3.4,0.6
+Ringo Biscuit,Biscuits (Ringo),4 biscuits,32,152,2.0,22.0,6.8,1.2
+Ringo Biscuit,Biscuits (Ringo),10 biscuits / 1 small pack,80,380,5.0,55.0,17.0,3.0
+Digestive Biscuit (generic),Biscuits (Generic),1 biscuit,14,66,1.0,9.5,2.7,0.3
+Digestive Biscuit (generic),Biscuits (Generic),2 biscuits,28,132,2.0,19.0,5.4,0.6
+Digestive Biscuit (generic),Biscuits (Generic),4 biscuits,56,264,4.0,38.0,10.8,1.2
+Digestive Biscuit (generic),Biscuits (Generic),10 biscuits / 1 small pack,140,660,10.0,95.0,27.0,3.0
+Marie Biscuit (generic),Biscuits (Generic),1 biscuit,5,22,0.4,3.5,0.7,0.3
+Marie Biscuit (generic),Biscuits (Generic),2 biscuits,10,44,0.8,7.0,1.4,0.6
+Marie Biscuit (generic),Biscuits (Generic),4 biscuits,20,88,1.6,14.0,2.8,1.2
+Marie Biscuit (generic),Biscuits (Generic),10 biscuits / 1 small pack,50,220,4.0,35.0,7.0,3.0
+Rusk (Toasted Bread),Biscuits (Generic),1 biscuit,20,80,2.0,13.0,2.0,0.3
+Rusk (Toasted Bread),Biscuits (Generic),2 biscuits,40,160,4.0,26.0,4.0,0.6
+Rusk (Toasted Bread),Biscuits (Generic),4 biscuits,80,320,8.0,52.0,8.0,1.2
+Rusk (Toasted Bread),Biscuits (Generic),10 biscuits / 1 small pack,200,800,20.0,130.0,20.0,3.0
+Khasta Rusk,Biscuits (Generic),1 biscuit,18,72,1.5,12.0,1.8,0.3
+Khasta Rusk,Biscuits (Generic),2 biscuits,36,144,3.0,24.0,3.6,0.6
+Khasta Rusk,Biscuits (Generic),4 biscuits,72,288,6.0,48.0,7.2,1.2
+Khasta Rusk,Biscuits (Generic),10 biscuits / 1 small pack,180,720,15.0,120.0,18.0,3.0
+Nimko Mix,Nimko & Savory Snacks,10g (small handful),10,55,2.0,7.0,2.5,0.5
+Nimko Mix,Nimko & Savory Snacks,25g (small pack),25,138,5.0,17.5,6.2,0.5
+Nimko Mix,Nimko & Savory Snacks,50g (1 cup),50,275,10.0,35.0,12.5,0.5
+Nimko Mix,Nimko & Savory Snacks,100g (large bowl),100,550,20.0,70.0,25.0,0.5
+Chanay (Fried),Nimko & Savory Snacks,10g (small handful),10,60,3.5,7.5,2.0,0.5
+Chanay (Fried),Nimko & Savory Snacks,25g (small pack),25,150,8.8,18.8,5.0,0.5
+Chanay (Fried),Nimko & Savory Snacks,50g (1 cup),50,300,17.5,37.5,10.0,0.5
+Chanay (Fried),Nimko & Savory Snacks,100g (large bowl),100,600,35.0,75.0,20.0,0.5
+Dal Moth,Nimko & Savory Snacks,10g (small handful),10,55,2.5,7.0,2.2,0.5
+Dal Moth,Nimko & Savory Snacks,25g (small pack),25,138,6.2,17.5,5.5,0.5
+Dal Moth,Nimko & Savory Snacks,50g (1 cup),50,275,12.5,35.0,11.0,0.5
+Dal Moth,Nimko & Savory Snacks,100g (large bowl),100,550,25.0,70.0,22.0,0.5
+Fryums,Nimko & Savory Snacks,10g (small handful),10,52,1.0,7.5,2.0,0.5
+Fryums,Nimko & Savory Snacks,25g (small pack),25,130,2.5,18.8,5.0,0.5
+Fryums,Nimko & Savory Snacks,50g (1 cup),50,260,5.0,37.5,10.0,0.5
+Fryums,Nimko & Savory Snacks,100g (large bowl),100,520,10.0,75.0,20.0,0.5
+Chips (Lays Classic),Nimko & Savory Snacks,10g (small handful),10,53,0.7,6.0,3.0,0.5
+Chips (Lays Classic),Nimko & Savory Snacks,25g (small pack),25,132,1.8,15.0,7.5,0.5
+Chips (Lays Classic),Nimko & Savory Snacks,50g (1 cup),50,265,3.5,30.0,15.0,0.5
+Chips (Lays Classic),Nimko & Savory Snacks,100g (large bowl),100,530,7.0,60.0,30.0,0.5
+Chips (Lays Masala),Nimko & Savory Snacks,10g (small handful),10,53,0.7,6.0,3.0,0.5
+Chips (Lays Masala),Nimko & Savory Snacks,25g (small pack),25,132,1.8,15.0,7.5,0.5
+Chips (Lays Masala),Nimko & Savory Snacks,50g (1 cup),50,265,3.5,30.0,15.0,0.5
+Chips (Lays Masala),Nimko & Savory Snacks,100g (large bowl),100,530,7.0,60.0,30.0,0.5
+Kurleez Chips,Nimko & Savory Snacks,10g (small handful),10,52,0.7,6.2,2.8,0.5
+Kurleez Chips,Nimko & Savory Snacks,25g (small pack),25,130,1.8,15.5,7.0,0.5
+Kurleez Chips,Nimko & Savory Snacks,50g (1 cup),50,260,3.5,31.0,14.0,0.5
+Kurleez Chips,Nimko & Savory Snacks,100g (large bowl),100,520,7.0,62.0,28.0,0.5
+Kolson Slanty,Nimko & Savory Snacks,10g (small handful),10,52,0.8,6.0,2.8,0.5
+Kolson Slanty,Nimko & Savory Snacks,25g (small pack),25,130,2.0,15.0,7.0,0.5
+Kolson Slanty,Nimko & Savory Snacks,50g (1 cup),50,260,4.0,30.0,14.0,0.5
+Kolson Slanty,Nimko & Savory Snacks,100g (large bowl),100,520,8.0,60.0,28.0,0.5
+Nimco House Mix,Nimko & Savory Snacks,10g (small handful),10,54,1.8,6.8,2.5,0.5
+Nimco House Mix,Nimko & Savory Snacks,25g (small pack),25,135,4.5,17.0,6.2,0.5
+Nimco House Mix,Nimko & Savory Snacks,50g (1 cup),50,270,9.0,34.0,12.5,0.5
+Nimco House Mix,Nimko & Savory Snacks,100g (large bowl),100,540,18.0,68.0,25.0,0.5
+Peanuts (Roasted),Nimko & Savory Snacks,10g (small handful),10,58,2.6,2.0,5.0,0.5
+Peanuts (Roasted),Nimko & Savory Snacks,25g (small pack),25,145,6.5,5.0,12.5,0.5
+Peanuts (Roasted),Nimko & Savory Snacks,50g (1 cup),50,290,13.0,10.0,25.0,0.5
+Peanuts (Roasted),Nimko & Savory Snacks,100g (large bowl),100,580,26.0,20.0,50.0,0.5
+Peanuts (Salted),Nimko & Savory Snacks,10g (small handful),10,59,2.6,2.1,5.1,0.5
+Peanuts (Salted),Nimko & Savory Snacks,25g (small pack),25,148,6.5,5.2,12.8,0.5
+Peanuts (Salted),Nimko & Savory Snacks,50g (1 cup),50,295,13.0,10.5,25.5,0.5
+Peanuts (Salted),Nimko & Savory Snacks,100g (large bowl),100,590,26.0,21.0,51.0,0.5
+Roti (Tandoor),Bread,1 piece,90,220,6.0,40.0,3.0,2.5
+Roti (Tandoor),Bread,2 pieces,180,440,12.0,80.0,6.0,5.0
+Pizza Slice (Desi),Fast Food,1 slice (100g),100,265,11.0,32.0,10.0,1.5
+Pizza Slice (Desi),Fast Food,2 slices,200,530,22.0,64.0,20.0,3.0
+Burger (McDonalds style),Fast Food,1 burger (150g),150,380,18.0,38.0,18.0,2.0
+Zinger Burger,Fast Food,1 burger (180g),180,480,24.0,42.0,24.0,2.0
+Spring Roll (Fried),Snacks,1 piece (50g),50,140,3.0,17.0,7.0,0.8
+Spring Roll (Fried),Snacks,2 pieces,100,280,6.0,34.0,14.0,1.6
+Bread Pakora,Snacks,1 piece (80g),80,220,5.0,28.0,10.0,1.2
+Bread Pakora,Snacks,2 pieces,160,440,10.0,56.0,20.0,2.4
+Dahi Puri,Street Food,1 plate (6 pcs),150,220,7.0,32.0,8.0,2.0
+Bhel Puri,Street Food,1 plate (150g),150,200,5.0,35.0,5.0,2.5
+Aloo Tikki,Street Food,1 piece (70g),70,120,2.0,19.0,4.0,2.0
+Aloo Tikki,Street Food,2 pieces,140,240,4.0,38.0,8.0,4.0
+Fruit Chaat,Street Food,1 bowl (200g),200,115,2.0,27.0,1.0,3.5
+Papri Chaat,Street Food,1 plate,200,280,8.0,40.0,10.0,3.0
+Kachori,Street Food,1 piece (60g),60,210,4.0,24.0,11.0,1.5
+Kachori,Street Food,2 pieces,120,420,8.0,48.0,22.0,3.0
+Puri (Street),Street Food,1 piece (40g),40,155,3.0,18.0,8.0,0.8
+Puri (Street),Street Food,2 pieces,80,310,6.0,36.0,16.0,1.6
+Dhabba Daal,Daal,1 bowl (300g),300,300,16.0,42.0,9.0,10.0
+Mutton Pulao,Rice & Biryani,1 plate,400,750,38.0,88.0,22.0,3.0
+Afghan Pulao,Rice & Biryani,1 plate,400,780,35.0,92.0,24.0,2.5
+Karahi Gosht,Curry & Gravy,1 full (300g),300,640,44.0,10.0,46.0,1.5
+Fish Karahi,Curry & Gravy,1 full (300g),300,510,42.0,10.0,34.0,1.5
+Prawn Karahi,Curry & Gravy,1 full (300g),300,420,40.0,10.0,26.0,1.0
+Chicken Chargha,BBQ & Grilled,Half (350g),350,610,56.0,10.0,40.0,0.5
+Chicken Chargha,BBQ & Grilled,Full (700g),700,1220,112.0,20.0,80.0,1.0
+Mutton Chops (Grilled),BBQ & Grilled,2 pieces (150g),150,370,32.0,2.0,26.0,0.0
+Mutton Chops (Grilled),BBQ & Grilled,4 pieces (300g),300,740,64.0,4.0,52.0,0.0
+Beef Kabab Platter,BBQ & Grilled,1 plate,300,650,46.0,14.0,46.0,1.0
+Naan Chanay,Miscellaneous,1 serving,300,480,18.0,72.0,14.0,8.0
+Cholay Bhature,Miscellaneous,1 serving,400,820,24.0,108.0,34.0,11.0
+Saag Makki (Set),Miscellaneous,1 plate,400,490,18.0,60.0,22.0,9.0
+Aloo Paratha (with butter),Bread,1 piece,180,420,9.0,55.0,18.0,3.5
+Methi Paratha,Bread,1 piece,100,290,6.0,34.0,14.0,2.5
+Pyaz Paratha,Bread,1 piece,110,305,6.0,35.0,15.0,2.0
+Lachha Paratha,Bread,1 piece,100,315,6.0,32.0,18.0,1.2
+Sheermal (Full),Bread,1 piece,120,380,8.0,64.0,12.0,1.2
+Paya (Trotters),Curry & Gravy,1 full bowl,400,560,40.0,6.0,40.0,0.0
+Siri Paya,Curry & Gravy,1 full bowl,450,620,44.0,6.0,46.0,0.0
+Kaleji (Liver Masala),Curry & Gravy,1 bowl (250g),250,390,38.0,8.0,22.0,1.0
+Maghaz (Brain),Curry & Gravy,1 bowl (200g),200,380,22.0,4.0,32.0,0.0
+Channay (Curry),Curry & Gravy,1 bowl (250g),250,310,14.0,44.0,10.0,10.0
+Maash Ki Daal,Daal,1 bowl (250g),250,300,20.0,36.0,8.0,7.0
+Moong Daal,Daal,1 bowl (250g),250,265,16.0,38.0,6.0,8.0
+Chana Daal Halwa,Sweets & Mithai,1 bowl,200,480,10.0,72.0,18.0,4.0
+Sewaiyan (Eid),Sweets & Mithai,1 bowl,250,440,9.0,66.0,16.0,1.5
+Ras Malai,Sweets & Mithai,2 pieces,150,310,10.0,42.0,12.0,0.2
+Rasgulla,Sweets & Mithai,2 pieces,120,250,5.0,52.0,2.0,0.2
+Kalakand,Sweets & Mithai,1 piece (60g),60,210,5.0,28.0,10.0,0.2
+Zarda (Sweet Rice),Sweets & Mithai,1 bowl,200,410,5.0,78.0,10.0,0.5
+Phirni,Sweets & Mithai,1 bowl,200,265,6.0,44.0,8.0,0.3
+Doodh Jalebi,Sweets & Mithai,1 serving,250,520,12.0,84.0,16.0,0.5
+Imarti,Sweets & Mithai,2 pieces,100,330,2.0,75.0,4.0,0.2
+Badam (Almonds),Dry Fruits,10 pieces (14g),14,82,3.0,3.0,7.0,1.2
+Badam (Almonds),Dry Fruits,1 handful (30g),30,174,6.0,6.0,15.0,2.5
+Akhrot (Walnuts),Dry Fruits,4 halves (20g),20,131,3.0,3.0,13.0,1.3
+Kishmish (Raisins),Dry Fruits,1 tbsp (20g),20,60,1.0,16.0,0.0,0.6
+Kaju (Cashews),Dry Fruits,10 pieces (15g),15,85,2.0,5.0,7.0,0.4
+Pista (Pistachios),Dry Fruits,10 pieces (12g),12,68,2.0,3.0,6.0,0.8
+Makhana (Fox Nuts),Dry Fruits,1 cup (25g),25,90,3.0,18.0,0.0,0.8
+Instant Noodles (Knorr),Fast Food,1 pack (66g),66,275,7.0,47.0,7.0,1.5
+Instant Noodles (Shan),Fast Food,1 pack (66g),66,270,7.0,46.0,7.0,1.5
+Macaroni (Boiled),Fast Food,1 bowl (200g),200,280,10.0,52.0,3.0,2.0
+Pasta (Boiled),Fast Food,1 bowl (200g),200,284,10.0,54.0,2.0,2.5
+French Fries (Fast Food),Fast Food,Small (100g),100,312,4.0,41.0,15.0,2.5
+French Fries (Fast Food),Fast Food,Large (170g),170,530,7.0,70.0,25.0,4.2
+Honey (Shehad),Condiments,1 tsp (7g),7,21,0.0,6.0,0.0,0.0
+Honey (Shehad),Condiments,1 tbsp (21g),21,64,0.0,17.0,0.0,0.0
+Butter (Makhan),Condiments,1 tsp (5g),5,36,0.0,0.0,4.0,0.0
+Butter (Makhan),Condiments,1 tbsp (14g),14,100,0.0,0.0,11.0,0.0
+Desi Ghee,Condiments,1 tsp (5g),5,45,0.0,0.0,5.0,0.0
+Desi Ghee,Condiments,1 tbsp (13g),13,112,0.0,0.0,13.0,0.0
+Sugar,Condiments,1 tsp (4g),4,16,0.0,4.0,0.0,0.0
+Sugar,Condiments,1 tbsp (12g),12,46,0.0,12.0,0.0,0.0
+Ketchup,Condiments,1 tbsp (17g),17,19,0.0,5.0,0.0,0.2
+ 

@@ -194,12 +194,6 @@ def analyze_food():
         return jsonify({"error": "Expected JSON object"}), 400
     try:
         payload, status = handle_analyze_food_request(data)
-        # #region agent log
-        import json as _json, time as _time
-        _log = {"sessionId": "97d6cc", "hypothesisId": "A", "location": "app.py:analyze_food", "message": "backend payload", "data": {"status": status, "keys": list(payload.keys()), "matched_count": payload.get("matched_count"), "success": payload.get("success"), "item_count": (payload.get("summary") or {}).get("item_count")}, "timestamp": int(_time.time() * 1000)}
-        with open(BASE_DIR / "debug-97d6cc.log", "a", encoding="utf-8") as _f:
-            _f.write(_json.dumps(_log) + "\n")
-        # #endregion
         return jsonify(payload), status
     except Exception:
         return jsonify({"error": "Unable to analyze food right now"}), 500

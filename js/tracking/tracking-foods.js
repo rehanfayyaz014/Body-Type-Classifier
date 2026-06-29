@@ -87,9 +87,6 @@
     if (!res.ok) {
       throw new Error(data.error || "Unable to analyze food right now");
     }
-    // #region agent log
-    fetch("http://127.0.0.1:7460/ingest/e1f322df-fef2-4388-9086-e7c3e5afbefc", { method: "POST", headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "97d6cc" }, body: JSON.stringify({ sessionId: "97d6cc", hypothesisId: "A", location: "tracking-foods.js:postFoodApi", message: "API raw response", data: { ok: res.ok, status: res.status, keys: Object.keys(data || {}), matched_count: data && data.matched_count, item_count: data && data.summary && data.summary.item_count, success: data && data.success }, timestamp: Date.now() }) }).catch(function () {});
-    // #endregion
     return data;
   }
 

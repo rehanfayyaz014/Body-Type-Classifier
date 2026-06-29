@@ -61,6 +61,23 @@
     alert(getStrings().dashComingSoon || "Coming Soon");
   }
 
+  function bindModuleLinks() {
+    document.querySelectorAll("a.feature-hub-card[href]").forEach(function (link) {
+      if (link.getAttribute("data-nav-bound") === "1") return;
+      link.setAttribute("data-nav-bound", "1");
+      link.addEventListener("click", function (e) {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+        e.preventDefault();
+        var href = link.getAttribute("href");
+        if (window.AnimationManager) {
+          window.AnimationManager.navigateTo(href);
+        } else {
+          window.location.href = href;
+        }
+      });
+    });
+  }
+
   function init() {
     state.lang = localStorage.getItem(STORAGE_LANG) || "en";
     state.theme = localStorage.getItem(STORAGE_THEME) || "dark";
@@ -72,7 +89,11 @@
     });
 
     $("btn-home")?.addEventListener("click", function () {
-      window.location.href = "/";
+      if (window.AnimationManager) {
+        window.AnimationManager.navigateTo("/");
+      } else {
+        window.location.href = "/";
+      }
     });
 
     $("btn-lang")?.addEventListener("click", function (e) {
@@ -101,6 +122,7 @@
     });
 
     $("card-food")?.addEventListener("click", showComingSoon);
+    bindModuleLinks();
   }
 
   if (document.readyState === "loading") {

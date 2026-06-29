@@ -5,6 +5,17 @@
     return document.getElementById(id);
   }
 
+  // ── i18n helper: get current language strings ─────────────────────────────
+  function getStr(key, fallback) {
+    try {
+      var lang = localStorage.getItem("fitai-lang") || "en";
+      var strings = (global.FitAIStrings || {})[lang] || (global.FitAIStrings || {}).en || {};
+      return strings[key] || fallback || key;
+    } catch (e) {
+      return fallback || key;
+    }
+  }
+
   function destroyCharts() {
     charts.forEach(function (c) {
       if (c) c.destroy();
@@ -15,10 +26,10 @@
   function renderMacroCharts(summary, targets) {
     destroyCharts();
     var pairs = [
-      { id: "track-chart-cal", key: "calories", target: targets.calories, color: "#2dd4bf" },
+      { id: "track-chart-cal",     key: "calories",  target: targets.calories,  color: "#2dd4bf" },
       { id: "track-chart-protein", key: "protein_g", target: targets.protein_g, color: "#22d3ee" },
-      { id: "track-chart-carbs", key: "carbs_g", target: targets.carbs_g, color: "#818cf8" },
-      { id: "track-chart-fat", key: "fat_g", target: targets.fat_g, color: "#f472b6" },
+      { id: "track-chart-carbs",   key: "carbs_g",   target: targets.carbs_g,   color: "#818cf8" },
+      { id: "track-chart-fat",     key: "fat_g",     target: targets.fat_g,     color: "#f472b6" },
     ];
     pairs.forEach(function (p) {
       var canvas = $(p.id);
@@ -33,13 +44,11 @@
         var chart = new Chart(canvas, {
           type: "doughnut",
           data: {
-            datasets: [
-              {
-                data: [pct, Math.max(0, 100 - pct)],
-                backgroundColor: [p.color, "rgba(255,255,255,0.08)"],
-                borderWidth: 0,
-              },
-            ],
+            datasets: [{
+              data: [pct, Math.max(0, 100 - pct)],
+              backgroundColor: [p.color, "rgba(255,255,255,0.08)"],
+              borderWidth: 0,
+            }],
           },
           options: {
             cutout: "72%",
@@ -48,49 +57,58 @@
           },
         });
         charts.push(chart);
-      } catch (e) {
-        /* chart render is optional */
-      }
+      } catch (e) { /* chart render is optional */ }
     });
   }
 
   function renderTargetBars(summary, targets) {
     var calPct = Math.min(100, Math.round(((summary.calories || 0) / (targets.calories || 1)) * 100));
     var proPct = Math.min(100, Math.round(((summary.protein_g || 0) / (targets.protein_g || 1)) * 100));
-    var calFill = $("track-cal-bar-fill");
-    var proFill = $("track-pro-bar-fill");
+    var calFill  = $("track-cal-bar-fill");
+    var proFill  = $("track-pro-bar-fill");
     var calLabel = $("track-cal-bar-label");
     var proLabel = $("track-pro-bar-label");
-    if (calFill) calFill.style.width = calPct + "%";
-    if (proFill) proFill.style.width = proPct + "%";
-    if (calLabel) calLabel.textContent = (summary.calories || 0) + " / " + targets.calories + " kcal";
-    if (proLabel) proLabel.textContent = (summary.protein_g || 0) + " / " + targets.protein_g + " g protein";
+    if (calFill)  calFill.style.width = calPct + "%";
+    if (proFill)  proFill.style.width = proPct + "%";
+    if (calLabel) calLabel.textContent = (summary.calories || 0) + " / " + targets.calories + " " + getStr("trackCalTarget", "kcal");
+    if (proLabel) proLabel.textContent = (summary.protein_g || 0) + " / " + targets.protein_g + " " + getStr("trackGProtein", "g protein");
+
+    // Also update stat card labels dynamically
+    var labelMap = {
+      "track-label-calories": "trackCalories",
+      "track-label-protein":  "trackProtein",
+      "track-label-carbs":    "trackCarbs",
+      "track-label-fat":      "trackFat",
+    };
+    Object.keys(labelMap).forEach(function(id) {
+      var el = $(id);
+      if (el) el.textContent = getStr(labelMap[id]);
+    });
+
+    var calBarTitle = $("track-cal-bar-title");
+    var proBarTitle = $("track-pro-bar-title");
+    if (calBarTitle) calBarTitle.textContent = getStr("trackDailyCalTarget", "Daily calorie target");
+    if (proBarTitle) proBarTitle.textContent = getStr("trackProteinTarget", "Protein target");
   }
 
   function renderFoodBreakdown(items) {
     var wrap = $("track-food-breakdown");
     if (!wrap) return;
     wrap.innerHTML = "";
+    var title = $("track-food-breakdown-title");
+    if (title) title.textContent = getStr("trackFoodBreakdown", "Food breakdown");
     (items || [])
-      .filter(function (i) {
-        return i && (i.status === "matched" || i.matched_food);
-      })
+      .filter(function (i) { return i && (i.status === "matched" || i.matched_food); })
       .forEach(function (item) {
         var card = document.createElement("div");
         card.className = "tracking-food-item glass-card animate-in";
         card.innerHTML =
-          '<div class="tracking-food-item__name">' +
-          (item.matched_food || item.raw_input) +
-          "</div>" +
-          '<div class="tracking-food-item__meta">Calories: ' +
-          (item.calories || 0) +
-          " kcal · Protein: " +
-          (item.protein_g || 0) +
-          "g · Carbs: " +
-          (item.carbs_g || 0) +
-          "g · Fat: " +
-          (item.fat_g || 0) +
-          "g</div>" +
+          '<div class="tracking-food-item__name">' + (item.matched_food || item.raw_input) + "</div>" +
+          '<div class="tracking-food-item__meta">' +
+            getStr("trackCalories", "Calories") + ": " + (item.calories || 0) +
+            " kcal · " + getStr("trackProtein", "Protein") + ": " + (item.protein_g || 0) +
+            "g · " + getStr("trackCarbs", "Carbs") + ": " + (item.carbs_g || 0) +
+            "g · " + getStr("trackFat", "Fat") + ": " + (item.fat_g || 0) + "g</div>" +
           (item.portion ? '<div class="tracking-food-item__meta">' + item.portion + "</div>" : "") +
           (item.source === "usda" ? '<div class="tracking-food-item__meta">Source: USDA estimate</div>' : "");
         wrap.appendChild(card);
@@ -99,18 +117,19 @@
 
   function renderRecommendations(reco) {
     var section = $("track-recommendations");
-    var list = $("track-reco-list");
+    var list    = $("track-reco-list");
     if (!section || !list) return;
     if (!reco || !reco.cards || !reco.cards.length) {
       section.classList.add("hidden");
       return;
     }
     section.classList.remove("hidden");
+    var recoTitle = $("track-reco-title");
+    if (recoTitle) recoTitle.textContent = getStr("trackTomorrowReco", "Tomorrow\u2019s recommendations");
     list.innerHTML = "";
     reco.cards.forEach(function (card) {
       var el = document.createElement("div");
-      el.className =
-        "tracking-reco-card glass-card animate-in" + (card.type === "burn" ? " tracking-reco-card--burn" : "");
+      el.className = "tracking-reco-card glass-card animate-in" + (card.type === "burn" ? " tracking-reco-card--burn" : "");
       el.innerHTML = "<strong>" + card.title + "</strong><p>" + card.body + "</p>";
       list.appendChild(el);
     });
@@ -153,11 +172,11 @@
     }
     var n = apiResult.nutrition || {};
     return {
-      calories: Number(n.calories || 0),
+      calories:  Number(n.calories || 0),
       protein_g: Number(n.protein_g != null ? n.protein_g : n.protein || 0),
-      carbs_g: Number(n.carbs_g != null ? n.carbs_g : n.carbs || 0),
-      fat_g: Number(n.fat_g != null ? n.fat_g : n.fat || 0),
-      fiber_g: Number(n.fiber_g || n.fiber || 0),
+      carbs_g:   Number(n.carbs_g   != null ? n.carbs_g   : n.carbs   || 0),
+      fat_g:     Number(n.fat_g     != null ? n.fat_g     : n.fat     || 0),
+      fiber_g:   Number(n.fiber_g   || n.fiber || 0),
       item_count: Number(apiResult.matched_count || 0),
     };
   }
@@ -171,17 +190,12 @@
       );
     }
     showResults(true);
-    // #region agent log
-    fetch("http://127.0.0.1:7460/ingest/e1f322df-fef2-4388-9086-e7c3e5afbefc", { method: "POST", headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "97d6cc" }, body: JSON.stringify({ sessionId: "97d6cc", hypothesisId: "E", location: "tracking-ui.js:renderResults", message: "showResults true", data: { el_exists: !!$("track-results"), hidden: $("track-results") ? $("track-results").classList.contains("hidden") : null, parent_hidden: $("view-tracking-nutrition") ? $("view-tracking-nutrition").classList.contains("hidden") : null, summary_cal: summary.calories }, timestamp: Date.now() }) }).catch(function () {});
-    // #endregion
     renderTargetBars(summary, targets);
     renderFoodBreakdown(apiResult.items);
     renderRecommendations(session && session.recommendations);
     try {
       renderMacroCharts(summary, targets);
-    } catch (e) {
-      /* charts are optional; macro values still shown in stat cards */
-    }
+    } catch (e) { /* charts are optional */ }
     var resultsEl = $("track-results");
     if (resultsEl && resultsEl.scrollIntoView) {
       resultsEl.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -193,22 +207,18 @@
     if (!wrap) return;
     wrap.innerHTML = "";
     if (!reminders.length) {
-      wrap.innerHTML = '<p class="tracking-empty-note">No reminders yet. Add one above.</p>';
+      wrap.innerHTML = '<p class="tracking-empty-note">' + getStr("trackNoReminders", "No reminders yet. Add one above.") + '</p>';
       return;
     }
     reminders.forEach(function (r) {
       var row = document.createElement("div");
       row.className = "tracking-reminder-item glass-card";
       row.innerHTML =
-        '<div><div class="tracking-reminder-item__time">' +
-        r.time +
-        '</div><div class="tracking-reminder-item__type">' +
-        r.type +
-        (r.message ? " — " + r.message : "") +
-        "</div></div>" +
-        '<button type="button" class="btn btn--ghost btn--sm" data-id="' +
-        r.id +
-        '">Remove</button>";
+        '<div><div class="tracking-reminder-item__time">' + r.time +
+        '</div><div class="tracking-reminder-item__type">' + r.type +
+        (r.message ? " \u2014 " + r.message : "") + "</div></div>" +
+        '<button type="button" class="btn btn--ghost btn--sm" data-id="' + r.id + '">' +
+        getStr("trackRemove", "Remove") + '</button>';
       row.querySelector("button").addEventListener("click", function () {
         onDelete(r.id);
       });
@@ -216,8 +226,25 @@
     });
   }
 
+  // Apply i18n to static tracking UI labels
+  function applyTrackingI18n() {
+    var labelMap = {
+      "track-analyze-btn":       "trackAnalyzeBtn",
+      "track-enable-notify":     "trackEnableNotify",
+      "track-add-reminder":      "trackAddReminder",
+      "track-card-nutrition-title": "trackNutritionTitle",
+    };
+    Object.keys(labelMap).forEach(function(id) {
+      var el = $(id);
+      if (el && el.tagName !== "SELECT") el.textContent = getStr(labelMap[id]) || el.textContent;
+    });
+    var subtitleEl = $("track-food-subtitle");
+    if (subtitleEl) subtitleEl.textContent = getStr("trackNutritionSubtitle", "What did you eat today?");
+  }
+
   global.FitAITrackingUI = {
     $: $,
+    getStr: getStr,
     showSkeleton: showSkeleton,
     showResults: showResults,
     renderResults: renderResults,
@@ -225,5 +252,6 @@
     destroyCharts: destroyCharts,
     showAnalyzeError: showAnalyzeError,
     setAnalyzeLoading: setAnalyzeLoading,
+    applyTrackingI18n: applyTrackingI18n,
   };
 })(typeof window !== "undefined" ? window : globalThis);
