@@ -78,7 +78,15 @@
     });
   }
 
-  function init() {
+  async function init() {
+        if (window.FitAIAuth) {
+      var user = await window.FitAIAuth.getCurrentUser();
+      if (!user) {
+        window.location.href = "/";
+        return;
+      }
+    }
+    
     state.lang = localStorage.getItem(STORAGE_LANG) || "en";
     state.theme = localStorage.getItem(STORAGE_THEME) || "dark";
     setLang(state.lang);

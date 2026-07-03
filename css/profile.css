@@ -63,10 +63,29 @@
   color: transparent;
 }
 
-.profile-current-meta {
-  font-size: 0.85rem;
-  color: rgba(255,255,255,0.65);
-  margin: 0 0 0.5rem;
+.profile-current-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.65);
+  margin: 0.2rem 0 0.6rem;
+}
+
+.edit-btn-inline {
+  background: none;
+  border: none;
+  color: var(--accent-a);
+  padding: 2px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.edit-btn-inline:hover {
+  opacity: 1;
 }
 
 .profile-current-bmi-row {
@@ -88,35 +107,95 @@
   gap: 0.6rem;
 }
 
-.profile-history-item {
-  padding: 0.85rem 1rem;
-}
-
-.profile-history-item__top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.profile-history-item__type {
-  font-weight: 700;
-  color: #f1f5f9;
-}
-
-.profile-history-item__date {
-  font-size: 0.78rem;
-  color: rgba(255,255,255,0.5);
-}
-
-.profile-history-item__meta {
-  font-size: 0.82rem;
-  color: rgba(255,255,255,0.65);
-  margin-top: 0.3rem;
-}
-
 .profile-empty {
   font-size: 0.85rem;
   color: rgba(255,255,255,0.5);
   text-align: center;
   padding: 1rem 0;
 }
+
+/* Detailed Food History Styles */
+.profile-history-item--detailed {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  position: relative;
+}
+
+.food-history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.25rem;
+}
+
+.food-history-date-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.food-history-date {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.food-history-meal {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent-a);
+  font-weight: 600;
+}
+
+.btn-delete-log {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.btn-delete-log:hover {
+  background: #ef4444;
+  color: #fff;
+}
+
+.food-history-items-list {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  padding-left: 0.5rem;
+  border-left: 2px solid var(--glass-border);
+}
+
+.food-history-macros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.macro-badge {
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  color: var(--text-muted);
+}
+
+.macro-badge--cal { color: var(--text); background: var(--glass-strong); }
+.macro-badge--p { border-color: rgba(45, 212, 191, 0.3); color: #2dd4bf; }
+.macro-badge--c { border-color: rgba(14, 165, 233, 0.3); color: #0ea5e9; }
+.macro-badge--f { border-color: rgba(244, 114, 182, 0.3); color: #f472b6; }

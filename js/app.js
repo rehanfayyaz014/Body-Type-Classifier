@@ -1061,10 +1061,21 @@
 
       var btnStart = $("btn-start");
       if (btnStart) {
-        btnStart.addEventListener("click", function () {
-          goDashboard();
+        btnStart.addEventListener("click", async function () {
+          if (window.FitAIAuth) {
+            var user = await window.FitAIAuth.getCurrentUser();
+            if (user) {
+              goDashboard();
+            } else {
+              // Trigger login modal from auth-ui.js logic
+              $("btn-account")?.click(); 
+            }
+          } else {
+            goDashboard();
+          }
         });
       }
+
       
       $("btn-continue")?.addEventListener("click", onContinueQuiz);
       $("btn-back")?.addEventListener("click", onBack);

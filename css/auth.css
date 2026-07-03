@@ -1,89 +1,155 @@
-.account-name {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #f1f5f9;
-  margin-left: 0.4rem;
-  max-width: 110px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
+/* Auth Overlay & Modal - Enhanced for FitAI Theme */
 .auth-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(5, 8, 16, 0.7);
-  backdrop-filter: blur(4px);
+  background: rgba(5, 8, 16, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 200;
+  z-index: 2000;
+  padding: 1.5rem;
+  animation: fadeIn 0.3s ease-out;
 }
 
+/* Updated Auth Modal Styling */
 .auth-modal {
-  width: 90%;
-  max-width: 360px;
-  padding: 1.75rem;
+  width: 100%;
+  max-width: 400px;
+  padding: 2.5rem 2rem 2rem 2rem; /* Increased top padding */
   position: relative;
+  background: var(--bg-elevated);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .auth-modal__close {
   position: absolute;
-  top: 0.6rem;
-  right: 0.8rem;
-  background: none;
-  border: none;
-  font-size: 1.4rem;
-  color: rgba(255,255,255,0.6);
+  /* Moving it outside to the top-right corner */
+  top: -12px; 
+  right: -12px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1e293b; /* Solid dark background to stand out */
+  border: 2px solid var(--glass-border);
+  border-radius: 50%;
+  font-size: 1.2rem;
+  color: #fff;
   cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
 }
+
+.auth-modal__close:hover {
+  background: #ef4444; /* Turns red on hover for clear 'close' action */
+  border-color: #ef4444;
+  transform: scale(1.1) rotate(90deg);
+}
+
+/* Ensure the overlay doesn't clip the outside button */
+.auth-overlay {
+  padding: 2rem; 
+}
+
 
 .auth-tabs {
   display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1.25rem;
+  background: var(--glass);
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 2rem;
+  border: 1px solid var(--glass-border);
 }
 
 .auth-tab {
   flex: 1;
-  padding: 0.55rem 0;
-  border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.15);
-  background: rgba(255,255,255,0.05);
-  color: rgba(255,255,255,0.7);
+  padding: 0.75rem 0;
+  border-radius: calc(var(--radius-sm) - 2px);
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
   font-weight: 600;
+  font-size: 0.95rem;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .auth-tab.is-active {
-  background: linear-gradient(135deg, #2dd4bf, #0ea5e9);
+  background: var(--text);
+  color: var(--bg-deep);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.theme-dark .auth-tab.is-active {
+  background: linear-gradient(135deg, var(--accent-a), #0ea5e9);
   color: #04131f;
-  border-color: transparent;
 }
 
 .auth-form {
   display: flex;
   flex-direction: column;
-  gap: 0.7rem;
+  gap: 1rem;
 }
 
 .auth-form input {
-  padding: 0.65rem 0.85rem;
-  border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.2);
-  background: rgba(255,255,255,0.08);
-  color: #f1f5f9;
-  font-size: 0.95rem;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--glass-border);
+  background: var(--glass);
+  color: var(--text);
+  font-size: 1rem;
+  font-family: var(--font);
+  transition: all 0.2s ease;
+}
+
+.auth-form input:focus {
+  outline: none;
+  border-color: var(--accent-a);
+  background: var(--glass-strong);
+  box-shadow: 0 0 0 4px rgba(45, 212, 191, 0.1);
 }
 
 .auth-error {
+  background: rgba(251, 113, 133, 0.1);
+  border: 1px solid rgba(251, 113, 133, 0.2);
   color: #fb7185;
-  font-size: 0.82rem;
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  text-align: center;
 }
 
 .auth-hint {
   text-align: center;
   font-size: 0.85rem;
-  color: rgba(255,255,255,0.6);
-  margin-top: 0.6rem;
+  color: var(--text-muted);
+  margin-top: 1.5rem;
+}
+
+.account-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-left: 0.5rem;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
