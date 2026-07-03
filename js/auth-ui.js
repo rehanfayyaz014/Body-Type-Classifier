@@ -24,6 +24,30 @@
     el.classList.remove("hidden");
   }
 
+  function showNotification(title, message, icon) {
+    var overlay = $("notify-overlay");
+    if (!overlay) {
+      overlay = document.createElement("div");
+      overlay.id = "notify-overlay";
+      overlay.className = "auth-overlay animate-fadeIn";
+      overlay.innerHTML = 
+        '<div class="auth-modal glass-card notify-card animate-slideUp">' +
+          '<div class="notify-card__icon" id="notify-icon">🎉</div>' +
+          '<h2 class="notify-card__title" id="notify-title">Success</h2>' +
+          '<p class="notify-card__body" id="notify-body">Action completed successfully.</p>' +
+          '<button type="button" class="btn btn--primary" id="notify-close" style="width:100%; margin-top:0.5rem;">Continue</button>' +
+        '</div>';
+      document.body.appendChild(overlay);
+      $("notify-close").addEventListener("click", function() {
+        overlay.classList.add("hidden");
+      });
+    }
+    $("notify-title").textContent = title;
+    $("notify-body").textContent = message;
+    $("notify-icon").textContent = icon || "🎉";
+    overlay.classList.remove("hidden");
+  }
+
   function updateAccountUI(user) {
     var badge = $("account-name-badge");
     if (user) {
@@ -91,7 +115,7 @@
         var user = await window.FitAIAuth.getCurrentUser();
         updateAccountUI(user);
         hideModal();
-        alert("Account created! Your data has been synced.");
+        showNotification("Account Created!", "Your account is ready and your data has been synced. Welcome to FitAI!", "🚀");
       } catch (err) {
         showError("signup-error", err.message || "Signup failed");
       }

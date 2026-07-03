@@ -114,6 +114,7 @@
   function goHub(isBoot) {
     showTrackView("view-tracking-hub", isBoot ? { boot: true } : undefined);
   }
+  
   function goDashboard() {
     if (global.AnimationManager) {
       global.AnimationManager.navigateTo("/dashboard");
@@ -122,9 +123,60 @@
     }
   }
 
-  function goNutrition() {
+  async function goNutrition() {
+    var stateApi = getState();
+    var ui = getUI();
+    if (!stateApi || !ui) return;
+
+    // Check body type gate before showing nutrition tracker
+    var profile = stateApi.loadProfile();
+    var hasBodyType = profile && profile.bodyTypeKey;
+
+    // If logged in, check database as well
+    if (!hasBodyType && window.FitAIAuth) {
+      var user = await window.FitAIAuth.getCurrentUser();
+      if (user) {
+        var dbProfile = await window.FitAIAuth.getProfile(user.id);
+        if (dbProfile && dbProfile.body_type) {
+          profile = profile || {};
+          profile.bodyTypeKey = dbProfile.body_type;
+          localStorage.setItem("fitai-profile", JSON.stringify(profile));
+          hasBodyType = true;
+        }
+      }
+    }
+
+    if (!hasBodyType) {
+      ui.renderBodyTypeGate(
+        function(selectedType) {
+          profile = profile || {};
+          profile.bodyTypeKey = selectedType;
+          localStorage.setItem("fitai-profile", JSON.stringify(profile));
+          stateApi.calculateTargets(profile);
+          // After selection, proceed to nutrition
+          goNutrition();
+        },
+        function() {
+          sessionStorage.setItem("fitai-prefill-plan", "tracking-redirect");
+          if (global.AnimationManager) {
+            global.AnimationManager.navigateTo("/?module=classifier");
+          } else {
+            window.location.href = "/?module=classifier";
+          }
+        }
+      );
+      return;
+    }
+
     showTrackView("view-tracking-nutrition");
     bindNutritionView();
+    
+    // Load existing cumulative results for today if they exist
+    var date = stateApi.todayKey();
+    var currentNutrition = stateApi.readJson("fitai-tracking-nutrition", null);
+    if (currentNutrition && currentNutrition.date === date && currentNutrition.items.length > 0) {
+      ui.renderResults({ items: currentNutrition.items, summary: currentNutrition.summary }, { cumulativeSummary: currentNutrition.summary, cumulativeItems: currentNutrition.items });
+    }
   }
 
   function goReminders() {
@@ -164,6 +216,8 @@
     }
   }
 
+
+
   function setSuggestOpen(open) {
     var card = document.querySelector(".tracking-input-card");
     if (card) card.classList.toggle("is-suggest-open", !!open);
@@ -177,9 +231,6 @@
     setSuggestOpen(false);
   }
 
-  // ── FIX #3: applySuggestion — only replace the last typed fragment ────────
-  // e.g.  "Breakfast: 1 egg, 1 par"  →  "Breakfast: 1 egg, 1 paratha (medium)"
-  //        colon-prefix is kept, comma-separated items before last are kept
   function applySuggestion(item) {
     var ta = $("track-food-input");
     if (!ta || !item) return;
@@ -188,25 +239,22 @@
     var last = lines[lines.length - 1];
 
     var colonIdx = last.indexOf(":");
-    var prefix = "";      // e.g. "Breakfast: "
-    var afterColon = last; // everything after colon
+    var prefix = "";
+    var afterColon = last;
 
     if (colonIdx >= 0) {
       prefix     = last.slice(0, colonIdx + 1) + " ";
       afterColon = last.slice(colonIdx + 1).replace(/^\s+/, "");
     }
 
-    // Split afterColon by comma or +, keep all but last fragment
     var separatorMatch = afterColon.match(/^(.*?)([,+]\s*)([^,+]*)$/);
-    var kept      = "";  // "1 egg, "
-    // var fragment = ""; // "1 par"  ← what user typed last (replaced by suggestion)
+    var kept      = "";
 
     if (separatorMatch) {
-      kept = separatorMatch[1] + separatorMatch[2]; // "1 egg, "
+      kept = separatorMatch[1] + separatorMatch[2];
     } else if (colonIdx >= 0) {
-      kept = ""; // first item after colon, nothing to keep
+      kept = "";
     } else {
-      // No colon at all — full line is just the fragment
       kept = "";
       prefix = "";
     }
@@ -239,7 +287,6 @@
     setSuggestOpen(true);
   }
 
-  // ── FIX #4: Scroll-down arrow — shows after analyze, hides on arrival ────
   function showScrollArrow() {
     var arrow = $("track-scroll-arrow");
     if (!arrow) return;
@@ -321,8 +368,9 @@
               recommendations: null,
             };
           }
+          // Clear input after successful analyze to encourage next entry
+          if (input) input.value = "";
           ui.renderResults(result, session);
-          // Show scroll arrow after results rendered
           showScrollArrow();
         } catch (err) {
           ui.showAnalyzeError("Unable to analyze food right now");
@@ -351,7 +399,6 @@
     var text = e.target.value;
     var fragment = text.split("\n").pop() || "";
     var query = fragment.split(/[,+]/).pop().trim();
-    // Strip the part before colon if query still has it
     if (query.indexOf(":") >= 0) {
       query = query.slice(query.indexOf(":") + 1).trim();
     }
@@ -401,7 +448,6 @@
     if (!e.target.closest(".tracking-input-wrap")) hideSuggest();
   }
 
-  // ── FIX #5: Custom reminder — show/hide textarea + sound toggle ──────────
   function refreshReminderUI() {
     var ui = getUI();
     var Reminders = getReminders();
@@ -412,7 +458,6 @@
       refreshReminderUI();
     });
 
-    // Show custom message textarea when "Custom" is selected
     var customWrap = $("track-custom-msg-wrap");
     var typeSel    = $("track-reminder-type");
     if (customWrap && typeSel) {
@@ -425,129 +470,86 @@
       }
     }
 
-    // Sync sound toggle UI
     var soundToggle = $("track-sound-toggle");
     if (soundToggle && Reminders.isSoundEnabled) {
       soundToggle.checked = Reminders.isSoundEnabled();
     }
   }
 
-  // ── FIX #1 & #5: bindReminders with improved notification UX ─────────────
   function bindReminders() {
     var typeSel   = $("track-reminder-type");
     var enableBtn = $("track-enable-notify");
     var addBtn    = $("track-add-reminder");
-    var soundToggle = $("track-sound-toggle");
     var Reminders = getReminders();
+    var ui        = getUI();
 
-    if (typeSel && typeSel.getAttribute("data-track-bound") !== "1") {
-      typeSel.setAttribute("data-track-bound", "1");
+    if (typeSel && typeSel.getAttribute("data-bound") !== "1") {
+      typeSel.setAttribute("data-bound", "1");
       typeSel.addEventListener("change", refreshReminderUI);
     }
-
-    // Sound toggle
-    if (soundToggle && soundToggle.getAttribute("data-track-bound") !== "1") {
-      soundToggle.setAttribute("data-track-bound", "1");
-      if (Reminders && Reminders.isSoundEnabled) {
-        soundToggle.checked = Reminders.isSoundEnabled();
-      }
-      soundToggle.addEventListener("change", function() {
-        if (Reminders && Reminders.setSoundEnabled) {
-          Reminders.setSoundEnabled(soundToggle.checked);
-        }
-      });
-    }
-
-    // FIX #1: Enable notifications with clear feedback messages
-    if (enableBtn && enableBtn.getAttribute("data-track-bound") !== "1") {
-      enableBtn.setAttribute("data-track-bound", "1");
+    if (enableBtn && enableBtn.getAttribute("data-bound") !== "1") {
+      enableBtn.setAttribute("data-bound", "1");
       enableBtn.addEventListener("click", function() {
-        if (!Reminders) return;
-        // Register Service Worker when user enables notifications
-        if ("serviceWorker" in navigator) {
-          navigator.serviceWorker.register("/sw.js").catch(function() {});
-        }
-        Reminders.requestNotificationPermission(function(ok, reason) {
-          var banner = $("track-notify-banner");
-          if (!banner) return;
-          if (ok) {
-            banner.textContent = "✅ Notifications enabled! You will receive alerts at your set times.";
-            banner.style.color = "#2dd4bf";
-          } else if (reason === "denied") {
-            banner.textContent = "🚫 Notifications blocked. Go to browser Settings → Site Settings → Notifications and allow this site.";
-            banner.style.color = "#f87171";
-          } else if (reason === "not_supported") {
-            banner.textContent = "⚠️ Your browser does not support notifications. Try Chrome or Firefox.";
-            banner.style.color = "#fbbf24";
-          } else {
-            banner.textContent = "⚠️ Notification permission was dismissed. Click again to allow.";
-            banner.style.color = "#fbbf24";
-          }
-        });
+        if (Reminders) Reminders.requestPermission();
       });
     }
-
-    // Add reminder button
-    if (addBtn && addBtn.getAttribute("data-track-bound") !== "1") {
-      addBtn.setAttribute("data-track-bound", "1");
+    if (addBtn && addBtn.getAttribute("data-bound") !== "1") {
+      addBtn.setAttribute("data-bound", "1");
       addBtn.addEventListener("click", function() {
-        if (!Reminders) return;
-        var time    = $("track-reminder-time");
-        var type    = $("track-reminder-type");
-        var msg     = $("track-reminder-message");
-        var timeVal = (time && time.value) || "08:00";
-        var typeVal = (type && type.value) || "Breakfast";
-        var msgVal  = (msg && msg.value) || "";
-        if (typeVal === "Custom" && !msgVal.trim()) {
-          var msgArea = $("track-reminder-message");
-          if (msgArea) {
-            msgArea.focus();
-            msgArea.style.borderColor = "#f87171";
-            setTimeout(function() { msgArea.style.borderColor = ""; }, 1500);
-          }
-          return;
+        var time = $("track-reminder-time").value;
+        var type = $("track-reminder-type").value;
+        var msg  = $("track-reminder-message").value;
+        if (!time) return;
+        if (Reminders) {
+          Reminders.addReminder(time, type, msg);
+          refreshReminderUI();
         }
-        Reminders.addReminder({ time: timeVal, type: typeVal, message: msgVal.trim() });
-        refreshReminderUI();
-        if (msg) msg.value = "";
+      });
+    }
+    var soundToggle = $("track-sound-toggle");
+    if (soundToggle && soundToggle.getAttribute("data-bound") !== "1") {
+      soundToggle.setAttribute("data-bound", "1");
+      soundToggle.addEventListener("change", function(e) {
+        if (Reminders) Reminders.setSoundEnabled(e.target.checked);
       });
     }
   }
 
-  // ── Service Worker registration on boot ──────────────────────────────────
-  function registerSW() {
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("/sw.js").catch(function() {});
-    }
-  }
-
-  function bootTrackingOnce() {
+  function boot() {
     if (trackingBooted) return;
     trackingBooted = true;
-    registerSW();
-    injectScrollArrow();
     bindHeader();
     bindHub();
-    bindNutritionView();
     bindReminders();
-    var Reminders = getReminders();
-    if (Reminders && Reminders.initReminders) Reminders.initReminders();
-    goHub(true);
+    injectScrollArrow();
+    
+    var ui = getUI();
+    if (ui) ui.applyTrackingI18n();
+
+    var params = new URLSearchParams(window.location.search);
+    var sub = params.get("sub");
+    if (sub === "nutrition") goNutrition();
+    else if (sub === "reminders") goReminders();
+    else goHub(true);
+
+    // Step E: Handle redirect back from classifier
+    var handoff = sessionStorage.getItem("fitai-prefill-plan");
+    if (handoff === "tracking-redirect") {
+        sessionStorage.removeItem("fitai-prefill-plan");
+        // Body type should now be saved in localStorage by app.js after assessment
+        goNutrition();
+    }
   }
 
-  function init() {
-    whenReady(bootTrackingOnce);
-  }
+  whenReady(function() {
+    if (isTrackingModule()) boot();
+  });
 
-  global.FitAITracking = {
-    init: init,
+  global.FitAITrackingMain = {
+    boot: boot,
     goHub: goHub,
     goNutrition: goNutrition,
     goReminders: goReminders,
-    bindNutritionView: bindNutritionView,
+    onBack: onBack
   };
-
-  whenReady(function() {
-    if (isTrackingModule()) bootTrackingOnce();
-  });
 })(typeof window !== "undefined" ? window : globalThis);

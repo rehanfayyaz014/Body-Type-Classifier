@@ -5,7 +5,6 @@
     return document.getElementById(id);
   }
 
-  // ── i18n helper: get current language strings ─────────────────────────────
   function getStr(key, fallback) {
     try {
       var lang = localStorage.getItem("fitai-lang") || "en";
@@ -73,7 +72,6 @@
     if (calLabel) calLabel.textContent = (summary.calories || 0) + " / " + targets.calories + " " + getStr("trackCalTarget", "kcal");
     if (proLabel) proLabel.textContent = (summary.protein_g || 0) + " / " + targets.protein_g + " " + getStr("trackGProtein", "g protein");
 
-    // Also update stat card labels dynamically
     var labelMap = {
       "track-label-calories": "trackCalories",
       "track-label-protein":  "trackProtein",
@@ -182,8 +180,11 @@
   }
 
   function renderResults(apiResult, session) {
-    var summary = resolveSummary(apiResult);
+    // Cumulative daily totals should be used for rendering progress bars
+    var summary = (session && session.cumulativeSummary) || resolveSummary(apiResult);
+    var items = (session && session.cumulativeItems) || apiResult.items;
     var targets = (session && session.targets) || {};
+    
     if (!targets.calories && global.FitAITrackingState && global.FitAITrackingState.calculateTargets) {
       targets = global.FitAITrackingState.calculateTargets(
         global.FitAITrackingState.loadProfile ? global.FitAITrackingState.loadProfile() : {}
@@ -191,7 +192,7 @@
     }
     showResults(true);
     renderTargetBars(summary, targets);
-    renderFoodBreakdown(apiResult.items);
+    renderFoodBreakdown(items);
     renderRecommendations(session && session.recommendations);
     try {
       renderMacroCharts(summary, targets);
@@ -226,7 +227,6 @@
     });
   }
 
-  // Apply i18n to static tracking UI labels
   function applyTrackingI18n() {
     var labelMap = {
       "track-analyze-btn":       "trackAnalyzeBtn",
@@ -242,6 +242,58 @@
     if (subtitleEl) subtitleEl.textContent = getStr("trackNutritionSubtitle", "What did you eat today?");
   }
 
+  function renderBodyTypeGate(onSelect, onClassify) {
+    var overlay = $("track-gate-overlay");
+    if (!overlay) {
+        overlay = document.createElement("div");
+        overlay.id = "track-gate-overlay";
+        overlay.className = "auth-overlay animate-fadeIn";
+        overlay.innerHTML = 
+            '<div class="auth-modal glass-card tracking-gate animate-slideUp">' +
+                '<button type="button" class="auth-modal__close" id="gate-close" aria-label="Close">' +
+                    '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>' +
+                '</button>' +
+                '<div class="tracking-gate__icon">🛡️</div>' +
+                '<h2 class="tracking-gate__title">' + getStr("planBodyTypeTitle", "Select your body type") + '</h2>' +
+                '<p class="tracking-gate__hint">' + getStr("planBodyTypeHint", "Choose the type that best describes you. This is required.") + '</p>' +
+                '<div class="tracking-gate__options">' +
+                    '<button type="button" class="btn btn--primary gate-opt" data-type="ectomorph">Ectomorph</button>' +
+                    '<button type="button" class="btn btn--primary gate-opt" data-type="mesomorph">Mesomorph</button>' +
+                    '<button type="button" class="btn btn--primary gate-opt" data-type="endomorph">Endomorph</button>' +
+                '</div>' +
+                '<div class="tracking-gate__footer">' +
+                    '<span>' + getStr("planUnknownBodyTypeNote", "Don't know your body type?") + '</span> ' +
+                    '<button type="button" class="link-btn" id="gate-classify-link">' + getStr("planUnknownBodyTypeLink", "Click here to find out") + '</button>' +
+                '</div>' +
+            '</div>';
+        document.body.appendChild(overlay);
+
+        overlay.querySelectorAll(".gate-opt").forEach(function(btn) {
+            btn.addEventListener("click", function() {
+                var type = btn.getAttribute("data-type");
+                onSelect(type);
+                overlay.classList.add("hidden");
+            });
+        });
+
+        var classifyLink = $("gate-classify-link");
+        if (classifyLink) {
+            classifyLink.addEventListener("click", function() {
+                overlay.classList.add("hidden");
+                onClassify();
+            });
+        }
+
+        var closeBtn = $("gate-close");
+        if (closeBtn) {
+            closeBtn.addEventListener("click", function() {
+                overlay.classList.add("hidden");
+            });
+        }
+    }
+    overlay.classList.remove("hidden");
+  }
+
   global.FitAITrackingUI = {
     $: $,
     getStr: getStr,
@@ -253,5 +305,6 @@
     showAnalyzeError: showAnalyzeError,
     setAnalyzeLoading: setAnalyzeLoading,
     applyTrackingI18n: applyTrackingI18n,
+    renderBodyTypeGate: renderBodyTypeGate
   };
 })(typeof window !== "undefined" ? window : globalThis);

@@ -53,19 +53,33 @@
         : 10 * weight + 6.25 * height - 5 * age + 5;
     var tdee = bmr * activityMultiplier(profile.activityLevel);
 
-    if (goal === "weightLoss") tdee *= 0.85;
-    else if (goal === "muscleGain") tdee *= 1.12;
-    else if (goal === "tone") tdee *= 0.95;
+    // Dynamic Goals Based on Body Type & Metabolic Needs
+    if (bodyType === "ectomorph") {
+      // Ectomorphs: High metabolism, need more calories to gain/maintain
+      if (goal === "muscleGain") tdee *= 1.20; // Aggressive surplus
+      else if (goal === "weightLoss") tdee *= 0.90; // Gentle deficit
+      else tdee *= 1.05; // Slight surplus for maintenance
+    } else if (bodyType === "endomorph") {
+      // Endomorphs: Slower metabolism, sensitive to carbs/calories
+      if (goal === "muscleGain") tdee *= 1.08; // Controlled surplus
+      else if (goal === "weightLoss") tdee *= 0.80; // Steeper deficit
+      else tdee *= 0.95; // Slight deficit for maintenance
+    } else {
+      // Mesomorphs: Balanced metabolism
+      if (goal === "muscleGain") tdee *= 1.15;
+      else if (goal === "weightLoss") tdee *= 0.85;
+      else tdee *= 1.0;
+    }
 
-    if (bodyType === "ectomorph" && goal === "muscleGain") tdee *= 1.08;
-    if (bodyType === "endomorph" && goal === "weightLoss") tdee *= 0.92;
-    if (bodyType === "mesomorph") tdee *= 1.0;
-
+    // Protein Multipliers based on Body Type
     var proteinPerKg = 1.6;
-    if (goal === "muscleGain") proteinPerKg = 2.0;
-    if (goal === "weightLoss") proteinPerKg = 1.8;
-    if (bodyType === "ectomorph") proteinPerKg += 0.15;
-    if (bodyType === "endomorph" && goal === "weightLoss") proteinPerKg = 1.9;
+    if (bodyType === "ectomorph") {
+      proteinPerKg = goal === "muscleGain" ? 2.2 : 1.8;
+    } else if (bodyType === "endomorph") {
+      proteinPerKg = goal === "weightLoss" ? 2.0 : 1.7;
+    } else {
+      proteinPerKg = goal === "muscleGain" ? 2.0 : 1.6;
+    }
 
     return {
       calories: Math.round(tdee),
@@ -172,13 +186,36 @@
   function saveAnalysisSession(text, apiResult) {
     var date = todayKey();
     var targets = calculateTargets(loadProfile());
-    var summary = apiResult.summary || {};
+    var newItems = apiResult.items || [];
+    var newSummary = apiResult.summary || {};
+
+    // Cumulative Daily Tracking Logic
+    var currentNutrition = readJson(STORAGE_NUTRITION, { date: date, items: [], summary: { calories: 0, protein_g: 0, carbs_g: 0, fat_g: 0, fiber_g: 0, item_count: 0 } });
+    
+    // Reset if date changed
+    if (currentNutrition.date !== date) {
+      currentNutrition = { date: date, items: [], summary: { calories: 0, protein_g: 0, carbs_g: 0, fat_g: 0, fiber_g: 0, item_count: 0 } };
+    }
+
+    // Combine items
+    var combinedItems = currentNutrition.items.concat(newItems);
+    
+    // Sum summaries
+    var combinedSummary = {
+      calories: Math.round((currentNutrition.summary.calories || 0) + (newSummary.calories || 0)),
+      protein_g: Math.round((currentNutrition.summary.protein_g || 0) + (newSummary.protein_g || 0)),
+      carbs_g: Math.round((currentNutrition.summary.carbs_g || 0) + (newSummary.carbs_g || 0)),
+      fat_g: Math.round((currentNutrition.summary.fat_g || 0) + (newSummary.fat_g || 0)),
+      fiber_g: Math.round((currentNutrition.summary.fiber_g || 0) + (newSummary.fiber_g || 0)),
+      item_count: (currentNutrition.summary.item_count || 0) + (newSummary.item_count || 0)
+    };
+
     var entry = {
       id: "log_" + Date.now(),
       date: date,
       text: text,
-      items: apiResult.items || [],
-      summary: summary,
+      items: newItems, // Store only current log's items in history
+      summary: newSummary, // Store only current log's summary in history
       targets: targets,
       createdAt: new Date().toISOString(),
     };
@@ -187,16 +224,17 @@
     history.unshift(entry);
     writeJson(STORAGE_HISTORY, history.slice(0, 60));
 
-    writeJson(STORAGE_NUTRITION, { date: date, items: entry.items, summary: summary });
-    writeJson(STORAGE_SUMMARY, { date: date, totals: summary, targets: targets });
+    // Save cumulative data
+    writeJson(STORAGE_NUTRITION, { date: date, items: combinedItems, summary: combinedSummary });
+    writeJson(STORAGE_SUMMARY, { date: date, totals: combinedSummary, targets: targets });
 
     var reco = null;
-    if (isMeaningfulIntake(summary, targets)) {
-      reco = buildTomorrowRecommendations(summary, targets, loadProfile());
+    if (isMeaningfulIntake(combinedSummary, targets)) {
+      reco = buildTomorrowRecommendations(combinedSummary, targets, loadProfile());
       writeJson(STORAGE_RECOMMENDATIONS, reco);
     }
 
-    // Agar user logged in hai, Supabase mein bhi save karo
+    // Sync with Supabase if logged in
     if (window.FitAIAuth && window.FitAISupabase) {
       window.FitAIAuth.getCurrentUser().then(function (user) {
         if (!user) return;
@@ -205,8 +243,8 @@
           .insert({
             user_id: user.id,
             log_date: date,
-            items: entry.items,
-            summary: summary,
+            items: newItems,
+            summary: newSummary,
           })
           .then(function (res) {
             if (res.error) console.error("Supabase food log save failed:", res.error);
@@ -214,7 +252,7 @@
       });
     }
 
-    return { entry: entry, recommendations: reco, targets: targets };
+    return { entry: entry, recommendations: reco, targets: targets, cumulativeSummary: combinedSummary, cumulativeItems: combinedItems };
   }
 
   function getReminders() {
@@ -248,5 +286,6 @@
     saveReminders: saveReminders,
     buildTomorrowRecommendations: buildTomorrowRecommendations,
     clearAllTrackingData: clearAllTrackingData,
+    readJson: readJson
   };
 })(typeof window !== "undefined" ? window : globalThis);

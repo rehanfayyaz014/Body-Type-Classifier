@@ -430,3 +430,113 @@
 #track-reminder-message::placeholder {
   color: rgba(255,255,255,0.35);
 }
+
+/* ── Body Type Gate (FIX #3) ─────────────────────────────────────────────── */
+.tracking-gate {
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.tracking-gate__icon {
+  font-size: 3rem;
+  margin-bottom: 0.25rem;
+}
+
+.tracking-gate__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0;
+}
+
+.tracking-gate__hint {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.tracking-gate__options {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  width: 100%;
+  margin: 1rem 0;
+}
+
+@media (min-width: 480px) {
+  .tracking-gate__options {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.gate-opt {
+  padding: 0.85rem 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.tracking-gate__footer {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  color: #2dd4bf;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.25rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.link-btn:hover {
+  color: #5eead4;
+}
+
+/* Notification card styles */
+.notify-card {
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.notify-card__icon {
+  font-size: 3.5rem;
+  background: rgba(45, 212, 191, 0.1);
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-bottom: 0.5rem;
+}
+
+.notify-card__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0;
+}
+
+.notify-card__body {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin: 0;
+}

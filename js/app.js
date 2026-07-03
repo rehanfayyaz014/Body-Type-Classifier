@@ -979,7 +979,19 @@
       var data = await fetchPredict();
       state.bmi = typeof data.bmi === "number" ? data.bmi : localBmi;
       state.bodyTypeKey = normalizeBodyType(data.body_type);
+      saveProfile();
       setPredictLoading(false);
+      
+      var handoff = sessionStorage.getItem(SESSION_PREFILL_HANDOFF);
+      if (handoff === "tracking-redirect") {
+        if (window.AnimationManager) {
+          window.AnimationManager.navigateTo("/?module=tracking");
+        } else {
+          window.location.href = "/?module=tracking";
+        }
+        return;
+      }
+      
       goResult();
     } catch (err) {
       setPredictLoading(false);
