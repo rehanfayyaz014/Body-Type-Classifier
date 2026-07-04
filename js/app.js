@@ -63,42 +63,72 @@
     return new URLSearchParams(window.location.search).get("module");
   }
 
-  function saveProfile() {
+  function shouldPersistMetrics(isManualSelection) {
+    if (isManualSelection) return false;
+
+    var hasAssessmentBmi = typeof state.bmi === "number" && !isNaN(state.bmi) && state.bmi > 0;
+    if (hasAssessmentBmi) return true;
+
+    var height = Number(state.answers.height);
+    var weight = Number(state.answers.weight);
+    return height > 0 && weight > 0 && (height !== 170 || weight !== 70);
+  }
+
+  function buildProfilePayload(isManualSelection) {
+    var persistMetrics = shouldPersistMetrics(isManualSelection);
     var profileData = {
       bodyTypeKey: state.bodyTypeKey,
-      bmi: state.bmi,
+      bmi: persistMetrics ? state.bmi : null,
       gender: state.answers.gender,
-      height_cm: state.answers.height,
-      weight_kg: state.answers.weight,
+      height_cm: persistMetrics ? state.answers.height : null,
+      weight_kg: persistMetrics ? state.answers.weight : null,
       goal: state.detailGoal,
       activityLevel: state.activityLevel,
       workoutPreference: state.workoutPreference,
+      isManual: !!isManualSelection,
     };
+
+    if (isManualSelection) {
+      profileData.bmi = null;
+      profileData.height_cm = null;
+      profileData.weight_kg = null;
+    }
+
+    return profileData;
+  }
+
+  function saveProfile(isManualSelection) {
+    var profileData = buildProfilePayload(isManualSelection);
+    var persistMetrics = shouldPersistMetrics(isManualSelection);
+
+    if (isManualSelection) {
+      state.bmi = null;
+    }
 
     localStorage.setItem(STORAGE_PROFILE, JSON.stringify(profileData));
 
-    // Agar user logged in hai, Supabase mein bhi save karo
     if (window.FitAIAuth) {
       window.FitAIAuth.getCurrentUser().then(function (user) {
         if (!user || !window.FitAISupabase) return;
 
+        var historyData = {
+          user_id: user.id,
+          body_type: profileData.bodyTypeKey,
+          bmi: profileData.bmi || 0,
+          height_cm: profileData.height_cm || 0,
+          weight_kg: profileData.weight_kg || 0,
+          goal: profileData.goal || null,
+          activity_level: profileData.activityLevel || null,
+          workout_preference: profileData.workoutPreference || null,
+        };
+
         window.FitAISupabase
           .from("body_type_history")
-          .insert({
-            user_id: user.id,
-            body_type: profileData.bodyTypeKey,
-            bmi: profileData.bmi || 0,
-            height_cm: profileData.height_cm || 0,
-            weight_kg: profileData.weight_kg || 0,
-            goal: profileData.goal || null,
-            activity_level: profileData.activityLevel || null,
-            workout_preference: profileData.workoutPreference || null,
-          })
+          .insert(historyData)
           .then(function (res) {
             if (res.error) console.error("Supabase save failed:", res.error);
           });
 
-        // Profile table mein latest height/weight/gender bhi update kar do
         window.FitAISupabase
           .from("profiles")
           .update({
@@ -1181,7 +1211,7 @@
       if (!key || !val) return;
       if (key === "bodyType") {
         state.bodyTypeKey = normalizeBodyType(val);
-        saveProfile();
+        saveProfile(true);
       } else if (key === "gender") {
         state.answers.gender = val;
         saveProfile();

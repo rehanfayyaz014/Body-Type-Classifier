@@ -116,9 +116,9 @@
 
     if (profile && profile.bodyTypeKey) {
       $("profile-current-type").textContent = capitalize(profile.bodyTypeKey);
-      $("profile-height").textContent = profile.height_cm || "--";
-      $("profile-weight").textContent = profile.weight_kg || "--";
-      $("profile-current-bmi").textContent = profile.bmi != null ? profile.bmi : "--";
+      $("profile-height").textContent = (profile.height_cm && profile.height_cm > 0) ? profile.height_cm : "--";
+      $("profile-weight").textContent = (profile.weight_kg && profile.weight_kg > 0) ? profile.weight_kg : "--";
+      $("profile-current-bmi").textContent = (profile.bmi && profile.bmi > 0) ? profile.bmi : "--";
     } else {
       $("profile-current-type").textContent = "Not assessed yet";
     }
@@ -205,14 +205,20 @@
     if (bodyRes.data && bodyRes.data.length) {
       var latest = bodyRes.data[0];
       $("profile-current-type").textContent = capitalize(latest.body_type);
-      $("profile-height").textContent = latest.height_cm;
       
-      var displayWeight = (profile && profile.weight_kg) ? profile.weight_kg : latest.weight_kg;
-      $("profile-weight").textContent = displayWeight;
+      var latestHeight = latest.height_cm;
+      var latestWeight = latest.weight_kg;
+      var h = (latestHeight != null && latestHeight > 0) ? latestHeight : null;
+      var w = (latestWeight != null && latestWeight > 0) ? latestWeight : null;
       
-      var height = latest.height_cm;
-      var displayBmi = (displayWeight / ((height / 100) ** 2)).toFixed(2);
-      $("profile-current-bmi").textContent = displayBmi;
+      $("profile-height").textContent = (h && h > 0) ? h : "--";
+      $("profile-weight").textContent = (w && w > 0) ? w : "--";
+      
+      if (h > 0 && w > 0) {
+        $("profile-current-bmi").textContent = (w / ((h / 100) ** 2)).toFixed(2);
+      } else {
+        $("profile-current-bmi").textContent = "--";
+      }
     } else {
       $("profile-current-type").textContent = "Not assessed yet";
       if (profile && profile.weight_kg) {

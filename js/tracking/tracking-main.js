@@ -123,6 +123,50 @@
     }
   }
 
+  function persistManualBodyTypeSelection(bodyType) {
+    if (!bodyType || !window.FitAIAuth || !window.FitAISupabase) return;
+
+    window.FitAIAuth.getCurrentUser().then(function (user) {
+      if (!user) return;
+
+      var sb = window.FitAISupabase;
+      sb
+        .from("body_type_history")
+        .select("id, bmi, height_cm, weight_kg")
+        .eq("user_id", user.id)
+        .order("created_at", { ascending: false })
+        .limit(1)
+        .then(function (latestRes) {
+          if (latestRes.data && latestRes.data.length) {
+            sb.from("body_type_history")
+              .update({ body_type: bodyType })
+              .eq("id", latestRes.data[0].id)
+              .then(function (res) {
+                if (res.error) console.error("Body type sync failed:", res.error);
+              });
+            return;
+          }
+
+          var payload = {
+            user_id: user.id,
+            body_type: bodyType,
+            bmi: 0,
+            height_cm: 0,
+            weight_kg: 0,
+            goal: null,
+            activity_level: null,
+            workout_preference: null,
+          };
+
+          sb.from("body_type_history")
+            .insert(payload)
+            .then(function (res) {
+              if (res.error) console.error("Body type sync failed:", res.error);
+            });
+        });
+    });
+  }
+
   async function goNutrition() {
     var stateApi = getState();
     var ui = getUI();
@@ -132,14 +176,20 @@
     var profile = stateApi.loadProfile();
     var hasBodyType = profile && profile.bodyTypeKey;
 
-    // If logged in, check database as well
-    if (!hasBodyType && window.FitAIAuth) {
+    // If logged in, check database as well (check history table where body type is actually stored)
+    if (!hasBodyType && window.FitAIAuth && window.FitAISupabase) {
       var user = await window.FitAIAuth.getCurrentUser();
       if (user) {
-        var dbProfile = await window.FitAIAuth.getProfile(user.id);
-        if (dbProfile && dbProfile.body_type) {
+        var res = await window.FitAISupabase
+          .from("body_type_history")
+          .select("body_type")
+          .eq("user_id", user.id)
+          .order("created_at", { ascending: false })
+          .limit(1);
+        
+        if (res.data && res.data.length && res.data[0].body_type) {
           profile = profile || {};
-          profile.bodyTypeKey = dbProfile.body_type;
+          profile.bodyTypeKey = res.data[0].body_type;
           localStorage.setItem("fitai-profile", JSON.stringify(profile));
           hasBodyType = true;
         }
@@ -151,7 +201,13 @@
         function(selectedType) {
           profile = profile || {};
           profile.bodyTypeKey = selectedType;
+          // Manual selection: only persist the selected body type
+          profile.height_cm = null;
+          profile.weight_kg = null;
+          profile.bmi = null;
+          profile.isManual = true;
           localStorage.setItem("fitai-profile", JSON.stringify(profile));
+          persistManualBodyTypeSelection(selectedType);
           stateApi.calculateTargets(profile);
           // After selection, proceed to nutrition
           goNutrition();
