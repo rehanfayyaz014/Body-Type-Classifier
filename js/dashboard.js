@@ -57,8 +57,18 @@
     if (btn) btn.setAttribute("aria-expanded", "false");
   }
 
-  function showComingSoon() {
-    alert(getStrings().dashComingSoon || "Coming Soon");
+  function openFoodPreview() {
+    var overlay = $("food-preview-overlay");
+    if (!overlay) return;
+    overlay.classList.remove("hidden");
+    overlay.setAttribute("aria-hidden", "false");
+  }
+
+  function closeFoodPreview() {
+    var overlay = $("food-preview-overlay");
+    if (!overlay) return;
+    overlay.classList.add("hidden");
+    overlay.setAttribute("aria-hidden", "true");
   }
 
   function bindModuleLinks() {
@@ -129,7 +139,15 @@
       e.stopPropagation();
     });
 
-    $("card-food")?.addEventListener("click", showComingSoon);
+    $("card-food")?.addEventListener("click", function (e) {
+      e.preventDefault();
+      openFoodPreview();
+    });
+    $("food-preview-close")?.addEventListener("click", closeFoodPreview);
+    $("food-preview-continue")?.addEventListener("click", closeFoodPreview);
+    $("food-preview-overlay")?.addEventListener("click", function (e) {
+      if (e.target === $("food-preview-overlay")) closeFoodPreview();
+    });
     bindModuleLinks();
   }
 

@@ -18,6 +18,25 @@
     $("auth-form-signup").classList.toggle("hidden", isLogin);
   }
 
+  function getStrings() {
+    var lang = localStorage.getItem("fitai-lang") || "en";
+    return (window.FitAIStrings && window.FitAIStrings[lang]) || (window.FitAIStrings && window.FitAIStrings.en) || {};
+  }
+
+  function applyI18n() {
+    var strings = getStrings();
+    document.querySelectorAll("[data-i18n]").forEach(function (node) {
+      var key = node.getAttribute("data-i18n");
+      if (!key || !strings[key]) return;
+      node.textContent = strings[key];
+    });
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(function (node) {
+      var key = node.getAttribute("data-i18n-placeholder");
+      if (!key || !strings[key]) return;
+      node.setAttribute("placeholder", strings[key]);
+    });
+  }
+
   function showError(id, message) {
     var el = $(id);
     el.textContent = message;
@@ -108,6 +127,7 @@
     $("auth-close").addEventListener("click", hideModal);
     $("auth-tab-login").addEventListener("click", function () { switchTab("login"); });
     $("auth-tab-signup").addEventListener("click", function () { switchTab("signup"); });
+    applyI18n();
 
     $("auth-form-login").addEventListener("submit", async function (e) {
       e.preventDefault();
@@ -119,7 +139,8 @@
         updateHeaderWelcome(user);
         hideModal();
       } catch (err) {
-        showError("login-error", err.message || "Login failed");
+        var message = err.message || getStrings().authLoginErrorDefault || "Login failed";
+        showError("login-error", message);
       }
     });
 
@@ -136,9 +157,14 @@
         updateAccountUI(user);
         updateHeaderWelcome(user);
         hideModal();
-        showNotification("Account Created!", "Your account is ready and your data has been synced. Welcome to FitForge!", "🚀");
+        showNotification(
+          getStrings().authSignupSuccessTitle || "Account Created!",
+          getStrings().authSignupSuccessMessage || "Your account is ready and your data has been synced. Welcome to FitForge!",
+          "🚀"
+        );
       } catch (err) {
-        showError("signup-error", err.message || "Signup failed");
+        var message = err.message || getStrings().authSignupErrorDefault || "Signup failed";
+        showError("signup-error", message);
       }
     });
 
@@ -147,6 +173,7 @@
       updateAccountUI(user);
       updateHeaderWelcome(user);
     });
+    document.addEventListener("fitai-language-change", applyI18n);
   }
 
   if (document.readyState === "loading") {

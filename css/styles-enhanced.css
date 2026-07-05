@@ -141,20 +141,127 @@ main {
   position: sticky;
   top: 0;
   z-index: 10;
-  height: auto;
-  min-height: 60px;
-  padding: 1rem;
+  width: 100%;
+  min-height: 64px;
+  padding: 1rem 1.25rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  backdrop-filter: blur(12px);
-  background: rgba(15, 23, 41, 0.4);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 1rem;
+  backdrop-filter: blur(18px);
+  background: rgba(15, 23, 41, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   transition: all 0.3s var(--ease);
 }
 
 .theme-light .top-bar {
-  background: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.7);
+  border-bottom-color: rgba(15, 23, 42, 0.12);
+}
+
+.top-bar__left,
+.top-bar__center,
+.top-bar__right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.top-bar__center {
+  flex: 1;
+  justify-content: center;
+  text-align: center;
+}
+
+.top-bar__right {
+  justify-content: flex-end;
+}
+
+#header-user-welcome {
+  font-size: 0.96rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.theme-light #header-user-welcome {
+  color: var(--text);
+}
+
+.icon-btn {
+  display: inline-flex;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: var(--text);
+}
+
+.theme-light .icon-btn {
+  background: rgba(15, 23, 42, 0.06);
+  border-color: rgba(15, 23, 42, 0.12);
+}
+
+.feature-food-overlay,
+.profile-history-panel {
+  z-index: 15;
+}
+
+.feature-food-overlay {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background: rgba(5, 8, 16, 0.65);
+  backdrop-filter: blur(12px);
+}
+
+.feature-food-modal {
+  position: relative;
+  max-width: 420px;
+  width: 100%;
+  padding: 2rem;
+  display: grid;
+  gap: 1rem;
+  text-align: center;
+  border-radius: 24px;
+}
+
+.feature-food-modal__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--text);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-food-modal__icon {
+  font-size: 2.65rem;
+}
+
+.feature-food-modal__title {
+  font-size: 1.35rem;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.feature-food-modal__desc {
+  color: var(--text-muted);
+  margin: 0 auto;
+  max-width: 320px;
+}
+
+.feature-food-modal__action {
+  margin-top: 0.5rem;
 }
 
 .top-bar__left,
