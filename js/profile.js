@@ -1,9 +1,67 @@
 (function () {
   function $(id) { return document.getElementById(id); }
 
+  var I18N = window.FitAIStrings;
+  var STORAGE_LANG = "fitai-lang";
+  var STORAGE_THEME = "fitai-theme";
   var state = {
-    pendingDeleteId: null
+    pendingDeleteId: null,
+    lang: "en",
+    theme: "dark"
   };
+
+  function getStrings() {
+    return (I18N && I18N[state.lang]) || I18N.en || {};
+  }
+
+  function applyI18n() {
+    var s = getStrings();
+    document.querySelectorAll("[data-i18n]").forEach(function (node) {
+      var key = node.getAttribute("data-i18n");
+      if (!key || !s[key]) return;
+      node.textContent = s[key];
+    });
+    var brand = $("brand-title");
+    if (brand && s.brand) brand.textContent = s.brand;
+    document.title = (s.brand || "FitForge") + " — " + (s.profilePageTitle || "Profile");
+  }
+
+  function setLang(lang) {
+    if (!I18N || !I18N[lang]) lang = "en";
+    state.lang = lang;
+    localStorage.setItem(STORAGE_LANG, lang);
+    document.documentElement.lang = lang === "ur" ? "ur" : "en";
+    document.documentElement.dir = lang === "ur" ? "rtl" : "ltr";
+    document.body.dir = document.documentElement.dir;
+    applyI18n();
+  }
+
+  function setTheme(theme) {
+    state.theme = theme;
+    localStorage.setItem(STORAGE_THEME, theme);
+    document.body.classList.toggle("theme-light", theme === "light");
+    document.body.classList.toggle("theme-dark", theme === "dark");
+    var sun = $("btn-theme")?.querySelector(".icon-sun");
+    var moon = $("btn-theme")?.querySelector(".icon-moon");
+    if (sun && moon) {
+      sun.classList.toggle("hidden", theme === "light");
+      moon.classList.toggle("hidden", theme === "dark");
+    }
+  }
+
+  function updateHeaderWelcome(user) {
+    var welcome = $("header-user-welcome");
+    if (!welcome) return;
+    if (!user) {
+      welcome.textContent = "";
+      welcome.classList.add("hidden");
+      return;
+    }
+    var name = (user.user_metadata && user.user_metadata.name) || user.email || "there";
+    var prefix = getStrings().headerWelcome || "Welcome";
+    welcome.textContent = prefix + ", " + name;
+    welcome.classList.remove("hidden");
+  }
 
   function capitalize(s) {
     return s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
@@ -56,11 +114,21 @@
     }
   }
 
+  function toggleHistoryPanel(force) {
+    var panel = $("profile-history-panel");
+    var toggle = $("profile-history-toggle");
+    if (!panel || !toggle) return;
+    var shouldOpen = typeof force === "boolean" ? force : panel.classList.contains("hidden");
+    panel.classList.toggle("hidden", !shouldOpen);
+    toggle.setAttribute("aria-expanded", shouldOpen ? "true" : "false");
+  }
+
   function renderFoodHistory(rows) {
     var container = $("profile-food-history");
+    var s = getStrings();
     container.innerHTML = "";
     if (!rows || !rows.length) {
-      container.innerHTML = '<p class="profile-empty">No food logs yet.</p>';
+      container.innerHTML = '<p class="profile-empty">' + (s.profileNoLogs || "No food logs yet") + '</p>';
       return;
     }
     
@@ -68,13 +136,13 @@
       var summary = row.summary || {};
       var items = row.items || [];
       
-      var mealType = "General";
+      var mealType = s.profileMealGeneral || "General";
       if (items.length && items[0].meal) {
         mealType = items[0].meal;
       }
 
       var foodList = items.map(function(i) { 
-        return (i.matched_food || i.raw_input || "Unknown item") + (i.portion ? " (" + i.portion + ")" : "");
+        return (i.matched_food || i.raw_input || (s.profileUnknownItem || "Unknown item")) + (i.portion ? " (" + i.portion + ")" : "");
       }).join(", ");
 
       var div = document.createElement("div");
@@ -89,7 +157,7 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
           </button>
         </div>
-        <div class="food-history-items-list">${foodList || "No items recorded"}</div>
+        <div class="food-history-items-list">${foodList || (s.profileNoItemsRecorded || "No items recorded")}</div>
         <div class="food-history-macros">
           <span class="macro-badge macro-badge--cal">${Math.round(summary.calories || 0)} kcal</span>
           <span class="macro-badge macro-badge--p">${Math.round(summary.protein_g || summary.protein || 0)}g P</span>
@@ -107,8 +175,9 @@
   }
 
   function renderGuestView() {
-    $("profile-name").textContent = "Guest";
-    $("profile-email").textContent = "Not signed in";
+    var s = getStrings();
+    $("profile-name").textContent = s.profileGuestName || "Guest";
+    $("profile-email").textContent = s.profileGuestEmail || "Not signed in";
     $("profile-avatar-letter").textContent = "G";
 
     var profileRaw = localStorage.getItem("fitai-profile");
@@ -120,7 +189,7 @@
       $("profile-weight").textContent = (profile.weight_kg && profile.weight_kg > 0) ? profile.weight_kg : "--";
       $("profile-current-bmi").textContent = (profile.bmi && profile.bmi > 0) ? profile.bmi : "--";
     } else {
-      $("profile-current-type").textContent = "Not assessed yet";
+      $("profile-current-type").textContent = s.profileNotAssessed || "Not assessed yet";
     }
 
     var historyRaw = localStorage.getItem("fitai-tracking-history");
@@ -189,6 +258,7 @@
   async function renderLoggedInView(user) {
     var sb = window.FitAISupabase;
     var profile = await window.FitAIAuth.getProfile(user.id);
+    var s = getStrings();
 
     var displayName = (profile && profile.name) || user.email;
     $("profile-name").textContent = displayName;
@@ -220,7 +290,7 @@
         $("profile-current-bmi").textContent = "--";
       }
     } else {
-      $("profile-current-type").textContent = "Not assessed yet";
+      $("profile-current-type").textContent = s.profileNotAssessed || "Not assessed yet";
       if (profile && profile.weight_kg) {
           $("profile-weight").textContent = profile.weight_kg;
           $("profile-height").textContent = profile.height_cm || "--";
@@ -238,8 +308,17 @@
   }
 
   async function init() {
+    state.lang = localStorage.getItem(STORAGE_LANG) || "en";
+    state.theme = localStorage.getItem(STORAGE_THEME) || "dark";
+    setLang(state.lang);
+    setTheme(state.theme);
+
     $("btn-home")?.addEventListener("click", function () {
       window.location.href = "/dashboard";
+    });
+
+    $("btn-theme")?.addEventListener("click", function () {
+      setTheme(state.theme === "dark" ? "light" : "dark");
     });
 
     // Weight Modal
@@ -257,6 +336,10 @@
       }
     });
 
+    $("profile-history-toggle")?.addEventListener("click", function () {
+      toggleHistoryPanel();
+    });
+
     // Delete Modal
     $("btn-delete-cancel")?.addEventListener("click", closeDeleteModal);
     $("btn-delete-confirm")?.addEventListener("click", confirmDelete);
@@ -271,8 +354,10 @@
 
     var user = await window.FitAIAuth.getCurrentUser();
     if (user) {
+      updateHeaderWelcome(user);
       renderLoggedInView(user);
     } else {
+      updateHeaderWelcome(null);
       renderGuestView();
     }
   }

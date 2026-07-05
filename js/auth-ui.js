@@ -60,6 +60,24 @@
     }
   }
 
+  function updateHeaderWelcome(user) {
+    var welcomeEls = document.querySelectorAll("#header-user-welcome");
+    if (!welcomeEls.length) return;
+    var lang = localStorage.getItem("fitai-lang") || "en";
+    var strings = (window.FitAIStrings && window.FitAIStrings[lang]) || (window.FitAIStrings && window.FitAIStrings.en) || {};
+    var prefix = strings.headerWelcome || "Welcome";
+    welcomeEls.forEach(function (el) {
+      if (!user) {
+        el.textContent = "";
+        el.classList.add("hidden");
+        return;
+      }
+      var name = (user.user_metadata && user.user_metadata.name) || (user.email && user.email.split("@")[0]) || "there";
+      el.textContent = prefix + ", " + name;
+      el.classList.remove("hidden");
+    });
+  }
+
   function init() {
     if (!window.FitAIAuth) {
       console.error("FitAIAuth not found. Check script order.");
@@ -83,6 +101,7 @@
     $("logout-confirm").addEventListener("click", async function () {
       await window.FitAIAuth.signOut();
       updateAccountUI(null);
+      updateHeaderWelcome(null);
       $("logout-overlay").classList.add("hidden");
     });
 
@@ -97,6 +116,7 @@
         await window.FitAIAuth.signIn($("login-email").value, $("login-password").value);
         var user = await window.FitAIAuth.getCurrentUser();
         updateAccountUI(user);
+        updateHeaderWelcome(user);
         hideModal();
       } catch (err) {
         showError("login-error", err.message || "Login failed");
@@ -114,15 +134,19 @@
         );
         var user = await window.FitAIAuth.getCurrentUser();
         updateAccountUI(user);
+        updateHeaderWelcome(user);
         hideModal();
-        showNotification("Account Created!", "Your account is ready and your data has been synced. Welcome to FitAI!", "🚀");
+        showNotification("Account Created!", "Your account is ready and your data has been synced. Welcome to FitForge!", "🚀");
       } catch (err) {
         showError("signup-error", err.message || "Signup failed");
       }
     });
 
     // On load, check if already logged in (session persisted)
-    window.FitAIAuth.getCurrentUser().then(updateAccountUI);
+    window.FitAIAuth.getCurrentUser().then(function (user) {
+      updateAccountUI(user);
+      updateHeaderWelcome(user);
+    });
   }
 
   if (document.readyState === "loading") {

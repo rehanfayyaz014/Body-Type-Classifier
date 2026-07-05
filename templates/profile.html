@@ -23,7 +23,14 @@
         <button type="button" class="icon-btn" id="btn-home" aria-label="Back">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
         </button>
-        <span class="logo">FitAI</span>
+        <span class="logo" id="brand-title">FitForge</span>
+      </div>
+      <div class="top-bar__center" id="header-user-welcome" aria-live="polite"></div>
+      <div class="top-bar__right">
+        <button type="button" class="icon-btn" id="btn-theme" aria-label="Toggle theme">
+          <svg class="icon-sun" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon hidden" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
       </div>
     </header>
 
@@ -31,27 +38,48 @@
       <div class="glass-card profile-header-card">
         <div class="profile-avatar" id="profile-avatar-letter">G</div>
         <div class="profile-header-info">
-          <h1 class="profile-name" id="profile-name">Guest</h1>
-          <p class="profile-email" id="profile-email">Not signed in</p>
+          <h1 class="profile-name" id="profile-name" data-i18n="profileGuestName">Guest</h1>
+          <p class="profile-email" id="profile-email" data-i18n="profileGuestEmail">Not signed in</p>
         </div>
       </div>
 
       <div class="glass-card profile-current-card">
-        <p class="profile-section-label">Current Status</p>
-        <h2 class="profile-current-type" id="profile-current-type">--</h2>
-        <div class="profile-current-meta-row">
-          <span id="profile-height">--</span> cm · 
-          <span id="profile-weight">--</span> kg 
-          <button type="button" class="edit-btn-inline" id="btn-edit-weight" title="Edit Weight">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-          </button>
+        <p class="profile-section-label" data-i18n="profileCurrentStatus">Current Status</p>
+        <h2 class="profile-current-type" id="profile-current-type" data-i18n="profileNotAssessed">Not assessed yet</h2>
+        <div class="profile-metric-grid">
+          <div class="profile-metric">
+            <span class="profile-metric__label" data-i18n="profileHeightLabel">Height</span>
+            <strong id="profile-height">--</strong>
+          </div>
+          <div class="profile-metric">
+            <span class="profile-metric__label" data-i18n="profileWeightLabel">Weight</span>
+            <div class="profile-weight-edit">
+              <strong id="profile-weight">--</strong>
+              <button type="button" class="edit-btn-inline" id="btn-edit-weight" title="Edit Weight">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+              </button>
+            </div>
+          </div>
+          <div class="profile-metric">
+            <span class="profile-metric__label" data-i18n="profileBmiLabel">BMI</span>
+            <strong id="profile-current-bmi">--</strong>
+          </div>
         </div>
-        <p class="profile-current-bmi-row">BMI: <strong id="profile-current-bmi">--</strong></p>
+
+        <button type="button" class="profile-history-toggle" id="profile-history-toggle" aria-expanded="false">
+          <span class="profile-history-toggle__title" data-i18n="profileHistoryToggleTitle">Food History</span>
+          <span class="profile-history-toggle__hint" data-i18n="profileHistoryToggleHint">Tap to view your food logs</span>
+        </button>
       </div>
 
-      <div class="profile-section">
-        <h2 class="profile-section-title">Food Tracking History</h2>
-        <div id="profile-food-history" class="profile-history-list"></div>
+      <div id="profile-history-panel" class="profile-history-panel hidden">
+        <div class="profile-section">
+          <div class="profile-section-heading">
+            <h2 class="profile-section-title" data-i18n="profileFoodHistoryTitle">Food Tracking History</h2>
+            <span class="profile-section-helper" data-i18n="profileFoodHistoryHint">Your recent meals and macros</span>
+          </div>
+          <div id="profile-food-history" class="profile-history-list"></div>
+        </div>
       </div>
     </main>
 
@@ -90,6 +118,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <script src="/js/supabase-client.js"></script>
+  <script src="/js/i18n.js"></script>
   <script src="/js/auth.js"></script>
   <script src="/js/profile.js"></script>
 </body>
