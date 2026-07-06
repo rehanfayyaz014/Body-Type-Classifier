@@ -31,6 +31,8 @@
     detailGoal: null,
     activityLevel: null,
     workoutPreference: null,
+    heightEdited: false,
+    weightEdited: false,
     lang: "en",
     theme: "dark",
     apiBusy: false,
@@ -69,9 +71,7 @@
     var hasAssessmentBmi = typeof state.bmi === "number" && !isNaN(state.bmi) && state.bmi > 0;
     if (hasAssessmentBmi) return true;
 
-    var height = Number(state.answers.height);
-    var weight = Number(state.answers.weight);
-    return height > 0 && weight > 0 && (height !== 170 || weight !== 70);
+    return !!(state.heightEdited || state.weightEdited);
   }
 
   function buildProfilePayload(isManualSelection) {
@@ -161,6 +161,14 @@
       if (p.bodyTypeKey) state.bodyTypeKey = normalizeBodyType(p.bodyTypeKey);
       if (typeof p.bmi === "number" && !isNaN(p.bmi)) state.bmi = p.bmi;
       if (p.gender === "male" || p.gender === "female") state.answers.gender = p.gender;
+      if (typeof p.height_cm === "number" && !isNaN(p.height_cm) && p.height_cm > 0) {
+        state.answers.height = p.height_cm;
+        state.heightEdited = true;
+      }
+      if (typeof p.weight_kg === "number" && !isNaN(p.weight_kg) && p.weight_kg > 0) {
+        state.answers.weight = p.weight_kg;
+        state.weightEdited = true;
+      }
     } catch (e) {
       /* ignore */
     }
@@ -315,6 +323,7 @@
     plan: "view-plan",
     result: "view-result",
     detail: "view-detail",
+    recommendation: "view-recommendation",
   };
 
   function getViewEl(name) {
@@ -391,6 +400,13 @@
     if (back) back.classList.toggle("hidden", !inFlow);
     if (dash) dash.classList.toggle("hidden", !inFlow);
     if (dash) dash.setAttribute("aria-label", getStrings().dashAriaLabel || "Dashboard");
+    if (window.FitAIHeaderUI && window.FitAIAuth) {
+      window.FitAIAuth.getCurrentUser().then(function (user) {
+        window.FitAIHeaderUI.sync(user);
+      });
+    } else if (window.FitAIHeaderUI) {
+      window.FitAIHeaderUI.sync(null);
+    }
   }
 
   function goLanding() {
@@ -501,6 +517,8 @@
     clearProfile();
     state.bodyTypeKey = null;
     state.bmi = null;
+    state.heightEdited = false;
+    state.weightEdited = false;
     state.answers = {
       gender: null,
       shape: null,
@@ -560,6 +578,23 @@
     saveProfile();
     sessionStorage.setItem(SESSION_PREFILL_HANDOFF, "1");
     window.location.href = "/?module=plan&prefill=1";
+  }
+
+  function goRecommendation(opts) {
+    opts = opts || {};
+    state.module = "recommendation";
+    if (opts.boot) {
+      bootModuleView("recommendation").then(function () {
+        if (window.FitAIRecommendationPage && window.FitAIRecommendationPage.init) {
+          window.FitAIRecommendationPage.init();
+        }
+      });
+      return;
+    }
+    showView("recommendation");
+    if (window.FitAIRecommendationPage && window.FitAIRecommendationPage.init) {
+      window.FitAIRecommendationPage.init();
+    }
   }
 
   function startPlanModule(opts) {
@@ -1030,6 +1065,10 @@
   }
 
   function onBack() {
+    if (state.view === "recommendation") {
+      goDashboard();
+      return;
+    }
     if (state.view === "quiz") {
       if (state.step === 0) {
         goDashboard();
@@ -1127,6 +1166,7 @@
 
     $("input-height")?.addEventListener("input", function (e) {
       state.answers.height = parseInt(e.target.value, 10);
+      state.heightEdited = true;
       $("height-val").textContent = String(state.answers.height);
       updateContinueState();
     });
@@ -1158,6 +1198,7 @@
       
       if (cm && cm >= 140 && cm <= 220) {
         state.answers.height = cm;
+        state.heightEdited = true;
         $("input-height").value = cm;
         $("height-val").textContent = String(cm);
       }
@@ -1177,6 +1218,7 @@
 
     $("input-weight")?.addEventListener("input", function (e) {
       state.answers.weight = parseInt(e.target.value, 10);
+      state.weightEdited = true;
       $("weight-val").textContent = String(state.answers.weight);
       updateContinueState();
     });
@@ -1198,6 +1240,7 @@
       
       if (kg >= 40 && kg <= 150) {
         state.answers.weight = kg;
+        state.weightEdited = true;
         $("input-weight").value = kg;
         $("weight-val").textContent = String(kg);
       }
@@ -1350,6 +1393,8 @@
     } else if (urlModule === "plan") {
       var prefill = new URLSearchParams(window.location.search).get("prefill") === "1";
       startPlanModule({ prefillBodyType: prefill, boot: true });
+    } else if (urlModule === "recommendation") {
+      goRecommendation({ boot: true });
     } else if (urlModule === "tracking") {
       if (window.FitAITracking && window.FitAITracking.init) {
         window.FitAITracking.init();

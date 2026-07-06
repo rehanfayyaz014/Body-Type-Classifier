@@ -137,6 +137,53 @@
   height: 88px !important;
 }
 
+.tracking-stat-card__icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  animation: trackingStatIconIn 0.55s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.tracking-stat-card:nth-child(1) .tracking-stat-card__icon { animation-delay: 0.05s; }
+.tracking-stat-card:nth-child(2) .tracking-stat-card__icon { animation-delay: 0.12s; }
+.tracking-stat-card:nth-child(3) .tracking-stat-card__icon { animation-delay: 0.19s; }
+.tracking-stat-card:nth-child(4) .tracking-stat-card__icon { animation-delay: 0.26s; }
+
+@keyframes trackingStatIconIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.7);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.tracking-stat-card__icon--cal {
+  color: #2dd4bf;
+  filter: drop-shadow(0 0 6px rgba(45, 212, 191, 0.65));
+}
+
+.tracking-stat-card__icon--protein {
+  color: #38bdf8;
+  filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.65));
+}
+
+.tracking-stat-card__icon--carbs {
+  color: #fbbf24;
+  filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.65));
+}
+
+.tracking-stat-card__icon--fat {
+  color: #f472b6;
+  filter: drop-shadow(0 0 6px rgba(244, 114, 182, 0.65));
+}
+
 .tracking-stat-card__value {
   font-size: 1.1rem;
   font-weight: 700;
@@ -172,32 +219,167 @@
   color: rgba(255, 255, 255, 0.6);
 }
 
-.tracking-target-bar {
+.tracking-intake-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
   margin-bottom: 1.25rem;
-  padding: 1rem 1.1rem;
 }
 
-.tracking-target-bar__row {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.7);
-  margin-bottom: 0.35rem;
+@media (min-width: 640px) {
+  .tracking-intake-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
-.tracking-target-bar__fill {
-  height: 8px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.1);
-  overflow: hidden;
+.tracking-intake-card {
+  padding: 1.25rem 1rem 1.1rem;
+  text-align: center;
 }
 
-.tracking-target-bar__fill span {
-  display: block;
+.tracking-intake-card__title {
+  margin: 0 0 0.85rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.tracking-intake-ring {
+  position: relative;
+  width: min(100%, 220px);
+  margin: 0 auto 0.85rem;
+  aspect-ratio: 1;
+}
+
+.tracking-intake-ring__svg {
+  width: 100%;
   height: 100%;
+  transform: rotate(-225deg);
+}
+
+.tracking-intake-ring__track,
+.tracking-intake-ring__fill {
+  fill: none;
+  stroke-width: 14;
+  stroke-linecap: round;
+}
+
+.tracking-intake-ring__track {
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-dasharray: 339.3 452.4;
+}
+
+.tracking-intake-ring__fill {
+  stroke: #2dd4bf;
+  transition: stroke-dasharray 0.8s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.4s ease, filter 0.4s ease;
+  filter: drop-shadow(0 0 10px rgba(45, 212, 191, 0.45));
+}
+
+.tracking-intake-card--status-low .tracking-intake-ring__fill {
+  stroke: #fbbf24;
+  filter: drop-shadow(0 0 12px rgba(251, 191, 36, 0.55));
+}
+
+.tracking-intake-card--status-normal .tracking-intake-ring__fill {
+  stroke: #2dd4bf;
+  filter: drop-shadow(0 0 12px rgba(45, 212, 191, 0.55));
+}
+
+.tracking-intake-card--protein.tracking-intake-card--status-normal .tracking-intake-ring__fill {
+  stroke: #38bdf8;
+  filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.55));
+}
+
+.tracking-intake-card--status-high .tracking-intake-ring__fill {
+  stroke: #f472b6;
+  filter: drop-shadow(0 0 12px rgba(244, 114, 182, 0.55));
+}
+
+.tracking-intake-ring__center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15rem;
+  padding: 1.5rem;
+}
+
+.tracking-intake-ring__value {
+  font-size: clamp(1.65rem, 5vw, 2rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: #f8fafc;
+}
+
+.tracking-intake-ring__target {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.tracking-intake-ring__pct {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #5eead4;
+  margin-top: 0.1rem;
+}
+
+.tracking-intake-card--status-low .tracking-intake-ring__pct {
+  color: #fcd34d;
+}
+
+.tracking-intake-card--status-high .tracking-intake-ring__pct {
+  color: #f9a8d4;
+}
+
+.tracking-intake-card--protein.tracking-intake-card--status-normal .tracking-intake-ring__pct {
+  color: #7dd3fc;
+}
+
+.tracking-intake-ring__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.35rem;
+  padding: 0.2rem 0.55rem;
   border-radius: 999px;
-  background: linear-gradient(90deg, #2dd4bf, #22d3ee);
-  transition: width 0.6s ease;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: rgba(251, 191, 36, 0.16);
+  color: #fde68a;
+  border: 1px solid rgba(251, 191, 36, 0.35);
+}
+
+.tracking-intake-card--status-normal .tracking-intake-ring__badge {
+  background: rgba(45, 212, 191, 0.16);
+  color: #99f6e4;
+  border-color: rgba(45, 212, 191, 0.35);
+}
+
+.tracking-intake-card--status-high .tracking-intake-ring__badge {
+  background: rgba(244, 114, 182, 0.16);
+  color: #fbcfe8;
+  border-color: rgba(244, 114, 182, 0.35);
+}
+
+.tracking-intake-card__hint {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.theme-light .tracking-intake-card__title,
+.theme-light .tracking-intake-ring__value {
+  color: #0f172a;
+}
+
+.theme-light .tracking-intake-ring__target,
+.theme-light .tracking-intake-card__hint {
+  color: rgba(51, 65, 85, 0.75);
 }
 
 .tracking-reco {

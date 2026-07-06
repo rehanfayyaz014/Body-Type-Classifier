@@ -30,6 +30,227 @@ except ImportError:
 LETTER_MAP = {"A": 0, "B": 1, "C": 2}
 
 
+def _normalize_lang(value: object) -> str:
+    raw = str(value or "en").strip().lower()
+    if raw in {"romanurdu", "roman_urdu", "roman-urdu"}:
+        return "romanUrdu"
+    if raw == "ur":
+        return "ur"
+    return "en"
+
+
+def _number(value: object, default: float = 0.0) -> float:
+    try:
+        if value is None:
+            return default
+        return float(value)
+    except (TypeError, ValueError):
+        return default
+
+
+def _activity_multiplier(level: object) -> float:
+    level_key = str(level or "").strip()
+    return {
+        "sedentary": 1.2,
+        "light": 1.375,
+        "moderate": 1.55,
+        "active": 1.725,
+        "veryActive": 1.9,
+    }.get(level_key, 1.45)
+
+
+def _calculate_targets(profile: dict, age: int) -> dict:
+    weight = _number(profile.get("weight_kg"), 70.0) or 70.0
+    height = _number(profile.get("height_cm"), 170.0) or 170.0
+    gender = str(profile.get("gender") or "male").strip().lower()
+    goal = str(profile.get("goal") or profile.get("detailGoal") or "maintain").strip()
+    body_type = str(profile.get("bodyTypeKey") or "mesomorph").strip().lower()
+
+    bmr = (10 * weight + 6.25 * height - 5 * age - 161) if gender == "female" else (10 * weight + 6.25 * height - 5 * age + 5)
+    tdee = bmr * _activity_multiplier(profile.get("activityLevel"))
+
+    if body_type == "ectomorph":
+        tdee *= 1.20 if goal == "muscleGain" else 0.90 if goal == "weightLoss" else 1.05
+    elif body_type == "endomorph":
+        tdee *= 1.08 if goal == "muscleGain" else 0.80 if goal == "weightLoss" else 0.95
+    else:
+        tdee *= 1.15 if goal == "muscleGain" else 0.85 if goal == "weightLoss" else 1.0
+
+    if body_type == "ectomorph":
+        protein_per_kg = 2.2 if goal == "muscleGain" else 1.8
+    elif body_type == "endomorph":
+        protein_per_kg = 2.0 if goal == "weightLoss" else 1.7
+    else:
+        protein_per_kg = 2.0 if goal == "muscleGain" else 1.6
+
+    return {
+        "calories": int(round(tdee)),
+        "protein_g": int(round(weight * protein_per_kg)),
+        "carbs_g": int(round((tdee * 0.4) / 4)),
+        "fat_g": int(round((tdee * 0.25) / 9)),
+    }
+
+
+def _avg(values: list[float]) -> float:
+    items = [float(v) for v in values if v is not None]
+    return sum(items) / len(items) if items else 0.0
+
+
+def _recent_summary(history: list[dict]) -> dict:
+    recent = history[-5:] if len(history) > 5 else history
+    calories = [_number((row.get("summary") or {}).get("calories")) for row in recent]
+    protein = [_number((row.get("summary") or {}).get("protein_g") or (row.get("summary") or {}).get("protein")) for row in recent]
+    return {
+        "avg_calories": _avg(calories),
+        "avg_protein": _avg(protein),
+        "count": len(recent),
+    }
+
+
+def _recommendation_text(lang: str) -> dict:
+    return {
+        "en": {
+            "focus_protein": ("Focus on Protein", "Include eggs, chicken, fish and lentils"),
+            "greens": ("Eat More Greens", "Increase vegetables and salads"),
+            "hydration": ("Stay Hydrated", "Drink 2.5–3 liters water throughout the day"),
+            "carbs": ("Healthy Carbs", "Choose oats, brown rice and whole grains"),
+            "cardio": ("Cardio", "20–30 min moderate intensity"),
+            "strength": ("Strength Training", "Upper body / lower body / full body"),
+            "burn": ("Calories Burn Goal", "250–350 kcal"),
+            "recovery": ("Recovery Time", "60–90 sec"),
+            "insight_low": "Calories slightly low today",
+            "insight_mid": "Protein intake moderate",
+            "insight_up": "Recommended increase tomorrow",
+            "tip": "Consistent nutrition beats extreme dieting.",
+            "generic": "Generic guidance ready",
+        },
+        "romanUrdu": {
+            "focus_protein": ("Protein par focus", "Anday, chicken, fish aur daal shamil karein"),
+            "greens": ("Sabziyan barhayein", "Vegetables aur salads zyada lein"),
+            "hydration": ("Pani zyada piyein", "Din bhar 2.5–3 liter pani piyein"),
+            "carbs": ("Behtar carbs", "Oats, brown rice aur whole grains choose karein"),
+            "cardio": ("Cardio", "20–30 min moderate intensity"),
+            "strength": ("Strength Training", "Upper / lower / full body"),
+            "burn": ("Calories burn goal", "250–350 kcal"),
+            "recovery": ("Recovery time", "60–90 sec"),
+            "insight_low": "Calories aaj thori kam hain",
+            "insight_mid": "Protein intake moderate hai",
+            "insight_up": "Kal thora increase karein",
+            "tip": "Consistent nutrition extreme dieting se behtar hai.",
+            "generic": "General guidance ready",
+        },
+        "ur": {
+            "focus_protein": ("پروٹین پر فوکس", "انڈے، چکن، مچھلی اور دال شامل کریں"),
+            "greens": ("سبزیاں بڑھائیں", "سبزیاں اور سلاد زیادہ لیں"),
+            "hydration": ("پانی زیادہ پئیں", "دن بھر 2.5–3 لیٹر پانی پئیں"),
+            "carbs": ("اچھے کاربز", "اوٹس، براؤن رائس اور ہول گرینز منتخب کریں"),
+            "cardio": ("کارڈیو", "20–30 منٹ درمیانی شدت"),
+            "strength": ("اسٹرینتھ ٹریننگ", "اپر / لوئر / فل باڈی"),
+            "burn": ("کیلوری برن ہدف", "250–350 kcal"),
+            "recovery": ("ریکوری ٹائم", "60–90 سیکنڈ"),
+            "insight_low": "آج کیلوریز تھوڑی کم ہیں",
+            "insight_mid": "پروٹین انٹیک درمیانی ہے",
+            "insight_up": "کل تھوڑا بڑھائیں",
+            "tip": "مستقل خوراک extreme dieting سے بہتر ہے۔",
+            "generic": "عام رہنمائی تیار ہے",
+        },
+    }.get(lang, {})
+
+
+def _card(priority: str, title: str, icon: str, description: str) -> dict:
+    return {
+        "title": title,
+        "icon": icon,
+        "priority": priority,
+        "description": description,
+    }
+
+
+def build_recommendation_payload(payload: dict) -> dict:
+    lang = _normalize_lang(payload.get("lang") or (payload.get("profile") or {}).get("lang"))
+    profile = payload.get("profile") or {}
+    nutrition = payload.get("nutrition") or {}
+    history = payload.get("history") or []
+
+    age = int(_number(payload.get("age") or profile.get("age"), 30) or 30)
+    targets = _calculate_targets(profile, age)
+    recent = _recent_summary(history if isinstance(history, list) else [])
+    current_calories = _number(nutrition.get("calories"), 0)
+    current_protein = _number(nutrition.get("protein_g") or nutrition.get("protein"), 0)
+    cal_diff = current_calories - targets["calories"]
+    protein_diff = current_protein - targets["protein_g"]
+
+    texts = _recommendation_text(lang)
+    body_type = str(profile.get("bodyTypeKey") or "").strip().lower()
+    goal = str(profile.get("goal") or profile.get("detailGoal") or "maintain").strip()
+    activity = str(profile.get("activityLevel") or "moderate").strip()
+
+    if not profile.get("bodyTypeKey"):
+        generic = True
+    else:
+        generic = False
+
+    diet_cards = []
+    if protein_diff < -10 or goal == "muscleGain" or body_type == "ectomorph":
+        priority = "high" if protein_diff < -20 or goal == "muscleGain" else "medium"
+        diet_cards.append(_card(priority, texts["focus_protein"][0], "protein", texts["focus_protein"][1]))
+    if cal_diff > 0 or goal == "weightLoss" or body_type == "endomorph":
+        priority = "high" if cal_diff > 200 or goal == "weightLoss" else "medium"
+        diet_cards.append(_card(priority, texts["greens"][0], "leaf", texts["greens"][1]))
+    if activity in {"active", "veryActive"} or recent["avg_calories"] > 0 and recent["avg_calories"] < targets["calories"] * 0.9:
+        diet_cards.append(_card("medium", texts["hydration"][0], "drop", texts["hydration"][1]))
+    if body_type in {"ectomorph", "mesomorph"} or goal in {"muscleGain", "maintain"}:
+        priority = "low" if cal_diff > 250 else "medium"
+        diet_cards.append(_card(priority, texts["carbs"][0], "wheat", texts["carbs"][1]))
+
+    if not diet_cards:
+        diet_cards = [
+            _card("medium", texts["greens"][0], "leaf", texts["greens"][1]),
+            _card("medium", texts["focus_protein"][0], "protein", texts["focus_protein"][1]),
+        ]
+
+    exercise_cards = [
+        _card("medium", texts["cardio"][0], "running", texts["cardio"][1]),
+        _card("high" if goal == "muscleGain" else "medium", texts["strength"][0], "dumbbell", texts["strength"][1]),
+        _card("medium", texts["burn"][0], "flame", texts["burn"][1]),
+        _card("low", texts["recovery"][0], "timer", texts["recovery"][1]),
+    ]
+
+    insights = []
+    if cal_diff < -150:
+        insights.append(texts["insight_low"])
+    elif cal_diff > 150:
+        insights.append(texts["insight_up"])
+    else:
+        insights.append(texts["insight_mid"])
+    if protein_diff < -15:
+        insights.append("Protein target nearly achieved" if lang == "en" else texts["insight_mid"])
+    if recent["count"] >= 2 and recent["avg_calories"] > 0:
+        insights.append("Recent logs are consistent" if lang == "en" else texts["generic"])
+
+    tip = texts["tip"]
+    if not tip:
+        tip = "Consistency matters more than intensity."
+
+    return {
+        "success": True,
+        "has_profile": not generic,
+        "current": {
+            "calories": current_calories,
+            "protein_g": current_protein,
+            "targets": targets,
+            "calorie_diff": cal_diff,
+            "protein_diff": protein_diff,
+        },
+        "recommendations": {
+            "diet": diet_cards,
+            "exercise": exercise_cards,
+        },
+        "insights": insights,
+        "tip": tip,
+    }
+
+
 def _load_model():
     """Load model and scaler from pickle cache. If cache doesn't exist, train and cache."""
     
@@ -200,6 +421,17 @@ def analyze_food():
         return jsonify(payload), status
     except Exception:
         return jsonify({"error": "Unable to analyze food right now"}), 500
+
+
+@app.route("/recommendations", methods=["POST"])
+def recommendations():
+    data = request.get_json(silent=True)
+    if not isinstance(data, dict):
+        return jsonify({"error": "Expected JSON object"}), 400
+    try:
+        return jsonify(build_recommendation_payload(data))
+    except Exception:
+        return jsonify({"error": "Unable to build recommendations right now"}), 500
 
 
 if __name__ == "__main__":

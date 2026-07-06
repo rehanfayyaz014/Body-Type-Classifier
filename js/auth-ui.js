@@ -2,20 +2,20 @@
   function $(id) { return document.getElementById(id); }
 
   function showModal() {
-    $("auth-overlay").classList.remove("hidden");
+    $("auth-overlay")?.classList.remove("hidden");
   }
   function hideModal() {
-    $("auth-overlay").classList.add("hidden");
-    $("login-error").classList.add("hidden");
-    $("signup-error").classList.add("hidden");
+    $("auth-overlay")?.classList.add("hidden");
+    $("login-error")?.classList.add("hidden");
+    $("signup-error")?.classList.add("hidden");
   }
 
   function switchTab(tab) {
     var isLogin = tab === "login";
-    $("auth-tab-login").classList.toggle("is-active", isLogin);
-    $("auth-tab-signup").classList.toggle("is-active", !isLogin);
-    $("auth-form-login").classList.toggle("hidden", !isLogin);
-    $("auth-form-signup").classList.toggle("hidden", isLogin);
+    $("auth-tab-login")?.classList.toggle("is-active", isLogin);
+    $("auth-tab-signup")?.classList.toggle("is-active", !isLogin);
+    $("auth-form-login")?.classList.toggle("hidden", !isLogin);
+    $("auth-form-signup")?.classList.toggle("hidden", isLogin);
   }
 
   function getStrings() {
@@ -39,6 +39,7 @@
 
   function showError(id, message) {
     var el = $(id);
+    if (!el) return;
     el.textContent = message;
     el.classList.remove("hidden");
   }
@@ -49,7 +50,7 @@
       overlay = document.createElement("div");
       overlay.id = "notify-overlay";
       overlay.className = "auth-overlay animate-fadeIn";
-      overlay.innerHTML = 
+      overlay.innerHTML =
         '<div class="auth-modal glass-card notify-card animate-slideUp">' +
           '<div class="notify-card__icon" id="notify-icon">🎉</div>' +
           '<h2 class="notify-card__title" id="notify-title">Success</h2>' +
@@ -57,7 +58,7 @@
           '<button type="button" class="btn btn--primary" id="notify-close" style="width:100%; margin-top:0.5rem;">Continue</button>' +
         '</div>';
       document.body.appendChild(overlay);
-      $("notify-close").addEventListener("click", function() {
+      $("notify-close")?.addEventListener("click", function () {
         overlay.classList.add("hidden");
       });
     }
@@ -67,35 +68,94 @@
     overlay.classList.remove("hidden");
   }
 
-  function updateAccountUI(user) {
+  function getHeaderPageKind() {
+    var page = document.body.getAttribute("data-header-page");
+    if (page === "dashboard") return "dashboard";
+    if (page === "profile") return "module";
+
+    var module = new URLSearchParams(window.location.search).get("module");
+    if (module) return "module";
+
+    var landing = document.getElementById("view-landing");
+    if (landing && !landing.classList.contains("hidden")) return "landing";
+    return "module";
+  }
+
+  function shouldShowWelcome(kind) {
+    return kind === "landing" || kind === "dashboard";
+  }
+
+  function shouldShowProfileBtn(kind) {
+    return kind === "landing";
+  }
+
+  function setWelcomeCenterEmpty(empty) {
+    var welcome = $("header-user-welcome");
+    var center = welcome && welcome.closest(".top-bar__center");
+    if (center) center.classList.toggle("top-bar__center--empty", !!empty);
+  }
+
+  function displayWelcomeText(text) {
+    var welcome = $("header-user-welcome");
+    if (!welcome) return;
+    welcome.textContent = text;
+    welcome.classList.remove("hidden");
+    welcome.style.animation = "none";
+    void welcome.offsetWidth;
+    welcome.style.animation = "";
+    setWelcomeCenterEmpty(false);
+  }
+
+  function hideWelcomeText() {
+    var welcome = $("header-user-welcome");
+    if (!welcome) return;
+    welcome.textContent = "";
+    welcome.classList.add("hidden");
+    setWelcomeCenterEmpty(true);
+  }
+
+  function syncProfileButton() {
+    var btn = $("btn-account");
+    if (!btn) return;
+    btn.classList.toggle("hidden", !shouldShowProfileBtn(getHeaderPageKind()));
+  }
+
+  function updateAccountUI() {
     var badge = $("account-name-badge");
-    if (user) {
-      var name = (user.user_metadata && user.user_metadata.name) || user.email;
-      badge.textContent = name;
-      badge.classList.remove("hidden");
-    } else {
-      badge.classList.add("hidden");
+    if (badge) {
       badge.textContent = "";
+      badge.classList.add("hidden");
     }
+    syncProfileButton();
   }
 
   function updateHeaderWelcome(user) {
-    var welcomeEls = document.querySelectorAll("#header-user-welcome");
-    if (!welcomeEls.length) return;
-    var lang = localStorage.getItem("fitai-lang") || "en";
-    var strings = (window.FitAIStrings && window.FitAIStrings[lang]) || (window.FitAIStrings && window.FitAIStrings.en) || {};
+    var kind = getHeaderPageKind();
+    syncProfileButton();
+
+    if (!shouldShowWelcome(kind) || !user) {
+      hideWelcomeText();
+      return;
+    }
+
+    var strings = getStrings();
     var prefix = strings.headerWelcome || "Welcome";
-    welcomeEls.forEach(function (el) {
-      if (!user) {
-        el.textContent = "";
-        el.classList.add("hidden");
-        return;
-      }
-      var name = (user.user_metadata && user.user_metadata.name) || (user.email && user.email.split("@")[0]) || "there";
-      el.textContent = prefix + ", " + name;
-      el.classList.remove("hidden");
-    });
+    var name = (user.user_metadata && user.user_metadata.name) || (user.email && user.email.split("@")[0]) || "there";
+    displayWelcomeText(prefix + ", " + name);
   }
+
+  function syncHeaderChrome(user) {
+    updateAccountUI();
+    updateHeaderWelcome(user);
+  }
+
+  window.FitAIHeaderUI = {
+    sync: syncHeaderChrome,
+    refresh: function () {
+      if (!window.FitAIAuth) return Promise.resolve();
+      return window.FitAIAuth.getCurrentUser().then(syncHeaderChrome);
+    },
+  };
 
   function init() {
     if (!window.FitAIAuth) {
@@ -103,40 +163,38 @@
       return;
     }
 
-    $("btn-account").addEventListener("click", async function () {
+    $("btn-account")?.addEventListener("click", async function () {
       var user = await window.FitAIAuth.getCurrentUser();
       if (user) {
-        $("logout-confirm-text").textContent = "Logout from " + user.email + "?";
-        $("logout-overlay").classList.remove("hidden");
+        if ($("logout-confirm-text")) $("logout-confirm-text").textContent = "Logout from " + user.email + "?";
+        $("logout-overlay")?.classList.remove("hidden");
       } else {
         showModal();
       }
     });
 
-    $("logout-cancel").addEventListener("click", function () {
-      $("logout-overlay").classList.add("hidden");
+    $("logout-cancel")?.addEventListener("click", function () {
+      $("logout-overlay")?.classList.add("hidden");
     });
 
-    $("logout-confirm").addEventListener("click", async function () {
+    $("logout-confirm")?.addEventListener("click", async function () {
       await window.FitAIAuth.signOut();
-      updateAccountUI(null);
-      updateHeaderWelcome(null);
-      $("logout-overlay").classList.add("hidden");
+      syncHeaderChrome(null);
+      $("logout-overlay")?.classList.add("hidden");
     });
 
-    $("auth-close").addEventListener("click", hideModal);
-    $("auth-tab-login").addEventListener("click", function () { switchTab("login"); });
-    $("auth-tab-signup").addEventListener("click", function () { switchTab("signup"); });
+    $("auth-close")?.addEventListener("click", hideModal);
+    $("auth-tab-login")?.addEventListener("click", function () { switchTab("login"); });
+    $("auth-tab-signup")?.addEventListener("click", function () { switchTab("signup"); });
     applyI18n();
 
-    $("auth-form-login").addEventListener("submit", async function (e) {
+    $("auth-form-login")?.addEventListener("submit", async function (e) {
       e.preventDefault();
-      $("login-error").classList.add("hidden");
+      $("login-error")?.classList.add("hidden");
       try {
         await window.FitAIAuth.signIn($("login-email").value, $("login-password").value);
         var user = await window.FitAIAuth.getCurrentUser();
-        updateAccountUI(user);
-        updateHeaderWelcome(user);
+        syncHeaderChrome(user);
         hideModal();
       } catch (err) {
         var message = err.message || getStrings().authLoginErrorDefault || "Login failed";
@@ -144,9 +202,9 @@
       }
     });
 
-    $("auth-form-signup").addEventListener("submit", async function (e) {
+    $("auth-form-signup")?.addEventListener("submit", async function (e) {
       e.preventDefault();
-      $("signup-error").classList.add("hidden");
+      $("signup-error")?.classList.add("hidden");
       try {
         await window.FitAIAuth.signUp(
           $("signup-email").value,
@@ -154,8 +212,7 @@
           $("signup-name").value
         );
         var user = await window.FitAIAuth.getCurrentUser();
-        updateAccountUI(user);
-        updateHeaderWelcome(user);
+        syncHeaderChrome(user);
         hideModal();
         showNotification(
           getStrings().authSignupSuccessTitle || "Account Created!",
@@ -168,12 +225,11 @@
       }
     });
 
-    // On load, check if already logged in (session persisted)
-    window.FitAIAuth.getCurrentUser().then(function (user) {
-      updateAccountUI(user);
-      updateHeaderWelcome(user);
+    window.FitAIAuth.getCurrentUser().then(syncHeaderChrome);
+    document.addEventListener("fitai-language-change", function () {
+      applyI18n();
+      window.FitAIAuth.getCurrentUser().then(syncHeaderChrome);
     });
-    document.addEventListener("fitai-language-change", applyI18n);
   }
 
   if (document.readyState === "loading") {

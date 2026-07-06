@@ -89,11 +89,14 @@
   }
 
   async function init() {
-        if (window.FitAIAuth) {
+    if (window.FitAIAuth) {
       var user = await window.FitAIAuth.getCurrentUser();
       if (!user) {
         window.location.href = "/";
         return;
+      }
+      if (window.FitAIHeaderUI) {
+        window.FitAIHeaderUI.sync(user);
       }
     }
     

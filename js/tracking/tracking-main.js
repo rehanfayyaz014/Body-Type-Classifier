@@ -116,6 +116,10 @@
   }
   
   function goDashboard() {
+    var ui = getUI();
+    if (ui && ui.resetNutritionUI) {
+      ui.resetNutritionUI();
+    }
     if (global.AnimationManager) {
       global.AnimationManager.navigateTo("/dashboard");
     } else {
@@ -231,13 +235,34 @@
     var date = stateApi.todayKey();
     var currentNutrition = stateApi.readJson("fitai-tracking-nutrition", null);
     if (currentNutrition && currentNutrition.date === date && currentNutrition.items.length > 0) {
-      ui.renderResults({ items: currentNutrition.items, summary: currentNutrition.summary }, { cumulativeSummary: currentNutrition.summary, cumulativeItems: currentNutrition.items });
+      var latestEntry = null;
+      if (stateApi.getHistoryEntries) {
+        var history = stateApi.getHistoryEntries() || [];
+        for (var i = history.length - 1; i >= 0; i--) {
+          if (history[i] && history[i].date === date) {
+            latestEntry = history[i];
+            break;
+          }
+        }
+      }
+      ui.renderResults(
+        latestEntry ? { items: latestEntry.items || [], summary: latestEntry.summary || {} } : { items: currentNutrition.items, summary: currentNutrition.summary },
+        { cumulativeSummary: currentNutrition.summary, cumulativeItems: currentNutrition.items }
+      );
     }
   }
 
   function goReminders() {
     showTrackView("view-tracking-reminders");
     refreshReminderUI();
+  }
+
+  function goRecommendation() {
+    if (global.AnimationManager) {
+      global.AnimationManager.navigateTo("/?module=recommendation");
+    } else {
+      window.location.href = "/?module=recommendation";
+    }
   }
 
   function onBack() {
@@ -497,6 +522,15 @@
     if (!suggestDocClickBound) {
       suggestDocClickBound = true;
       document.addEventListener("click", onDocumentClickSuggest);
+    }
+
+    var plannerCard = $("track-tomorrow-plan-card");
+    if (plannerCard && plannerCard.getAttribute("data-track-bound") !== "1") {
+      plannerCard.setAttribute("data-track-bound", "1");
+      plannerCard.addEventListener("click", function (e) {
+        e.preventDefault();
+        goRecommendation();
+      });
     }
   }
 

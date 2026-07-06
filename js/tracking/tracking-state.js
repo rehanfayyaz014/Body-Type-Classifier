@@ -23,6 +23,64 @@
     localStorage.setItem(key, JSON.stringify(value));
   }
 
+  function getHistoryEntries() {
+    return readJson(STORAGE_HISTORY, []);
+  }
+
+  function summarizeEntries(entries) {
+    var summary = { calories: 0, protein_g: 0, carbs_g: 0, fat_g: 0, fiber_g: 0, item_count: 0 };
+    (entries || []).forEach(function (entry) {
+      var rowSummary = entry && entry.summary ? entry.summary : {};
+      summary.calories += Number(rowSummary.calories || 0);
+      summary.protein_g += Number(rowSummary.protein_g || rowSummary.protein || 0);
+      summary.carbs_g += Number(rowSummary.carbs_g || rowSummary.carbs || 0);
+      summary.fat_g += Number(rowSummary.fat_g || rowSummary.fat || 0);
+      summary.fiber_g += Number(rowSummary.fiber_g || rowSummary.fiber || 0);
+      summary.item_count += Number(rowSummary.item_count || 0);
+    });
+    return {
+      calories: Math.round(summary.calories),
+      protein_g: Math.round(summary.protein_g),
+      carbs_g: Math.round(summary.carbs_g),
+      fat_g: Math.round(summary.fat_g),
+      fiber_g: Math.round(summary.fiber_g),
+      item_count: Math.round(summary.item_count),
+    };
+  }
+
+  function rebuildTodayNutritionFromHistory(history) {
+    var entries = history || getHistoryEntries();
+    var date = todayKey();
+    var todayEntries = entries.filter(function (entry) {
+      return entry && entry.date === date;
+    });
+    var items = [];
+    todayEntries.forEach(function (entry) {
+      items = items.concat(entry.items || []);
+    });
+    var summary = summarizeEntries(todayEntries);
+    var targets = calculateTargets(loadProfile());
+
+    writeJson(STORAGE_NUTRITION, { date: date, items: items, summary: summary });
+    writeJson(STORAGE_SUMMARY, { date: date, totals: summary, targets: targets });
+
+    return {
+      date: date,
+      items: items,
+      summary: summary,
+      targets: targets,
+    };
+  }
+
+  function removeHistoryEntry(entryId) {
+    var history = getHistoryEntries();
+    var next = history.filter(function (entry) {
+      return entry && entry.id !== entryId;
+    });
+    writeJson(STORAGE_HISTORY, next);
+    return rebuildTodayNutritionFromHistory(next);
+  }
+
   function loadProfile() {
     return readJson(STORAGE_PROFILE, {});
   }
@@ -280,6 +338,9 @@
     todayKey: todayKey,
     loadProfile: loadProfile,
     calculateTargets: calculateTargets,
+    getHistoryEntries: getHistoryEntries,
+    rebuildTodayNutritionFromHistory: rebuildTodayNutritionFromHistory,
+    removeHistoryEntry: removeHistoryEntry,
     isMeaningfulIntake: isMeaningfulIntake,
     saveAnalysisSession: saveAnalysisSession,
     getReminders: getReminders,

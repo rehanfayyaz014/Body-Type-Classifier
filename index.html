@@ -57,7 +57,7 @@
     })();
   </script>
 </head>
-<body class="theme-dark">
+<body class="theme-dark" data-header-page="spa">
   <div class="bg-layer" aria-hidden="true"></div>
   <div class="bg-vignette" aria-hidden="true"></div>
 
@@ -71,12 +71,11 @@
       </div>
       <div class="top-bar__center" id="header-user-welcome" aria-live="polite"></div>
       <div class="top-bar__right">
-        <button type="button" class="icon-btn" id="btn-account" aria-label="Account">
+        <button type="button" class="icon-btn hidden" id="btn-account" aria-label="Account">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
             <circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>
           </svg>
         </button>
-        <span class="account-name hidden" id="account-name-badge"></span>
         <div class="dropdown-wrap" id="lang-wrap">
           <button type="button" class="icon-btn" id="btn-lang" aria-haspopup="true" aria-expanded="false" aria-label="Language">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -816,41 +815,199 @@
         <div id="track-results" class="tracking-results hidden">
           <div class="tracking-summary-grid">
             <div class="glass-card tracking-stat-card">
-              <div class="tracking-stat-card__chart-wrap"><canvas id="track-chart-cal" aria-hidden="true"></canvas></div>
+              <div class="tracking-stat-card__chart-wrap">
+                <canvas id="track-chart-cal" aria-hidden="true"></canvas>
+                <svg class="tracking-stat-card__icon tracking-stat-card__icon--cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 2c1.2 2.8 2.8 4.2 2.8 6.8a2.8 2.8 0 1 1-5.6 0C9.2 6.2 10.8 4.8 12 2z"/>
+                  <path d="M12 22c3.2 0 5.8-2.3 5.8-5.5 0-3.7-5.8-9.5-5.8-9.5S6.2 12.8 6.2 16.5 8.8 22 12 22z"/>
+                </svg>
+              </div>
               <div class="tracking-stat-card__value" id="track-val-calories">0</div>
               <div class="tracking-stat-card__label">Calories</div>
             </div>
             <div class="glass-card tracking-stat-card">
-              <div class="tracking-stat-card__chart-wrap"><canvas id="track-chart-protein" aria-hidden="true"></canvas></div>
+              <div class="tracking-stat-card__chart-wrap">
+                <canvas id="track-chart-protein" aria-hidden="true"></canvas>
+                <svg class="tracking-stat-card__icon tracking-stat-card__icon--protein" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M8 12V8.5A3.5 3.5 0 0 1 15.5 6c1.2 0 2.5.8 2.5 2.5V12"/>
+                  <path d="M8 12c-1.8 1-3 2.8-3 5.2 0 2.8 2 5 4.8 5"/>
+                  <path d="M16 12c1.8 1 3 2.8 3 5.2 0 2.8-2 5-4.8 5"/>
+                  <ellipse cx="12" cy="12" rx="2.8" ry="2"/>
+                </svg>
+              </div>
               <div class="tracking-stat-card__value" id="track-val-protein">0</div>
               <div class="tracking-stat-card__label">Protein (g)</div>
             </div>
             <div class="glass-card tracking-stat-card">
-              <div class="tracking-stat-card__chart-wrap"><canvas id="track-chart-carbs" aria-hidden="true"></canvas></div>
+              <div class="tracking-stat-card__chart-wrap">
+                <canvas id="track-chart-carbs" aria-hidden="true"></canvas>
+                <svg class="tracking-stat-card__icon tracking-stat-card__icon--carbs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 3v18"/>
+                  <path d="M8.5 7.5c-1.8-1.5-4-.8-4 1.5s2.5 3.5 4 2"/>
+                  <path d="M15.5 7.5c1.8-1.5 4-.8 4 1.5s-2.5 3.5-4 2"/>
+                  <path d="M7.5 12.5c-2-.5-3.2 1.2-2 3.2s3.2 2.2 4 1"/>
+                  <path d="M16.5 12.5c2-.5 3.2 1.2 2 3.2s-3.2 2.2-4 1"/>
+                  <path d="M8.5 17c-1.5 1.2-1.2 3.5.8 4s3.5-.5 4-2"/>
+                  <path d="M15.5 17c1.5 1.2 1.2 3.5-.8 4s-3.5-.5-4-2"/>
+                </svg>
+              </div>
               <div class="tracking-stat-card__value" id="track-val-carbs">0</div>
               <div class="tracking-stat-card__label">Carbs (g)</div>
             </div>
             <div class="glass-card tracking-stat-card">
-              <div class="tracking-stat-card__chart-wrap"><canvas id="track-chart-fat" aria-hidden="true"></canvas></div>
+              <div class="tracking-stat-card__chart-wrap">
+                <canvas id="track-chart-fat" aria-hidden="true"></canvas>
+                <svg class="tracking-stat-card__icon tracking-stat-card__icon--fat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 2.8c-3.8 4.2-6.2 7.8-6.2 11.2a6.2 6.2 0 0 0 12.4 0C18.2 10.6 15.8 7 12 2.8z"/>
+                </svg>
+              </div>
               <div class="tracking-stat-card__value" id="track-val-fat">0</div>
               <div class="tracking-stat-card__label">Fat (g)</div>
             </div>
           </div>
 
-          <div class="glass-card tracking-target-bar">
-            <div class="tracking-target-bar__row"><span>Daily calorie target</span><span id="track-cal-bar-label">0 / 0 kcal</span></div>
-            <div class="tracking-target-bar__fill"><span id="track-cal-bar-fill" style="width:0%"></span></div>
-            <div class="tracking-target-bar__row" style="margin-top:0.75rem"><span>Protein target</span><span id="track-pro-bar-label">0 / 0 g protein</span></div>
-            <div class="tracking-target-bar__fill"><span id="track-pro-bar-fill" style="width:0%"></span></div>
+          <div class="tracking-intake-grid">
+            <div class="glass-card tracking-intake-card tracking-intake-card--cal" id="track-cal-intake-card">
+              <h3 class="tracking-intake-card__title">Calorie Intake</h3>
+              <div class="tracking-intake-ring">
+                <svg class="tracking-intake-ring__svg" viewBox="0 0 200 200" aria-hidden="true">
+                  <circle class="tracking-intake-ring__track" cx="100" cy="100" r="72"></circle>
+                  <circle class="tracking-intake-ring__fill" id="track-cal-ring-fill" cx="100" cy="100" r="72"></circle>
+                </svg>
+                <div class="tracking-intake-ring__center">
+                  <div class="tracking-intake-ring__value" id="track-cal-intake-value">0</div>
+                  <div class="tracking-intake-ring__target" id="track-cal-intake-target">/ 0 kcal</div>
+                  <div class="tracking-intake-ring__pct" id="track-cal-intake-pct">0%</div>
+                  <div class="tracking-intake-ring__badge" id="track-cal-intake-badge">Low</div>
+                </div>
+              </div>
+              <p class="tracking-intake-card__hint" id="track-cal-intake-hint"></p>
+            </div>
+
+            <div class="glass-card tracking-intake-card tracking-intake-card--protein" id="track-pro-intake-card">
+              <h3 class="tracking-intake-card__title">Protein Intake</h3>
+              <div class="tracking-intake-ring">
+                <svg class="tracking-intake-ring__svg" viewBox="0 0 200 200" aria-hidden="true">
+                  <circle class="tracking-intake-ring__track" cx="100" cy="100" r="72"></circle>
+                  <circle class="tracking-intake-ring__fill" id="track-pro-ring-fill" cx="100" cy="100" r="72"></circle>
+                </svg>
+                <div class="tracking-intake-ring__center">
+                  <div class="tracking-intake-ring__value" id="track-pro-intake-value">0g</div>
+                  <div class="tracking-intake-ring__target" id="track-pro-intake-target">/ 0g</div>
+                  <div class="tracking-intake-ring__pct" id="track-pro-intake-pct">0%</div>
+                  <div class="tracking-intake-ring__badge" id="track-pro-intake-badge">Low</div>
+                </div>
+              </div>
+              <p class="tracking-intake-card__hint" id="track-pro-intake-hint"></p>
+            </div>
           </div>
 
-          <h2 class="tracking-section-title" style="font-size:1rem;">Food breakdown</h2>
+          <button type="button" id="track-tomorrow-plan-card" class="mt-4 w-full rounded-3xl border border-cyan-400/20 bg-[linear-gradient(135deg,rgba(34,211,238,0.10),rgba(139,92,246,0.10))] p-5 text-left shadow-[0_0_32px_rgba(45,212,191,0.12)] transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/35 hover:shadow-[0_0_42px_rgba(45,212,191,0.22)] active:scale-[0.99]">
+            <div class="flex items-center justify-between gap-4">
+              <div class="flex items-start gap-4">
+                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/8 text-2xl shadow-[0_0_18px_rgba(45,212,191,0.28)]">✨</div>
+                <div>
+                  <p class="text-[0.76rem] font-semibold uppercase tracking-[0.18em] text-cyan-200/80" data-i18n="trackTomorrowPlannerTitle">AI Tomorrow Planner</p>
+                  <p class="mt-1 text-sm text-white/70" data-i18n="trackTomorrowPlannerDesc">Get personalized next-day meal & fitness suggestions</p>
+                </div>
+              </div>
+              <span class="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/8 text-lg text-white/90 shadow-[0_0_16px_rgba(99,102,241,0.25)]">→</span>
+            </div>
+            <div class="mt-4 inline-flex items-center gap-2 rounded-full border border-cyan-400/15 bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-cyan-100">
+              <span data-i18n="trackTomorrowPlannerCta">View Tomorrow Plan</span>
+            </div>
+          </button>
+
+          <h2 class="tracking-section-title" id="track-food-breakdown-title" style="font-size:1rem;">Food breakdown</h2>
           <div id="track-food-breakdown" class="tracking-food-breakdown"></div>
         </div>
+      </section>
 
-        <div id="track-recommendations" class="tracking-reco hidden">
-          <h2 class="tracking-section-title" style="font-size:1rem;">Tomorrow&apos;s recommendations</h2>
-          <div id="track-reco-list"></div>
+      <!-- Recommendation page -->
+      <section class="view hidden recommendation-wrap" id="view-recommendation" data-view="recommendation">
+        <div class="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-5 sm:px-6 lg:px-8">
+          <div class="relative overflow-hidden rounded-[2rem] border border-cyan-400/15 bg-white/[0.05] p-6 text-center shadow-[0_0_50px_rgba(45,212,191,0.12)] backdrop-blur-xl sm:p-8">
+            <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(45,212,191,0.18),transparent_40%),radial-gradient(circle_at_bottom_right,rgba(139,92,246,0.14),transparent_30%)] opacity-90"></div>
+            <div class="pointer-events-none absolute inset-0 rounded-[2rem] border border-white/6"></div>
+            <div class="relative flex flex-col items-center justify-center gap-3">
+              <p class="eyebrow mx-auto" data-i18n="recommendationPageTitle">Tomorrow's Smart Plan</p>
+              <h1 class="mx-auto max-w-3xl text-2xl font-bold tracking-tight text-white sm:text-3xl" data-i18n="recommendationPageSubtitle">Personalized insights for your health goals</h1>
+              <p id="recommendation-page-note" class="mx-auto max-w-2xl text-sm leading-6 text-white/68"></p>
+              <button type="button" id="recommendation-refresh-btn" class="hidden rounded-full border border-cyan-400/20 bg-white/6 px-4 py-2 text-sm font-semibold text-cyan-100 shadow-[0_0_20px_rgba(45,212,191,0.18)] transition hover:-translate-y-0.5">Refresh</button>
+            </div>
+          </div>
+
+          <section class="space-y-5">
+            <div class="text-center">
+              <p class="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-100 drop-shadow-[0_0_12px_rgba(45,212,191,0.26)]" data-i18n="recommendationProgressTitle">Your Current Progress</p>
+              <p class="mt-1 text-sm text-white/70" data-i18n="recommendationProgressHint">Here's how you are doing today</p>
+            </div>
+            <div class="grid gap-5 lg:grid-cols-2">
+              <div class="glass-card border border-white/8 p-5">
+                <div class="tracking-intake-card__title mb-3 text-center text-lg">Calories Progress</div>
+                <div class="tracking-intake-ring mx-auto">
+                  <svg class="tracking-intake-ring__svg" viewBox="0 0 200 200" aria-hidden="true">
+                    <circle class="tracking-intake-ring__track" cx="100" cy="100" r="82"></circle>
+                    <circle class="tracking-intake-ring__fill" id="reco-cal-ring-fill" cx="100" cy="100" r="82"></circle>
+                  </svg>
+                  <div class="tracking-intake-ring__center">
+                    <div class="tracking-intake-ring__value" id="reco-cal-value">0</div>
+                    <div class="tracking-intake-ring__target" id="reco-cal-target">/ 0 kcal</div>
+                    <div class="tracking-intake-ring__pct" id="reco-cal-pct">0%</div>
+                    <div class="tracking-intake-ring__badge" id="reco-cal-badge">Low</div>
+                  </div>
+                </div>
+                <p class="mt-4 text-center text-sm text-white/65" id="reco-cal-hint"></p>
+              </div>
+              <div class="glass-card border border-white/8 p-5">
+                <div class="tracking-intake-card__title mb-3 text-center text-lg">Protein Progress</div>
+                <div class="tracking-intake-ring mx-auto">
+                  <svg class="tracking-intake-ring__svg" viewBox="0 0 200 200" aria-hidden="true">
+                    <circle class="tracking-intake-ring__track" cx="100" cy="100" r="82"></circle>
+                    <circle class="tracking-intake-ring__fill" id="reco-pro-ring-fill" cx="100" cy="100" r="82"></circle>
+                  </svg>
+                  <div class="tracking-intake-ring__center">
+                    <div class="tracking-intake-ring__value" id="reco-pro-value">0g</div>
+                    <div class="tracking-intake-ring__target" id="reco-pro-target">/ 0g</div>
+                    <div class="tracking-intake-ring__pct" id="reco-pro-pct">0%</div>
+                    <div class="tracking-intake-ring__badge" id="reco-pro-badge">Low</div>
+                  </div>
+                </div>
+                <p class="mt-4 text-center text-sm text-white/65" id="reco-pro-hint"></p>
+              </div>
+            </div>
+          </section>
+
+          <section class="glass-card border border-white/10 p-5 sm:p-6">
+            <div class="mb-4 text-center">
+              <p class="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-200/80" data-i18n="recommendationDietTitle">Diet Recommendations</p>
+            </div>
+            <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4" id="reco-diet-grid"></div>
+          </section>
+
+          <section class="glass-card border border-white/10 p-5 sm:p-6">
+            <div class="mb-4 text-center">
+              <p class="text-sm font-semibold uppercase tracking-[0.18em] text-fuchsia-200/80" data-i18n="recommendationExerciseTitle">Exercise Recommendations</p>
+            </div>
+            <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4" id="reco-exercise-grid"></div>
+          </section>
+
+          <section class="glass-card border border-white/10 p-5 sm:p-6">
+            <div class="mb-4 text-center">
+              <p class="text-sm font-semibold uppercase tracking-[0.18em] text-white/70" data-i18n="recommendationInsightsTitle">Goal Insights</p>
+            </div>
+            <div id="reco-insights-list" class="grid gap-3"></div>
+          </section>
+
+          <section class="glass-card border border-white/10 p-5 sm:p-6 shadow-[0_0_35px_rgba(168,85,247,0.12)]">
+            <div class="flex items-center gap-3">
+              <div class="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/8 text-2xl shadow-[0_0_18px_rgba(168,85,247,0.22)]">💡</div>
+              <div>
+                <p class="text-sm font-semibold uppercase tracking-[0.18em] text-fuchsia-200/85" data-i18n="recommendationTipTitle">Smart Tip of the Day</p>
+                <p id="reco-tip" class="mt-2 text-base text-white/80"></p>
+              </div>
+            </div>
+          </section>
         </div>
       </section>
 
@@ -970,6 +1127,7 @@
   <script src="js/tracking/tracking-reminders.js"></script>
   <script src="js/tracking/tracking-ui.js"></script>
   <script src="js/tracking/tracking-main.js"></script>
+  <script src="js/recommendation-page.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <script src="js/supabase-client.js"></script>
   <script src="js/auth.js"></script>

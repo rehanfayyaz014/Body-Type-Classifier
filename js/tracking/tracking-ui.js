@@ -26,8 +26,8 @@
     destroyCharts();
     var pairs = [
       { id: "track-chart-cal",     key: "calories",  target: targets.calories,  color: "#2dd4bf" },
-      { id: "track-chart-protein", key: "protein_g", target: targets.protein_g, color: "#22d3ee" },
-      { id: "track-chart-carbs",   key: "carbs_g",   target: targets.carbs_g,   color: "#818cf8" },
+      { id: "track-chart-protein", key: "protein_g", target: targets.protein_g, color: "#38bdf8" },
+      { id: "track-chart-carbs",   key: "carbs_g",   target: targets.carbs_g,   color: "#fbbf24" },
       { id: "track-chart-fat",     key: "fat_g",     target: targets.fat_g,     color: "#f472b6" },
     ];
     pairs.forEach(function (p) {
@@ -60,17 +60,91 @@
     });
   }
 
-  function renderTargetBars(summary, targets) {
-    var calPct = Math.min(100, Math.round(((summary.calories || 0) / (targets.calories || 1)) * 100));
-    var proPct = Math.min(100, Math.round(((summary.protein_g || 0) / (targets.protein_g || 1)) * 100));
-    var calFill  = $("track-cal-bar-fill");
-    var proFill  = $("track-pro-bar-fill");
-    var calLabel = $("track-cal-bar-label");
-    var proLabel = $("track-pro-bar-label");
-    if (calFill)  calFill.style.width = calPct + "%";
-    if (proFill)  proFill.style.width = proPct + "%";
-    if (calLabel) calLabel.textContent = (summary.calories || 0) + " / " + targets.calories + " " + getStr("trackCalTarget", "kcal");
-    if (proLabel) proLabel.textContent = (summary.protein_g || 0) + " / " + targets.protein_g + " " + getStr("trackGProtein", "g protein");
+  function getIntakeStatus(pct) {
+    if (pct < 80) return "low";
+    if (pct <= 110) return "normal";
+    return "high";
+  }
+
+  function getStatusBadgeLabel(status) {
+    if (status === "normal") return "\u2713 Normal";
+    if (status === "high") return "\u2191 High";
+    return "\u2713 Low";
+  }
+
+  function formatCalorieHint(current, target, status) {
+    var diff = Math.round(Math.abs(target - current));
+    if (status === "low") return "You are " + diff + " kcal below your daily target";
+    if (status === "high") return "You are " + diff + " kcal above your daily target";
+    return "You are on track with your calorie target";
+  }
+
+  function formatProteinHint(current, target, status) {
+    var diff = Math.round(target - current);
+    if (status === "low") return "You need " + Math.max(0, diff) + "g more protein";
+    if (status === "high") return "You are " + Math.abs(diff) + "g over your protein target";
+    return "You are on track with your protein target";
+  }
+
+  var INTAKE_RING_RADIUS = 72;
+  var INTAKE_RING_ARC = 0.75;
+
+  function setIntakeRingFill(el, pct) {
+    if (!el) return;
+    var circumference = 2 * Math.PI * INTAKE_RING_RADIUS;
+    var arcLen = circumference * INTAKE_RING_ARC;
+    var filled = arcLen * Math.min(100, Math.max(0, pct)) / 100;
+    el.style.strokeDasharray = filled + " " + circumference;
+    el.style.strokeDashoffset = "0";
+  }
+
+  function applyIntakeCardStatus(cardEl, status) {
+    if (!cardEl) return;
+    cardEl.classList.remove(
+      "tracking-intake-card--status-low",
+      "tracking-intake-card--status-normal",
+      "tracking-intake-card--status-high"
+    );
+    cardEl.classList.add("tracking-intake-card--status-" + status);
+  }
+
+  function renderIntakeRings(summary, targets) {
+    var calCurrent = Math.round(summary.calories || 0);
+    var proCurrent = Math.round(summary.protein_g || 0);
+    var calTarget = Math.round(targets.calories || 1);
+    var proTarget = Math.round(targets.protein_g || 1);
+    var calPct = Math.round((calCurrent / calTarget) * 100);
+    var proPct = Math.round((proCurrent / proTarget) * 100);
+    var calStatus = getIntakeStatus(calPct);
+    var proStatus = getIntakeStatus(proPct);
+
+    applyIntakeCardStatus($("track-cal-intake-card"), calStatus);
+    applyIntakeCardStatus($("track-pro-intake-card"), proStatus);
+
+    setIntakeRingFill($("track-cal-ring-fill"), calPct);
+    setIntakeRingFill($("track-pro-ring-fill"), proPct);
+
+    var calValue = $("track-cal-intake-value");
+    var calTargetEl = $("track-cal-intake-target");
+    var calPctEl = $("track-cal-intake-pct");
+    var calBadge = $("track-cal-intake-badge");
+    var calHint = $("track-cal-intake-hint");
+    if (calValue) calValue.textContent = String(calCurrent);
+    if (calTargetEl) calTargetEl.textContent = "/ " + calTarget + " kcal (Previous Record)";
+    if (calPctEl) calPctEl.textContent = calPct + "%";
+    if (calBadge) calBadge.textContent = getStatusBadgeLabel(calStatus);
+    if (calHint) calHint.textContent = formatCalorieHint(calCurrent, calTarget, calStatus);
+
+    var proValue = $("track-pro-intake-value");
+    var proTargetEl = $("track-pro-intake-target");
+    var proPctEl = $("track-pro-intake-pct");
+    var proBadge = $("track-pro-intake-badge");
+    var proHint = $("track-pro-intake-hint");
+    if (proValue) proValue.textContent = proCurrent + "g";
+    if (proTargetEl) proTargetEl.textContent = "/ " + proTarget + "g (Previous Record)";
+    if (proPctEl) proPctEl.textContent = proPct + "%";
+    if (proBadge) proBadge.textContent = getStatusBadgeLabel(proStatus);
+    if (proHint) proHint.textContent = formatProteinHint(proCurrent, proTarget, proStatus);
 
     var labelMap = {
       "track-label-calories": "trackCalories",
@@ -78,18 +152,29 @@
       "track-label-carbs":    "trackCarbs",
       "track-label-fat":      "trackFat",
     };
-    Object.keys(labelMap).forEach(function(id) {
+    Object.keys(labelMap).forEach(function (id) {
       var el = $(id);
       if (el) el.textContent = getStr(labelMap[id]);
     });
-
-    var calBarTitle = $("track-cal-bar-title");
-    var proBarTitle = $("track-pro-bar-title");
-    if (calBarTitle) calBarTitle.textContent = getStr("trackDailyCalTarget", "Daily calorie target");
-    if (proBarTitle) proBarTitle.textContent = getStr("trackProteinTarget", "Protein target");
   }
 
-  function renderFoodBreakdown(items) {
+  function ensureBreakdownHelper() {
+    var breakdown = $("track-food-breakdown");
+    if (!breakdown) return null;
+    var helper = $("track-food-breakdown-helper");
+    if (!helper) {
+      helper = document.createElement("p");
+      helper.id = "track-food-breakdown-helper";
+      helper.className = "tracking-breakdown-helper";
+      helper.style.marginTop = "0.75rem";
+      helper.style.color = "rgba(255,255,255,0.68)";
+      helper.style.fontSize = "0.86rem";
+      breakdown.insertAdjacentElement("afterend", helper);
+    }
+    return helper;
+  }
+
+  function renderFoodBreakdown(items, latestSummary) {
     var wrap = $("track-food-breakdown");
     if (!wrap) return;
     wrap.innerHTML = "";
@@ -111,6 +196,14 @@
           (item.source === "usda" ? '<div class="tracking-food-item__meta">Source: USDA estimate</div>' : "");
         wrap.appendChild(card);
       });
+
+    var helper = ensureBreakdownHelper();
+    if (helper) {
+      helper.textContent = getStr(
+        "trackLatestOnlyNote",
+        "Showing nutrition for your latest entry only. View full food history in Profile."
+      );
+    }
   }
 
   function renderRecommendations(reco) {
@@ -180,9 +273,9 @@
   }
 
   function renderResults(apiResult, session) {
-    // Cumulative daily totals should be used for rendering progress bars
     var summary = (session && session.cumulativeSummary) || resolveSummary(apiResult);
-    var items = (session && session.cumulativeItems) || apiResult.items;
+    var latestSummary = resolveSummary(apiResult);
+    var items = apiResult.items || [];
     var targets = (session && session.targets) || {};
     
     if (!targets.calories && global.FitAITrackingState && global.FitAITrackingState.calculateTargets) {
@@ -191,11 +284,10 @@
       );
     }
     showResults(true);
-    renderTargetBars(summary, targets);
-    renderFoodBreakdown(items);
-    renderRecommendations(session && session.recommendations);
+    renderIntakeRings(summary, targets);
+    renderFoodBreakdown(items, latestSummary);
     try {
-      renderMacroCharts(summary, targets);
+      renderMacroCharts(latestSummary, targets);
     } catch (e) { /* charts are optional */ }
     var resultsEl = $("track-results");
     if (resultsEl && resultsEl.scrollIntoView) {
@@ -305,6 +397,43 @@
     showAnalyzeError: showAnalyzeError,
     setAnalyzeLoading: setAnalyzeLoading,
     applyTrackingI18n: applyTrackingI18n,
-    renderBodyTypeGate: renderBodyTypeGate
+    renderBodyTypeGate: renderBodyTypeGate,
+    resetNutritionUI: function () {
+      var input = $("track-food-input");
+      if (input) input.value = "";
+      showAnalyzeError("");
+      showResults(false);
+      destroyCharts();
+      var reco = $("track-recommendations");
+      if (reco) reco.classList.add("hidden");
+      var breakdown = $("track-food-breakdown");
+      if (breakdown) breakdown.innerHTML = "";
+      var helper = $("track-food-breakdown-helper");
+      if (helper) helper.remove();
+      ["track-val-calories", "track-val-protein", "track-val-carbs", "track-val-fat"].forEach(function (id) {
+        var el = $(id);
+        if (el) el.textContent = "0";
+      });
+      ["track-cal-intake-value", "track-pro-intake-value"].forEach(function (id) {
+        var el = $(id);
+        if (el) el.textContent = id === "track-pro-intake-value" ? "0g" : "0";
+      });
+      ["track-cal-intake-target", "track-pro-intake-target"].forEach(function (id) {
+        var el = $(id);
+        if (el) el.textContent = id === "track-pro-intake-target" ? "/ 0g" : "/ 0 kcal";
+      });
+      ["track-cal-intake-pct", "track-pro-intake-pct"].forEach(function (id) {
+        var el = $(id);
+        if (el) el.textContent = "0%";
+      });
+      ["track-cal-intake-badge", "track-pro-intake-badge"].forEach(function (id) {
+        var el = $(id);
+        if (el) el.textContent = "Low";
+      });
+      ["track-cal-intake-hint", "track-pro-intake-hint"].forEach(function (id) {
+        var el = $(id);
+        if (el) el.textContent = "";
+      });
+    }
   };
 })(typeof window !== "undefined" ? window : globalThis);

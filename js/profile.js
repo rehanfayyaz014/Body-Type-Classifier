@@ -4,8 +4,12 @@
   var I18N = window.FitAIStrings;
   var STORAGE_LANG = "fitai-lang";
   var STORAGE_THEME = "fitai-theme";
+  var STORAGE_TRACKING_HISTORY = "fitai-tracking-history";
+  var STORAGE_TRACKING_NUTRITION = "fitai-tracking-nutrition";
+  var STORAGE_TRACKING_SUMMARY = "fitai-daily-summary";
   var state = {
     pendingDeleteId: null,
+    pendingDeleteEntry: null,
     lang: "en",
     theme: "dark"
   };
@@ -49,18 +53,13 @@
     }
   }
 
-  function updateHeaderWelcome(user) {
+  function updateHeaderWelcome() {
     var welcome = $("header-user-welcome");
     if (!welcome) return;
-    if (!user) {
-      welcome.textContent = "";
-      welcome.classList.add("hidden");
-      return;
-    }
-    var name = (user.user_metadata && user.user_metadata.name) || user.email || "there";
-    var prefix = getStrings().headerWelcome || "Welcome";
-    welcome.textContent = prefix + ", " + name;
-    welcome.classList.remove("hidden");
+    welcome.textContent = "";
+    welcome.classList.add("hidden");
+    var center = welcome.closest(".top-bar__center");
+    if (center) center.classList.add("top-bar__center--empty");
   }
 
   function capitalize(s) {
@@ -75,13 +74,114 @@
     }
   }
 
+  function formatDateTime(iso) {
+    try {
+      return new Date(iso).toLocaleString(undefined, {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+    } catch (e) {
+      return iso || "";
+    }
+  }
+
+  function readJson(key, fallback) {
+    try {
+      var raw = localStorage.getItem(key);
+      return raw ? JSON.parse(raw) : fallback;
+    } catch (e) {
+      return fallback;
+    }
+  }
+
+  function writeJson(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
+
+  function summarizeEntryItems(entry) {
+    var summary = entry && entry.summary ? entry.summary : {};
+    return {
+      calories: Number(summary.calories || 0),
+      protein_g: Number(summary.protein_g || summary.protein || 0),
+      carbs_g: Number(summary.carbs_g || summary.carbs || 0),
+      fat_g: Number(summary.fat_g || summary.fat || 0),
+      fiber_g: Number(summary.fiber_g || summary.fiber || 0),
+      item_count: Number(summary.item_count || 0),
+    };
+  }
+
+  function rebuildCachedNutrition(history) {
+    var today = new Date().toISOString().slice(0, 10);
+    var source = (history || readJson(STORAGE_TRACKING_HISTORY, [])).filter(function (entry) {
+      return entry && entry.date === today;
+    });
+    var combinedItems = [];
+    var combinedSummary = {
+      calories: 0,
+      protein_g: 0,
+      carbs_g: 0,
+      fat_g: 0,
+      fiber_g: 0,
+      item_count: 0,
+    };
+
+    source.forEach(function (entry) {
+      combinedItems = combinedItems.concat(entry.items || []);
+      var summary = summarizeEntryItems(entry);
+      combinedSummary.calories += summary.calories;
+      combinedSummary.protein_g += summary.protein_g;
+      combinedSummary.carbs_g += summary.carbs_g;
+      combinedSummary.fat_g += summary.fat_g;
+      combinedSummary.fiber_g += summary.fiber_g;
+      combinedSummary.item_count += summary.item_count;
+    });
+
+    writeJson(STORAGE_TRACKING_NUTRITION, { date: today, items: combinedItems, summary: combinedSummary });
+    writeJson(STORAGE_TRACKING_SUMMARY, { date: today, totals: combinedSummary, targets: null });
+  }
+
+  function localEntrySignature(entry) {
+    var items = (entry && entry.items) || [];
+    var summary = summarizeEntryItems(entry);
+    return [
+      entry && (entry.date || entry.log_date || ""),
+      summary.calories,
+      summary.protein_g,
+      summary.carbs_g,
+      summary.fat_g,
+      summary.fiber_g,
+      summary.item_count,
+      items.map(function (item) {
+        return [item && (item.matched_food || item.raw_input || ""), item && item.portion || ""].join("|");
+      }).join(";")
+    ].join("::");
+  }
+
+  function removeLocalHistoryEntry(entry) {
+    var history = readJson(STORAGE_TRACKING_HISTORY, []);
+    var entryId = entry && entry.id;
+    var signature = localEntrySignature(entry);
+    var next = history.filter(function (row) {
+      if (!row) return false;
+      if (entryId && row.id === entryId) return false;
+      return localEntrySignature(row) !== signature;
+    });
+    writeJson(STORAGE_TRACKING_HISTORY, next);
+    rebuildCachedNutrition(next);
+  }
+
   function openDeleteModal(logId) {
-    state.pendingDeleteId = logId;
+    state.pendingDeleteId = logId && logId.id ? logId.id : logId;
+    state.pendingDeleteEntry = typeof logId === "object" ? logId : null;
     $("delete-modal-overlay").classList.remove("hidden");
   }
 
   function closeDeleteModal() {
     state.pendingDeleteId = null;
+    state.pendingDeleteEntry = null;
     $("delete-modal-overlay").classList.add("hidden");
   }
 
@@ -89,28 +189,42 @@
     if (!state.pendingDeleteId) return;
     
     var user = await window.FitAIAuth.getCurrentUser();
-    if (!user) return;
-
     var sb = window.FitAISupabase;
     var btn = $("btn-delete-confirm");
     var originalText = btn.textContent;
     btn.disabled = true;
     btn.textContent = "Deleting...";
 
-    const { error } = await sb
-      .from("food_tracking_history")
-      .delete()
-      .eq("id", state.pendingDeleteId)
-      .eq("user_id", user.id);
+    try {
+      if (user && sb) {
+        const { error } = await sb
+          .from("food_tracking_history")
+          .delete()
+          .eq("id", state.pendingDeleteId)
+          .eq("user_id", user.id);
 
-    btn.disabled = false;
-    btn.textContent = originalText;
+        if (error) throw error;
+      }
 
-    if (error) {
-      alert("Failed to delete log: " + error.message);
-    } else {
+      if (state.pendingDeleteEntry) {
+        removeLocalHistoryEntry(state.pendingDeleteEntry);
+      } else {
+        var history = readJson(STORAGE_TRACKING_HISTORY, []);
+        var nextHistory = history.filter(function (row) {
+          return row && row.id !== state.pendingDeleteId;
+        });
+        writeJson(STORAGE_TRACKING_HISTORY, nextHistory);
+        rebuildCachedNutrition(nextHistory);
+      }
+
       closeDeleteModal();
-      renderLoggedInView(user);
+      if (user) await renderLoggedInView(user);
+      else renderGuestView();
+    } catch (err) {
+      alert("Failed to delete log: " + (err && err.message ? err.message : "Unknown error"));
+    } finally {
+      btn.disabled = false;
+      btn.textContent = originalText;
     }
   }
 
@@ -135,6 +249,7 @@
     rows.forEach(function (row) {
       var summary = row.summary || {};
       var items = row.items || [];
+      var rawDate = row.log_date || row.date || row.created_at || row.createdAt;
       
       var mealType = s.profileMealGeneral || "General";
       if (items.length && items[0].meal) {
@@ -150,7 +265,7 @@
       div.innerHTML = `
         <div class="food-history-header">
           <div class="food-history-date-wrap">
-            <span class="food-history-date">${row.log_date || formatDate(row.created_at)}</span>
+            <span class="food-history-date">${rawDate ? formatDateTime(rawDate) : formatDate(row.created_at)}</span>
             <span class="food-history-meal">${mealType}</span>
           </div>
           <button type="button" class="btn-delete-log" data-id="${row.id}" title="Delete Log">
@@ -167,7 +282,7 @@
       `;
       
       div.querySelector(".btn-delete-log").addEventListener("click", function() {
-        openDeleteModal(row.id);
+        openDeleteModal(row);
       });
       
       container.appendChild(div);
@@ -354,10 +469,10 @@
 
     var user = await window.FitAIAuth.getCurrentUser();
     if (user) {
-      updateHeaderWelcome(user);
+      updateHeaderWelcome();
       renderLoggedInView(user);
     } else {
-      updateHeaderWelcome(null);
+      updateHeaderWelcome();
       renderGuestView();
     }
   }
