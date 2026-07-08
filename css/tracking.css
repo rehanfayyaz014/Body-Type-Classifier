@@ -500,6 +500,113 @@
   color: #0f172a;
 }
 
+/* ============================================
+   Light Mode — remaining tracking module text,
+   inputs, dropdowns, gates and controls
+   (kept consistent with the Dashboard's light palette)
+   ============================================ */
+
+.theme-light .tracking-food-input::placeholder,
+.theme-light #track-reminder-message::placeholder {
+  color: rgba(15, 23, 42, 0.4);
+}
+
+.theme-light .tracking-suggest {
+  background: rgba(255, 255, 255, 0.98);
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.12);
+}
+
+.theme-light .tracking-suggest__item {
+  color: #1a2332;
+}
+
+.theme-light .tracking-suggest__item:hover,
+.theme-light .tracking-suggest__item.is-active {
+  background: rgba(45, 212, 191, 0.14);
+  color: #0f766e;
+}
+
+.theme-light .tracking-stat-card__label,
+.theme-light .tracking-food-item__meta,
+.theme-light .tracking-field label,
+.theme-light .tracking-reminder-item__type,
+.theme-light .tracking-perm-banner,
+.theme-light .tracking-gate__hint,
+.theme-light .tracking-gate__footer,
+.theme-light .tracking-sound-row,
+.theme-light .notify-card__body {
+  color: rgba(15, 23, 42, 0.72);
+}
+
+.theme-light .tracking-gate__title,
+.theme-light .notify-card__title {
+  color: #0f172a;
+}
+
+.theme-light .tracking-intake-ring__track {
+  stroke: rgba(15, 23, 42, 0.1);
+}
+
+.theme-light .tracking-skeleton__line {
+  background: linear-gradient(90deg, rgba(15,23,42,0.06) 25%, rgba(15,23,42,0.12) 50%, rgba(15,23,42,0.06) 75%);
+  background-size: 200% 100%;
+}
+
+.theme-light .track-toggle__slider {
+  background: rgba(15, 23, 42, 0.18);
+}
+
+.theme-light .track-toggle input:checked + .track-toggle__slider {
+  background: #2dd4bf;
+}
+
+.theme-light .tracking-intake-ring__pct {
+  color: #0f766e;
+}
+
+.theme-light .tracking-intake-card--status-low .tracking-intake-ring__pct {
+  color: #b45309;
+}
+
+.theme-light .tracking-intake-card--status-high .tracking-intake-ring__pct {
+  color: #be185d;
+}
+
+.theme-light .tracking-intake-card--protein.tracking-intake-card--status-normal .tracking-intake-ring__pct {
+  color: #0369a1;
+}
+
+.theme-light .tracking-intake-ring__badge {
+  background: rgba(180, 83, 9, 0.12);
+  color: #92400e;
+  border-color: rgba(180, 83, 9, 0.3);
+}
+
+.theme-light .tracking-intake-card--status-normal .tracking-intake-ring__badge {
+  background: rgba(15, 118, 110, 0.12);
+  color: #0f766e;
+  border-color: rgba(15, 118, 110, 0.3);
+}
+
+.theme-light .tracking-intake-card--status-high .tracking-intake-ring__badge {
+  background: rgba(190, 24, 93, 0.12);
+  color: #be185d;
+  border-color: rgba(190, 24, 93, 0.3);
+}
+
+.theme-light .tracking-reminder-item__time {
+  color: #0f766e;
+}
+
+.theme-light .link-btn {
+  color: #0f766e;
+}
+
+.theme-light .link-btn:hover {
+  color: #115e59;
+}
+
 /* ── Scroll-to-results arrow (FIX #4) ─────────────────────────────────── */
 .track-scroll-arrow {
   position: fixed;

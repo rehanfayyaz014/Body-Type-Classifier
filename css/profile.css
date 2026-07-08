@@ -72,6 +72,12 @@
   color: transparent;
 }
 
+.theme-light .profile-current-type {
+  background: linear-gradient(90deg, #0f766e, #0369a1);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
 .profile-metric-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -83,6 +89,11 @@
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.theme-light .profile-metric {
+  background: rgba(255, 255, 255, 0.55);
+  border-color: rgba(0, 0, 0, 0.08);
 }
 
 .profile-metric__label {
@@ -132,6 +143,16 @@
 .profile-history-toggle:hover {
   background: rgba(255, 255, 255, 0.12);
   transform: translateY(-1px);
+}
+
+.theme-light .profile-history-toggle {
+  background: rgba(255, 255, 255, 0.55);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.theme-light .profile-history-toggle:hover {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(0, 0, 0, 0.12);
 }
 
 .profile-history-toggle__title {
@@ -265,3 +286,7 @@
 .macro-badge--p { border-color: rgba(45, 212, 191, 0.3); color: #2dd4bf; }
 .macro-badge--c { border-color: rgba(14, 165, 233, 0.3); color: #0ea5e9; }
 .macro-badge--f { border-color: rgba(244, 114, 182, 0.3); color: #f472b6; }
+
+.theme-light .macro-badge--p { color: #0f766e; }
+.theme-light .macro-badge--c { color: #0369a1; }
+.theme-light .macro-badge--f { color: #be185d; }

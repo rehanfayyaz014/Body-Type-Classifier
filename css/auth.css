@@ -53,6 +53,19 @@
   transform: scale(1.1) rotate(90deg);
 }
 
+.theme-light .auth-modal__close {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(15, 23, 42, 0.12);
+  color: #1a2332;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+}
+
+.theme-light .auth-modal__close:hover {
+  background: #ef4444;
+  border-color: #ef4444;
+  color: #fff;
+}
+
 /* Ensure the overlay doesn't clip the outside button */
 .auth-overlay {
   padding: 2rem; 
@@ -124,6 +137,12 @@
   border-radius: var(--radius-sm);
   font-size: 0.85rem;
   text-align: center;
+}
+
+.theme-light .auth-error {
+  background: rgba(220, 38, 38, 0.08);
+  border-color: rgba(220, 38, 38, 0.25);
+  color: #b91c1c;
 }
 
 .auth-hint {

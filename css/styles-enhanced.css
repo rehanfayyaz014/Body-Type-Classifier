@@ -88,7 +88,7 @@ body[dir="rtl"] .result-type {
   z-index: 0;
   background:
     linear-gradient(165deg, rgba(15, 23, 41, 0.88) 0%, rgba(15, 23, 41, 0.55) 45%, rgba(99, 102, 241, 0.25) 100%),
-    url("https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+    url("../static/images/background.jpg") center/cover no-repeat;
   transform: scale(1.02);
   transition: background 0.6s var(--ease);
 }
@@ -96,7 +96,7 @@ body[dir="rtl"] .result-type {
 .theme-light .bg-layer {
   background:
     linear-gradient(165deg, rgba(232, 238, 247, 0.92) 0%, rgba(232, 238, 247, 0.75) 50%, rgba(45, 212, 191, 0.15) 100%),
-    url("https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+    url("../static/images/background.jpg") center/cover no-repeat;
 }
 
 .bg-vignette {
@@ -1207,6 +1207,11 @@ html.fitai-booting #view-landing {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.theme-light .glass-inset {
+  background: rgba(255, 255, 255, 0.65);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
 /* ============================================
    Buttons
    ============================================ */
@@ -1451,6 +1456,45 @@ html.fitai-booting #view-landing {
 }
 
 /* ============================================
+   Light Mode — remaining Tailwind text-white /
+   bg-white / border-white / text-cyan utilities
+   used on the Assessment, Plan and Recommendation
+   views, aligned with the Dashboard's light palette
+   ============================================ */
+.theme-light [class~="text-white"],
+.theme-light [class~="text-white/65"],
+.theme-light [class~="text-white/68"],
+.theme-light [class~="text-white/70"],
+.theme-light [class~="text-white/80"] {
+  color: #0f172a !important;
+}
+
+.theme-light [class~="text-cyan-100"],
+.theme-light [class~="text-cyan-200/80"] {
+  color: #0e7490 !important;
+}
+
+.theme-light [class~="bg-white/[0.05]"] {
+  background-color: rgba(255, 255, 255, 0.55) !important;
+}
+
+.theme-light [class~="bg-white/6"],
+.theme-light [class~="bg-white/8"] {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.theme-light [class~="bg-white/15"] {
+  background-color: rgba(15, 23, 42, 0.15) !important;
+}
+
+.theme-light [class~="border-white/6"],
+.theme-light [class~="border-white/8"],
+.theme-light [class~="border-white/15"],
+.theme-light [class~="border-white/20"] {
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* ============================================
    Option Grid
    ============================================ */
 
@@ -1557,6 +1601,15 @@ html.fitai-booting #view-landing {
 
 .opt-card.selected .opt-card__abc {
   background: rgba(255, 255, 255, 0.25);
+}
+
+.theme-light .opt-card__abc {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.theme-light .opt-card.selected .opt-card__abc,
+.theme-light .opt-card.is-selected .opt-card__abc {
+  background: rgba(255, 255, 255, 0.35);
 }
 
 .opt-card__label {
@@ -1874,6 +1927,16 @@ input[type="range"]::-moz-range-thumb {
 .bmi-badge strong {
   font-size: 1.75rem;
   color: var(--accent-a);
+}
+
+.theme-light .result-type {
+  background: linear-gradient(135deg, #0f766e, #4338ca, #be185d);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.theme-light .bmi-badge strong {
+  color: #0f766e;
 }
 
 .result-summary {
@@ -2230,6 +2293,16 @@ input[type="range"]::-moz-range-thumb {
 .tag:hover {
   background: rgba(255, 255, 255, 0.15);
   border-color: rgba(255, 255, 255, 0.3);
+}
+
+.theme-light .tag {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.theme-light .tag:hover {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(0, 0, 0, 0.15);
 }
 
 .tag-row {
