@@ -1401,6 +1401,8 @@
       } else if (window.FitAITracking && window.FitAITracking.bindNutritionView) {
         window.FitAITracking.bindNutritionView();
       }
+    } else if (urlModule === "about") {
+      // Handled by js/about.js (self-contained, mirrors the tracking module pattern).
     } else {
       showView("landing");
       if (window.AnimationManager) {

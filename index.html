@@ -428,13 +428,13 @@
               <div class="slider-readout"><span id="height-val">170</span> <span data-i18n="unitCm">cm</span></div>
               <input type="range" id="input-height" min="140" max="220" value="170" step="1" aria-label="Height" />
               <div style="margin-top: 1.2rem; display: flex; gap: 0.6rem; align-items: center;">
-                <input type="text" id="height-input-text" placeholder="Enter height" inputmode="decimal" style="flex: 1; padding: 0.6rem 0.8rem; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.08); color: #f1f5f9; font-size: 0.95rem; text-align: center; caret-color: #2dd4bf;" />
+                <input type="text" id="height-input-text" placeholder="Enter height" inputmode="decimal" style="flex: 1; padding: 0.6rem 0.8rem; border-radius: 10px; border: 1px solid var(--glass-border); background: var(--glass); color: var(--text); font-size: 0.95rem; text-align: center; caret-color: #2dd4bf;" />
                 <select id="height-unit-select" class="glass-select">
                   <option value="cm">CM</option>
                   <option value="feet">Feet</option>
                 </select>
               </div>
-              <p style="color: #4b5563; font-size: 0.85rem; margin-top: 0.5rem; text-align: center;">(cm or ft'in)</p>
+              <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem; text-align: center;">(cm or ft'in)</p>
             </div>
           </div>
 
@@ -448,7 +448,7 @@
               <div class="slider-readout"><span id="weight-val">70</span> <span data-i18n="unitKg">kg</span></div>
               <input type="range" id="input-weight" min="40" max="150" value="70" step="1" aria-label="Weight" />
               <div style="margin-top: 1.2rem; display: flex; gap: 0.6rem; align-items: center;">
-                <input type="text" id="weight-input-text" placeholder="Enter weight" inputmode="decimal" style="flex: 1; padding: 0.6rem 0.8rem; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.08); color: #f1f5f9; font-size: 0.95rem; text-align: center; caret-color: #2dd4bf;" />
+                <input type="text" id="weight-input-text" placeholder="Enter weight" inputmode="decimal" style="flex: 1; padding: 0.6rem 0.8rem; border-radius: 10px; border: 1px solid var(--glass-border); background: var(--glass); color: var(--text); font-size: 0.95rem; text-align: center; caret-color: #2dd4bf;" />
                 <select id="weight-unit-select" class="glass-select">
                   <option value="kg">KG</option>
                   <option value="lbs">LBS</option>
@@ -793,7 +793,7 @@
 
         <div class="glass-card tracking-input-card">
           <label for="track-food-input" class="tracking-field">
-            <span style="display:block;font-size:0.82rem;font-weight:600;color:rgba(255,255,255,0.65);margin-bottom:0.35rem;">What did you eat today?</span>
+            <span style="display:block;font-size:0.82rem;font-weight:600;color:var(--text-muted);margin-bottom:0.35rem;">What did you eat today?</span>
           </label>
           <div class="tracking-input-wrap">
             <textarea id="track-food-input" class="tracking-food-input" placeholder="Breakfast: 2 anda, 1 paratha medium&#10;Lunch: chicken karahi 1 plate&#10;Snack: chai 1 cup"></textarea>
@@ -1054,6 +1054,176 @@
         <h2 class="tracking-section-title" style="font-size:1rem;">Your reminders</h2>
         <div id="track-reminder-list" class="tracking-reminder-list"></div>
       </section>
+
+      <!-- About FitForge -->
+      <section id="view-about" class="view hidden about-wrap" data-view="about">
+
+        <div class="glass-card about-hero">
+          <div class="about-hero__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+              <path d="M12 2l2.2 6.2L20 10l-5.8 1.8L12 18l-2.2-6.2L4 10l5.8-1.8L12 2z"/>
+            </svg>
+          </div>
+          <h1 class="about-hero__title" data-i18n="aboutHeroTitle">About FitForge</h1>
+          <p class="about-hero__sub" data-i18n="aboutHeroSub">FitForge is your AI-powered fitness assistant — it helps you understand your body type, personalizes your nutrition, and keeps your progress on track.</p>
+        </div>
+
+        <!-- 1. Body Type Prediction -->
+        <div class="glass-card about-section">
+          <div class="about-section__head">
+            <span class="about-section__icon about-section__icon--teal">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="M12 7v4M9 20h6M10 11l-1 9M14 11l1 9M8 11h8"/></svg>
+            </span>
+            <h2 class="about-section__title" data-i18n="aboutBodyTypeTitle">Body Type Prediction</h2>
+          </div>
+          <p class="about-section__desc" data-i18n="aboutBodyTypeDesc">Our Machine Learning model predicts your somatotype from your answers:</p>
+          <div class="about-chip-row">
+            <span class="tag about-chip" data-i18n="bodyTypeEcto">Ectomorph</span>
+            <span class="tag about-chip" data-i18n="bodyTypeMeso">Mesomorph</span>
+            <span class="tag about-chip" data-i18n="bodyTypeEndo">Endomorph</span>
+          </div>
+        </div>
+
+        <!-- 2. Personalized Plans -->
+        <div class="glass-card about-section">
+          <div class="about-section__head">
+            <span class="about-section__icon about-section__icon--sky">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M4 10h16M6 6h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/><path d="M8 14h8M8 18h5"/></svg>
+            </span>
+            <h2 class="about-section__title" data-i18n="aboutPlansTitle">Personalized Plans</h2>
+          </div>
+          <p class="about-section__desc" data-i18n="aboutPlansDesc">Your diet and workout plan is built around what makes you, you:</p>
+          <div class="about-chip-row">
+            <span class="tag about-chip" data-i18n="aboutFactorBodyType">Body Type</span>
+            <span class="tag about-chip" data-i18n="aboutFactorGender">Gender</span>
+            <span class="tag about-chip" data-i18n="aboutFactorGoal">Goal</span>
+            <span class="tag about-chip" data-i18n="aboutFactorActivity">Activity Level</span>
+            <span class="tag about-chip" data-i18n="aboutFactorWorkout">Workout Preference</span>
+          </div>
+        </div>
+
+        <!-- 3. Nutrition Tracking -->
+        <div class="glass-card about-section">
+          <div class="about-section__head">
+            <span class="about-section__icon about-section__icon--teal">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg>
+            </span>
+            <h2 class="about-section__title" data-i18n="aboutTrackingTitle">Nutrition Tracking</h2>
+          </div>
+          <p class="about-section__desc" data-i18n="aboutTrackingDesc">Stay on top of what you eat, every single day.</p>
+          <div class="about-mini-grid">
+            <div class="about-mini-item">
+              <span class="about-mini-item__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M4 7h16v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg></span>
+              <span class="about-mini-item__label" data-i18n="aboutTrackMeals">Daily meal logging</span>
+            </div>
+            <div class="about-mini-item">
+              <span class="about-mini-item__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></span>
+              <span class="about-mini-item__label" data-i18n="aboutTrackMacros">Calories &amp; Protein tracking</span>
+            </div>
+            <div class="about-mini-item">
+              <span class="about-mini-item__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M3 20h18M6 20V10M12 20V4M18 20v-7"/></svg></span>
+              <span class="about-mini-item__label" data-i18n="aboutTrackProgress">Progress visualization</span>
+            </div>
+            <div class="about-mini-item">
+              <span class="about-mini-item__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M4 4h16v16H4z" opacity="0"/><path d="M8 3v4M16 3v4M4 9h16M6 5h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/></svg></span>
+              <span class="about-mini-item__label" data-i18n="aboutTrackHistory">Food history</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Daily Targets -->
+        <div class="glass-card about-section">
+          <div class="about-section__head">
+            <span class="about-section__icon about-section__icon--amber">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>
+            </span>
+            <h2 class="about-section__title" data-i18n="aboutTargetsTitle">Daily Targets</h2>
+          </div>
+          <p class="about-section__desc" data-i18n="aboutTargetsDesc">Your calorie and protein targets are calculated just for you, using:</p>
+          <div class="about-chip-row">
+            <span class="tag about-chip" data-i18n="aboutFactorAge">Age</span>
+            <span class="tag about-chip" data-i18n="aboutFactorGender">Gender</span>
+            <span class="tag about-chip" data-i18n="aboutFactorHeight">Height</span>
+            <span class="tag about-chip" data-i18n="aboutFactorWeight">Weight</span>
+            <span class="tag about-chip" data-i18n="aboutFactorActivity">Activity Level</span>
+            <span class="tag about-chip" data-i18n="aboutFactorGoal">Goal</span>
+          </div>
+        </div>
+
+        <!-- 5. Smart Recommendations -->
+        <div class="glass-card about-section">
+          <div class="about-section__head">
+            <span class="about-section__icon about-section__icon--purple">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M12 2l2.2 6.2L20 10l-5.8 1.8L12 18l-2.2-6.2L4 10l5.8-1.8L12 2z"/></svg>
+            </span>
+            <h2 class="about-section__title" data-i18n="aboutRecoTitle">Smart Recommendations</h2>
+          </div>
+          <p class="about-section__desc" data-i18n="aboutRecoDesc">FitForge keeps adapting — meal and activity suggestions update in real time based on your progress and how much of your daily goal is left.</p>
+        </div>
+
+        <!-- 6. How FitForge Works -->
+        <div class="glass-card about-section">
+          <h2 class="about-section__title about-section__title--standalone" data-i18n="aboutFlowTitle">How FitForge Works</h2>
+          <div class="about-flow">
+            <div class="about-flow__step">
+              <span class="about-flow__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></span>
+              <span class="about-flow__label" data-i18n="aboutFlowStep1">User Details</span>
+            </div>
+            <span class="about-flow__arrow" aria-hidden="true">→</span>
+            <div class="about-flow__step">
+              <span class="about-flow__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="M12 7v4M9 20h6M10 11l-1 9M14 11l1 9M8 11h8"/></svg></span>
+              <span class="about-flow__label" data-i18n="aboutFlowStep2">Body Type Prediction</span>
+            </div>
+            <span class="about-flow__arrow" aria-hidden="true">→</span>
+            <div class="about-flow__step">
+              <span class="about-flow__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M4 10h16M6 6h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/><path d="M8 14h8M8 18h5"/></svg></span>
+              <span class="about-flow__label" data-i18n="aboutFlowStep3">Personalized Plan</span>
+            </div>
+            <span class="about-flow__arrow" aria-hidden="true">→</span>
+            <div class="about-flow__step">
+              <span class="about-flow__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg></span>
+              <span class="about-flow__label" data-i18n="aboutFlowStep4">Nutrition Tracking</span>
+            </div>
+            <span class="about-flow__arrow" aria-hidden="true">→</span>
+            <div class="about-flow__step">
+              <span class="about-flow__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M12 2l2.2 6.2L20 10l-5.8 1.8L12 18l-2.2-6.2L4 10l5.8-1.8L12 2z"/></svg></span>
+              <span class="about-flow__label" data-i18n="aboutFlowStep5">Smart Recommendations</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. Technologies Used -->
+        <div class="glass-card about-section">
+          <h2 class="about-section__title about-section__title--standalone" data-i18n="aboutTechTitle">Technologies Used</h2>
+          <div class="about-tech-grid">
+            <div class="about-tech-card">
+              <span class="about-tech-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3c-3 0-5 1-5 3v3h5v1H5s-3 .5-3 4 2.6 4 3 4h2v-2.5c0-1.5 1.3-3 3-3h4c1.7 0 3-1.3 3-3V6c0-2-2.5-3-5-3z"/><path d="M12 21c3 0 5-1 5-3v-3h-5v-1h7s3-.5 3-4-2.6-4-3-4h-2v2.5c0 1.5-1.3 3-3 3H10c-1.7 0-3 1.3-3 3v3c0 2 2.5 3 5 3z"/></svg></span>
+              <span class="about-tech-card__label">Python</span>
+            </div>
+            <div class="about-tech-card">
+              <span class="about-tech-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 3h12l-1 5H7L6 3z"/><path d="M7 8l1.2 11a2 2 0 0 0 2 1.8h3.6a2 2 0 0 0 2-1.8L17 8"/><path d="M9 13h6"/></svg></span>
+              <span class="about-tech-card__label">Flask</span>
+            </div>
+            <div class="about-tech-card">
+              <span class="about-tech-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></span>
+              <span class="about-tech-card__label" data-i18n="aboutTechML">Machine Learning</span>
+            </div>
+            <div class="about-tech-card">
+              <span class="about-tech-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M8 4L3 12l5 8"/><path d="M16 4l5 8-5 8"/></svg></span>
+              <span class="about-tech-card__label">JavaScript</span>
+            </div>
+            <div class="about-tech-card">
+              <span class="about-tech-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 3l1.6 17L12 22l6.4-2L20 3H4z"/><path d="M8 7h8l-.4 4.5H9l.2 2.2h6.4L15.2 18 12 19l-3.2-1-.2-2.3"/></svg></span>
+              <span class="about-tech-card__label">HTML/CSS</span>
+            </div>
+            <div class="about-tech-card">
+              <span class="about-tech-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg></span>
+              <span class="about-tech-card__label">Supabase</span>
+            </div>
+          </div>
+        </div>
+
+      </section>
     </main>
   </div>
 
@@ -1099,7 +1269,7 @@
 
   <div id="logout-overlay" class="auth-overlay hidden" aria-hidden="true">
     <div class="auth-modal glass-card" style="text-align:center;">
-      <p style="color:#f1f5f9; font-size:0.95rem; margin-bottom:1rem;" id="logout-confirm-text">Logout?</p>
+      <p style="color:var(--text); font-size:0.95rem; margin-bottom:1rem;" id="logout-confirm-text">Logout?</p>
       <div style="display:flex; gap:0.6rem;">
         <button type="button" class="btn btn--ghost" id="logout-cancel" style="flex:1;">Cancel</button>
         <button type="button" class="btn btn--primary" id="logout-confirm" style="flex:1;">Logout</button>
@@ -1127,6 +1297,7 @@
   <script src="js/tracking/tracking-reminders.js"></script>
   <script src="js/tracking/tracking-ui.js"></script>
   <script src="js/tracking/tracking-main.js"></script>
+  <script src="js/about.js"></script>
   <script src="js/recommendation-page.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <script src="js/supabase-client.js"></script>

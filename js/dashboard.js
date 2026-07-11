@@ -40,13 +40,20 @@
   function setTheme(theme) {
     state.theme = theme;
     localStorage.setItem(STORAGE_THEME, theme);
+    document.documentElement.classList.toggle("theme-light", theme === "light");
+    document.documentElement.classList.toggle("theme-dark", theme === "dark");
     document.body.classList.toggle("theme-light", theme === "light");
     document.body.classList.toggle("theme-dark", theme === "dark");
+    document.documentElement.style.colorScheme = theme;
     var sun = $("btn-theme")?.querySelector(".icon-sun");
     var moon = $("btn-theme")?.querySelector(".icon-moon");
     if (sun && moon) {
       sun.classList.toggle("hidden", theme === "light");
       moon.classList.toggle("hidden", theme === "dark");
+    }
+    var metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (metaThemeColor) {
+      metaThemeColor.setAttribute("content", theme === "light" ? "#e8eef7" : "#0f1729");
     }
   }
 
@@ -89,6 +96,11 @@
   }
 
   async function init() {
+    state.lang = localStorage.getItem(STORAGE_LANG) || "en";
+    state.theme = localStorage.getItem(STORAGE_THEME) || "dark";
+    setLang(state.lang);
+    setTheme(state.theme);
+
     if (window.FitAIAuth) {
       var user = await window.FitAIAuth.getCurrentUser();
       if (!user) {
@@ -100,11 +112,6 @@
       }
     }
     
-    state.lang = localStorage.getItem(STORAGE_LANG) || "en";
-    state.theme = localStorage.getItem(STORAGE_THEME) || "dark";
-    setLang(state.lang);
-    setTheme(state.theme);
-
     $("btn-theme")?.addEventListener("click", function () {
       setTheme(state.theme === "dark" ? "light" : "dark");
     });
