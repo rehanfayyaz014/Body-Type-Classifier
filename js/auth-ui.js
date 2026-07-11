@@ -206,19 +206,37 @@
       e.preventDefault();
       $("signup-error")?.classList.add("hidden");
       try {
-        await window.FitAIAuth.signUp(
-          $("signup-email").value,
+        var signupEmail = $("signup-email").value;
+        var outcome = await window.FitAIAuth.signUp(
+          signupEmail,
           $("signup-password").value,
           $("signup-name").value
         );
-        var user = await window.FitAIAuth.getCurrentUser();
-        syncHeaderChrome(user);
+
         hideModal();
-        showNotification(
-          getStrings().authSignupSuccessTitle || "Account Created!",
-          getStrings().authSignupSuccessMessage || "Your account is ready and your data has been synced. Welcome to FitForge!",
-          "🚀"
-        );
+
+        if (outcome.pendingConfirmation) {
+          // No active session yet — Supabase sent a confirmation email/link.
+          // Do NOT treat the user as logged in.
+          syncHeaderChrome(null);
+          showNotification(
+            getStrings().authConfirmPendingTitle || "Confirm your email",
+            (getStrings().authConfirmPendingMessage ||
+              "We've sent a confirmation link to {email}. Please verify it to activate your account.").replace(
+              "{email}",
+              signupEmail
+            ),
+            "📩"
+          );
+        } else {
+          var user = await window.FitAIAuth.getCurrentUser();
+          syncHeaderChrome(user);
+          showNotification(
+            getStrings().authSignupSuccessTitle || "Account Created!",
+            getStrings().authSignupSuccessMessage || "Your account is ready and your data has been synced. Welcome to FitForge!",
+            "🚀"
+          );
+        }
       } catch (err) {
         var message = err.message || getStrings().authSignupErrorDefault || "Signup failed";
         showError("signup-error", message);

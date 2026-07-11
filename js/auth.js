@@ -14,19 +14,45 @@
       password: password,
       options: {
         data: { name: name },
+        emailRedirectTo: window.location.origin + window.location.pathname,
       },
     });
     if (result.error) throw result.error;
 
-    if (result.data && result.data.user) {
-      await migrateGuestDataToSupabase(result.data.user.id);
+    // If email confirmation is required, Supabase returns a user but NO session.
+    // In that case we must NOT treat the person as logged in yet, and we can't
+    // migrate guest data yet either (there is no authenticated session for RLS).
+    var pendingConfirmation = !!(result.data && result.data.user && !result.data.session);
+
+    if (!pendingConfirmation && result.data && result.data.user) {
+      await maybeMigrateGuestData(result.data.user.id);
     }
-    return result.data;
+
+    return {
+      user: result.data ? result.data.user : null,
+      session: result.data ? result.data.session : null,
+      pendingConfirmation: pendingConfirmation,
+    };
+  }
+
+  async function resendConfirmation(email) {
+    var result = await sb.auth.resend({
+      type: "signup",
+      email: email,
+      options: {
+        emailRedirectTo: window.location.origin + window.location.pathname,
+      },
+    });
+    if (result.error) throw result.error;
+    return true;
   }
 
   async function signIn(email, password) {
     var result = await sb.auth.signInWithPassword({ email: email, password: password });
     if (result.error) throw result.error;
+    if (result.data && result.data.user) {
+      await maybeMigrateGuestData(result.data.user.id);
+    }
     return result.data;
   }
 
@@ -45,7 +71,14 @@
     return result.data;
   }
 
-  // ---- Guest -> Supabase Migration (runs once, right after signup) ----
+  // ---- Guest -> Supabase Migration (runs once, on the user's first real login) ----
+
+  async function maybeMigrateGuestData(userId) {
+    var flagKey = "fitai-migrated-" + userId;
+    if (localStorage.getItem(flagKey)) return; // already migrated for this account
+    await migrateGuestDataToSupabase(userId);
+    localStorage.setItem(flagKey, "1");
+  }
 
   async function migrateGuestDataToSupabase(userId) {
     try {
@@ -102,6 +135,11 @@
 
   function onAuthChange(callback) {
     sb.auth.onAuthStateChange(function (event, session) {
+      if (session && session.user && event === "SIGNED_IN") {
+        // Covers the case where the user clicks the email confirmation link
+        // and Supabase auto-establishes a session on redirect back to the app.
+        maybeMigrateGuestData(session.user.id);
+      }
       callback(session ? session.user : null);
     });
   }
@@ -110,6 +148,7 @@
     signUp: signUp,
     signIn: signIn,
     signOut: signOut,
+    resendConfirmation: resendConfirmation,
     getCurrentUser: getCurrentUser,
     getProfile: getProfile,
     onAuthChange: onAuthChange,
