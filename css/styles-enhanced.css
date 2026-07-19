@@ -88,7 +88,7 @@ body[dir="rtl"] .result-type {
   z-index: 0;
   background:
     linear-gradient(165deg, rgba(15, 23, 41, 0.88) 0%, rgba(15, 23, 41, 0.55) 45%, rgba(99, 102, 241, 0.25) 100%),
-    url("https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+    url("../static/images/background.jpg") center/cover no-repeat;
   transform: scale(1.02);
   transition: background 0.6s var(--ease);
 }
@@ -96,7 +96,7 @@ body[dir="rtl"] .result-type {
 .theme-light .bg-layer {
   background:
     linear-gradient(165deg, rgba(232, 238, 247, 0.92) 0%, rgba(232, 238, 247, 0.75) 50%, rgba(45, 212, 191, 0.15) 100%),
-    url("https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+    url("../static/images/background.jpg") center/cover no-repeat;
 }
 
 .bg-vignette {
