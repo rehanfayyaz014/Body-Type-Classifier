@@ -1189,8 +1189,15 @@
       var value = parseFloat(cleaned);
       
       if (unit === "feet") {
-        // Convert feet to CM (1 foot = 30.48 cm)
-        cm = Math.round(value * 30.48);
+        // Parse Feet.Inches format (e.g., 5.10 = 5 ft 10 in).
+        var feetParts = cleaned.split(".");
+        var feetValue = parseInt(feetParts[0], 10);
+        var inchesText = feetParts.length > 1 ? feetParts[1] : "0";
+        var inchesValue = parseInt(inchesText, 10);
+
+        if (!isNaN(feetValue) && !isNaN(inchesValue) && inchesValue >= 0 && inchesValue <= 11) {
+          cm = Math.round((feetValue * 12 + inchesValue) * 2.54);
+        }
       } else {
         // Already in CM
         cm = Math.round(value);
