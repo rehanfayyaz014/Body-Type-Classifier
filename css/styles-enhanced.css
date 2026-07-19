@@ -363,6 +363,24 @@ main {
   gap: 1rem;
 }
 
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.brand__logo {
+  width: 2.3rem;
+  height: 2.3rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.25);
+  flex-shrink: 0;
+}
+
 .logo {
   font-size: 1.5rem;
   font-weight: 700;
