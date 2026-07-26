@@ -251,25 +251,11 @@ def build_recommendation_payload(payload: dict) -> dict:
     }
 
 
-def _load_model():
-    """Load model and scaler from pickle cache. If cache doesn't exist, train and cache."""
-    
-    # Try loading from cache first (fastest)
-    if MODEL_CACHE_PATH.is_file() and SCALER_CACHE_PATH.is_file():
-        print(f"Loading model from cache: {MODEL_CACHE_PATH}")
-        with open(MODEL_CACHE_PATH, "rb") as f:
-            clf = pickle.load(f)
-        print(f"Loading scaler from cache: {SCALER_CACHE_PATH}")
-        with open(SCALER_CACHE_PATH, "rb") as f:
-            scaler = pickle.load(f)
-        print("Cache loaded successfully!")
-        return clf, scaler
-    
-    # If cache doesn't exist, train the model
-    print("Cache not found. Training model from scratch...")
+def _train_model():
+    """Train the model and scaler from the CSV dataset (in memory, no disk writes assumed to succeed)."""
     if not CSV_PATH.is_file():
         raise FileNotFoundError(f"Dataset not found: {CSV_PATH}")
-    
+
     df = pd.read_csv(CSV_PATH)
     for col in ("body_shape", "weight_gain", "muscle_effect", "belly_fat"):
         df[col] = df[col].map(LETTER_MAP)
@@ -284,27 +270,53 @@ def _load_model():
     ]
     X = df[feature_cols].values
     y = df["body_type"].values
-    
+
     # Scale features (required for GradientBoosting)
     scaler = StandardScaler()
     X_scaled = X.copy()
     X_scaled[:, [0, 1]] = scaler.fit_transform(X[:, [0, 1]])  # Scale height and weight
-    
+
     # Train GradientBoosting for superior accuracy (97.7% vs 93.3% DecisionTree)
     clf = GradientBoostingClassifier(n_estimators=200, max_depth=6, learning_rate=0.05, random_state=42)
     clf.fit(X_scaled, y)
-    
-    # Cache model
-    print(f"Saving model to cache: {MODEL_CACHE_PATH}")
-    with open(MODEL_CACHE_PATH, "wb") as f:
-        pickle.dump(clf, f)
-    
-    # Cache scaler
-    print(f"Saving scaler to cache: {SCALER_CACHE_PATH}")
-    with open(SCALER_CACHE_PATH, "wb") as f:
-        pickle.dump(scaler, f)
-    
-    print("Model and scaler cached successfully!")
+    return clf, scaler
+
+
+def _load_model():
+    """Load model and scaler from pickle cache. Falls back to training in memory if the
+    cache is missing or fails to load (e.g. a scikit-learn version mismatch between the
+    machine that created the cache and the deployment environment). Cache writes are
+    best-effort only, since serverless platforms like Vercel have a read-only filesystem."""
+
+    if MODEL_CACHE_PATH.is_file() and SCALER_CACHE_PATH.is_file():
+        try:
+            print(f"Loading model from cache: {MODEL_CACHE_PATH}")
+            with open(MODEL_CACHE_PATH, "rb") as f:
+                clf = pickle.load(f)
+            print(f"Loading scaler from cache: {SCALER_CACHE_PATH}")
+            with open(SCALER_CACHE_PATH, "rb") as f:
+                scaler = pickle.load(f)
+            print("Cache loaded successfully!")
+            return clf, scaler
+        except Exception as exc:
+            print(f"Cache load failed ({exc}); retraining in memory instead.")
+
+    print("Training model from scratch (in memory)...")
+    clf, scaler = _train_model()
+
+    # Cache is best-effort: on read-only deployments (e.g. Vercel) this write will fail,
+    # and that's fine — the model above is already usable, we just skip persisting it.
+    try:
+        print(f"Saving model to cache: {MODEL_CACHE_PATH}")
+        with open(MODEL_CACHE_PATH, "wb") as f:
+            pickle.dump(clf, f)
+        print(f"Saving scaler to cache: {SCALER_CACHE_PATH}")
+        with open(SCALER_CACHE_PATH, "wb") as f:
+            pickle.dump(scaler, f)
+        print("Model and scaler cached successfully!")
+    except OSError as exc:
+        print(f"Skipping cache write (read-only filesystem?): {exc}")
+
     return clf, scaler
 
 
