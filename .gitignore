@@ -11,10 +11,6 @@ env/
 dist/
 build/
 
-# Generated model cache (run train_and_cache.py to recreate)
-model_cache.pkl
-scaler_cache.pkl
-
 # Jupyter
 .ipynb_checkpoints/
 
