@@ -101,7 +101,10 @@
     setLang(state.lang);
     setTheme(state.theme);
 
-    if (window.FitAIAuth) {
+    var isGuest = false;
+    try { isGuest = localStorage.getItem("fitai-guest-mode") === "1"; } catch (err) {}
+
+    if (window.FitAIAuth && !isGuest) {
       var user = await window.FitAIAuth.getCurrentUser();
       if (!user) {
         window.location.href = "/";

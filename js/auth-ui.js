@@ -184,6 +184,15 @@
     });
 
     $("auth-close")?.addEventListener("click", hideModal);
+    $("auth-continue-guest")?.addEventListener("click", function () {
+      try { localStorage.setItem("fitai-guest-mode", "1"); } catch (err) {}
+      hideModal();
+      if (window.AnimationManager) {
+        window.AnimationManager.navigateTo("/dashboard");
+      } else {
+        window.location.href = "/dashboard";
+      }
+    });
     $("auth-tab-login")?.addEventListener("click", function () { switchTab("login"); });
     $("auth-tab-signup")?.addEventListener("click", function () { switchTab("signup"); });
     applyI18n();
